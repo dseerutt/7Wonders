@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="7a6b2170-a037-4339-adcb-0e79a19477a1" name="UMLClassDiagram1" linkedPackageId="a242fded-22e9-44ce-8e1e-d940a2b417a7" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <ownedCommentsInternal>
+    <comment Id="0917af0f-db5b-4035-b9bf-d4044bd494ea">
+      <elementDefinition Id="fd8164b6-a1de-4ed5-bca8-37a401a3b066" />
+      <body>cardsDatabase.txt</body>
+      <annotatedElements>
+        <classMoniker Id="47306792-4ed1-4b44-be42-5e439a274f7a" LastKnownName="CardDatabaseParser" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="2a0f9bc6-9670-49dc-959c-1ed9fc5f88a3" name="World" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -83,6 +92,16 @@
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd Id="f66c5270-be4c-44b4-b417-c082e43a59ae" name="Card" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="a0d31edf-0eb3-4005-a50d-4e69c2b14bbf" name="Lower" value="0">
+                      <elementDefinition Id="4e9a6c6e-eebc-4aa8-96af-6760aa9d5a06" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="b38de4ab-f83c-4c3a-ba5b-a4bb7d0b06f4" name="Upper" value="n">
+                      <elementDefinition Id="31c2f661-cf9f-4935-8825-f4ac44c0f0cf" />
+                    </literalString>
+                  </upperValueInternal>
                   <elementDefinition Id="69d11909-32f7-4efc-8bd3-12d130bc8404" />
                 </memberEnd>
               </associationHasOwnedEnds>
@@ -103,13 +122,8 @@
             <elementDefinition Id="c07876ad-4cf6-4b1c-9b64-7f2fdb83de64" />
             <ownedParameters>
               <operationHasOwnedParameters>
-                <parameter Id="b872962a-0ada-4b64-aa75-dae4ce230579" name="int age" direction="In" isUnique="false">
-                  <elementDefinition Id="4f00f4c9-f73f-467a-9b94-45939d355fdb" />
-                </parameter>
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="fce86b0d-8e1c-4a8d-975e-11b3b9dad859" name="int playerNumber" direction="In" isUnique="false">
-                  <elementDefinition Id="8e25dbd3-7ac9-4ad3-9a2c-d7cfcb187cfa" />
+                <parameter Id="5cd4c37c-1d8f-421b-8d19-946ba68c5ce7" name="int age" direction="In" isUnique="false">
+                  <elementDefinition Id="012c9621-84ee-47a1-b440-c2291d133faa" />
                 </parameter>
               </operationHasOwnedParameters>
             </ownedParameters>
@@ -200,6 +214,9 @@
           <operation Id="5acd6beb-431f-453a-ade7-5c8b0e0dacc4" name="prepareTurn" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="f2875fd9-c450-4e96-9cc8-f4a8a3402ae5" />
           </operation>
+          <operation Id="df5f72cc-0b48-4082-8d39-912c601ba2b8" name="pickCard" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="91454691-1a32-48fe-a690-8630fd3be159" />
+          </operation>
         </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -212,22 +229,6 @@
       <class Id="47306792-4ed1-4b44-be42-5e439a274f7a" name="CardDatabaseParser" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="b66f6d16-b374-43b5-a022-dbe42c069d93" />
         <targetEnds>
-          <association Id="6b3f6791-c42e-4ddf-bcdb-585ddcd562ba" isDerived="false" sourceEndRoleName="CardDatabaseParser" targetEndRoleName="CardDatabase" isLeaf="false" isAbstract="false">
-            <enumerationMoniker Id="9f42da75-56a6-4063-b37c-4fb6e55e2e82" LastKnownName="CardDatabase" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="0a38e425-04c0-43b8-96eb-d727524c510a" name="CardDatabaseParser" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="8d429c86-8dbc-402a-b4cd-d35a2878d97c" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="4c9f4566-91cb-4e51-8b02-bd48f904be39" name="CardDatabase" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <elementDefinition Id="29c2eaeb-b788-48d8-b54c-6fa9501f400f" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="dbed11cb-1376-4ee2-9ea9-a1fda4fa5f4d" />
-          </association>
           <association Id="8a78cee0-f705-40e7-b0f1-fc044c039898" isDerived="false" sourceEndRoleName="CardDatabaseParser" targetEndRoleName="Card" isLeaf="false" isAbstract="false">
             <classMoniker Id="f1c651b1-d1ac-4ef0-ba22-3a09550f863f" LastKnownName="Card" />
             <relationshipOwnedElementsInternal>
@@ -260,13 +261,8 @@
             <elementDefinition Id="fcc9cab8-f36b-4f3d-b33f-21f33107114b" />
             <ownedParameters>
               <operationHasOwnedParameters>
-                <parameter Id="51d87b83-e59e-4afb-9606-97eebd9848fd" name="int age" direction="In" isUnique="false">
-                  <elementDefinition Id="d8608ab0-183f-483a-aaaa-ad1f61ee21c2" />
-                </parameter>
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="b154218e-e9d8-411b-b8ba-2854e6576518" name="int playerNumber" direction="In" isUnique="false">
-                  <elementDefinition Id="f149da92-406c-46bb-ab8d-1f922997e78a" />
+                <parameter Id="5bfa6e96-da44-4f90-a42b-95c2840ab509" name="int age" direction="In" isUnique="false">
+                  <elementDefinition Id="331c2f12-f29c-4e1b-87e1-85c1878b1415" />
                 </parameter>
               </operationHasOwnedParameters>
             </ownedParameters>
@@ -275,9 +271,26 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <enumeration Id="9f42da75-56a6-4063-b37c-4fb6e55e2e82" name="CardDatabase" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="d263e093-f48d-4713-8453-c79b992dc69a" />
-      </enumeration>
+      <class Id="64041260-047d-467d-ac1c-a4f3e2743e74" name="HumanPlayer" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="2e999bd3-905d-4147-b512-db4cb5186e0d" />
+        <generalsInternal>
+          <generalization Id="01cdec4e-5b0b-48f8-b421-110b9e448fb7" isSubstitutable="false">
+            <classMoniker Id="14d77d0e-2842-4553-8bd5-88d888b745cc" LastKnownName="Player" />
+            <elementDefinition Id="c0624d36-9a75-44b2-bf96-1b3a7a3a3249" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="b970c88e-cd8a-4fcb-900b-fe527d94d95e" name="ComputerPlayer" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="9fd81325-a3bf-4e83-afa1-27a26a94d87c" />
+        <generalsInternal>
+          <generalization Id="6f126f79-60cf-4ddf-bde9-ae7b137808c2" isSubstitutable="false">
+            <classMoniker Id="14d77d0e-2842-4553-8bd5-88d888b745cc" LastKnownName="Player" />
+            <elementDefinition Id="bcb32bbf-98bc-4838-8b15-69e4b388f929" />
+          </generalization>
+        </generalsInternal>
+      </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>
   <package Id="a242fded-22e9-44ce-8e1e-d940a2b417a7" name="Modeling7Wonders">

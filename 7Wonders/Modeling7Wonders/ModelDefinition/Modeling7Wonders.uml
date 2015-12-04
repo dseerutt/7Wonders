@@ -3,6 +3,18 @@
   dslVersion="1.0.0.0"
   Id="e14cffb1-34ba-4d9e-81b0-80c87a854783"
   name="Modeling7Wonders" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="fd8164b6-a1de-4ed5-bca8-37a401a3b066">
+      <body>cardsDatabase.txt</body>
+      <annotatedElements>
+        <classMoniker
+          Id="b66f6d16-b374-43b5-a022-dbe42c069d93"
+          LastKnownName="CardDatabaseParser"
+          LastKnownLocation="Modeling7Wonders.uml" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
   <profileInstances>
     <packageHasProfileInstances
       Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
@@ -206,7 +218,20 @@
                   isDerived="false"
                   isDerivedUnion="false"
                   aggregation="None"
-                  isComposite="true" />
+                  isComposite="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="4e9a6c6e-eebc-4aa8-96af-6760aa9d5a06"
+                      name="Lower"
+                      value="0" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="31c2f661-cf9f-4935-8825-f4ac44c0f0cf"
+                      name="Upper"
+                      value="n" />
+                  </upperValueInternal>
+                </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
@@ -246,15 +271,8 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="4f00f4c9-f73f-467a-9b94-45939d355fdb"
+                  Id="012c9621-84ee-47a1-b440-c2291d133faa"
                   name="int age"
-                  direction="In"
-                  isUnique="false" />
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="8e25dbd3-7ac9-4ad3-9a2c-d7cfcb187cfa"
-                  name="int playerNumber"
                   direction="In"
                   isUnique="false" />
               </operationHasOwnedParameters>
@@ -432,6 +450,14 @@
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false" />
+          <operation
+            Id="91454691-1a32-48fe-a690-8630fd3be159"
+            name="pickCard"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -451,45 +477,6 @@
         isLeaf="false"
         isActiveClass="false">
         <targetEnds>
-          <association
-            Id="dbed11cb-1376-4ee2-9ea9-a1fda4fa5f4d"
-            isDerived="false"
-            sourceEndRoleName="CardDatabaseParser"
-            targetEndRoleName="CardDatabase"
-            isLeaf="false"
-            isAbstract="false">
-            <enumerationMoniker
-              Id="d263e093-f48d-4713-8453-c79b992dc69a"
-              LastKnownName="CardDatabase"
-              LastKnownLocation="Modeling7Wonders.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="8d429c86-8dbc-402a-b4cd-d35a2878d97c"
-                  name="CardDatabaseParser"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="29c2eaeb-b788-48d8-b54c-6fa9501f400f"
-                  name="CardDatabase"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
           <association
             Id="d59c60ef-3d88-48a4-9061-f64e81d141c0"
             isDerived="false"
@@ -555,15 +542,8 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="d8608ab0-183f-483a-aaaa-ad1f61ee21c2"
+                  Id="331c2f12-f29c-4e1b-87e1-85c1878b1415"
                   name="int age"
-                  direction="In"
-                  isUnique="false" />
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="f149da92-406c-46bb-ab8d-1f922997e78a"
-                  name="int playerNumber"
                   direction="In"
                   isUnique="false" />
               </operationHasOwnedParameters>
@@ -578,6 +558,44 @@
         name="CardDatabase"
         isAbstract="false"
         isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="2e999bd3-905d-4147-b512-db4cb5186e0d"
+        name="HumanPlayer"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="c0624d36-9a75-44b2-bf96-1b3a7a3a3249"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f316bc63-5370-4504-b1b0-34201a055492"
+              LastKnownName="Player"
+              LastKnownLocation="Modeling7Wonders.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9fd81325-a3bf-4e83-afa1-27a26a94d87c"
+        name="ComputerPlayer"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="bcb32bbf-98bc-4838-8b15-69e4b388f929"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f316bc63-5370-4504-b1b0-34201a055492"
+              LastKnownName="Player"
+              LastKnownLocation="Modeling7Wonders.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

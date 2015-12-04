@@ -1,15 +1,28 @@
 #pragma once
+#include <vector>
+#include "Player.h"
+#include "Card.h"
+#include "CardDatabaseParser.h"
+
 class World
 {
 private:
-	int playerNumber;
+	std::vector<Player*> m_players;
+	unsigned int m_playerNumber;
+	unsigned int m_numberOfTurns;
+	CardDatabaseParser m_cardDatabaseParser;
+	std::vector<Card> m_deck;
+	std::vector<Card> m_discard;
+
 
 public:
-	World();
+	World(unsigned int nh, unsigned int nc);
 	~World();
 
 	void run();
-	void generateDeck(int age, int playerNumber);
+	std::vector<Card> generateDeck(int age);
+	void distributeCards();
+	void draft(unsigned int age);
 	void prepareTurn();
 	void playTurn();
 };
