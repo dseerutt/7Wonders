@@ -33,6 +33,9 @@
     <ClInclude Include="HumanPlayer.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Display.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="World.cpp">
@@ -54,6 +57,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="HumanPlayer.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Display.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

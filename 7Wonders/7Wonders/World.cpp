@@ -1,6 +1,7 @@
 #include "World.h"
 #include "HumanPlayer.h"
 #include "ComputerPlayer.h"
+#include "Display.h"
 #include <string>
 
 World::World(unsigned int nh, unsigned int nc) : 
@@ -18,12 +19,17 @@ World::World(unsigned int nh, unsigned int nc) :
 
 World::~World()
 {
+	for (unsigned int i = 0; i < m_playerNumber; i++)
+	{
+		delete(m_players.at(i));
+	}
 }
 
 
 void World::run()
 {
-	const int NUMBER_OF_AGES = 3;
+	Display display(m_players);
+	display.draw();
 
 	for (unsigned int age = 0; age < NUMBER_OF_AGES; age++)
 	{
@@ -35,6 +41,8 @@ void World::run()
 			prepareTurn();
 			playTurn();
 			draft(age);
+
+			display.draw();
 		}
 	}
 }
@@ -59,7 +67,6 @@ void World::distributeCards()
 		for (unsigned int j = 0; j<cardsForOnePlayer; j++)
 		{
 			hand.push_back(m_deck.at(i*cardsForOnePlayer + j));
-			std::cout << "c: " << i << "->" << i*cardsForOnePlayer + j << " " << m_deck.at(i*cardsForOnePlayer + j).m_name << std::endl;
 		}
 		m_players.at(i)->setHand(hand);
 	}

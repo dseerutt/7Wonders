@@ -19,8 +19,15 @@ CardDatabaseParser::CardDatabaseParser(int playerNumber) : m_allCards(3, std::ve
 	std::string dummy;
 	std::getline(file, dummy);
 	
+	unsigned int debugCounter = 0;
 	while (!file.eof())
 	{
+		debugCounter++;
+		if (debugCounter > 300)
+		{
+			std::cerr << "Erreur : boucle infinie dans la lecture de la base de données." << std::endl;
+			exit(-1);
+		}
 		std::string name;
 		file >> name;
 
@@ -33,8 +40,12 @@ CardDatabaseParser::CardDatabaseParser(int playerNumber) : m_allCards(3, std::ve
 			continue;
 		}
 
-		char color;
-		file >> color;
+		char colorChar;
+		file >> colorChar;
+		CardColor color = getColor(colorChar);
+
+		int goldCost;
+		file >> goldCost;
 
 		int woodCost;
 		file >> woodCost;
@@ -52,14 +63,27 @@ CardDatabaseParser::CardDatabaseParser(int playerNumber) : m_allCards(3, std::ve
 		int papyrusCost;
 		file >> papyrusCost;
 
-		int points;
-		file >> points;
+		Card card;
+		switch (color)
+		{
+		case BLUE:
+			int points;
+			file >> points;
 
-		Card card(name, points);
+			card = Card(name, color, points);
+			break;
+		default:// BROWN
+			std::string production;
+			file >> production;
+
+			card = Card(name, color, 0);
+			break;
+		}
+
 		m_allCards[0].push_back(card);
 	}
 	/*
-		At this point, the deck m-allCard contains every card of the database that have the required number of players
+		At this point, the deck m_allCards contains every card of the database that have the required number of players
 	*/
 }
 
@@ -73,4 +97,19 @@ std::vector<Card> CardDatabaseParser::generateDeck(int age)
 	std::vector<Card>& v = m_allCards[age];
 	std::random_shuffle(v.begin(), v.end());
 	return v;
+}
+
+CardColor CardDatabaseParser::getColor(char c) const
+{
+	CardColor color;
+	switch (c)
+	{
+	case 'b':
+		color = BLUE;
+		break;
+	default:
+		color = BROWN;
+		break;
+	}
+	return color;
 }

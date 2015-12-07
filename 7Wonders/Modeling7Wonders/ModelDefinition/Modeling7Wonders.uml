@@ -235,6 +235,45 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="5b8c5be1-3333-4675-8052-21bd1df67144"
+            isDerived="false"
+            sourceEndRoleName="World"
+            targetEndRoleName="Display"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="3f8f3376-f97b-475c-9c7f-dc6de6ac30fe"
+              LastKnownName="Display"
+              LastKnownLocation="Modeling7Wonders.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="dfd81433-d248-4593-809c-e85ecf83144a"
+                  name="World"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="76dc1b78-09a2-463c-aff9-aebcaa701242"
+                  name="Display"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property
@@ -458,6 +497,14 @@
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false" />
+          <operation
+            Id="9d70dc11-bf83-40f3-8215-94b8b5066b94"
+            name="getScore"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -595,6 +642,25 @@
               LastKnownLocation="Modeling7Wonders.uml" />
           </generalization>
         </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="3f8f3376-f97b-475c-9c7f-dc6de6ac30fe"
+        name="Display"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedOperationsInternal>
+          <operation
+            Id="27aa4f59-a9ae-4297-bae0-853fd35fb03e"
+            name="draw"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
   </packagedElements>

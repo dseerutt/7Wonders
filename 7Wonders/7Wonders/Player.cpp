@@ -9,6 +9,21 @@ Player::~Player()
 {
 }
 
+unsigned int Player::getScore() const
+{
+	unsigned int score = 0;
+	for (unsigned int i = 0; i < m_board.size(); i++)
+	{
+		score += m_board.at(i).m_points;
+	}
+	return score;
+}
+
+const std::vector<Card>& Player::getBoard() const
+{
+	return m_board;
+}
+
 void Player::setHand(const std::vector<Card>& newHand)
 {
 	m_hand.clear();
@@ -51,6 +66,7 @@ void Player::playTurn()
 		if (card == m_cardToPlay)
 		{
 			cardToErase = it;
+			break;
 		}
 	}
 	m_hand.erase(cardToErase);

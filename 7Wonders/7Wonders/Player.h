@@ -14,6 +14,10 @@ protected:
 public:
 	Player(std::vector<Card>* discard);
 	~Player();
+
+	unsigned int getScore() const;
+	const std::vector<Card>& getBoard() const;
+
 	void setHand(const std::vector<Card>& newHand);
 	const std::vector<Card>& getHand() const;
 	void prepareTurn();

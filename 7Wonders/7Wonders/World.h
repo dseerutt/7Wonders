@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Card.h"
 #include "CardDatabaseParser.h"
+#define NUMBER_OF_AGES 3
 
 class World
 {

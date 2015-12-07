@@ -108,6 +108,22 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="b673a94c-09e5-4ec0-b03c-4dcc62a4d425" />
           </association>
+          <association Id="6d9db360-8892-4e02-a18a-7a914899ffb0" isDerived="false" sourceEndRoleName="World" targetEndRoleName="Display" isLeaf="false" isAbstract="false">
+            <classMoniker Id="5ee90a06-26c5-4b09-a39b-f7d70e67ac22" LastKnownName="Display" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a966043b-30b7-423a-8a68-c7dd1a6ae093" name="World" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="dfd81433-d248-4593-809c-e85ecf83144a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ff5b0aa6-5d3d-4abe-9a92-2627e7522f29" name="Display" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="76dc1b78-09a2-463c-aff9-aebcaa701242" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="5b8c5be1-3333-4675-8052-21bd1df67144" />
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property Id="a856e568-fd99-4dda-8730-6657212fdd00" name="turn" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -217,6 +233,9 @@
           <operation Id="df5f72cc-0b48-4082-8d39-912c601ba2b8" name="pickCard" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="91454691-1a32-48fe-a690-8630fd3be159" />
           </operation>
+          <operation Id="581d7944-54d3-4537-b313-16abe655e499" name="getScore" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="9d70dc11-bf83-40f3-8215-94b8b5066b94" />
+          </operation>
         </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -290,6 +309,16 @@
             <elementDefinition Id="bcb32bbf-98bc-4838-8b15-69e4b388f929" />
           </generalization>
         </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="5ee90a06-26c5-4b09-a39b-f7d70e67ac22" name="Display" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="3f8f3376-f97b-475c-9c7f-dc6de6ac30fe" />
+        <ownedOperationsInternal>
+          <operation Id="9c66b6eb-8619-49b6-8acc-2aed5f452737" name="draw" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="27aa4f59-a9ae-4297-bae0-853fd35fb03e" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>

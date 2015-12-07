@@ -1,12 +1,16 @@
-﻿Build started 04/12/2015 00:25:00.
+﻿Build started 07/12/2015 19:20:55.
      1>Project "E:\cygwin\home\WIN SEVEN\projects\7Wonders\7Wonders\7Wonders\7Wonders.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt World.cpp
+         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"E:\cygwin\home\WIN SEVEN\projects\7Wonders\SFML-2.3.2\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Display.cpp World.cpp
+         Display.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
          World.cpp
        Link:
-         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\cygwin\home\WIN SEVEN\projects\7Wonders\7Wonders\Debug\7Wonders.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\cygwin\home\WIN SEVEN\projects\7Wonders\7Wonders\Debug\7Wonders.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\cygwin\home\WIN SEVEN\projects\7Wonders\7Wonders\Debug\7Wonders.lib" /MACHINE:X86 Debug\Card.obj
+         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\cygwin\home\WIN SEVEN\projects\7Wonders\7Wonders\Debug\7Wonders.exe" /INCREMENTAL /NOLOGO /LIBPATH:"E:\cygwin\home\WIN SEVEN\projects\7Wonders\SFML-2.3.2\bin" /LIBPATH:"E:\cygwin\home\WIN SEVEN\projects\7Wonders\SFML-2.3.2\lib" "sfml-graphics-d.lib" "sfml-window-d.lib" "sfml-system-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\cygwin\home\WIN SEVEN\projects\7Wonders\7Wonders\Debug\7Wonders.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\cygwin\home\WIN SEVEN\projects\7Wonders\7Wonders\Debug\7Wonders.lib" /MACHINE:X86 Debug\Card.obj
          Debug\CardDatabaseParser.obj
          Debug\ComputerPlayer.obj
+         Debug\Display.obj
          Debug\HumanPlayer.obj
          Debug\main.obj
          Debug\Player.obj
@@ -16,4 +20,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.60
+Time Elapsed 00:00:00.70

@@ -14,5 +14,6 @@ public:
 	~CardDatabaseParser();
 
 	std::vector<Card> generateDeck(int age);
+	CardColor getColor(char c) const;
 };
 
