@@ -25,7 +25,7 @@ void Display::run() //FIXME
 void Display::draw()
 {
 	m_window.clear();
-	for (unsigned int i = 0; i < m_players.size(); i++)
+	for (unsigned int i = 0; i < 1/*m_players.size()*/; i++)
 	{
 		drawPlayer(*m_players.at(i));
 	}
@@ -64,18 +64,18 @@ void Display::drawBoard(const std::vector<Card> board, sf::Vector2f pos)
 
 void Display::drawCard(const Card& c, sf::Vector2f pos)
 {
-	sf::RectangleShape card;
-	card.setPosition(pos);
-	card.setSize(sf::Vector2f(20.f, 50.f));
+	sf::RectangleShape rect;
+	rect.setPosition(pos);
+	rect.setSize(sf::Vector2f(20.f, 50.f)); std::cout << "a" << std::endl;
 	switch (c.m_color)
 	{
 	case BLUE:
-		card.setFillColor(sf::Color::Blue);
+		rect.setFillColor(sf::Color::Blue);
 		break;
 	default:
-		card.setFillColor(sf::Color::Magenta);
+		rect.setFillColor(sf::Color::Magenta);
 		break;
 	}
 
-	m_window.draw(card);
+	m_window.draw(rect);
 }
