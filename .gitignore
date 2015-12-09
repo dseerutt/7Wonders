@@ -26,8 +26,9 @@
 *.exe
 *.out
 *.app
+*.sdf
 
-#other modified extensions
+# other modified extensions
 *.opensdf
 *.sdf
 7Wonders/7Wonders.sdf
