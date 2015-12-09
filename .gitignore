@@ -26,3 +26,8 @@
 *.exe
 *.out
 *.app
+
+#other modified extensions
+*.opensdf
+*.sdf
+Debug/*
