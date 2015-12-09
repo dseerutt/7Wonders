@@ -24,6 +24,7 @@ public:
 	void prepareTurn();
 	void playTurn();
 protected:
+	const CardSet getPlayableCards() const;
 	virtual void pickCard() = 0;
 };
 

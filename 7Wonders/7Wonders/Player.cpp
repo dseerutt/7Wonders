@@ -38,6 +38,12 @@ const CardSet& Player::getHand() const
 	return m_hand;
 }
 
+const CardSet Player::getPlayableCards() const
+{
+	CardSet cards = m_hand;
+	return cards;
+}
+
 void Player::prepareTurn()
 {
 	if (m_hand.size() <= 1)
