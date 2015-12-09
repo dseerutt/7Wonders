@@ -4,7 +4,7 @@
 class HumanPlayer : public Player
 {
 public:
-	HumanPlayer(std::vector<Card>* discard);
+	HumanPlayer(CardSet* discard);
 	~HumanPlayer();
 protected:
 	virtual void pickCard();

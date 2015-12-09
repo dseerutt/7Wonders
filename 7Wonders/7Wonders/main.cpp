@@ -22,6 +22,7 @@ int main(int argc, char** argv)
 	world.run();
 
 	getchar();
+	getchar();
 
 	return 0;
 }

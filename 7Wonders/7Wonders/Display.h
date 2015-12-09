@@ -21,7 +21,7 @@ public:
 
 protected:
 	void drawPlayer(const Player& p);
-	void drawBoard(const std::vector<Card> board, sf::Vector2f pos);
+	void drawBoard(const CardSet& board, sf::Vector2f pos);
 	void drawCard(const Card& c, sf::Vector2f pos);
 };
 

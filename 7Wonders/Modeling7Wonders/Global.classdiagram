@@ -15,7 +15,7 @@
         <elementDefinition Id="fdf3fe8d-004c-4d1a-b3ab-ad2ef4bd3f6c" />
         <targetEnds>
           <association Id="0eaade21-6a5a-4624-ac30-b7da0065e5d9" isDerived="false" sourceEndRoleName="World" targetEndRoleName="Card" isLeaf="false" name="discard" isAbstract="false">
-            <classMoniker Id="f1c651b1-d1ac-4ef0-ba22-3a09550f863f" LastKnownName="Card" />
+            <classMoniker Id="f1c651b1-d1ac-4ef0-ba22-3a09550f863f" LastKnownName="CardSet" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="b3c80559-9770-4efd-8c41-119eae13cc70" name="World" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
@@ -25,12 +25,12 @@
               <associationHasOwnedEnds>
                 <memberEnd Id="fbf23863-fcc6-4435-b393-3006a37fe075" name="Card" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
                   <lowerValueInternal>
-                    <literalString Id="a94b19fa-d02e-418f-b8a7-979fa50eb001" name="Lower" value="0">
+                    <literalString Id="a94b19fa-d02e-418f-b8a7-979fa50eb001" name="Lower" value="1">
                       <elementDefinition Id="604728e5-b1a5-4cea-ad0e-b70a142fca0c" />
                     </literalString>
                   </lowerValueInternal>
                   <upperValueInternal>
-                    <literalString Id="b628b71f-5014-4bed-a952-0c9bd5f71243" name="Upper" value="n">
+                    <literalString Id="b628b71f-5014-4bed-a952-0c9bd5f71243" name="Upper" value="1">
                       <elementDefinition Id="82b933e1-9acf-4104-b7b9-968cad83d9bc" />
                     </literalString>
                   </upperValueInternal>
@@ -83,7 +83,7 @@
             <elementDefinition Id="1bf1a5f4-232a-43af-85ee-5afcee2c5d30" />
           </association>
           <association Id="ccb1d7a7-1cbd-4afc-b84f-660bebfa28c3" isDerived="false" sourceEndRoleName="World" targetEndRoleName="Card" isLeaf="false" name="deck" isAbstract="false">
-            <classMoniker Id="f1c651b1-d1ac-4ef0-ba22-3a09550f863f" LastKnownName="Card" />
+            <classMoniker Id="f1c651b1-d1ac-4ef0-ba22-3a09550f863f" LastKnownName="CardSet" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="2ca9eb0c-7b2a-4567-b47e-e8acc1681d01" name="World" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
@@ -93,12 +93,12 @@
               <associationHasOwnedEnds>
                 <memberEnd Id="f66c5270-be4c-44b4-b417-c082e43a59ae" name="Card" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
                   <lowerValueInternal>
-                    <literalString Id="a0d31edf-0eb3-4005-a50d-4e69c2b14bbf" name="Lower" value="0">
+                    <literalString Id="a0d31edf-0eb3-4005-a50d-4e69c2b14bbf" name="Lower" value="1">
                       <elementDefinition Id="4e9a6c6e-eebc-4aa8-96af-6760aa9d5a06" />
                     </literalString>
                   </lowerValueInternal>
                   <upperValueInternal>
-                    <literalString Id="b38de4ab-f83c-4c3a-ba5b-a4bb7d0b06f4" name="Upper" value="n">
+                    <literalString Id="b38de4ab-f83c-4c3a-ba5b-a4bb7d0b06f4" name="Upper" value="1">
                       <elementDefinition Id="31c2f661-cf9f-4935-8825-f4ac44c0f0cf" />
                     </literalString>
                   </upperValueInternal>
@@ -161,7 +161,7 @@
         <elementDefinition Id="f316bc63-5370-4504-b1b0-34201a055492" />
         <targetEnds>
           <association Id="ce112377-4b13-4f2c-a8be-bbc89fa81762" isDerived="false" sourceEndRoleName="Player" targetEndRoleName="Card" isLeaf="false" name="hand" isAbstract="false">
-            <classMoniker Id="f1c651b1-d1ac-4ef0-ba22-3a09550f863f" LastKnownName="Card" />
+            <classMoniker Id="f1c651b1-d1ac-4ef0-ba22-3a09550f863f" LastKnownName="CardSet" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="b80fd045-57b3-4a7f-8cd1-e975a6fb417c" name="Player" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
@@ -181,12 +181,12 @@
               <associationHasOwnedEnds>
                 <memberEnd Id="a5cd7006-3582-4fba-a429-f011e6fa89e1" name="Card" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
                   <lowerValueInternal>
-                    <literalString Id="59b7c335-0e35-414e-9569-132417c52de9" name="Lower" value="0">
+                    <literalString Id="59b7c335-0e35-414e-9569-132417c52de9" name="Lower" value="1">
                       <elementDefinition Id="813b6d53-327a-4a80-8050-47c3308b707f" />
                     </literalString>
                   </lowerValueInternal>
                   <upperValueInternal>
-                    <literalString Id="3ac3840b-4848-4402-8d1c-d04dafbf1ebe" name="Upper" value="n">
+                    <literalString Id="3ac3840b-4848-4402-8d1c-d04dafbf1ebe" name="Upper" value="1">
                       <elementDefinition Id="9ebb9697-df03-48b9-a12b-37e6e53fb358" />
                     </literalString>
                   </upperValueInternal>
@@ -197,7 +197,7 @@
             <elementDefinition Id="d33d9c97-44f2-4a05-bfa9-89c8afad242b" />
           </association>
           <association Id="c73ef893-73c8-43cf-9b9f-4df6d1215f15" isDerived="false" sourceEndRoleName="Player" targetEndRoleName="Card" isLeaf="false" name="board" isAbstract="false">
-            <classMoniker Id="f1c651b1-d1ac-4ef0-ba22-3a09550f863f" LastKnownName="Card" />
+            <classMoniker Id="f1c651b1-d1ac-4ef0-ba22-3a09550f863f" LastKnownName="CardSet" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="0114c21c-5cf0-4934-8f8b-7d15e5fe815b" name="Player" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
@@ -207,12 +207,12 @@
               <associationHasOwnedEnds>
                 <memberEnd Id="09e50c0b-956f-43f5-a621-51824bbe4fec" name="Card" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
                   <lowerValueInternal>
-                    <literalString Id="57701d61-9313-4139-a478-918d401e2f83" name="Lower" value="0">
+                    <literalString Id="57701d61-9313-4139-a478-918d401e2f83" name="Lower" value="1">
                       <elementDefinition Id="4c2706ea-53e8-4043-b263-8fd057b9f30b" />
                     </literalString>
                   </lowerValueInternal>
                   <upperValueInternal>
-                    <literalString Id="a4b1130a-2e1a-49b0-b790-7975d63274d8" name="Upper" value="n">
+                    <literalString Id="a4b1130a-2e1a-49b0-b790-7975d63274d8" name="Upper" value="1">
                       <elementDefinition Id="0344e37c-1a16-4398-8413-360905ce72bc" />
                     </literalString>
                   </upperValueInternal>
@@ -240,39 +240,57 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="f1c651b1-d1ac-4ef0-ba22-3a09550f863f" name="Card" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="f1c651b1-d1ac-4ef0-ba22-3a09550f863f" name="CardSet" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="2a596ef0-e9c9-4f35-a9d8-7bbe2b640044" />
+        <targetEnds>
+          <association Id="788b7328-e665-4842-a5f2-c17f45c8257d" isDerived="false" sourceEndRoleName="CardSet" targetEndRoleName="Card" isLeaf="false" isAbstract="false">
+            <classMoniker Id="2cf4a3f7-cdcb-4804-bfca-96653cbef46d" LastKnownName="Card" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c233cc20-2faa-4f5c-b628-5b3c39e3c42e" name="CardSet" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="e4ddc133-6e9c-4397-8771-f52dd2c15a66" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cf6fa284-3b49-4583-832c-c4178d262355" name="Card" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="2a76ad25-5408-44d1-ac8d-bf9617cc2659" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="aa8509f1-cfd0-4169-abc0-4501e4327456" />
+          </association>
+        </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
       <class Id="47306792-4ed1-4b44-be42-5e439a274f7a" name="CardDatabaseParser" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="b66f6d16-b374-43b5-a022-dbe42c069d93" />
         <targetEnds>
-          <association Id="8a78cee0-f705-40e7-b0f1-fc044c039898" isDerived="false" sourceEndRoleName="CardDatabaseParser" targetEndRoleName="Card" isLeaf="false" isAbstract="false">
-            <classMoniker Id="f1c651b1-d1ac-4ef0-ba22-3a09550f863f" LastKnownName="Card" />
+          <association Id="c89c12a1-ca30-49e7-b870-f9281028d1fe" isDerived="false" sourceEndRoleName="CardDatabaseParser" targetEndRoleName="Card" isLeaf="false" isAbstract="false">
+            <classMoniker Id="2cf4a3f7-cdcb-4804-bfca-96653cbef46d" LastKnownName="Card" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
-                <memberEnd Id="7dae6aba-ba6e-4856-91d2-c473425f964b" name="CardDatabaseParser" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <elementDefinition Id="c6ee697a-ca59-4a22-b413-6fa7652b7be0" />
+                <memberEnd Id="46f6a575-dc82-474f-aca6-c76116f98be7" name="CardDatabaseParser" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="91275ecb-a42b-4fc4-95fd-c7d8a4a3872d" />
                 </memberEnd>
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
-                <memberEnd Id="931f1175-f126-45a1-a99f-9ca2727d5fd7" name="Card" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                <memberEnd Id="702e8ba5-b795-43b1-bd98-88d6f5b4bbd6" name="Card" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
                   <lowerValueInternal>
-                    <literalString Id="d6b41a46-5bab-495c-882a-3caa2b90fa43" name="Lower" value="0">
-                      <elementDefinition Id="dcd63ca7-30a7-4874-af02-50ab0cbd0448" />
+                    <literalString Id="0d16af8f-4615-478f-b778-cdb7c3997f4d" name="Lower" value="0">
+                      <elementDefinition Id="6f902a4f-4a4e-4b5b-8b49-bfccec54af6a" />
                     </literalString>
                   </lowerValueInternal>
                   <upperValueInternal>
-                    <literalString Id="9e5dfd7f-e45f-47ee-8faa-bc8f5fce0aef" name="Upper" value="n">
-                      <elementDefinition Id="2e71a0f8-fd2f-44ac-af8b-31d230382c81" />
+                    <literalString Id="38321644-505e-472b-bf71-aa8886877a5b" name="Upper" value="n">
+                      <elementDefinition Id="a691f0df-277b-4fe2-8cb3-640755dd93d8" />
                     </literalString>
                   </upperValueInternal>
-                  <elementDefinition Id="60e922ac-15b2-4bcb-a551-1d463805dcd7" />
+                  <elementDefinition Id="a9c143e4-9dac-47ce-8b98-37d337093ea1" />
                 </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
-            <elementDefinition Id="d59c60ef-3d88-48a4-9061-f64e81d141c0" />
+            <elementDefinition Id="5204f41d-3ff2-459d-9123-aee67f7caa50" />
           </association>
         </targetEnds>
         <ownedOperationsInternal>
@@ -319,6 +337,22 @@
             <elementDefinition Id="27aa4f59-a9ae-4297-bae0-853fd35fb03e" />
           </operation>
         </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="fa2c3974-40d2-43a1-b96e-4681881a3a32" name="BlueCard" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="cedb9948-9ff1-4190-9d08-772075aeccd2" />
+        <generalsInternal>
+          <generalization Id="fc4bc812-8220-4437-9121-cafa361a409e" isSubstitutable="false">
+            <classMoniker Id="2cf4a3f7-cdcb-4804-bfca-96653cbef46d" LastKnownName="Card" />
+            <elementDefinition Id="7920ab04-ed2a-4c1f-8940-c48cd7c429fe" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="2cf4a3f7-cdcb-4804-bfca-96653cbef46d" name="Card" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="1b9f6016-e726-479a-8b65-f59982829854" />
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>

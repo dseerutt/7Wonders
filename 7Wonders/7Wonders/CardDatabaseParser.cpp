@@ -6,7 +6,13 @@
 #include <random>
 #include <chrono>
 
-CardDatabaseParser::CardDatabaseParser(int playerNumber) : m_allCards(3, std::vector<Card>())
+CardDatabaseParser::CardDatabaseParser(int playerNumber) :
+m_brownCards(3, std::vector<BrownCard>()),
+m_grayCards(3, std::vector<GrayCard>()),
+m_blueCards(3, std::vector<BlueCard>()),
+m_yellowCards(3, std::vector<YellowCard>()),
+m_redCards(3, std::vector<RedCard>()),
+m_greenCards(3, std::vector<GreenCard>())
 {
 	std::fstream file;
 	file.open(DATABASE_PATH);
@@ -30,6 +36,11 @@ CardDatabaseParser::CardDatabaseParser(int playerNumber) : m_allCards(3, std::ve
 		}
 		std::string name;
 		file >> name;
+
+		if (file.eof())
+		{
+			break;
+		}
 
 		int cardPlayerNumber;
 		file >> cardPlayerNumber;
@@ -63,27 +74,48 @@ CardDatabaseParser::CardDatabaseParser(int playerNumber) : m_allCards(3, std::ve
 		int papyrusCost;
 		file >> papyrusCost;
 
-		Card card;
+		std::string productionB;
+		std::string productionG;
 		switch (color)
 		{
+		case BROWN:
+			file >> productionB;
+
+			m_brownCards[0].push_back(BrownCard(name, productionB));
+			break;
+		case GRAY:
+			file >> productionG;
+
+			m_grayCards[0].push_back(GrayCard(name, productionG));
+			break;
 		case BLUE:
 			int points;
 			file >> points;
 
-			card = Card(name, color, points);
+			m_blueCards[0].push_back(BlueCard(name, points));
 			break;
-		default:// BROWN
-			std::string production;
-			file >> production;
+		case YELLOW:
 
-			card = Card(name, color, 0);
+			m_yellowCards[0].push_back(YellowCard(name));
+			break;
+		case RED:
+			unsigned int power;
+			file >> power;
+
+			m_redCards[0].push_back(RedCard(name, power));
+			break;
+		case GREEN:
+			char type;
+			file >> type; std::cout << name << "===============" << std::endl;
+
+			m_greenCards[0].push_back(GreenCard(name, type));
+			break;
+		default:
 			break;
 		}
-
-		m_allCards[0].push_back(card);
 	}
 	/*
-		At this point, the deck m_allCards contains every card of the database that have the required number of players
+		At this point, the decks m_[color]Cards contains every card of the database that have the required number of players
 	*/
 }
 
@@ -92,10 +124,34 @@ CardDatabaseParser::~CardDatabaseParser()
 {
 }
 
-std::vector<Card> CardDatabaseParser::generateDeck(int age)
+CardSet CardDatabaseParser::generateDeck(int age)
 {
-	std::vector<Card>& v = m_allCards[age];
-	std::random_shuffle(v.begin(), v.end());
+	CardSet v;
+	for (unsigned int i = 0; i < m_brownCards[age].size(); i++)
+	{
+		v.push_back(&m_brownCards[age][i]);
+	}
+	for (unsigned int i = 0; i < m_grayCards[age].size(); i++)
+	{
+		v.push_back(&m_grayCards[age][i]);
+	}
+	for (unsigned int i = 0; i < m_blueCards[age].size(); i++)
+	{
+		v.push_back(&m_blueCards[age][i]);
+	}
+	for (unsigned int i = 0; i < m_yellowCards[age].size(); i++)
+	{
+		v.push_back(&m_yellowCards[age][i]);
+	}
+	for (unsigned int i = 0; i < m_redCards[age].size(); i++)
+	{
+		v.push_back(&m_redCards[age][i]);
+	}
+	for (unsigned int i = 0; i < m_greenCards[age].size(); i++)
+	{
+		v.push_back(&m_greenCards[age][i]);
+	}
+	v.shuffle();
 	return v;
 }
 
@@ -104,10 +160,26 @@ CardColor CardDatabaseParser::getColor(char c) const
 	CardColor color;
 	switch (c)
 	{
+	case 'w':
+		color = BROWN;
+		break;
+	case 'g':
+		color = GRAY;
+		break;
 	case 'b':
 		color = BLUE;
 		break;
+	case 'y':
+		color = YELLOW;
+		break;
+	case 'r':
+		color = RED;
+		break;
+	case 'e':
+		color = GREEN;
+		break;
 	default:
+		std::cerr << "Erreur : Couleur non reconnue : " << c << std::endl;
 		color = BROWN;
 		break;
 	}

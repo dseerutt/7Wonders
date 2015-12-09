@@ -1,25 +1,26 @@
 #pragma once
 #include <vector>
+#include "CardSet.h"
 #include "Card.h"
 
 class Player
 {
 protected:
-	std::vector<Card> m_hand;
-	std::vector<Card> m_board;
+	CardSet m_hand;
+	CardSet m_board;
 
-	std::vector<Card>* m_discard;
+	CardSet* m_discard;
 
 	Card* m_cardToPlay;
 public:
-	Player(std::vector<Card>* discard);
+	Player(CardSet* discard);
 	~Player();
 
 	unsigned int getScore() const;
-	const std::vector<Card>& getBoard() const;
+	const CardSet& getBoard() const;
 
-	void setHand(const std::vector<Card>& newHand);
-	const std::vector<Card>& getHand() const;
+	void setHand(const CardSet& newHand);
+	const CardSet& getHand() const;
 	void prepareTurn();
 	void playTurn();
 protected:

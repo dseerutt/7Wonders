@@ -48,7 +48,7 @@
             isAbstract="false">
             <classMoniker
               Id="2a596ef0-e9c9-4f35-a9d8-7bbe2b640044"
-              LastKnownName="Card"
+              LastKnownName="CardSet"
               LastKnownLocation="Modeling7Wonders.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -79,13 +79,13 @@
                     <literalString
                       Id="604728e5-b1a5-4cea-ad0e-b70a142fca0c"
                       name="Lower"
-                      value="0" />
+                      value="1" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
                       Id="82b933e1-9acf-4104-b7b9-968cad83d9bc"
                       name="Upper"
-                      value="n" />
+                      value="1" />
                   </upperValueInternal>
                 </memberEnd>
               </associationHasOwnedEnds>
@@ -192,7 +192,7 @@
             isAbstract="false">
             <classMoniker
               Id="2a596ef0-e9c9-4f35-a9d8-7bbe2b640044"
-              LastKnownName="Card"
+              LastKnownName="CardSet"
               LastKnownLocation="Modeling7Wonders.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -223,13 +223,13 @@
                     <literalString
                       Id="4e9a6c6e-eebc-4aa8-96af-6760aa9d5a06"
                       name="Lower"
-                      value="0" />
+                      value="1" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
                       Id="31c2f661-cf9f-4935-8825-f4ac44c0f0cf"
                       name="Upper"
-                      value="n" />
+                      value="1" />
                   </upperValueInternal>
                 </memberEnd>
               </associationHasOwnedEnds>
@@ -362,7 +362,7 @@
             isAbstract="false">
             <classMoniker
               Id="2a596ef0-e9c9-4f35-a9d8-7bbe2b640044"
-              LastKnownName="Card"
+              LastKnownName="CardSet"
               LastKnownLocation="Modeling7Wonders.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -406,13 +406,13 @@
                     <literalString
                       Id="813b6d53-327a-4a80-8050-47c3308b707f"
                       name="Lower"
-                      value="0" />
+                      value="1" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
                       Id="9ebb9697-df03-48b9-a12b-37e6e53fb358"
                       name="Upper"
-                      value="n" />
+                      value="1" />
                   </upperValueInternal>
                 </memberEnd>
               </associationHasOwnedEnds>
@@ -428,7 +428,7 @@
             isAbstract="false">
             <classMoniker
               Id="2a596ef0-e9c9-4f35-a9d8-7bbe2b640044"
-              LastKnownName="Card"
+              LastKnownName="CardSet"
               LastKnownLocation="Modeling7Wonders.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -459,13 +459,13 @@
                     <literalString
                       Id="4c2706ea-53e8-4043-b263-8fd057b9f30b"
                       name="Lower"
-                      value="0" />
+                      value="1" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
                       Id="0344e37c-1a16-4398-8413-360905ce72bc"
                       name="Upper"
-                      value="n" />
+                      value="1" />
                   </upperValueInternal>
                 </memberEnd>
               </associationHasOwnedEnds>
@@ -511,10 +511,52 @@
     <packageHasNamedElement>
       <class
         Id="2a596ef0-e9c9-4f35-a9d8-7bbe2b640044"
-        name="Card"
+        name="CardSet"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="aa8509f1-cfd0-4169-abc0-4501e4327456"
+            isDerived="false"
+            sourceEndRoleName="CardSet"
+            targetEndRoleName="Card"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="1b9f6016-e726-479a-8b65-f59982829854"
+              LastKnownName="Card"
+              LastKnownLocation="Modeling7Wonders.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e4ddc133-6e9c-4397-8771-f52dd2c15a66"
+                  name="CardSet"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2a76ad25-5408-44d1-ac8d-bf9617cc2659"
+                  name="Card"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -525,33 +567,33 @@
         isActiveClass="false">
         <targetEnds>
           <association
-            Id="d59c60ef-3d88-48a4-9061-f64e81d141c0"
+            Id="5204f41d-3ff2-459d-9123-aee67f7caa50"
             isDerived="false"
             sourceEndRoleName="CardDatabaseParser"
             targetEndRoleName="Card"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
-              Id="2a596ef0-e9c9-4f35-a9d8-7bbe2b640044"
+              Id="1b9f6016-e726-479a-8b65-f59982829854"
               LastKnownName="Card"
               LastKnownLocation="Modeling7Wonders.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="c6ee697a-ca59-4a22-b413-6fa7652b7be0"
+                  Id="91275ecb-a42b-4fc4-95fd-c7d8a4a3872d"
                   name="CardDatabaseParser"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
-                  aggregation="None"
+                  aggregation="Composite"
                   isComposite="false"
                   isNavigableOwned="false" />
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="60e922ac-15b2-4bcb-a551-1d463805dcd7"
+                  Id="a9c143e4-9dac-47ce-8b98-37d337093ea1"
                   name="Card"
                   isLeaf="false"
                   isStatic="false"
@@ -559,16 +601,16 @@
                   isDerived="false"
                   isDerivedUnion="false"
                   aggregation="None"
-                  isComposite="false">
+                  isComposite="true">
                   <lowerValueInternal>
                     <literalString
-                      Id="dcd63ca7-30a7-4874-af02-50ab0cbd0448"
+                      Id="6f902a4f-4a4e-4b5b-8b49-bfccec54af6a"
                       name="Lower"
                       value="0" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
-                      Id="2e71a0f8-fd2f-44ac-af8b-31d230382c81"
+                      Id="a691f0df-277b-4fe2-8cb3-640755dd93d8"
                       name="Upper"
                       value="n" />
                   </upperValueInternal>
@@ -662,6 +704,33 @@
             isQuery="false" />
         </ownedOperationsInternal>
       </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="cedb9948-9ff1-4190-9d08-772075aeccd2"
+        name="BlueCard"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="7920ab04-ed2a-4c1f-8940-c48cd7c429fe"
+            isSubstitutable="false">
+            <classMoniker
+              Id="1b9f6016-e726-479a-8b65-f59982829854"
+              LastKnownName="Card"
+              LastKnownLocation="Modeling7Wonders.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="1b9f6016-e726-479a-8b65-f59982829854"
+        name="Card"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

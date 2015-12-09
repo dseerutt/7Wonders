@@ -3,7 +3,7 @@
 
 using namespace std;
 
-HumanPlayer::HumanPlayer(std::vector<Card>* discard) : Player(discard)
+HumanPlayer::HumanPlayer(CardSet* discard) : Player(discard)
 {
 }
 
@@ -16,7 +16,7 @@ void HumanPlayer::pickCard()
 	cout << "Pick a card" << endl;
 	for (unsigned int i = 0; i < m_hand.size(); i++)
 	{
-		cout << i << ". " << m_hand.at(i).m_name << endl;
+		cout << i << ". " << m_hand.at(i)->m_name << endl;
 	}
 	unsigned int choice;
 	do
@@ -26,5 +26,5 @@ void HumanPlayer::pickCard()
 	}
 	while (choice >= m_hand.size());
 
-	m_cardToPlay = &(m_hand.at(choice));
+	m_cardToPlay = m_hand.at(choice);
 }

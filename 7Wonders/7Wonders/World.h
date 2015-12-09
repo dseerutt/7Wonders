@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "Player.h"
-#include "Card.h"
+#include "CardSet.h"
 #include "CardDatabaseParser.h"
 #define NUMBER_OF_AGES 3
 
@@ -12,8 +12,8 @@ private:
 	unsigned int m_playerNumber;
 	unsigned int m_numberOfTurns;
 	CardDatabaseParser m_cardDatabaseParser;
-	std::vector<Card> m_deck;
-	std::vector<Card> m_discard;
+	CardSet m_deck;
+	CardSet m_discard;
 
 
 public:
@@ -21,10 +21,12 @@ public:
 	~World();
 
 	void run();
-	std::vector<Card> generateDeck(int age);
+	CardSet generateDeck(int age);
 	void distributeCards();
 	void draft(unsigned int age);
 	void prepareTurn();
 	void playTurn();
+	void displayScores() const;
+	unsigned int computeScienceScore(const CardSet& board) const;
 };
 

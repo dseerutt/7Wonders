@@ -80,23 +80,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BlueCard.h" />
+    <ClInclude Include="BrownCard.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CardDatabaseParser.h" />
+    <ClInclude Include="CardSet.h" />
     <ClInclude Include="ComputerPlayer.h" />
     <ClInclude Include="Display.h" />
+    <ClInclude Include="GrayCard.h" />
+    <ClInclude Include="GreenCard.h" />
     <ClInclude Include="HumanPlayer.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="RedCard.h" />
     <ClInclude Include="World.h" />
+    <ClInclude Include="YellowCard.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BlueCard.cpp" />
+    <ClCompile Include="BrownCard.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CardDatabaseParser.cpp" />
+    <ClCompile Include="CardSet.cpp" />
     <ClCompile Include="ComputerPlayer.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="GrayCard.cpp" />
+    <ClCompile Include="GreenCard.cpp" />
     <ClCompile Include="HumanPlayer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RedCard.cpp" />
     <ClCompile Include="World.cpp" />
+    <ClCompile Include="YellowCard.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

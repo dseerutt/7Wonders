@@ -35,12 +35,12 @@ void Display::draw()
 void Display::drawPlayer(const Player& p)
 {
 	sf::Vector2f pos(WINDOW_SIZE_X / 2 + 100.f, WINDOW_SIZE_Y - 100.f);
-	const std::vector<Card>& board = p.getBoard();
+	const CardSet& board = p.getBoard();
 	drawBoard(board, pos);
 
 }
 
-void Display::drawBoard(const std::vector<Card> board, sf::Vector2f pos)
+void Display::drawBoard(const CardSet& board, sf::Vector2f pos)
 {
 	std::vector<unsigned int> count(COLOR_COUNT);
 	for (unsigned int i = 0; i < COLOR_COUNT; i++)
@@ -49,16 +49,16 @@ void Display::drawBoard(const std::vector<Card> board, sf::Vector2f pos)
 	}
 	for (unsigned int i = 0; i < board.size(); i++)
 	{
-		const Card& c = board.at(i);
+		const Card& c = *board.at(i);
 		CardColor col = c.m_color;
 		count.at(col)++;
-		drawCard(c, pos - sf::Vector2f(col*20.f, count.at(col)*10.f));
+		drawCard(c, pos + sf::Vector2f(col*20.f, -(count.at(col)*10.f)));
 	}
 
 	sf::RectangleShape wonder;
 	wonder.setPosition(pos);
-	wonder.setSize(sf::Vector2f(100.f, 100.f));
-	wonder.setFillColor(sf::Color::Green);
+	wonder.setSize(sf::Vector2f(130.f, 100.f));
+	wonder.setFillColor(sf::Color::White);
 	m_window.draw(wonder);
 }
 
@@ -66,14 +66,29 @@ void Display::drawCard(const Card& c, sf::Vector2f pos)
 {
 	sf::RectangleShape rect;
 	rect.setPosition(pos);
-	rect.setSize(sf::Vector2f(20.f, 50.f)); std::cout << "a" << std::endl;
+	rect.setSize(sf::Vector2f(20.f, 50.f));
 	switch (c.m_color)
 	{
+	case BROWN:
+		rect.setFillColor(sf::Color::Magenta);
+		break;
+	case GRAY:
+		rect.setFillColor(sf::Color::Cyan);
+		break;
 	case BLUE:
 		rect.setFillColor(sf::Color::Blue);
 		break;
+	case YELLOW:
+		rect.setFillColor(sf::Color::Yellow);
+		break;
+	case RED:
+		rect.setFillColor(sf::Color::Red);
+		break;
+	case GREEN:
+		rect.setFillColor(sf::Color::Green);
+		break;
 	default:
-		rect.setFillColor(sf::Color::Magenta);
+		rect.setFillColor(sf::Color::White);
 		break;
 	}
 

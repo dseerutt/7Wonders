@@ -4,7 +4,7 @@
 class ComputerPlayer : public Player
 {
 public:
-	ComputerPlayer(std::vector<Card>* discard);
+	ComputerPlayer(CardSet* discard);
 	~ComputerPlayer();
 protected:
 	virtual void pickCard();
