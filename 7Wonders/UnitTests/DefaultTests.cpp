@@ -9,15 +9,20 @@ namespace UnitTests
 	{
 	public:
 
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(DefaultTestsMethod)
 		{
 			// TODO: Ici, votre code de test
 			Assert::AreEqual(0, 0);
 			Assert::IsFalse(10 < 2);
 			Assert::IsTrue(0 < 2);
-			auto func = [this] { throw("Erreur"); };
+			auto func = [this] { throw(1); };
 
-			Assert::ExpectException<std::string>(func);
+			Assert::ExpectException<int>(func);
+
+
+			auto func2 = [this] { throw("rr"); };
+
+			Assert::ExpectException<char*>(func2); //Pas string
 		}
 
 	};
