@@ -684,6 +684,47 @@
               LastKnownLocation="Modeling7Wonders.uml" />
           </generalization>
         </generalsInternal>
+        <targetEnds>
+          <association
+            Id="49e01dc8-8f91-4465-bee1-a1c37763b48e"
+            isDerived="false"
+            sourceEndRoleName="ComputerPlayer"
+            targetEndRoleName="MCTSImplementation"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="36e3e505-f111-442e-ae29-7e98362b172b"
+              LastKnownName="MCTSImplementation"
+              LastKnownLocation="Modeling7Wonders.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0752d6e2-4666-4450-b31c-f2c4edd97774"
+                  name="ComputerPlayer"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="edb91fa6-226a-4eea-9f25-7e1591d1c3f3"
+                  name="MCTSImplementation"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -731,6 +772,56 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="36e3e505-f111-442e-ae29-7e98362b172b"
+        name="MCTSImplementation"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="e010ca96-ea7c-48b4-9e5c-d559aec04909"
+            isDerived="false"
+            sourceEndRoleName="MCTSImplementation"
+            targetEndRoleName="World"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="fdf3fe8d-004c-4d1a-b3ab-ad2ef4bd3f6c"
+              LastKnownName="World"
+              LastKnownLocation="Modeling7Wonders.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a3522c54-8e1d-42ac-8a54-6a6c743924bd"
+                  name="MCTSImplementation"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d73bbba3-ba02-490b-ab0c-e7b2e2f615c3"
+                  name="World"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

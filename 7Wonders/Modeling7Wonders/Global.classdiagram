@@ -327,6 +327,24 @@
             <elementDefinition Id="bcb32bbf-98bc-4838-8b15-69e4b388f929" />
           </generalization>
         </generalsInternal>
+        <targetEnds>
+          <association Id="c7e78a41-1062-4846-9530-ab2f4a50bf8e" isDerived="false" sourceEndRoleName="ComputerPlayer" targetEndRoleName="MCTSImplementation" isLeaf="false" isAbstract="false">
+            <classMoniker Id="ce6018b6-3c36-4670-8e9d-3886c49bd2b3" LastKnownName="MCTSImplementation" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="369c7fed-6ad5-4f8e-b533-ba23b400fee6" name="ComputerPlayer" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="0752d6e2-4666-4450-b31c-f2c4edd97774" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e181b3cc-c1b4-49a8-8ddd-0915a6029240" name="MCTSImplementation" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="edb91fa6-226a-4eea-9f25-7e1591d1c3f3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="49e01dc8-8f91-4465-bee1-a1c37763b48e" />
+          </association>
+        </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -353,6 +371,29 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="2cf4a3f7-cdcb-4804-bfca-96653cbef46d" name="Card" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="1b9f6016-e726-479a-8b65-f59982829854" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ce6018b6-3c36-4670-8e9d-3886c49bd2b3" name="MCTSImplementation" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="36e3e505-f111-442e-ae29-7e98362b172b" />
+        <targetEnds>
+          <association Id="b75b5f2a-b50d-4dc0-b0c5-1485b0d342ea" isDerived="false" sourceEndRoleName="MCTSImplementation" targetEndRoleName="World" isLeaf="false" isAbstract="false">
+            <classMoniker Id="2a0f9bc6-9670-49dc-959c-1ed9fc5f88a3" LastKnownName="World" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0c195eb7-0f39-47f4-96a8-b14dbe661eb9" name="MCTSImplementation" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a3522c54-8e1d-42ac-8a54-6a6c743924bd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b72b5950-0b16-49cc-a3fe-cb1c2be6e765" name="World" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d73bbba3-ba02-490b-ab0c-e7b2e2f615c3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e010ca96-ea7c-48b4-9e5c-d559aec04909" />
+          </association>
+        </targetEnds>
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>

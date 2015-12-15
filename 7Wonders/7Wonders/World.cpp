@@ -5,24 +5,22 @@
 #include <string>
 
 World::World(unsigned int nh, unsigned int nc) : 
-	m_playerNumber(nh+nc), m_numberOfTurns(0), m_cardDatabaseParser(nh+nc), m_deck(), m_discard()
+m_age(0), m_humanPlayers(nh), m_computerPlayers(nc), m_cardDatabaseParser(nh + nc), m_deck(), m_discard(), m_scores(nh + nc), m_winner(nullptr), m_draw(false)
 {
 	for (unsigned int i = 0; i < nh; i++)
 	{
-		m_players.push_back(new HumanPlayer(&m_discard));
+		m_humanPlayers[i] = HumanPlayer(&m_discard);
+		m_players.push_back(&m_humanPlayers[i]);
 	}
 	for (unsigned int i = 0; i < nc; i++)
 	{
-		m_players.push_back(new ComputerPlayer(&m_discard));
+		m_computerPlayers[i] = ComputerPlayer(&m_discard);
+		m_players.push_back(&m_computerPlayers[i]);
 	}
 }
 
 World::~World()
 {
-	for (unsigned int i = 0; i < m_playerNumber; i++)
-	{
-		delete(m_players.at(i));
-	}
 }
 
 
@@ -31,22 +29,42 @@ void World::run()
 	Display display(m_players);
 	display.draw();
 
-	for (unsigned int age = 0; age < NUMBER_OF_AGES; age++)
+	for (m_age = 0; m_age < NUMBER_OF_AGES; m_age++)
 	{
-		m_deck = generateDeck(age);
+		m_deck = generateDeck(m_age);
 		
 		distributeCards();
-		for (unsigned t = 0; t < m_numberOfTurns; t++)
+		while (m_players[0]->getHand().size() > 0)
 		{
-			prepareTurn();
-			playTurn();
-			draft(age);
-
+			processTurn();
 			display.draw();
 		}
 	}
 
+	computeScores();
 	displayScores();
+}
+
+void World::playout()
+{
+	while (m_age < 3)
+	{
+		m_deck = generateDeck(m_age);
+
+		distributeCards();
+		while (m_players[0]->getHand().size() > 0)
+		{
+			processTurn();
+		}
+	}
+	computeScores();
+}
+
+void World::processTurn()
+{
+	prepareTurn();
+	playTurn();
+	draft(m_age);
 }
 
 CardSet World::generateDeck(int age)
@@ -56,14 +74,13 @@ CardSet World::generateDeck(int age)
 
 void World::distributeCards()
 {
-	unsigned int cardsForOnePlayer = m_deck.size() / m_playerNumber;
-	if (m_deck.size() % m_playerNumber != 0)
+	unsigned int cardsForOnePlayer = m_deck.size() / m_players.size();
+	if (m_deck.size() % m_players.size() != 0)
 	{
-		std::cerr << "Attention : le nombre de cartes (" << m_deck.size() << ") devrait etre divisible par le nombre de joueurs (" << m_playerNumber << ")" << std::endl;
+		std::cerr << "Attention : le nombre de cartes (" << m_deck.size() << ") devrait etre divisible par le nombre de joueurs (" << m_players.size() << ")" << std::endl;
 	}
-	m_numberOfTurns = cardsForOnePlayer;
 
-	for (unsigned int i = 0; i < m_playerNumber; i++)
+	for (unsigned int i = 0; i < m_players.size(); i++)
 	{
 		CardSet hand;
 		for (unsigned int j = 0; j<cardsForOnePlayer; j++)
@@ -77,17 +94,17 @@ void World::distributeCards()
 void World::draft(unsigned int age)
 {
 	const CardSet firstHand = m_players.at(0)->getHand();
-	for (unsigned int i = 0; i<m_playerNumber-1; i++)
+	for (unsigned int i = 0; i<m_players.size() - 1; i++)
 	{
 		const CardSet& hand = m_players.at(i + 1)->getHand();
 		m_players.at(i)->setHand(hand);
 	}
-	m_players.at(m_playerNumber - 1)->setHand(firstHand);
+	m_players.at(m_players.size() - 1)->setHand(firstHand);
 }
 
 void World::prepareTurn()
 {
-	for (unsigned int i = 0; i < m_playerNumber; i++)
+	for (unsigned int i = 0; i < m_players.size(); i++)
 	{
 		m_players.at(i)->prepareTurn();
 	}
@@ -95,18 +112,16 @@ void World::prepareTurn()
 
 void World::playTurn()
 {
-	for (unsigned int i = 0; i < m_playerNumber; i++)
+	for (unsigned int i = 0; i < m_players.size(); i++)
 	{
 		m_players.at(i)->playTurn();
 	}
 }
 
-void World::displayScores() const
+void World::computeScores()
 {
-	for (unsigned int i = 0; i < m_playerNumber; i++)
+	for (unsigned int i = 0; i < m_players.size(); i++)
 	{
-		unsigned int warScore = 0, goldScore = 0, wonderLevelsScore = 0, scoreBlue = 0,
-			scoreYellow = 0, guildsScore = 0, scienceScore = 0, totalScore = 0;
 		const Player& player = *(m_players.at(i));
 		const CardSet& board = player.getBoard();
 		std::cout << "Player " << (i + 1) << std::endl;
@@ -117,19 +132,34 @@ void World::displayScores() const
 			const Card& card = *board[j];
 			if (card.m_color == BLUE)
 			{
-				scoreBlue += card.getPoints();
+				m_scores[i][BLUE_CARDS] += card.getPoints();
 			}
 		}
-		std::cout << "  Blue cards : " << scoreBlue << std::endl;
 
-		//Science score -----------------------------------------------------
-		scienceScore = computeScienceScore(board);
-		std::cout << "  Science : " << scienceScore << std::endl;
+		//Science score --------------------------------------------------------
+		m_scores[i][SCIENCE] = computeScienceScore(board);
 
-		//Total score
-		totalScore = warScore + goldScore + wonderLevelsScore + scoreBlue + scoreYellow + guildsScore + scienceScore;
-		std::cout << "Total : " << totalScore << std::endl << std::endl;
+		//Total score ----------------------------------------------------------
+		m_scores[i][TOTAL] = m_scores[i][BLUE_CARDS] + m_scores[i][SCIENCE];
+	}
+	unsigned int winner = 0;
+	for (unsigned int i = 1; i < m_scores.size(); i++)
+	{
+		if (m_scores[i][TOTAL] > m_scores[winner][TOTAL])
+		{
+			winner = i;
+		}
+	}
+	m_winner = m_players[winner];
+}
 
+void World::displayScores() const
+{
+	for (unsigned int i = 0; i < m_players.size(); i++)
+	{
+		std::cout << "  Blue cards : " << m_scores[i][BLUE_CARDS] << std::endl;
+		std::cout << "  Science : " << m_scores[i][SCIENCE] << std::endl;
+		std::cout << "Total : " << m_scores[i][TOTAL] << std::endl << std::endl;
 	}
 	for (auto e : m_discard)
 	{
@@ -157,4 +187,28 @@ unsigned int World::computeScienceScore(const CardSet& board) const
 	std::cout << "c:" << compass << " g:" << gear << " t:" << tablet << std::endl;
 	unsigned int res = compass*compass + gear*gear + tablet*tablet + 7*std::min(compass, std::min(gear, tablet));
 	return res;
+}
+
+bool World::hasWon(const Player& player) const
+{
+	return &player == m_winner;
+}
+
+bool World::draw() const
+{
+	return m_draw;
+}
+
+unsigned int World::getPlayerId(const Player& player) const
+{
+	unsigned int res = 0;
+	for (unsigned int i = 1; i < m_players.size(); i++)
+	{
+		if ((m_players[i]) == &player)
+		{
+			res = i;
+			break;
+		}
+	}
+	return 0;
 }

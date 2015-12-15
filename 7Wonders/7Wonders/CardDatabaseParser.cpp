@@ -5,14 +5,15 @@
 #include <algorithm>
 #include <random>
 #include <chrono>
+#include "World.h"
 
 CardDatabaseParser::CardDatabaseParser(int playerNumber) :
-m_brownCards(3, std::vector<BrownCard>()),
-m_grayCards(3, std::vector<GrayCard>()),
-m_blueCards(3, std::vector<BlueCard>()),
-m_yellowCards(3, std::vector<YellowCard>()),
-m_redCards(3, std::vector<RedCard>()),
-m_greenCards(3, std::vector<GreenCard>())
+m_brownCards(NUMBER_OF_AGES, std::vector<BrownCard>()),
+m_grayCards(NUMBER_OF_AGES, std::vector<GrayCard>()),
+m_blueCards(NUMBER_OF_AGES, std::vector<BlueCard>()),
+m_yellowCards(NUMBER_OF_AGES, std::vector<YellowCard>()),
+m_redCards(NUMBER_OF_AGES, std::vector<RedCard>()),
+m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 {
 	std::fstream file;
 	file.open(DATABASE_PATH);
