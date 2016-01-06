@@ -11,13 +11,13 @@ namespace UnitTests
 	{
 	public:
 		
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(DefaultTestsMethod2)
 		{
 			Assert::AreEqual(0, 0);
 			BlueCard c("ee", 5);
 		}
 
-		TEST_METHOD(DefaultTestsMethod)
+		TEST_METHOD(DefaultTestsMethod1)
 		{
 			// TODO: Ici, votre code de test
 			Assert::AreEqual(0, 0);
