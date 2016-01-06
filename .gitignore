@@ -37,6 +37,7 @@
 7Wonders/UnitTests/Debug/*
 7Wonders/Debug/*
 7Wonders/Release/*
+7Wonders/ipch/
 *.v12.suo
 *.vcxproj
 #.ipch

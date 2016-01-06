@@ -6,22 +6,24 @@
 
 World::World(unsigned int nh, unsigned int nc) : 
 	m_gameOver(false), m_age(0), m_cardDatabaseParser(nh + nc),
-	m_deck(), m_discard(), m_scores(nh + nc), m_winner(nullptr), m_draw(false)
+	m_deck(), m_discard(), m_scores(nh + nc, std::vector<unsigned int>(TOTAL_SCORE+1)), m_winner(nullptr), m_draw(false)
 {
 	for (unsigned int i = 0; i < nh; i++)
 	{
-		m_humanPlayers.push_back(HumanPlayer(&m_discard));
-		m_players.push_back(&m_humanPlayers[i]);
+		m_players.push_back(new HumanPlayer(&m_discard));
 	}
 	for (unsigned int i = 0; i < nc; i++)
 	{
-		m_computerPlayers.push_back(ComputerPlayer(&m_discard));
-		m_players.push_back(&m_computerPlayers[i]);
+		m_players.push_back(new ComputerPlayer(&m_discard));
 	}
 }
 
 World::~World()
 {
+	for (unsigned int i = 0; i < m_players.size(); i++)
+	{
+		delete m_players.at(i);
+	}
 }
 
 
@@ -30,17 +32,6 @@ void World::run()
 	Display display(m_players);
 	display.draw();
 
-	/*for (m_age = 0; m_age < NUMBER_OF_AGES; m_age++)
-	{
-		m_deck = generateDeck(m_age);
-		
-		distributeCards();
-		while (m_players[0]->getHand().size() > 0)
-		{
-			processTurn();
-			display.draw();
-		}
-	}*/
 	while (!m_gameOver)
 	{
 		if (betweenTurns())
@@ -77,7 +68,7 @@ void World::endTurn()
 {
 	playTurn();
 	draft(m_age);
-	if (m_age == NUMBER_OF_AGES && betweenTurns())
+	if (m_age >= NUMBER_OF_AGES && betweenTurns())
 	{
 		m_gameOver = true;
 	}
@@ -88,14 +79,14 @@ void World::startAge()
 	m_age++;
 	if (m_age <= NUMBER_OF_AGES)
 	{
-		m_deck = generateDeck(m_age);//FIXME m_age ou m_age-1 ?
+		m_deck = generateDeck(m_age-1);//FIXME m_age ou m_age-1 ?
 		distributeCards();
 	}
 }
 
 bool World::betweenTurns() const
 {
-	return m_players[0]->getHand().size() == 0;
+	return m_players[0]->getHand().size() <= 1;
 }
 
 bool World::gameOver() const
@@ -185,12 +176,12 @@ void World::computeScores()
 		m_scores[i][SCIENCE] = computeScienceScore(board);
 
 		//Total score ----------------------------------------------------------
-		m_scores[i][TOTAL] = m_scores[i][BLUE_CARDS] + m_scores[i][SCIENCE];
+		m_scores[i][TOTAL_SCORE] = m_scores[i][BLUE_CARDS] + m_scores[i][SCIENCE];
 	}
 	unsigned int winner = 0;
 	for (unsigned int i = 1; i < m_scores.size(); i++)
 	{
-		if (m_scores[i][TOTAL] > m_scores[winner][TOTAL])
+		if (m_scores[i][TOTAL_SCORE] > m_scores[winner][TOTAL_SCORE])
 		{
 			winner = i;
 		}
@@ -204,7 +195,7 @@ void World::displayScores() const
 	{
 		std::cout << "  Blue cards : " << m_scores[i][BLUE_CARDS] << std::endl;
 		std::cout << "  Science : " << m_scores[i][SCIENCE] << std::endl;
-		std::cout << "Total : " << m_scores[i][TOTAL] << std::endl << std::endl;
+		std::cout << "Total : " << m_scores[i][TOTAL_SCORE] << std::endl << std::endl;
 	}
 	for (auto e : m_discard)
 	{
