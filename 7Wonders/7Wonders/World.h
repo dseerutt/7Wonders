@@ -25,6 +25,7 @@ private:
 
 public:
 	//Game state
+	bool m_gameOver;
 	unsigned int m_age;
 	std::vector<HumanPlayer> m_humanPlayers;
 	std::vector<ComputerPlayer> m_computerPlayers;
@@ -41,7 +42,15 @@ public:
 	~World();
 
 	void run();
-	void playout();
+	void play(Player& player);
+	void playOthers(Player& player);
+	void endTurn();
+	void startAge();
+	bool betweenTurns() const;
+	bool gameOver() const;
+
+
+
 	void processTurn();
 	CardSet generateDeck(int age);
 	void distributeCards();

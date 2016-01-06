@@ -7,24 +7,22 @@
 #include <memory>
 #include <set>
 
-class Player;
-
 namespace game
 {
   template <typename State>
   struct game
   {
 	virtual bool end_of_game() const = 0;
-	virtual int value(const Player& player) const = 0;
+	virtual int value(std::uint8_t player) const = 0;
 	int value_for_current_player() const;
-	virtual bool won(const Player& player) const = 0;
-	virtual bool lost(const Player& player) const = 0;
-	virtual bool draw(const Player& player) const = 0;
+	virtual bool won(std::uint8_t player) const = 0;
+	virtual bool lost(std::uint8_t player) const = 0;
+	virtual bool draw(std::uint8_t player) const = 0;
 	virtual uint8_t current_player() const = 0;
 	virtual std::uint16_t number_of_moves() const = 0;
 	virtual void play(std::uint16_t m) = 0;
 	virtual void undo(std::uint16_t m) = 0;
-	virtual std::string player_to_string(const Player& player) const = 0;
+	virtual std::string player_to_string(std::uint8_t player) const = 0;
 	virtual std::string move_to_string(std::uint16_t m) const = 0;
 	virtual std::string to_string() const = 0;
 	virtual void playout(std::mt19937& engine, int max_depth = -1) = 0;

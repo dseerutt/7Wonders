@@ -107,7 +107,7 @@ m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 			break;
 		case GREEN:
 			char type;
-			file >> type; std::cout << name << "===============" << std::endl;
+			file >> type;
 
 			m_greenCards[0].push_back(GreenCard(name, type));
 			break;

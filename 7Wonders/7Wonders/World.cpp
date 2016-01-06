@@ -5,16 +5,17 @@
 #include <string>
 
 World::World(unsigned int nh, unsigned int nc) : 
-m_age(0), m_humanPlayers(nh), m_computerPlayers(nc), m_cardDatabaseParser(nh + nc), m_deck(), m_discard(), m_scores(nh + nc), m_winner(nullptr), m_draw(false)
+	m_gameOver(false), m_age(0), m_cardDatabaseParser(nh + nc),
+	m_deck(), m_discard(), m_scores(nh + nc), m_winner(nullptr), m_draw(false)
 {
 	for (unsigned int i = 0; i < nh; i++)
 	{
-		m_humanPlayers[i] = HumanPlayer(&m_discard);
+		m_humanPlayers.push_back(HumanPlayer(&m_discard));
 		m_players.push_back(&m_humanPlayers[i]);
 	}
 	for (unsigned int i = 0; i < nc; i++)
 	{
-		m_computerPlayers[i] = ComputerPlayer(&m_discard);
+		m_computerPlayers.push_back(ComputerPlayer(&m_discard));
 		m_players.push_back(&m_computerPlayers[i]);
 	}
 }
@@ -29,7 +30,7 @@ void World::run()
 	Display display(m_players);
 	display.draw();
 
-	for (m_age = 0; m_age < NUMBER_OF_AGES; m_age++)
+	/*for (m_age = 0; m_age < NUMBER_OF_AGES; m_age++)
 	{
 		m_deck = generateDeck(m_age);
 		
@@ -39,26 +40,70 @@ void World::run()
 			processTurn();
 			display.draw();
 		}
+	}*/
+	while (!m_gameOver)
+	{
+		if (betweenTurns())
+		{
+			startAge();
+		}
+		Player& p = *m_players[0];
+		play(p);
+		playOthers(p);
+		endTurn();
 	}
 
 	computeScores();
 	displayScores();
 }
 
-void World::playout()
+void World::play(Player& player)
 {
-	while (m_age < 3)
-	{
-		m_deck = generateDeck(m_age);
+	player.prepareTurn();
+}
 
-		distributeCards();
-		while (m_players[0]->getHand().size() > 0)
+void World::playOthers(Player& player)
+{
+	for (auto p : m_players)
+	{
+		if (&player != p)
 		{
-			processTurn();
+			play(*p);
 		}
 	}
-	computeScores();
 }
+
+void World::endTurn()
+{
+	playTurn();
+	draft(m_age);
+	if (m_age == NUMBER_OF_AGES && betweenTurns())
+	{
+		m_gameOver = true;
+	}
+}
+
+void World::startAge()
+{
+	m_age++;
+	if (m_age <= NUMBER_OF_AGES)
+	{
+		m_deck = generateDeck(m_age);//FIXME m_age ou m_age-1 ?
+		distributeCards();
+	}
+}
+
+bool World::betweenTurns() const
+{
+	return m_players[0]->getHand().size() == 0;
+}
+
+bool World::gameOver() const
+{
+	return m_gameOver;
+}
+
+
 
 void World::processTurn()
 {

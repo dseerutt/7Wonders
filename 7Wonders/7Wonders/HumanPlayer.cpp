@@ -3,6 +3,7 @@
 
 using namespace std;
 
+
 HumanPlayer::HumanPlayer(CardSet* discard) : Player(discard)
 {
 }
