@@ -20,23 +20,25 @@ namespace UnitTests
 			//Age 0 seulement testé
 
 			//4 joueurs
-			CardDatabaseParser parser2(4);
-			CardSet set = parser2.generateDeck(0);
+			CardDatabaseParser parser(3);
+			CardSet set = parser.generateDeck(0);
+			Assert::AreEqual((size_t)0, set.size());
 			Assert::AreEqual((size_t)21, set.size());
 		}
 
 		TEST_METHOD(CardDatabaseParserGenerateDeck7Players)
 		{
-			CardDatabaseParser parser(7);
+			CardDatabaseParser parser(8);
 			CardSet set = parser.generateDeck(0);
-			Assert::AreEqual((size_t)27, set.size());
+			Assert::AreEqual((size_t)49, set.size());
 		}
 
-		TEST_METHOD(CardDatabaseParserGenerateDeck3Players)
+		TEST_METHOD(CardDatabaseParserGenerateDeck2Players)
 		{
 			CardDatabaseParser parser(2);
 			CardSet set = parser.generateDeck(0);
-			Assert::AreEqual((size_t)27, set.size());
+			Assert::AreEqual((size_t)0, set.size());
+			//pas de cartes pour 2 joueurs
 		}
 	};
 }
