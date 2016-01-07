@@ -29,7 +29,10 @@
     <ClCompile Include="DefaultTest.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="CardsTest.cpp">
+    <ClCompile Include="CardColorTest.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CardDatabaseParserTest.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

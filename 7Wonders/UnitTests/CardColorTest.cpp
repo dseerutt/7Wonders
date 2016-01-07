@@ -12,7 +12,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTests
 {
-	TEST_CLASS(CardsTest)
+	TEST_CLASS(CardColorTest)
 	{
 	public:
 		//impossible de tester la classe Card.cpp directement car c'est une classe virtuelle pure
