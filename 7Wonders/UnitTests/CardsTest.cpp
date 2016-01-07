@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include "../7Wonders/BlueCard.h"
+#include "../7Wonders/BrownCard.cpp"
+#include "../7Wonders/GrayCard.cpp"
+#include "../7Wonders/GreenCard.cpp"
+#include "../7Wonders/RedCard.cpp"
+#include "../7Wonders/YellowCard.cpp"
 #include "../7Wonders/Card.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -16,17 +21,98 @@ namespace UnitTests
 		TEST_METHOD(BlueCardConstructor)
 		{
 			BlueCard c("nomCarte", 5);
-			Assert::AreEqual((unsigned)5, c.getPoints());
-			;
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
-			//Assert::AreEqual(BLUE, c.m_color);
-
+			Assert::AreEqual((int)BLUE, (int)c.m_color);
+			Assert::AreEqual((unsigned)5, c.getPoints());
+			//pas testé m_points
 		}
 
 		TEST_METHOD(BlueGetPoints)
 		{
 			BlueCard c("ee", 5);
 			Assert::AreEqual((unsigned)5, c.getPoints());
+		}
+
+		TEST_METHOD(BrownCardConstructor)
+		{
+			BrownCard c("nomCarte", "prod");
+			Assert::AreEqual("nomCarte", c.m_name.c_str());
+			Assert::AreEqual((int)BROWN, (int)c.m_color);
+			Assert::AreEqual((unsigned)0, c.getPoints());
+			//pas testé private m_production
+		}
+
+		TEST_METHOD(BrownGetPoints)
+		{
+			BrownCard c("ee", "prod");
+			Assert::AreEqual((unsigned)0, c.getPoints());
+		}
+
+		TEST_METHOD(GrayCardConstructor)
+		{
+			GrayCard c("nomCarte", "prod");
+			Assert::AreEqual("nomCarte", c.m_name.c_str());
+			Assert::AreEqual((int)GRAY, (int)c.m_color);
+			Assert::AreEqual((unsigned)0, c.getPoints());
+			//pas testé private m_production
+		}
+
+		TEST_METHOD(GrayGetPoints)
+		{
+			BrownCard c("ee", "prod");
+			Assert::AreEqual((unsigned)0, c.getPoints());
+		}
+
+		TEST_METHOD(GreenCardConstructor)
+		{
+			GreenCard c("nomCarte", 't');
+			Assert::AreEqual("nomCarte", c.m_name.c_str());
+			Assert::AreEqual((int)GREEN, (int)c.m_color);
+			Assert::AreEqual((unsigned)0, c.getPoints());
+			//pas testé private m_production
+		}
+
+		TEST_METHOD(GreenGetPoints)
+		{
+			GreenCard c("ee", 't');
+			Assert::AreEqual((unsigned)0, c.getPoints());
+		}
+
+		TEST_METHOD(GreenGetType)
+		{
+			GreenCard c("ee", 't');
+			Assert::IsTrue('t' == c.getType());
+		}
+
+
+		TEST_METHOD(RedCardConstructor)
+		{
+			RedCard c("nomCarte", 2);
+			Assert::AreEqual("nomCarte", c.m_name.c_str());
+			Assert::AreEqual((int)RED, (int)c.m_color);
+			Assert::AreEqual((unsigned)0, c.getPoints());
+			//pas testé private power
+		}
+
+		TEST_METHOD(RedGetPoints)
+		{
+			RedCard c("ee", 2);
+			Assert::AreEqual((unsigned)0, c.getPoints());
+		}
+
+		TEST_METHOD(YellowCardConstructor)
+		{
+			YellowCard c("nomCarte");
+			Assert::AreEqual("nomCarte", c.m_name.c_str());
+			Assert::AreEqual((int)YELLOW, (int)c.m_color);
+			Assert::AreEqual((unsigned)0, c.getPoints());
+			//pas testé private power
+		}
+
+		TEST_METHOD(YellowGetPoints)
+		{
+			YellowCard c("ee");
+			Assert::AreEqual((unsigned)0, c.getPoints());
 		}
 
 	};
