@@ -12,3 +12,8 @@ unsigned int RedCard::getPoints() const
 {
 	return 0;
 }
+
+unsigned int RedCard::getPower()
+{
+	return m_power;
+}

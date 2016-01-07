@@ -1,6 +1,8 @@
 #pragma once
 #include "Card.h"
 
+using namespace std;
+
 class GrayCard :
 	public Card
 {
@@ -11,5 +13,6 @@ public:
 	~GrayCard();
 
 	virtual unsigned int getPoints() const;
+	string getProduction();
 };
 

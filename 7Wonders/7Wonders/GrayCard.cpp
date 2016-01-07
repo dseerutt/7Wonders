@@ -14,3 +14,8 @@ unsigned int GrayCard::getPoints() const
 {
 	return 0;
 }
+
+string GrayCard::getProduction()
+{
+	return m_production;
+}

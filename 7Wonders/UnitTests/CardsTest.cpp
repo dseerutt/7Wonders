@@ -24,7 +24,6 @@ namespace UnitTests
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
 			Assert::AreEqual((int)BLUE, (int)c.m_color);
 			Assert::AreEqual((unsigned)5, c.getPoints());
-			//pas testé m_points
 		}
 
 		TEST_METHOD(BlueGetPoints)
@@ -39,7 +38,7 @@ namespace UnitTests
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
 			Assert::AreEqual((int)BROWN, (int)c.m_color);
 			Assert::AreEqual((unsigned)0, c.getPoints());
-			//pas testé private m_production
+			Assert::AreEqual("prod", c.getProduction().c_str());
 		}
 
 		TEST_METHOD(BrownGetPoints)
@@ -48,19 +47,31 @@ namespace UnitTests
 			Assert::AreEqual((unsigned)0, c.getPoints());
 		}
 
+		TEST_METHOD(BrownGetProduction)
+		{
+			BrownCard c("ee", "prod");
+			Assert::AreEqual("prod", c.getProduction().c_str());
+		}
+
 		TEST_METHOD(GrayCardConstructor)
 		{
 			GrayCard c("nomCarte", "prod");
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
 			Assert::AreEqual((int)GRAY, (int)c.m_color);
 			Assert::AreEqual((unsigned)0, c.getPoints());
-			//pas testé private m_production
+			Assert::AreEqual("prod", c.getProduction().c_str());
 		}
 
 		TEST_METHOD(GrayGetPoints)
 		{
-			BrownCard c("ee", "prod");
+			GrayCard c("ee", "prod");
 			Assert::AreEqual((unsigned)0, c.getPoints());
+		}
+
+		TEST_METHOD(GrayGetProduction)
+		{
+			GrayCard c("ee", "prod");
+			Assert::AreEqual("prod", c.getProduction().c_str());
 		}
 
 		TEST_METHOD(GreenCardConstructor)
@@ -69,7 +80,7 @@ namespace UnitTests
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
 			Assert::AreEqual((int)GREEN, (int)c.m_color);
 			Assert::AreEqual((unsigned)0, c.getPoints());
-			//pas testé private m_production
+			Assert::AreEqual('t', c.getType());
 		}
 
 		TEST_METHOD(GreenGetPoints)
@@ -91,7 +102,7 @@ namespace UnitTests
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
 			Assert::AreEqual((int)RED, (int)c.m_color);
 			Assert::AreEqual((unsigned)0, c.getPoints());
-			//pas testé private power
+			Assert::AreEqual((unsigned)2, c.getPower());
 		}
 
 		TEST_METHOD(RedGetPoints)
@@ -100,13 +111,20 @@ namespace UnitTests
 			Assert::AreEqual((unsigned)0, c.getPoints());
 		}
 
+
+
+		TEST_METHOD(RedGetPower)
+		{
+			RedCard c("ee", 2);
+			Assert::AreEqual((unsigned)2, c.getPower());
+		}
+
 		TEST_METHOD(YellowCardConstructor)
 		{
 			YellowCard c("nomCarte");
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
 			Assert::AreEqual((int)YELLOW, (int)c.m_color);
 			Assert::AreEqual((unsigned)0, c.getPoints());
-			//pas testé private power
 		}
 
 		TEST_METHOD(YellowGetPoints)

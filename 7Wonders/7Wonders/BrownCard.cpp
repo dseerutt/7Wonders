@@ -14,3 +14,8 @@ unsigned int BrownCard::getPoints() const
 {
 	return 0;
 }
+
+string BrownCard::getProduction()
+{
+	return m_production;
+}
