@@ -54,11 +54,11 @@ namespace UnitTests
 			cp.setHand(hand);
 			
 			cp.prepareTurn(); //Appel de pickCard, champ protected
+			//PickACard n'élimine pas la carte choisie
+			Assert::AreEqual(8, (int)cp.getHand().size());
 			cp.playTurn();
-			string t = to_string((int) cp.getBoard().size());
-			int value = cp.getBoard().at(0)->getPoints();
-			Assert::AreEqual(7, (int) hand.size());
-			//PickACard doit-il éliminer la carte choisie ?
+			//playTurn élimine la carte choisie
+			Assert::AreEqual(7, (int) cp.getHand().size());
 		}
 
 		TEST_METHOD(pickCardSameCardTest)

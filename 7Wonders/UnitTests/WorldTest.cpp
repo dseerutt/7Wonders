@@ -2,7 +2,7 @@
 #include "CppUnitTest.h"
 #include "../7Wonders/HumanPlayer.h"
 #include "../7Wonders/ComputerPlayer.h"
-#include "../7Wonders/World.cpp"
+//#include "../7Wonders/World.cpp"
 #include "../7Wonders/Player.h"
 #include <string> 
 
@@ -17,9 +17,8 @@ namespace UnitTests
 
 		TEST_METHOD(WorldConstructor)
 		{
-			World w(1, 2);
+			//World w(1, 2);
 		}
-		//pickCard pas testé car utilise cin
 
 	};
 }
