@@ -92,7 +92,7 @@ namespace UnitTests
 			Assert::AreEqual((size_t) 0, contents.size());
 		}
 
-		TEST_METHOD(parserCardCostTest)
+		TEST_METHOD(ParserCardCostTest)
 		{
 			CardDatabaseParser parser(3);
 			CardSet set = parser.generateDeck(0);
@@ -112,7 +112,7 @@ namespace UnitTests
 		}
 
 
-		TEST_METHOD(getColorTest)
+		TEST_METHOD(GetColorTest)
 		{
 			CardDatabaseParser parser(3);
 			Assert::AreEqual((int)BLUE, (int)parser.getColor('b'));

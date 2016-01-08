@@ -40,4 +40,5 @@
 7Wonders/ipch/
 *.v12.suo
 *.vcxproj
+*.vcxproj.filters
 #.ipch
