@@ -73,19 +73,44 @@ namespace UnitTests
 			contents.push_back("OFFICINE");
 			contents.push_back("ATELIER");
 			contents.push_back("SCRIPTORIUM");
+
+			//Test du nombre d'éléments
 			for (int i = 0; i < set.size(); i++)
 			{
 				std::vector<string>::iterator iter = contents.begin();
 				while (iter != contents.end())
 				{
 					if (*iter == set[i]->m_name.c_str())
+					{
 						iter = contents.erase(iter);
+					}
+						
 					else
 						iter++;
 				}
 			}
 			Assert::AreEqual((size_t) 0, contents.size());
 		}
+
+		TEST_METHOD(parserCardCostTest)
+		{
+			CardDatabaseParser parser(3);
+			CardSet set = parser.generateDeck(0);
+			Assert::AreEqual(0, 1);
+				/*Tester les valeurs suivantes:
+				int goldCost;
+				int woodCost;
+				int stoneCost;
+				int brickCost;
+				int mineralCost;
+				int textileCost;
+				int glassCost;
+				int papyrusCost;
+				String ultimateParameter;
+				*/
+			
+		}
+
 
 		TEST_METHOD(getColorTest)
 		{
