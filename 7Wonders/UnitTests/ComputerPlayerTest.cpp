@@ -26,7 +26,7 @@ namespace UnitTests
 			Assert::IsTrue(true);
 		}
 
-		TEST_METHOD(pickCardTest)
+		TEST_METHOD(PickCardTestComputer)
 		{
 			CardSet set;
 			BlueCard card("carte bleue", 5);

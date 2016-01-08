@@ -13,7 +13,7 @@ namespace UnitTests
 	{
 	public:
 		
-		TEST_METHOD(CardDatabaseParserGenerateDeck4Players)
+		TEST_METHOD(CardDatabaseParserGenerateDeck3Players)
 		{
 			//m_brownCards m_blueCards m_yellowCards m_redCards m_greenCards
 			//privés donc pas de test direct sur les contenus
@@ -22,7 +22,6 @@ namespace UnitTests
 			//4 joueurs
 			CardDatabaseParser parser(3);
 			CardSet set = parser.generateDeck(0);
-			Assert::AreEqual((size_t)0, set.size());
 			Assert::AreEqual((size_t)21, set.size());
 		}
 
