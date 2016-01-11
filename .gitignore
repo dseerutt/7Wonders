@@ -43,3 +43,4 @@
 !UnitTests.vcxproj
 *.vcxproj.filters
 #.ipch
+7Wonders/TestResults/*

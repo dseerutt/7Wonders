@@ -84,7 +84,7 @@ void World::startAge()
 	m_age++;
 	if (m_age <= NUMBER_OF_AGES)
 	{
-		m_deck = generateDeck(m_age-1);//FIXME m_age ou m_age-1 ?
+		m_deck = generateDeck(m_age-1);
 		distributeCards();
 	}
 }
