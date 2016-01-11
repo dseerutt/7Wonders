@@ -2,10 +2,9 @@
 #include "CppUnitTest.h"
 #include "../7Wonders/HumanPlayer.h"
 #include "../7Wonders/ComputerPlayer.h"
-//#include "../7Wonders/World.cpp"
+#include "../7Wonders/World.cpp"
 #include "../7Wonders/Player.h"
-#include <string> 
-
+#include <string>
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
 
@@ -17,7 +16,9 @@ namespace UnitTests
 
 		TEST_METHOD(WorldConstructor)
 		{
-			//World w(1, 2);
+			
+			World w(1, 2);
+			Assert::AreEqual(1, 0);
 		}
 
 	};

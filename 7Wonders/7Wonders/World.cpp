@@ -1,8 +1,11 @@
 #include "World.h"
 #include "HumanPlayer.h"
 #include "ComputerPlayer.h"
+#ifndef TESTING
 #include "Display.h"
+#endif // !TESTING
 #include <string>
+#include <algorithm>
 
 World::World(unsigned int nh, unsigned int nc) : 
 	m_gameOver(false), m_age(0), m_cardDatabaseParser(nh + nc),
@@ -29,8 +32,10 @@ World::~World()
 
 void World::run()
 {
+#ifndef TESTING
 	Display display(m_players);
 	display.draw();
+#endif // !TESTING
 
 	while (!m_gameOver)
 	{
