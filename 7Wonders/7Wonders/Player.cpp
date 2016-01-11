@@ -51,6 +51,7 @@ void Player::prepareTurn()
 		if (m_hand.size() == 0)
 		{
 			std::cerr << "Attention : un joueur ne possède aucune carte en main au debut du tour." << std::endl;
+			throw("Un joueur ne possède aucune carte en main");
 			return;
 		}
 		m_discard->push_back(m_hand.at(0));
@@ -63,9 +64,14 @@ void Player::prepareTurn()
 
 void Player::playTurn()
 {
+	if (m_cardToPlay == 0)
+	{
+		throw("Pas de carte à jouer sélectionnée");
+	}
+
 	if (m_hand.size() <= 1)
 	{
-		return;
+		throw("Taille de la main non conforme");
 	}
 	m_board.push_back(m_cardToPlay);
 
