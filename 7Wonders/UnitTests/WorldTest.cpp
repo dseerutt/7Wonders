@@ -49,6 +49,22 @@ namespace UnitTests
 			Assert::AreEqual(0, (int)w.m_players.size());
 		}
 
+		TEST_METHOD(GameOverTest)
+		{
+			World w(3, 2);
+			Assert::IsFalse(w.gameOver());
+			w.m_gameOver = true;
+			Assert::IsTrue(w.gameOver());
+		}
+
+		TEST_METHOD(DrawTest)
+		{
+			World w(3, 2);
+			Assert::IsFalse(w.draw());
+			w.m_draw = true;
+			Assert::IsTrue(w.draw());
+		}
+
 		TEST_METHOD(PlayTest)
 		{
 			World w(3, 2);
@@ -68,8 +84,10 @@ namespace UnitTests
 			w.startAge();
 			Assert::AreEqual(1, (int) w.m_age);
 			Assert::AreEqual(7, (int) p->getHand().size());
-//			p->getHand().clear();
+			CardSet set;
+			p->setHand(set);
 
+			Assert::AreEqual(0, (int)p->getHand().size());
 			w.startAge();
 			Assert::AreEqual(2, (int)w.m_age);
 			Assert::AreNotEqual(0, (int)p->getHand().size());
@@ -117,6 +135,27 @@ namespace UnitTests
 			
 		}
 
+		TEST_METHOD(GenerateDeck3PlayersTest)
+		{
+			//3 joueurs
+			CardDatabaseParser parser(3);
+			CardSet set = parser.generateDeck(0);
+			Assert::AreEqual((size_t)21, set.size());
+			set = parser.generateDeck(1);
+			Assert::AreEqual((size_t)21, set.size());
+			set = parser.generateDeck(2);
+			Assert::AreEqual((size_t)26, set.size());
+		}
+
+		TEST_METHOD(GetPlayerIdTest)
+		{
+			World w(2, 5);
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				Assert::AreEqual((unsigned) i, w.getPlayerId(*(w.m_players[i])));
+			}
+		}
+
 		/*bool m_gameOver;
 	unsigned int m_age;
 	std::vector<HumanPlayer> m_humanPlayers;
@@ -130,21 +169,14 @@ namespace UnitTests
 
 	void run();
 	void endTurn();
-	void startAge();
 	bool betweenTurns() const;
-	bool gameOver() const;
 	void processTurn();
-	CardSet generateDeck(int age);
 	void distributeCards();
 	void draft(unsigned int age);
-	void prepareTurn();
-	void playTurn();
 	void computeScores();
 	void displayScores() const;
 	unsigned int computeScienceScore(const CardSet& board) const;
-	bool hasWon(const Player& player) const;
-	bool draw() const;
-	unsigned int getPlayerId(const Player& player) const;*/
+	bool hasWon(const Player& player) const;*/
 
 	};
 }

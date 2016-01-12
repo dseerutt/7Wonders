@@ -17,12 +17,15 @@ namespace UnitTests
 		{
 			//m_brownCards m_blueCards m_yellowCards m_redCards m_greenCards
 			//privés donc pas de test direct sur les contenus
-			//Age 0 seulement testé
 
-			//4 joueurs
+			//3 joueurs
 			CardDatabaseParser parser(3);
 			CardSet set = parser.generateDeck(0);
 			Assert::AreEqual((size_t)21, set.size());
+			set = parser.generateDeck(1);
+			Assert::AreEqual((size_t)21, set.size());
+			set = parser.generateDeck(2);
+			Assert::AreEqual((size_t)26, set.size());
 		}
 
 		TEST_METHOD(CardDatabaseParserGenerateDeck7Players)
@@ -30,6 +33,10 @@ namespace UnitTests
 			CardDatabaseParser parser(8);
 			CardSet set = parser.generateDeck(0);
 			Assert::AreEqual((size_t)49, set.size());
+			set = parser.generateDeck(1);
+			Assert::AreEqual((size_t)49, set.size());
+			set = parser.generateDeck(2);
+			Assert::AreEqual((size_t)48, set.size());
 		}
 
 		TEST_METHOD(CardDatabaseParserGenerateDeck2Players)

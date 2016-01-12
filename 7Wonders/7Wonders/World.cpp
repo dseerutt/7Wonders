@@ -251,5 +251,5 @@ unsigned int World::getPlayerId(const Player& player) const
 			break;
 		}
 	}
-	return 0;
+	return res;
 }
