@@ -5,6 +5,8 @@
 #include "../7Wonders/World.cpp"
 #include "../7Wonders/Player.h"
 #include <string>
+#include <regex>
+#include <stdio.h>
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
 
@@ -156,27 +158,72 @@ namespace UnitTests
 			}
 		}
 
-		/*bool m_gameOver;
-	unsigned int m_age;
-	std::vector<HumanPlayer> m_humanPlayers;
-	std::vector<ComputerPlayer> m_computerPlayers;
-	CardSet m_deck;
-	CardSet m_discard;
-	std::vector<Player*> m_players;
-	std::vector<std::vector<unsigned int> > m_scores;
-	const Player* m_winner;
-	bool m_draw;
+		TEST_METHOD(HasWonTest)
+		{
+			World w(2, 5);
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				Assert::IsFalse(w.hasWon(*(w.m_players[i])));
+			}
+			w.m_winner = w.m_players[3];
+			Assert::IsTrue(w.hasWon(*(w.m_players[3])));
+		}
 
-	void run();
-	void endTurn();
-	bool betweenTurns() const;
-	void processTurn();
-	void distributeCards();
-	void draft(unsigned int age);
-	void computeScores();
-	void displayScores() const;
-	unsigned int computeScienceScore(const CardSet& board) const;
-	bool hasWon(const Player& player) const;*/
+		TEST_METHOD(TestingScore)
+		{
+			Assert::AreEqual(1, 0);
+			//Need to check the score
+		}
+
+		TEST_METHOD(ComputeScienceScoreTest)
+		{
+			Assert::AreEqual(1, 0);
+			//Need to check the score
+		}
+
+		TEST_METHOD(ComputeScoreTest)
+		{
+			Assert::AreEqual(1, 0);
+			//Need to check the score
+		}
+
+		TEST_METHOD(EndTurntest)
+		{
+			Assert::AreEqual(1, 0);
+			//TODO
+		}
+
+		TEST_METHOD(RunTest)
+		{
+			Assert::AreEqual(1, 0);
+			//TODO
+		}
+
+		TEST_METHOD(BetweenTurntest)
+		{
+			//ToCheck
+			World w(0, 3);
+			CardSet set;
+			Assert::IsTrue(w.betweenTurns());
+			w.generateDeck(0);
+			w.distributeCards();
+			Assert::IsFalse(w.betweenTurns());
+			/*
+			m_players[0].s
+			m_players[0]->getHand().size() <= 1;*/
+		}
+
+		TEST_METHOD(ProcessTurntest)
+		{
+			//TODO
+			Assert::IsTrue(false);
+		}
+
+		TEST_METHOD(DraftTest)
+		{
+			//TODO
+			Assert::IsTrue(false);
+		}
 
 	};
 }
