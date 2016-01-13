@@ -188,8 +188,59 @@ namespace UnitTests
 
 		TEST_METHOD(EndTurntest)
 		{
-			Assert::AreEqual(1, 0);
-			//TODO
+			//Dans cet exemple, 6 tours de jeu à l'âge 3
+			World w(0, 3);
+			w.generateDeck(0);
+			w.startAge();
+			w.startAge();
+			w.startAge();
+			//Premier tour
+			w.play(*(w.m_players.at(0)));
+			w.playOthers(*(w.m_players.at(0)));
+			string card0 = w.m_players.at(0)->getHand().at(0)->m_name;
+			string card1 = w.m_players.at(1)->getHand().at(0)->m_name;
+			string card2 = w.m_players.at(2)->getHand().at(0)->m_name;
+			w.endTurn();
+			Assert::AreEqual(card0, w.m_players.at(0)->getBoard().at(0)->m_name);
+			Assert::AreEqual(card1, w.m_players.at(1)->getBoard().at(0)->m_name);
+			Assert::AreEqual(card2, w.m_players.at(2)->getBoard().at(0)->m_name);
+			Assert::IsFalse(w.m_gameOver);
+
+			//Deuxième tour
+			w.play(*(w.m_players.at(0)));
+			w.playOthers(*(w.m_players.at(0)));
+			card0 = w.m_players.at(0)->getHand().at(0)->m_name;
+			card1 = w.m_players.at(1)->getHand().at(0)->m_name;
+			card2 = w.m_players.at(2)->getHand().at(0)->m_name;
+			w.endTurn();
+			Assert::AreEqual(card0, w.m_players.at(0)->getBoard().at(1)->m_name);
+			Assert::AreEqual(card1, w.m_players.at(1)->getBoard().at(1)->m_name);
+			Assert::AreEqual(card2, w.m_players.at(2)->getBoard().at(1)->m_name);
+			Assert::IsFalse(w.m_gameOver);
+
+			//Tour 3
+			w.play(*(w.m_players.at(0)));
+			w.playOthers(*(w.m_players.at(0)));
+			w.endTurn();
+			Assert::IsFalse(w.m_gameOver);
+
+			//Tour 4
+			w.play(*(w.m_players.at(0)));
+			w.playOthers(*(w.m_players.at(0)));
+			w.endTurn();
+			Assert::IsFalse(w.m_gameOver);
+
+			//Tour 5
+			w.play(*(w.m_players.at(0)));
+			w.playOthers(*(w.m_players.at(0)));
+			w.endTurn();
+			Assert::IsFalse(w.m_gameOver);
+
+			//Tour 6
+			w.play(*(w.m_players.at(0)));
+			w.playOthers(*(w.m_players.at(0)));
+			w.endTurn();
+			Assert::IsTrue(w.m_gameOver);
 		}
 
 		TEST_METHOD(BetweenTurntest)
@@ -199,12 +250,6 @@ namespace UnitTests
 			w.generateDeck(0);
 			w.startAge();
 			Assert::IsFalse(w.betweenTurns());
-		}
-
-		TEST_METHOD(ProcessTurntest)
-		{
-			//TODO
-			Assert::IsTrue(false);
 		}
 
 		TEST_METHOD(DraftTestAge1)

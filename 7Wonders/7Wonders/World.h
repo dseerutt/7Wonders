@@ -48,7 +48,7 @@ public:
 	void startAge();
 	bool betweenTurns() const;
 	bool gameOver() const;
-	void processTurn();
+	//void processTurn();
 	CardSet generateDeck(int age);
 	void distributeCards();
 	void draft(unsigned int age);

@@ -99,14 +99,13 @@ bool World::gameOver() const
 	return m_gameOver;
 }
 
-
-
+/*
 void World::processTurn()
 {
 	prepareTurn();
 	playTurn();
 	draft(m_age);
-}
+}*/
 
 CardSet World::generateDeck(int age)
 {
