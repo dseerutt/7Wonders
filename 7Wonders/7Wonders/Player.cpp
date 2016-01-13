@@ -1,7 +1,8 @@
 #include "Player.h"
+#include "RedCard.h"
 
 
-Player::Player(CardSet* discard) : m_discard(discard),money(0), m_hand(), m_board(), m_cardToPlay(nullptr)
+Player::Player(CardSet* discard) : m_discard(discard),money(0), military(0), m_hand(), m_board(), m_cardToPlay(nullptr)
 {
 }
 
@@ -12,6 +13,11 @@ Player::~Player()
 unsigned int Player::getMoney() const
 {
 	return money;
+}
+
+unsigned int Player::getMilitary() const
+{
+	return military;
 }
 
 unsigned int Player::getScore() const
@@ -85,6 +91,10 @@ void Player::playTurn()
 		throw("Taille de la main non conforme");
 	}
 	m_board.push_back(m_cardToPlay);
+	if (m_cardToPlay->m_color == RED)
+	{
+		military += m_cardToPlay->getPower();
+	}
 
 	CardSet::iterator cardToErase;
 	for (auto it = m_hand.begin(); it != m_hand.end(); ++it)

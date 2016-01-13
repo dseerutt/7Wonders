@@ -19,3 +19,8 @@ string BrownCard::getProduction()
 {
 	return m_production;
 }
+
+unsigned int BrownCard::getPower() const
+{
+	return 0;
+}

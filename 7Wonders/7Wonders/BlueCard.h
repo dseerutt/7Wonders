@@ -10,5 +10,6 @@ public:
 	~BlueCard();
 
 	virtual unsigned int getPoints() const;
+	virtual unsigned int getPower() const;
 };
 

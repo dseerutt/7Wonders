@@ -12,3 +12,8 @@ unsigned int BlueCard::getPoints() const
 {
 	return m_points;
 }
+
+unsigned int BlueCard::getPower() const
+{
+	return 0;
+}

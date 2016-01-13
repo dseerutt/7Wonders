@@ -32,6 +32,7 @@ public:
 	CardSet m_deck;
 	CardSet m_discard;
 
+	int getMilitaryScore(Player* p);
 	std::vector<Player*> m_players;
 	std::vector<std::vector<unsigned int> > m_scores;
 	const Player* m_winner;

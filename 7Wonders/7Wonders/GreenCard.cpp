@@ -17,3 +17,8 @@ unsigned int GreenCard::getPoints() const
 {
 	return 0;
 }
+
+unsigned int GreenCard::getPower() const
+{
+	return 0;
+}

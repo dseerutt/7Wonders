@@ -19,3 +19,8 @@ string GrayCard::getProduction()
 {
 	return m_production;
 }
+
+unsigned int GrayCard::getPower() const
+{
+	return 0;
+}

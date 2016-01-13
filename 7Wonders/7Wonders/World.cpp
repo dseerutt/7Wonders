@@ -96,6 +96,49 @@ void World::playOthers(Player& player)
 	}
 }
 
+int World::getMilitaryScore(Player* p)
+{
+	int factor;
+	if (m_age == 3)
+	{
+		factor = 5;
+	}
+		else 
+		if (m_age == 2)
+	{
+		factor = 3;
+	}
+		else
+		{
+			factor = 1;
+		}
+	int leftScore = p->leftNeighbor->getMilitary();
+	int rightScore = p->rightNeighbor->getMilitary();
+	int myscore = p->getMilitary();
+	int resul = 0;
+	if (leftScore > myscore)
+	{
+		resul--;
+	}
+		else
+		if (leftScore < myscore)
+		{
+		resul += factor;
+		}
+
+	if (rightScore > myscore)
+	{
+		resul--;
+	}
+	else
+		if (rightScore < myscore)
+		{
+		resul += factor;
+		}
+
+	return resul;
+}
+
 void World::endTurn()
 {
 	playTurn();
@@ -222,7 +265,7 @@ void World::computeScores()
 		m_scores[i][GOLD] = ((int)m_players[i]->getMoney() / 3);
 
 		//War score --------------------------------------------------------
-		//m_scores[i][GOLD] = ((int)m_players[i]->getMoney() / 3);
+		m_scores[i][WAR] += getMilitaryScore(m_players.at(i));
 
 		//Science score --------------------------------------------------------
 		m_scores[i][SCIENCE] = computeScienceScore(board);

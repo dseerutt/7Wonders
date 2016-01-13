@@ -12,3 +12,8 @@ unsigned int YellowCard::getPoints() const
 {
 	return 0;
 }
+
+unsigned int YellowCard::getPower() const
+{
+	return 0;
+}

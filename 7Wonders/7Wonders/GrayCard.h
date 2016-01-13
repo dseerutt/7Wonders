@@ -13,6 +13,7 @@ public:
 	~GrayCard();
 
 	virtual unsigned int getPoints() const;
+	virtual unsigned int getPower() const;
 	string getProduction();
 };
 

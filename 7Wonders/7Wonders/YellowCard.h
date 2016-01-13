@@ -10,5 +10,6 @@ public:
 	~YellowCard();
 
 	virtual unsigned int getPoints() const;
+	virtual unsigned int getPower() const;
 };
 

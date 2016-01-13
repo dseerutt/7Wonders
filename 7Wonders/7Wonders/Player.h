@@ -10,6 +10,7 @@ protected:
 	CardSet m_board;
 	CardSet* m_discard;
 	int money;
+	int military;
 	Card* m_cardToPlay;
 public:
 	Player* leftNeighbor;
@@ -17,6 +18,7 @@ public:
 	Player(CardSet* discard);
 	~Player();
 
+	unsigned int getMilitary() const;
 	unsigned int getScore() const;
 	unsigned int getMoney() const;
 	const CardSet& getBoard() const;

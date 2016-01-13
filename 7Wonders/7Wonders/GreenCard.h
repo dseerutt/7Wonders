@@ -11,5 +11,6 @@ public:
 
 	char getType() const;
 	virtual unsigned int getPoints() const;
+	virtual unsigned int getPower() const;
 };
 

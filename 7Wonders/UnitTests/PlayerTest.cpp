@@ -48,6 +48,13 @@ namespace UnitTests
 			Assert::AreEqual((unsigned)0, cp.getScore());
 		}
 
+		TEST_METHOD(GetMilitaryTest)
+		{
+			CardSet set;
+			ComputerPlayer cp(&set);
+			Assert::AreEqual((unsigned)0, cp.getMilitary());
+		}
+
 		TEST_METHOD(GetBoardTest)
 		{
 			CardSet set;

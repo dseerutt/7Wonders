@@ -13,7 +13,7 @@ unsigned int RedCard::getPoints() const
 	return 0;
 }
 
-unsigned int RedCard::getPower()
+unsigned int RedCard::getPower() const
 {
 	return m_power;
 }

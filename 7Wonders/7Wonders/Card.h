@@ -23,5 +23,6 @@ public:
 	~Card();
 
 	virtual unsigned int getPoints() const = 0;
+	virtual unsigned int getPower() const = 0;
 };
 
