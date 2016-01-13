@@ -21,10 +21,24 @@ namespace UnitTests
 			set.push_back(&card);
 			ComputerPlayer cp(&set);
 			Assert::IsTrue(cp.getBoard().empty());
-			Assert::AreEqual((unsigned)0, cp.getScore());
+			Assert::AreEqual((unsigned) 0, cp.getScore());
+			Assert::AreEqual((unsigned) 0, cp.getMoney());
 			Assert::IsTrue(cp.getBoard().empty());
 			Assert::IsTrue(cp.getHand().empty());
 			//pas de test de m_discard, m_cardToPlay car protected
+		}
+
+		TEST_METHOD(GetMoneyTest)
+		{
+			CardSet set;
+			ComputerPlayer cp(&set);
+			Assert::AreEqual((unsigned)0, cp.getMoney());
+		}
+
+		TEST_METHOD(CanBuyTest)
+		{
+			//TODO
+			Assert::AreEqual(0, 1);
 		}
 
 		TEST_METHOD(GetScoreTest)

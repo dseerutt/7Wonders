@@ -1,12 +1,17 @@
 #include "Player.h"
 
 
-Player::Player(CardSet* discard) : m_discard(discard), m_hand(), m_board(), m_cardToPlay(nullptr)
+Player::Player(CardSet* discard) : m_discard(discard),money(0), m_hand(), m_board(), m_cardToPlay(nullptr)
 {
 }
 
 Player::~Player()
 {
+}
+
+unsigned int Player::getMoney() const
+{
+	return money;
 }
 
 unsigned int Player::getScore() const
@@ -42,6 +47,12 @@ const CardSet Player::getPlayableCards() const
 {
 	CardSet cards = m_hand;
 	return cards;
+}
+
+
+void Player::canBuy(int price)
+{
+	//TODO
 }
 
 void Player::prepareTurn()

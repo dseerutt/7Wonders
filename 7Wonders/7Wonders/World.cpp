@@ -191,11 +191,17 @@ void World::computeScores()
 			}
 		}
 
+		//Coins score --------------------------------------------------------
+		m_scores[i][GOLD] = ((int)m_players[i]->getMoney() / 3);
+
+		//War score --------------------------------------------------------
+		//m_scores[i][GOLD] = ((int)m_players[i]->getMoney() / 3);
+
 		//Science score --------------------------------------------------------
 		m_scores[i][SCIENCE] = computeScienceScore(board);
 
 		//Total score ----------------------------------------------------------
-		m_scores[i][TOTAL_SCORE] = m_scores[i][BLUE_CARDS] + m_scores[i][SCIENCE];
+		m_scores[i][TOTAL_SCORE] = m_scores[i][BLUE_CARDS] + m_scores[i][SCIENCE] + m_scores[i][GOLD];
 	}
 	unsigned int winner = 0;
 	for (unsigned int i = 1; i < m_scores.size(); i++)
