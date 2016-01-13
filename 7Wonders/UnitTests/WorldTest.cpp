@@ -194,7 +194,6 @@ namespace UnitTests
 
 		TEST_METHOD(BetweenTurntest)
 		{
-			//ToCheck
 			World w(0, 3);
 			Assert::IsTrue(w.betweenTurns());
 			w.generateDeck(0);
@@ -210,13 +209,36 @@ namespace UnitTests
 
 		TEST_METHOD(DraftTest)
 		{
-			//TODO
-			Assert::IsTrue(false);
+			World w(1, 2);
+			w.generateDeck(0);
+			w.startAge();
+			vector<string> v;
+			vector<string> v2;
+			for (Card* c : w.m_players[1]->getHand())
+			{
+				v.push_back(c->m_name);
+			}
+			for (Card* c : w.m_players[0]->getHand())
+			{
+				v2.push_back(c->m_name);
+			}
+			w.draft(0);
+			int i = 0;
+			for (Card* c : w.m_players[0]->getHand())
+			{
+				Assert::AreEqual(v[i],c->m_name);
+				i++;
+			}
+			i = 0;
+			for (Card* c : w.m_players[2]->getHand())
+			{
+				Assert::AreEqual(v2[i], c->m_name);
+				i++;
+			}
 		}
 
 		TEST_METHOD(DistributeCardtest)
 		{
-			//TODO
 			World w(1, 2);
 			w.generateDeck(0);
 			w.distributeCards();
