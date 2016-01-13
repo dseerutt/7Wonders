@@ -207,7 +207,7 @@ namespace UnitTests
 			Assert::IsTrue(false);
 		}
 
-		TEST_METHOD(DraftTest)
+		TEST_METHOD(DraftTestAge1)
 		{
 			World w(1, 2);
 			w.generateDeck(0);
@@ -222,7 +222,7 @@ namespace UnitTests
 			{
 				v2.push_back(c->m_name);
 			}
-			w.draft(0);
+			w.draft(1);
 			int i = 0;
 			for (Card* c : w.m_players[0]->getHand())
 			{
@@ -231,6 +231,36 @@ namespace UnitTests
 			}
 			i = 0;
 			for (Card* c : w.m_players[2]->getHand())
+			{
+				Assert::AreEqual(v2[i], c->m_name);
+				i++;
+			}
+		}
+
+		TEST_METHOD(DraftTestAge2)
+		{
+			World w(1, 2);
+			w.generateDeck(1);
+			w.startAge();
+			vector<string> v;
+			vector<string> v2;
+			for (Card* c : w.m_players[1]->getHand())
+			{
+				v.push_back(c->m_name);
+			}
+			for (Card* c : w.m_players[2]->getHand())
+			{
+				v2.push_back(c->m_name);
+			}
+			w.draft(2);
+			int i = 0;
+			for (Card* c : w.m_players[2]->getHand())
+			{
+				Assert::AreEqual(v[i], c->m_name);
+				i++;
+			}
+			i = 0;
+			for (Card* c : w.m_players[0]->getHand())
 			{
 				Assert::AreEqual(v2[i], c->m_name);
 				i++;

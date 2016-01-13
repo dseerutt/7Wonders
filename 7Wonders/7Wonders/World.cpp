@@ -135,13 +135,26 @@ void World::distributeCards()
 
 void World::draft(unsigned int age)
 {
-	const CardSet firstHand = m_players.at(0)->getHand();
-	for (unsigned int i = 0; i<m_players.size() - 1; i++)
+	if (age % 2 == 1)
 	{
-		const CardSet& hand = m_players.at(i + 1)->getHand();
-		m_players.at(i)->setHand(hand);
+		const CardSet firstHand = m_players.at(0)->getHand();
+		for (unsigned int i = 0; i < m_players.size() - 1; i++)
+		{
+			const CardSet& hand = m_players.at(i + 1)->getHand();
+			m_players.at(i)->setHand(hand);
+		}
+		m_players.at(m_players.size() - 1)->setHand(firstHand);
 	}
-	m_players.at(m_players.size() - 1)->setHand(firstHand);
+	else
+	{
+		const CardSet lastHand = m_players.at(m_players.size()-1)->getHand();
+		for (unsigned int i = m_players.size() - 1 ; i > 0; i--)
+		{
+			const CardSet& hand = m_players.at(i - 1)->getHand();
+			m_players.at(i)->setHand(hand);
+		}
+		m_players.at(0)->setHand(lastHand);
+	}
 }
 
 void World::prepareTurn()
