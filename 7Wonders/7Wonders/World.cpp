@@ -119,6 +119,7 @@ void World::distributeCards()
 	if (m_deck.size() % m_players.size() != 0)
 	{
 		std::cerr << "Attention : le nombre de cartes (" << m_deck.size() << ") devrait etre divisible par le nombre de joueurs (" << m_players.size() << ")" << std::endl;
+		throw "Le nombre de cartes n'est pas divisible par le nombre de joueurs";
 	}
 
 	for (unsigned int i = 0; i < m_players.size(); i++)

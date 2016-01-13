@@ -225,5 +225,14 @@ namespace UnitTests
 			Assert::IsTrue(false);
 		}
 
+		TEST_METHOD(DistributeCardtest)
+		{
+			//TODO
+			World w(1, 2);
+			w.generateDeck(0);
+			w.distributeCards();
+			Assert::AreEqual(0,(int) w.m_players[0]->getHand().size());
+		}
+
 	};
 }
