@@ -289,6 +289,7 @@ void World::displayScores() const
 	for (unsigned int i = 0; i < m_players.size(); i++)
 	{
 		std::cout << "  Blue cards : " << m_scores[i][BLUE_CARDS] << std::endl;
+		std::cout << "  War : " << m_scores[i][WAR] << std::endl;
 		std::cout << "  Science : " << m_scores[i][SCIENCE] << std::endl;
 		std::cout << "Total : " << m_scores[i][TOTAL_SCORE] << std::endl << std::endl;
 	}
