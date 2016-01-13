@@ -152,6 +152,7 @@ void World::prepareTurn()
 	}
 }
 
+
 void World::playTurn()
 {
 	for (unsigned int i = 0; i < m_players.size(); i++)

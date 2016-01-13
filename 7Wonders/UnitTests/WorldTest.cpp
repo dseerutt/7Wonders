@@ -112,12 +112,11 @@ namespace UnitTests
 			Assert::AreEqual(7, (int)p->getHand().size());
 			try{
 				p0->playTurn();
-				p1->playTurn();
-				p->playTurn();
+				p1->playTurn();;
 			}
 			catch (std::exception e){
 			}
-			Assert::AreEqual(6, (int)p->getHand().size());
+			Assert::AreEqual(7, (int)p->getHand().size());
 			Assert::AreEqual(6, (int)p0->getHand().size());
 			Assert::AreEqual(6, (int)p1->getHand().size());
 		}
@@ -193,24 +192,14 @@ namespace UnitTests
 			//TODO
 		}
 
-		TEST_METHOD(RunTest)
-		{
-			Assert::AreEqual(1, 0);
-			//TODO
-		}
-
 		TEST_METHOD(BetweenTurntest)
 		{
 			//ToCheck
 			World w(0, 3);
-			CardSet set;
 			Assert::IsTrue(w.betweenTurns());
 			w.generateDeck(0);
-			w.distributeCards();
+			w.startAge();
 			Assert::IsFalse(w.betweenTurns());
-			/*
-			m_players[0].s
-			m_players[0]->getHand().size() <= 1;*/
 		}
 
 		TEST_METHOD(ProcessTurntest)
