@@ -12,6 +12,8 @@ protected:
 	int money;
 	Card* m_cardToPlay;
 public:
+	Player* leftNeighbor;
+	Player* rightNeighbor;
 	Player(CardSet* discard);
 	~Player();
 

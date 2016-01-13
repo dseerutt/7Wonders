@@ -5,7 +5,9 @@
 #include "Display.h"
 #endif // !TESTING
 #include <string>
+#include <iostream>
 #include <algorithm>
+#include <ctime>
 
 World::World(unsigned int nh, unsigned int nc) : 
 	m_gameOver(false), m_age(0), m_cardDatabaseParser(nh + nc),
@@ -18,6 +20,31 @@ World::World(unsigned int nh, unsigned int nc) :
 	for (unsigned int i = 0; i < nc; i++)
 	{
 		m_players.push_back(new ComputerPlayer(&m_discard));
+	}
+	//Choix des voisins
+	vector<int> unused;
+	vector<int> order;
+	for (int i = 0; i < nh + nc; i++)
+	{
+		unused.push_back(i);
+	}
+
+	std::srand(std::time(0));
+	do
+	{
+		int randomIndex = rand() % (unused.size());
+		order.push_back(unused.at(randomIndex));
+		unused.erase(unused.begin() + randomIndex);
+	} while (!unused.empty());
+	//Bornes
+	m_players[order.at(m_players.size() - 1)]->leftNeighbor = m_players[order.at(0)];
+	m_players[order.at(0)]->rightNeighbor = m_players[order.at(m_players.size() - 1)];
+
+	//Corps
+	for (int i = 0; i < m_players.size() - 1; i++)
+	{
+		m_players[order.at(i)]->leftNeighbor = m_players[order.at(i + 1)];
+		m_players[order.at(i + 1)]->rightNeighbor = m_players[order.at(i)];
 	}
 }
 

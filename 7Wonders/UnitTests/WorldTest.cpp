@@ -27,10 +27,6 @@ namespace UnitTests
 			Assert::IsFalse(w.m_gameOver);
 			Assert::AreEqual((unsigned)0, w.m_age);
 			Assert::AreEqual(5, (int)w.m_players.size());
-			//2 tests suivants utiles ?
-			//Assert::AreEqual(3, (int)w.m_humanPlayers.size());
-			//Assert::AreEqual(2, (int)w.m_computerPlayers.size());
-
 			Assert::AreEqual(0, (int)w.m_deck.size());
 			Assert::AreEqual(0, (int)w.m_discard.size());
 			Assert::AreEqual(false, w.m_draw);
@@ -41,6 +37,24 @@ namespace UnitTests
 					Assert::AreEqual(0, (int)w.m_scores.at(i).at(j));
 				}
 			}
+			vector<Player*> left;
+			vector<Player*> right;
+			for (Player* p : w.m_players)
+			{
+				left.push_back(p->leftNeighbor);
+				right.push_back(p->rightNeighbor);
+			}
+			for (Player* p : w.m_players)
+			{
+				if (std::find(left.begin(), left.end(), p) != left.end()) {
+					left.erase(std::remove(left.begin(), left.end(), p), left.end());
+				}
+				if (std::find(right.begin(), right.end(), p) != right.end()) {
+					right.erase(std::remove(right.begin(), right.end(), p), right.end());
+				}
+			}
+			Assert::IsTrue(left.empty());
+			Assert::IsTrue(right.empty());
 		}
 
 		TEST_METHOD(WorldDestructor)
