@@ -152,7 +152,7 @@ namespace UnitTests
 			}
 		}
 
-		TEST_METHOD(prepareTurnTestBadCases1)
+		TEST_METHOD(PrepareTurnTestBadCases1)
 		{
 			CardSet set;
 			BlueCard card("carte bleue", 5);

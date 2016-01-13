@@ -4,7 +4,7 @@
 #include "ComputerPlayer.h"
 #include "CardSet.h"
 #include "CardDatabaseParser.h"
-#define NUMBER_OF_AGES 1
+#define NUMBER_OF_AGES 3
 
 enum Scores
 {

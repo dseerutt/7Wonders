@@ -35,6 +35,9 @@ m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 			std::cerr << "Erreur : boucle infinie dans la lecture de la base de données." << std::endl;
 			exit(-1);
 		}
+		int age;
+		file >> age;
+
 		std::string name;
 		file >> name;
 
@@ -82,34 +85,34 @@ m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 		case BROWN:
 			file >> productionB;
 
-			m_brownCards[0].push_back(BrownCard(name, productionB));
+			m_brownCards[age-1].push_back(BrownCard(name, productionB));
 			break;
 		case GRAY:
 			file >> productionG;
 
-			m_grayCards[0].push_back(GrayCard(name, productionG));
+			m_grayCards[age - 1].push_back(GrayCard(name, productionG));
 			break;
 		case BLUE:
 			int points;
 			file >> points;
 
-			m_blueCards[0].push_back(BlueCard(name, points));
+			m_blueCards[age - 1].push_back(BlueCard(name, points));
 			break;
 		case YELLOW:
 
-			m_yellowCards[0].push_back(YellowCard(name));
+			m_yellowCards[age - 1].push_back(YellowCard(name));
 			break;
 		case RED:
 			unsigned int power;
 			file >> power;
 
-			m_redCards[0].push_back(RedCard(name, power));
+			m_redCards[age - 1].push_back(RedCard(name, power));
 			break;
 		case GREEN:
 			char type;
 			file >> type;
 
-			m_greenCards[0].push_back(GreenCard(name, type));
+			m_greenCards[age - 1].push_back(GreenCard(name, type));
 			break;
 		default:
 			break;
