@@ -168,10 +168,46 @@ namespace UnitTests
 			Assert::IsTrue(w.hasWon(*(w.m_players[3])));
 		}
 
-		TEST_METHOD(TestingScore)
+		TEST_METHOD(TestingBlueCardScore)
 		{
-			Assert::AreEqual(1, 0);
-			//Need to check the score
+			World w(0, 3); 
+			w.startAge();
+			BlueCard b("Carte 1", 5);
+			BlueCard b1("Carte 2", 7);
+			BlueCard b2("Carte 3", 8);
+			BrownCard d("Carte Rouge", "Production");
+
+			BlueCard c1("Carte 4", 55);
+			w.m_deck[0] = &b;
+			w.m_deck[1] = &b1;
+			w.m_deck[2] = &b2;
+			w.m_deck[7] = &c1;
+			for (int i = 3; i < w.m_deck.size(); i++)
+			{
+				if (i != 7)
+				{
+					w.m_deck[i] = &d;
+				}
+			}
+
+			w.distributeCards();
+
+			w.play(*(w.m_players.at(0)));
+			w.playOthers(*(w.m_players.at(0)));
+			w.playTurn();
+
+			w.play(*(w.m_players.at(0)));
+			w.playOthers(*(w.m_players.at(0)));
+			w.playTurn();
+
+			w.play(*(w.m_players.at(0)));
+			w.playOthers(*(w.m_players.at(0)));
+			w.playTurn();
+
+			w.computeScores();
+			Assert::AreEqual(20, (int) w.m_scores[0][BLUE_CARDS]);
+			Assert::AreEqual(55, (int) w.m_scores[1][BLUE_CARDS]);
+			Assert::AreEqual(0, (int) w.m_scores[2][BLUE_CARDS]);
 		}
 
 		TEST_METHOD(ComputeScienceScoreTest)
