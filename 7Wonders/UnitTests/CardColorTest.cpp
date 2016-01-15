@@ -24,6 +24,10 @@ namespace UnitTests
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
 			Assert::AreEqual((int)BLUE, (int)c.m_color);
 			Assert::AreEqual((unsigned)5, c.getPoints());
+			for (int i = 0; i < RESOURCES_COUNT; i++)
+			{
+				c.m_Cost[i] = 0;
+			}
 		}
 
 		TEST_METHOD(BlueGetPoints)

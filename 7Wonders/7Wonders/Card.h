@@ -12,6 +12,19 @@ enum CardColor
 	COLOR_COUNT
 };
 
+enum Resources
+{
+	WOOD,
+	STONE,
+	BRICK,
+	MINERAL,
+	PAPYRUS,
+	GLASS,
+	TEXTILE,
+	PRICEGOLD,
+	RESOURCES_COUNT
+};
+
 class Card
 {
 public:
@@ -21,7 +34,7 @@ public:
 public:
 	Card(const std::string& name, CardColor color);
 	~Card();
-
+	int m_Cost[RESOURCES_COUNT];
 	virtual unsigned int getPoints() const = 0;
 	virtual unsigned int getPower() const = 0;
 };
