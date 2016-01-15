@@ -83,6 +83,7 @@ bool Player::canBuy(CardSet c)
 
 int Player::canBuyWithNeighbor(CardSet c)
 {
+	int virtualMoney = money;
 	if (canBuy(c))
 	{
 		return 0;
@@ -93,20 +94,62 @@ int Player::canBuyWithNeighbor(CardSet c)
 		return -1;
 		//Si retourne -1, ne peut pas acheter
 	}
-	/*
+	virtualMoney -= c.at(0)->m_price;
+	
 	std::vector<std::array<int, RESOURCES_COUNT>> ToBuy;
 	for (int j = 0; j < m_resources.size(); j++)
 	{
-		std::array<int, RESOURCES_COUNT> toBuy = { 0, 0, 0, 0, 0, 0, 0 };
+		std::array<int, RESOURCES_COUNT> toBuyarray = { 0, 0, 0, 0, 0, 0, 0 };
+		bool found = false;
 		for (int i = 0; i < RESOURCES_COUNT; i++)
 		{
 			if (c.at(j)->m_Cost[i] > m_resources.at(j).at(i))
 			{
-				toBuy.at(i)
+				toBuyarray.at(i) = c.at(j)->m_Cost[i] - m_resources.at(j).at(i);
+				found = true;
+			}
+			if (found && (i == RESOURCES_COUNT - 1))
+			{
+				ToBuy.push_back(toBuyarray);
 			}
 		}
-	}*/
-	return 0;
+	}
+	if (!ToBuy.empty())
+	{
+		for (int i = 0; i < ToBuy.size(); i++)
+		{
+			if ((leftNeighbor->canProvide(ToBuy.at(i))) || 
+				(rightNeighbor->canProvide(ToBuy.at(i))))
+			{
+				int count = countResources(ToBuy.at(i));
+				if (virtualMoney - 2 * count < 0)
+				{
+					return -1;
+				}
+				else {
+					return count;
+				}
+			}
+		}
+		return -1;
+	}
+	else {
+		return -1;
+	}
+}
+
+
+int Player::countResources(array<int, RESOURCES_COUNT> resource)
+{
+	int resul = 0;
+	for (int i = 0; i < resource.size(); i++)
+	{
+		if (resource.at(i) != 0)
+		{
+			resul += resource.at(i);
+		}
+	}
+	return resul;
 }
 
 bool Player::canProvide(array<int, RESOURCES_COUNT> resource)

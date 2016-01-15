@@ -46,7 +46,6 @@ namespace UnitTests
 
 		TEST_METHOD(CanBuyTest)
 		{
-			//TODO
 			World w(2, 5);
 			w.startAge();
 			CardSet Mycard;
@@ -111,10 +110,74 @@ namespace UnitTests
 
 		}
 
-		TEST_METHOD(CanBuyWithNeighborTest)
+		TEST_METHOD(CanBuyWithNeighborSimpleTest)
 		{
-			//TODO
-			Assert::AreEqual(0, 1);
+			//Cas de base
+			World w(2, 5);
+			w.startAge();
+			CardSet Mycard;
+			int index = 0;
+			for (int i = 0; i < w.m_deck.size(); i++)
+			{
+				if (w.m_deck.at(i)->m_name == "CHANTIER")
+				{
+					index = i;
+					break;
+				}
+			}
+			Mycard.push_back(w.m_deck.at(index));
+			Assert::AreEqual(0,w.m_players.at(0)->canBuyWithNeighbor(Mycard));
+
+			for (int i = 0; i < w.m_deck.size(); i++)
+			{
+				if (w.m_deck.at(i)->m_name == "FRICHE")
+				{
+					index = i;
+					break;
+				}
+			}
+
+			Mycard.clear();
+			Mycard.push_back(w.m_deck.at(index));
+			Assert::AreEqual(0, w.m_players.at(0)->canBuyWithNeighbor(Mycard));
+		}
+
+		TEST_METHOD(CanBuyWithNeighborComplexTest)
+		{
+			//Cas des voisins
+			World w(2, 5);
+			w.startAge();
+			CardSet Mycard;
+			int index = 0;
+			for (int i = 0; i < w.m_deck.size(); i++)
+			{
+				if (w.m_deck.at(i)->m_name == "PALISSADE")
+				{
+					index = i;
+					break;
+				}
+			}
+			Mycard.push_back(w.m_deck.at(index));
+			Assert::AreEqual(-1, w.m_players.at(0)->canBuyWithNeighbor(Mycard));
+			std::array<int, RESOURCES_COUNT> rec = { 1, 0, 0, 0, 0, 0, 0 };
+			w.m_players.at(0)->leftNeighbor->AddResource(rec);
+			Assert::AreEqual(1, w.m_players.at(0)->canBuyWithNeighbor(Mycard));
+
+			for (int i = 0; i < w.m_deck.size(); i++)
+			{
+				if (w.m_deck.at(i)->m_name == "SCRIPTORIUM")
+				{
+					index = i;
+					break;
+				}
+			}
+
+			Mycard.clear();
+			Mycard.push_back(w.m_deck.at(index));
+			Assert::AreEqual(-1, w.m_players.at(0)->canBuyWithNeighbor(Mycard));
+			std::array<int, RESOURCES_COUNT> rec2 = { 0, 0, 0, 0, 1, 0, 0 };
+			w.m_players.at(0)->rightNeighbor->AddResource(rec2);
+			Assert::AreEqual(1, w.m_players.at(0)->canBuyWithNeighbor(Mycard));
 		}
 
 		TEST_METHOD(CanProvideTest)
@@ -129,6 +192,14 @@ namespace UnitTests
 			array<int, RESOURCES_COUNT> choice = { 0, 0, 0, 0, 0, 1, 1 };
 			cp.AddResourceWithChoice(choice);
 			Assert::IsTrue(cp.canProvide(pb));
+		}
+
+		TEST_METHOD(CountResourcesTest)
+		{
+			array<int, RESOURCES_COUNT> choice = { 0, 0, 0, 0, 0, 1, 2 };
+			Assert::AreEqual(3, Player::countResources(choice));
+			array<int, RESOURCES_COUNT> choice2 = { 0, 0, 0, 0, 0, 0, 0 };
+			Assert::AreEqual(0, Player::countResources(choice2));
 		}
 
 		TEST_METHOD(GetScoreTest)

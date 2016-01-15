@@ -30,6 +30,7 @@ public:
 	bool canBuy(CardSet c);
 	int canBuyWithNeighbor(CardSet c);
 	bool canProvide(array<int, RESOURCES_COUNT> resource);
+	static int countResources(array<int, RESOURCES_COUNT> resource);
 	void setHand(const CardSet& newHand);
 	const CardSet& getHand() const;
 	void prepareTurn();
