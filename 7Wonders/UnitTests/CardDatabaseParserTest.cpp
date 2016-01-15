@@ -113,7 +113,7 @@ namespace UnitTests
 					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[PAPYRUS]);
 					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[GLASS]);
 					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[TEXTILE]);
-					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[PRICEGOLD]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_price);
 				}
 
 				if (w.m_deck.at(i)->m_name == "FRICHE")
@@ -125,7 +125,7 @@ namespace UnitTests
 					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[PAPYRUS]);
 					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[GLASS]);
 					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[TEXTILE]);
-					Assert::AreEqual(1, w.m_deck.at(i)->m_Cost[PRICEGOLD]);
+					Assert::AreEqual(1, w.m_deck.at(i)->m_price);
 				}
 			}
 			

@@ -137,7 +137,7 @@ void Player::AddResourceWithChoice(array<int, RESOURCES_COUNT> resource)
 		{
 			if (resource.at(i) > 0)
 			{
-				std::array<int, RESOURCES_COUNT> temp = { 0, 0, 0, 0, 0, 0, 0, 0};
+				std::array<int, RESOURCES_COUNT> temp = { 0, 0, 0, 0, 0, 0};
 				temp.at(i) = resource.at(i);
 				m_resources.push_back(temp);
 			}

@@ -21,7 +21,6 @@ enum Resources
 	PAPYRUS,
 	GLASS,
 	TEXTILE,
-	PRICEGOLD,
 	RESOURCES_COUNT
 };
 
@@ -30,6 +29,7 @@ class Card
 public:
 	std::string m_name;
 	CardColor m_color;
+	int m_price;
 
 public:
 	Card(const std::string& name, CardColor color);

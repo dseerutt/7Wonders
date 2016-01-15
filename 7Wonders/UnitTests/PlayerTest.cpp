@@ -32,7 +32,6 @@ namespace UnitTests
 			Assert::AreEqual(0, std::get<PAPYRUS>(cp.getResources().at(0)));
 			Assert::AreEqual(0, std::get<GLASS>(cp.getResources().at(0)));
 			Assert::AreEqual(0, std::get<TEXTILE>(cp.getResources().at(0)));
-			Assert::AreEqual(0, std::get<PRICEGOLD>(cp.getResources().at(0)));
 			//pas de test de m_discard, m_cardToPlay car protected
 
 		}
