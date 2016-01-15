@@ -171,6 +171,69 @@ bool Player::canProvide(array<int, RESOURCES_COUNT> resource)
 	return false;
 }
 
+bool Player::Buy(CardSet c)
+{
+	if (canBuy(c))
+	{
+		money -= c.at(0)->m_price;
+		return true;
+	}
+	else if (canBuyWithNeighbor(c))
+	{
+		//petites modifications du corps de canBuyWithNeighbor
+		int virtualMoney = money;
+		virtualMoney -= c.at(0)->m_price;
+
+		std::vector<std::array<int, RESOURCES_COUNT>> ToBuy;
+		for (int j = 0; j < m_resources.size(); j++)
+		{
+			std::array<int, RESOURCES_COUNT> toBuyarray = { 0, 0, 0, 0, 0, 0, 0 };
+			bool found = false;
+			for (int i = 0; i < RESOURCES_COUNT; i++)
+			{
+				if (c.at(j)->m_Cost[i] > m_resources.at(j).at(i))
+				{
+					toBuyarray.at(i) = c.at(j)->m_Cost[i] - m_resources.at(j).at(i);
+					found = true;
+				}
+				if (found && (i == RESOURCES_COUNT - 1))
+				{
+					ToBuy.push_back(toBuyarray);
+				}
+			}
+		}
+		//Les éléments sont trouvés
+		int minElement = 50;
+			for (int i = 0; i < ToBuy.size(); i++)
+			{
+				if ((leftNeighbor->canProvide(ToBuy.at(i))) ||
+					(rightNeighbor->canProvide(ToBuy.at(i))))
+				{
+					int count = countResources(ToBuy.at(i));
+					if (virtualMoney - 2 * count < 0)
+					{
+						return false;
+					}
+					money = virtualMoney - 2 * count;
+					if (leftNeighbor->canProvide(ToBuy.at(i)))
+					{
+						leftNeighbor->money += 2 * count;
+						return true;
+					}
+					else {
+						rightNeighbor->money += 2 * count;
+						return true;
+					}
+				}
+			}
+			return false;
+		//Fin de la méthode auxiliaire
+	}
+	else {
+		return false;
+	}
+}
+
 void Player::prepareTurn()
 {
 	if (m_hand.size() <= 1)

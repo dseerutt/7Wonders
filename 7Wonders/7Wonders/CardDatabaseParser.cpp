@@ -83,14 +83,14 @@ m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 		case BROWN:{
 			file >> productionB;
 			BrownCard b(name, productionB);
-			m_brownCards[age-1].push_back(b);
 			b.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_brownCards[age - 1].push_back(b);
 			break; }
 		case GRAY:{
 			file >> productionG;
 			GrayCard g(name, productionG);
-			m_grayCards[age - 1].push_back(g);
 			g.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_grayCards[age - 1].push_back(g);
 			break; }
 		case BLUE:{
 			int points;

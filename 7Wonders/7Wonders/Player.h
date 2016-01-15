@@ -28,6 +28,7 @@ public:
 	unsigned int getMoney() const;
 	const CardSet& getBoard() const;
 	bool canBuy(CardSet c);
+	bool Buy(CardSet c);
 	int canBuyWithNeighbor(CardSet c);
 	bool canProvide(array<int, RESOURCES_COUNT> resource);
 	static int countResources(array<int, RESOURCES_COUNT> resource);
