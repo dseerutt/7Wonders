@@ -61,7 +61,6 @@ m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 
 		int goldCost;
 		file >> goldCost;
-
 		int woodCost;
 		file >> woodCost;
 		int stoneCost;
@@ -70,7 +69,6 @@ m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 		file >> brickCost;
 		int mineralCost;
 		file >> mineralCost;
-
 		int textileCost;
 		file >> textileCost;
 		int glassCost;
@@ -82,40 +80,46 @@ m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 		std::string productionG;
 		switch (color)
 		{
-		case BROWN:
+		case BROWN:{
 			file >> productionB;
-
-			m_brownCards[age-1].push_back(BrownCard(name, productionB));
-			break;
-		case GRAY:
+			BrownCard b(name, productionB);
+			m_brownCards[age-1].push_back(b);
+			b.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			break; }
+		case GRAY:{
 			file >> productionG;
-
-			m_grayCards[age - 1].push_back(GrayCard(name, productionG));
-			break;
-		case BLUE:
+			GrayCard g(name, productionG);
+			m_grayCards[age - 1].push_back(g);
+			g.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			break; }
+		case BLUE:{
 			int points;
 			file >> points;
-
-			m_blueCards[age - 1].push_back(BlueCard(name, points));
-			break;
-		case YELLOW:
-
-			m_yellowCards[age - 1].push_back(YellowCard(name));
-			break;
-		case RED:
+			BlueCard c(name, points);
+			c.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_blueCards[age - 1].push_back(c);
+			break; }
+		case YELLOW:{
+			YellowCard y(name);
+			y.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_yellowCards[age - 1].push_back(y);
+			break; }
+		case RED:{
 			unsigned int power;
 			file >> power;
-
-			m_redCards[age - 1].push_back(RedCard(name, power));
-			break;
-		case GREEN:
+			RedCard r(name, power);
+			r.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_redCards[age - 1].push_back(r);
+			break; }
+		case GREEN:{
 			char type;
 			file >> type;
-
-			m_greenCards[age - 1].push_back(GreenCard(name, type));
-			break;
-		default:
-			break;
+			GreenCard gr(name, type);
+			gr.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_greenCards[age - 1].push_back(gr);
+			break; }
+		default:{
+			break; }
 		}
 	}
 	/*

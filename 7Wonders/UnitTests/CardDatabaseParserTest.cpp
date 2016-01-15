@@ -100,9 +100,35 @@ namespace UnitTests
 
 		TEST_METHOD(ParserCardCostTest)
 		{
-			CardDatabaseParser parser(3);
-			CardSet set = parser.generateDeck(0);
-			Assert::AreEqual(0, 1);
+			World w(2, 3);
+			w.generateDeck(0);
+			for (int i = 0; i < w.m_deck.size(); i++)
+			{
+				if (w.m_deck.at(i)->m_name == "PALISSADE")
+				{
+					Assert::AreEqual(1, w.m_deck.at(i)->m_Cost[WOOD]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[STONE]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[BRICK]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[MINERAL]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[PAPYRUS]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[GLASS]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[TEXTILE]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[PRICEGOLD]);
+				}
+
+				if (w.m_deck.at(i)->m_name == "FRICHE")
+				{
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[WOOD]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[STONE]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[BRICK]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[MINERAL]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[PAPYRUS]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[GLASS]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[TEXTILE]);
+					Assert::AreEqual(1, w.m_deck.at(i)->m_Cost[PRICEGOLD]);
+				}
+			}
+			
 				/*Tester les valeurs suivantes:
 				int goldCost;
 				int woodCost;

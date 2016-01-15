@@ -37,5 +37,6 @@ public:
 	int m_Cost[RESOURCES_COUNT];
 	virtual unsigned int getPoints() const = 0;
 	virtual unsigned int getPower() const = 0;
+	void initCost(int a, int b, int c, int d, int e, int f, int g, int h);
 };
 
