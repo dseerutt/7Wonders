@@ -127,20 +127,7 @@ namespace UnitTests
 					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[TEXTILE]);
 					Assert::AreEqual(1, w.m_deck.at(i)->m_price);
 				}
-			}
-			
-				/*Tester les valeurs suivantes:
-				int goldCost;
-				int woodCost;
-				int stoneCost;
-				int brickCost;
-				int mineralCost;
-				int textileCost;
-				int glassCost;
-				int papyrusCost;
-				String ultimateParameter;
-				*/
-			
+			}			
 		}
 
 

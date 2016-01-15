@@ -241,7 +241,30 @@ namespace UnitTests
 			Assert::AreEqual(2, std::get<WOOD>(cp.getResources().at(0)));
 			Assert::AreEqual(0, std::get<PAPYRUS>(cp.getResources().at(0)));
 			Assert::AreEqual(1, std::get<WOOD>(cp.getResources().at(1)));
-			Assert::AreEqual(1, std::get<PAPYRUS>(cp.getResources().at(1)));
+			Assert::AreEqual(1, cp.getResources().at(1).at(PAPYRUS));
+		}
+
+		TEST_METHOD(AddResourceAvecChoixtest3)
+		{
+			CardSet set;
+			ComputerPlayer cp(&set);
+			std::array<int, RESOURCES_COUNT> nombre2 = { 1, 1, 0, 0, 0, 0, 0 };
+			cp.AddResourceWithChoice(nombre2);
+
+			std::array<int, RESOURCES_COUNT> nombre = { 0, 0, 0, 0, 1, 1, 1 };
+			cp.AddResourceWithChoice(nombre);
+			Assert::AreEqual(1, cp.getResources().at(0).at(WOOD));
+			Assert::AreEqual(1, cp.getResources().at(0).at(PAPYRUS));
+			Assert::AreEqual(1, cp.getResources().at(1).at(STONE));
+			Assert::AreEqual(1, cp.getResources().at(1).at(PAPYRUS));
+			Assert::AreEqual(1, cp.getResources().at(2).at(WOOD));
+			Assert::AreEqual(1, cp.getResources().at(2).at(GLASS));
+			Assert::AreEqual(1, cp.getResources().at(3).at(STONE));
+			Assert::AreEqual(1, cp.getResources().at(3).at(GLASS));
+			Assert::AreEqual(1, cp.getResources().at(4).at(WOOD));
+			Assert::AreEqual(1, cp.getResources().at(4).at(TEXTILE));
+			Assert::AreEqual(1, cp.getResources().at(5).at(STONE));
+			Assert::AreEqual(1, cp.getResources().at(5).at(TEXTILE));
 		}
 	};
 }

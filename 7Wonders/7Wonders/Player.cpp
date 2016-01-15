@@ -144,11 +144,20 @@ void Player::AddResourceWithChoice(array<int, RESOURCES_COUNT> resource)
 		}
 	}
 	else {
+		vector<array<int, RESOURCES_COUNT>> tempResource(m_resources);
+		int s;
+		m_resources.clear();
+		vector<array<int, RESOURCES_COUNT>> final();
 		for (int i = 0; i < RESOURCES_COUNT; i++)
 		{
 			if (resource.at(i) > 0)
 			{
-
+				vector<array<int, RESOURCES_COUNT>> temp(tempResource);
+				for (int j = 0; j < temp.size(); j++)
+				{
+					temp.at(j).at(i) += resource.at(i);
+					m_resources.push_back(temp.at(j));
+				}
 			}
 		}
 	}
