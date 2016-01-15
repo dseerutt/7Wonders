@@ -81,10 +81,51 @@ bool Player::canBuy(CardSet c)
 	return false;
 }
 
-bool Player::canBuyWithNeighbor(CardSet c)
+int Player::canBuyWithNeighbor(CardSet c)
 {
-	return true;
-	//TODO
+	if (canBuy(c))
+	{
+		return 0;
+	}
+
+	if (c.at(0)->m_price > money)
+	{
+		return -1;
+		//Si retourne -1, ne peut pas acheter
+	}
+	/*
+	std::vector<std::array<int, RESOURCES_COUNT>> ToBuy;
+	for (int j = 0; j < m_resources.size(); j++)
+	{
+		std::array<int, RESOURCES_COUNT> toBuy = { 0, 0, 0, 0, 0, 0, 0 };
+		for (int i = 0; i < RESOURCES_COUNT; i++)
+		{
+			if (c.at(j)->m_Cost[i] > m_resources.at(j).at(i))
+			{
+				toBuy.at(i)
+			}
+		}
+	}*/
+	return 0;
+}
+
+bool Player::canProvide(array<int, RESOURCES_COUNT> resource)
+{
+	for (int i = 0; i < m_resources.size(); i++)
+	{
+		for (int j = 0; j < resource.size(); j++)
+		{
+			if (m_resources.at(i).at(j) < resource.at(j))
+			{
+				break;
+			}
+			else if (j == RESOURCES_COUNT - 1)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 void Player::prepareTurn()

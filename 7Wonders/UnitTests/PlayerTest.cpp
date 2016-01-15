@@ -93,12 +93,42 @@ namespace UnitTests
 			Assert::IsFalse(w.m_players.at(0)->canBuy(Mycard));
 
 
+			Mycard.clear();
+			std::array<int, RESOURCES_COUNT> nombre = { 0, 0, 0, 1, 0, 0, 1 };
+			w.m_players.at(0)->AddResourceWithChoice(nombre);
+
+			for (int i = 0; i < w.m_deck.size(); i++)
+			{
+				if (w.m_deck.at(i)->m_name == "CASERNE")
+				{
+					index = i;
+					break;
+				}
+			}
+			Mycard.push_back(w.m_deck.at(index));
+			Assert::IsTrue(w.m_players.at(0)->canBuy(Mycard));
+
+
 		}
 
 		TEST_METHOD(CanBuyWithNeighborTest)
 		{
 			//TODO
 			Assert::AreEqual(0, 1);
+		}
+
+		TEST_METHOD(CanProvideTest)
+		{
+			CardSet c;
+			ComputerPlayer cp(&c);
+			array<int, RESOURCES_COUNT> stock = { 1, 0, 0, 0, 0, 0, 0 };
+			array<int, RESOURCES_COUNT> pb = { 1, 0, 0, 0, 0, 0, 1 };
+			cp.AddResource(stock);
+			Assert::IsTrue(cp.canProvide(stock));
+			Assert::IsFalse(cp.canProvide(pb));
+			array<int, RESOURCES_COUNT> choice = { 0, 0, 0, 0, 0, 1, 1 };
+			cp.AddResourceWithChoice(choice);
+			Assert::IsTrue(cp.canProvide(pb));
 		}
 
 		TEST_METHOD(GetScoreTest)
