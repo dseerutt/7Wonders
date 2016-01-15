@@ -48,7 +48,6 @@ namespace UnitTests
 		{
 			World w(2, 5);
 			w.startAge();
-			CardSet Mycard;
 			int index = 0;
 			for (int i = 0; i < w.m_deck.size(); i++)
 			{
@@ -58,8 +57,7 @@ namespace UnitTests
 					break;
 				}
 			}
-			Mycard.push_back(w.m_deck.at(index));
-			Assert::IsTrue(w.m_players.at(0)->canBuy(Mycard));
+			Assert::IsTrue(w.m_players.at(0)->canBuy(w.m_deck.at(index)));
 			
 			for (int i = 0; i < w.m_deck.size(); i++)
 			{
@@ -69,14 +67,10 @@ namespace UnitTests
 					break;
 				}
 			}
+			Assert::IsTrue(w.m_players.at(0)->canBuy(w.m_deck.at(index)));
 
-			Mycard.clear();
-			Mycard.push_back(w.m_deck.at(index));
-			Assert::IsTrue(w.m_players.at(0)->canBuy(Mycard));
-
-			Mycard.at(0)->m_price = 50;
-			Mycard.push_back(w.m_deck.at(index));
-			Assert::IsFalse(w.m_players.at(0)->canBuy(Mycard));
+			w.m_deck.at(index)->m_price = 50;
+			Assert::IsFalse(w.m_players.at(0)->canBuy(w.m_deck.at(index)));
 
 			for (int i = 0; i < w.m_deck.size(); i++)
 			{
@@ -87,12 +81,9 @@ namespace UnitTests
 				}
 			}
 
-			Mycard.clear();
-			Mycard.push_back(w.m_deck.at(index));
-			Assert::IsFalse(w.m_players.at(0)->canBuy(Mycard));
+			Assert::IsFalse(w.m_players.at(0)->canBuy(w.m_deck.at(index)));
 
 
-			Mycard.clear();
 			std::array<int, RESOURCES_COUNT> nombre = { 0, 0, 0, 1, 0, 0, 1 };
 			w.m_players.at(0)->AddResourceWithChoice(nombre);
 
@@ -104,8 +95,7 @@ namespace UnitTests
 					break;
 				}
 			}
-			Mycard.push_back(w.m_deck.at(index));
-			Assert::IsTrue(w.m_players.at(0)->canBuy(Mycard));
+			Assert::IsTrue(w.m_players.at(0)->canBuy(w.m_deck.at(index)));
 
 
 		}
@@ -115,7 +105,6 @@ namespace UnitTests
 			//Cas de base
 			World w(2, 5);
 			w.startAge();
-			CardSet Mycard;
 			int index = 0;
 			for (int i = 0; i < w.m_deck.size(); i++)
 			{
@@ -125,8 +114,7 @@ namespace UnitTests
 					break;
 				}
 			}
-			Mycard.push_back(w.m_deck.at(index));
-			Assert::AreEqual(0,w.m_players.at(0)->canBuyWithNeighbor(Mycard));
+			Assert::AreEqual(0, w.m_players.at(0)->canBuyWithNeighbor(w.m_deck.at(index)));
 
 			for (int i = 0; i < w.m_deck.size(); i++)
 			{
@@ -137,9 +125,7 @@ namespace UnitTests
 				}
 			}
 
-			Mycard.clear();
-			Mycard.push_back(w.m_deck.at(index));
-			Assert::AreEqual(0, w.m_players.at(0)->canBuyWithNeighbor(Mycard));
+			Assert::AreEqual(0, w.m_players.at(0)->canBuyWithNeighbor(w.m_deck.at(index)));
 		}
 
 		TEST_METHOD(CanBuyWithNeighborComplexTest)
@@ -157,11 +143,10 @@ namespace UnitTests
 					break;
 				}
 			}
-			Mycard.push_back(w.m_deck.at(index));
-			Assert::AreEqual(-1, w.m_players.at(0)->canBuyWithNeighbor(Mycard));
+			Assert::AreEqual(-1, w.m_players.at(0)->canBuyWithNeighbor(w.m_deck.at(index)));
 			std::array<int, RESOURCES_COUNT> rec = { 1, 0, 0, 0, 0, 0, 0 };
 			w.m_players.at(0)->leftNeighbor->AddResource(rec);
-			Assert::AreEqual(1, w.m_players.at(0)->canBuyWithNeighbor(Mycard));
+			Assert::AreEqual(1, w.m_players.at(0)->canBuyWithNeighbor(w.m_deck.at(index)));
 
 			for (int i = 0; i < w.m_deck.size(); i++)
 			{
@@ -172,12 +157,10 @@ namespace UnitTests
 				}
 			}
 
-			Mycard.clear();
-			Mycard.push_back(w.m_deck.at(index));
-			Assert::AreEqual(-1, w.m_players.at(0)->canBuyWithNeighbor(Mycard));
+			Assert::AreEqual(-1, w.m_players.at(0)->canBuyWithNeighbor(w.m_deck.at(index)));
 			std::array<int, RESOURCES_COUNT> rec2 = { 0, 0, 0, 0, 1, 0, 0 };
 			w.m_players.at(0)->rightNeighbor->AddResource(rec2);
-			Assert::AreEqual(1, w.m_players.at(0)->canBuyWithNeighbor(Mycard));
+			Assert::AreEqual(1, w.m_players.at(0)->canBuyWithNeighbor(w.m_deck.at(index)));
 
 			//Besoin des deux voisins
 			//Besoin d'une fonction de fusion des resources
@@ -213,8 +196,7 @@ namespace UnitTests
 					break;
 				}
 			}
-			Mycard.push_back(w.m_deck.at(index));
-			Assert::IsTrue(w.m_players.at(0)->Buy(Mycard));
+			Assert::IsTrue(w.m_players.at(0)->Buy(w.m_deck.at(index)));
 			Assert::AreEqual((unsigned)3, w.m_players.at(0)->getMoney());
 			
 
@@ -227,9 +209,7 @@ namespace UnitTests
 				}
 			}
 
-			Mycard.clear();
-			Mycard.push_back(w.m_deck.at(index));
-			Assert::IsTrue(w.m_players.at(0)->Buy(Mycard));
+			Assert::IsTrue(w.m_players.at(0)->Buy(w.m_deck.at(index)));
 			Assert::AreEqual((unsigned)2, w.m_players.at(0)->getMoney());
 		}
 
@@ -248,11 +228,10 @@ namespace UnitTests
 					break;
 				}
 			}
-			Mycard.push_back(w.m_deck.at(index));
-			Assert::IsFalse(w.m_players.at(0)->Buy(Mycard));
+			Assert::IsFalse(w.m_players.at(0)->Buy(w.m_deck.at(index)));
 			std::array<int, RESOURCES_COUNT> rec = { 1, 0, 0, 0, 0, 0, 0 };
 			w.m_players.at(0)->leftNeighbor->AddResource(rec);
-			Assert::IsTrue(w.m_players.at(0)->Buy(Mycard));
+			Assert::IsTrue(w.m_players.at(0)->Buy(w.m_deck.at(index)));
 			Assert::AreEqual((unsigned)5, w.m_players.at(0)->leftNeighbor->getMoney());
 
 			for (int i = 0; i < w.m_deck.size(); i++)
@@ -264,12 +243,10 @@ namespace UnitTests
 				}
 			}
 
-			Mycard.clear();
-			Mycard.push_back(w.m_deck.at(index));
-			Assert::IsFalse(w.m_players.at(0)->Buy(Mycard));
+			Assert::IsFalse(w.m_players.at(0)->Buy(w.m_deck.at(index)));
 			std::array<int, RESOURCES_COUNT> rec2 = { 0, 0, 0, 0, 1, 0, 0 };
 			w.m_players.at(0)->rightNeighbor->AddResource(rec2);
-			Assert::IsFalse(w.m_players.at(0)->Buy(Mycard)); 
+			Assert::IsFalse(w.m_players.at(0)->Buy(w.m_deck.at(index)));
 			Assert::AreEqual((unsigned)3, w.m_players.at(0)->rightNeighbor->getMoney());
 
 
@@ -295,7 +272,6 @@ namespace UnitTests
 			//Cas des voisins
 			World w(2, 5);
 			w.startAge();
-			CardSet Mycard;
 			int index = 0;
 
 			for (int i = 0; i < w.m_deck.size(); i++)
@@ -307,11 +283,10 @@ namespace UnitTests
 				}
 			}
 
-			Mycard.push_back(w.m_deck.at(index));
 			std::array<int, RESOURCES_COUNT> rec2 = { 0, 0, 0, 0, 1, 0, 0 };
 			w.m_players.at(0)->rightNeighbor->AddResource(rec2);
 
-			Assert::IsTrue(w.m_players.at(0)->Buy(Mycard));
+			Assert::IsTrue(w.m_players.at(0)->Buy(w.m_deck.at(index)));
 			Assert::AreEqual((unsigned)5, w.m_players.at(0)->rightNeighbor->getMoney());
 		}
 

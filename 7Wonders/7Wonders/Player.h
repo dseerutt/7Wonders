@@ -27,9 +27,9 @@ public:
 	unsigned int getScore() const;
 	unsigned int getMoney() const;
 	const CardSet& getBoard() const;
-	bool canBuy(CardSet c);
-	bool Buy(CardSet c);
-	int canBuyWithNeighbor(CardSet c);
+	bool canBuy(Card* c);
+	bool Buy(Card* c);
+	int canBuyWithNeighbor(Card* c);
 	bool canProvide(array<int, RESOURCES_COUNT> resource);
 	static int countResources(array<int, RESOURCES_COUNT> resource);
 	void setHand(const CardSet& newHand);

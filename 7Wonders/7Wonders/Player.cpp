@@ -58,9 +58,9 @@ const CardSet Player::getPlayableCards() const
 }
 
 
-bool Player::canBuy(CardSet c)
+bool Player::canBuy(Card* c)
 {
-	if (c.at(0)->m_price > money)
+	if (c->m_price > money)
 	{
 		return false;
 	}
@@ -68,7 +68,7 @@ bool Player::canBuy(CardSet c)
 	{
 		for (int i = 0; i < RESOURCES_COUNT; i++)
 		{
-			if (c.at(j)->m_Cost[i] > m_resources.at(j).at(i))
+			if (c->m_Cost[i] > m_resources.at(j).at(i))
 			{
 				break;
 			}
@@ -81,7 +81,7 @@ bool Player::canBuy(CardSet c)
 	return false;
 }
 
-int Player::canBuyWithNeighbor(CardSet c)
+int Player::canBuyWithNeighbor(Card* c)
 {
 	int virtualMoney = money;
 	if (canBuy(c))
@@ -89,12 +89,12 @@ int Player::canBuyWithNeighbor(CardSet c)
 		return 0;
 	}
 
-	if (c.at(0)->m_price > money)
+	if (c->m_price > money)
 	{
 		return -1;
 		//Si retourne -1, ne peut pas acheter
 	}
-	virtualMoney -= c.at(0)->m_price;
+	virtualMoney -= c->m_price;
 	
 	std::vector<std::array<int, RESOURCES_COUNT>> ToBuy;
 	for (int j = 0; j < m_resources.size(); j++)
@@ -103,9 +103,9 @@ int Player::canBuyWithNeighbor(CardSet c)
 		bool found = false;
 		for (int i = 0; i < RESOURCES_COUNT; i++)
 		{
-			if (c.at(j)->m_Cost[i] > m_resources.at(j).at(i))
+			if (c->m_Cost[i] > m_resources.at(j).at(i))
 			{
-				toBuyarray.at(i) = c.at(j)->m_Cost[i] - m_resources.at(j).at(i);
+				toBuyarray.at(i) = c->m_Cost[i] - m_resources.at(j).at(i);
 				found = true;
 			}
 			if (found && (i == RESOURCES_COUNT - 1))
@@ -171,18 +171,18 @@ bool Player::canProvide(array<int, RESOURCES_COUNT> resource)
 	return false;
 }
 
-bool Player::Buy(CardSet c)
+bool Player::Buy(Card* c)
 {
 	if (canBuy(c))
 	{
-		money -= c.at(0)->m_price;
+		money -= c->m_price;
 		return true;
 	}
 	else if (canBuyWithNeighbor(c))
 	{
 		//petites modifications du corps de canBuyWithNeighbor
 		int virtualMoney = money;
-		virtualMoney -= c.at(0)->m_price;
+		virtualMoney -= c->m_price;
 
 		std::vector<std::array<int, RESOURCES_COUNT>> ToBuy;
 		for (int j = 0; j < m_resources.size(); j++)
@@ -191,9 +191,9 @@ bool Player::Buy(CardSet c)
 			bool found = false;
 			for (int i = 0; i < RESOURCES_COUNT; i++)
 			{
-				if (c.at(j)->m_Cost[i] > m_resources.at(j).at(i))
+				if (c->m_Cost[i] > m_resources.at(j).at(i))
 				{
-					toBuyarray.at(i) = c.at(j)->m_Cost[i] - m_resources.at(j).at(i);
+					toBuyarray.at(i) = c->m_Cost[i] - m_resources.at(j).at(i);
 					found = true;
 				}
 				if (found && (i == RESOURCES_COUNT - 1))
@@ -263,6 +263,7 @@ void Player::playTurn()
 	{
 		throw("Taille de la main non conforme");
 	}
+	Buy(m_cardToPlay);
 	m_board.push_back(m_cardToPlay);
 	if (m_cardToPlay->m_color == RED)
 	{
