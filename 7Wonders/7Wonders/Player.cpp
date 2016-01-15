@@ -132,10 +132,25 @@ void Player::AddResourceWithChoice(array<int, RESOURCES_COUNT> resource)
 {
 	if (std::get<WOOD>(m_resources.at(0)) == -1)
 	{
-		//Cas vide
+		m_resources.clear();
+		for (int i = 0; i < RESOURCES_COUNT; i++)
+		{
+			if (resource.at(i) > 0)
+			{
+				std::array<int, RESOURCES_COUNT> temp = { 0, 0, 0, 0, 0, 0, 0, 0};
+				temp.at(i) = resource.at(i);
+				m_resources.push_back(temp);
+			}
+		}
 	}
 	else {
+		for (int i = 0; i < RESOURCES_COUNT; i++)
+		{
+			if (resource.at(i) > 0)
+			{
 
+			}
+		}
 	}
 }
 
