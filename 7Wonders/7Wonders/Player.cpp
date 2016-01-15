@@ -4,6 +4,8 @@
 
 Player::Player(CardSet* discard) : m_discard(discard),money(0), military(0), m_hand(), m_board(), m_cardToPlay(nullptr)
 {
+	std::array<int, RESOURCES_COUNT> resources = { -1, 0, 0, 0, 0, 0, 0 };
+	m_resources.push_back(resources);
 }
 
 Player::~Player()
@@ -108,3 +110,36 @@ void Player::playTurn()
 	}
 	m_hand.erase(cardToErase);
 }
+
+void Player::AddResource(array<int, RESOURCES_COUNT> resource)
+{
+	if (std::get<WOOD>(m_resources.at(0)) == -1)
+	{
+		m_resources.clear();
+		m_resources.push_back(resource);
+	}
+	else {
+		for (int i = 0 ; i < m_resources.size() ; i++)
+		{
+			for (int j = 0; j < RESOURCES_COUNT; j++)
+			{
+			m_resources.at(i).at(j) += resource.at(j);
+			}
+		}
+	}
+}
+void Player::AddResourceWithChoice(array<int, RESOURCES_COUNT> resource)
+{
+	if (std::get<WOOD>(m_resources.at(0)) == -1)
+	{
+		//Cas vide
+	}
+	else {
+
+	}
+}
+
+std::vector<std::array<int, RESOURCES_COUNT>> Player::getResources() {
+	return m_resources;
+}
+

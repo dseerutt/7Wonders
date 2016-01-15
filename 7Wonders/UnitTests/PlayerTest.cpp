@@ -25,7 +25,16 @@ namespace UnitTests
 			Assert::AreEqual((unsigned) 0, cp.getMoney());
 			Assert::IsTrue(cp.getBoard().empty());
 			Assert::IsTrue(cp.getHand().empty());
+			Assert::AreEqual(-1, std::get<WOOD>(cp.getResources().at(0)));
+			Assert::AreEqual(0, std::get<STONE>(cp.getResources().at(0)));
+			Assert::AreEqual(0, std::get<BRICK>(cp.getResources().at(0)));
+			Assert::AreEqual(0, std::get<MINERAL>(cp.getResources().at(0)));
+			Assert::AreEqual(0, std::get<PAPYRUS>(cp.getResources().at(0)));
+			Assert::AreEqual(0, std::get<GLASS>(cp.getResources().at(0)));
+			Assert::AreEqual(0, std::get<TEXTILE>(cp.getResources().at(0)));
+			Assert::AreEqual(0, std::get<PRICEGOLD>(cp.getResources().at(0)));
 			//pas de test de m_discard, m_cardToPlay car protected
+
 		}
 
 		TEST_METHOD(GetMoneyTest)
@@ -187,6 +196,36 @@ namespace UnitTests
 			catch (const char* & ex){
 				Assert::AreEqual("Un joueur ne possède aucune carte en main", ex);
 			}
+		}
+
+		TEST_METHOD(AddResourcetest)
+		{
+			CardSet set;
+			ComputerPlayer cp(&set);
+			std::array<int, RESOURCES_COUNT> nombre = { 0, 0, 0, 0, 2, 0, 0 };
+			cp.AddResource(nombre);
+			Assert::AreEqual(2, std::get<PAPYRUS>(cp.getResources().at(0)));
+
+			std::array<int, RESOURCES_COUNT> nombre2 = { 1, 0, 0, 0, 1, 0, 0 };
+			cp.AddResource(nombre2);
+			Assert::AreEqual(3, std::get<PAPYRUS>(cp.getResources().at(0)));
+			Assert::AreEqual(1, std::get<WOOD>(cp.getResources().at(0)));
+		}
+
+		TEST_METHOD(AddResourceAvecChoixtest)
+		{
+			CardSet set;
+			ComputerPlayer cp(&set);
+			std::array<int, RESOURCES_COUNT> nombre = { 1, 0, 0, 0, 1, 0, 0 };
+			cp.AddResourceWithChoice(nombre);
+			Assert::AreEqual(1, std::get<WOOD>(cp.getResources().at(0)));
+			Assert::AreEqual(1, std::get<PAPYRUS>(cp.getResources().at(1)));
+
+			std::array<int, RESOURCES_COUNT> nombre2 = { 1, 0, 0, 0, 0, 0, 0 };
+			cp.AddResource(nombre2);
+			Assert::AreEqual(2, std::get<WOOD>(cp.getResources().at(0)));
+			Assert::AreEqual(1, std::get<PAPYRUS>(cp.getResources().at(1)));
+			Assert::AreEqual(1, std::get<WOOD>(cp.getResources().at(0)));
 		}
 	};
 }

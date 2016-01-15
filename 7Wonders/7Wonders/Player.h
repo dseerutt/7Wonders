@@ -2,6 +2,9 @@
 #include <vector>
 #include "CardSet.h"
 #include "Card.h"
+#include <array>
+
+using namespace std;
 
 class Player
 {
@@ -12,7 +15,9 @@ protected:
 	int money;
 	int military;
 	Card* m_cardToPlay;
+	std::vector<std::array<int, RESOURCES_COUNT> > m_resources;
 public:
+	std::vector<std::array<int, RESOURCES_COUNT>> getResources();
 	Player* leftNeighbor;
 	Player* rightNeighbor;
 	Player(CardSet* discard);
@@ -27,6 +32,8 @@ public:
 	const CardSet& getHand() const;
 	void prepareTurn();
 	void playTurn();
+	void AddResource(array<int, RESOURCES_COUNT> resource);
+	void AddResourceWithChoice(array<int, RESOURCES_COUNT> resource);
 protected:
 	const CardSet getPlayableCards() const;
 	virtual void pickCard() = 0;
