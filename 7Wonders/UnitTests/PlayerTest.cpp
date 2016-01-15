@@ -5,6 +5,7 @@
 #include "../7Wonders/Player.h"
 #include "../7Wonders/ComputerPlayer.h"
 #include "../7Wonders/CardSet.h"
+#include "../7Wonders/World.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -22,10 +23,10 @@ namespace UnitTests
 			ComputerPlayer cp(&set);
 			Assert::IsTrue(cp.getBoard().empty());
 			Assert::AreEqual((unsigned) 0, cp.getScore());
-			Assert::AreEqual((unsigned) 0, cp.getMoney());
+			Assert::AreEqual((unsigned) 3, cp.getMoney());
 			Assert::IsTrue(cp.getBoard().empty());
 			Assert::IsTrue(cp.getHand().empty());
-			Assert::AreEqual(-1, std::get<WOOD>(cp.getResources().at(0)));
+			Assert::AreEqual(0, std::get<WOOD>(cp.getResources().at(0)));
 			Assert::AreEqual(0, std::get<STONE>(cp.getResources().at(0)));
 			Assert::AreEqual(0, std::get<BRICK>(cp.getResources().at(0)));
 			Assert::AreEqual(0, std::get<MINERAL>(cp.getResources().at(0)));
@@ -40,10 +41,61 @@ namespace UnitTests
 		{
 			CardSet set;
 			ComputerPlayer cp(&set);
-			Assert::AreEqual((unsigned)0, cp.getMoney());
+			Assert::AreEqual((unsigned)3, cp.getMoney());
 		}
 
 		TEST_METHOD(CanBuyTest)
+		{
+			//TODO
+			World w(2, 5);
+			w.startAge();
+			CardSet Mycard;
+			int index = 0;
+			for (int i = 0; i < w.m_deck.size(); i++)
+			{
+				if (w.m_deck.at(i)->m_name == "CHANTIER")
+				{
+					index = i;
+					break;
+				}
+			}
+			Mycard.push_back(w.m_deck.at(index));
+			Assert::IsTrue(w.m_players.at(0)->canBuy(Mycard));
+			
+			for (int i = 0; i < w.m_deck.size(); i++)
+			{
+				if (w.m_deck.at(i)->m_name == "FRICHE")
+				{
+					index = i;
+					break;
+				}
+			}
+
+			Mycard.clear();
+			Mycard.push_back(w.m_deck.at(index));
+			Assert::IsTrue(w.m_players.at(0)->canBuy(Mycard));
+
+			Mycard.at(0)->m_price = 50;
+			Mycard.push_back(w.m_deck.at(index));
+			Assert::IsFalse(w.m_players.at(0)->canBuy(Mycard));
+
+			for (int i = 0; i < w.m_deck.size(); i++)
+			{
+				if (w.m_deck.at(i)->m_name == "PALISSADE")
+				{
+					index = i;
+					break;
+				}
+			}
+
+			Mycard.clear();
+			Mycard.push_back(w.m_deck.at(index));
+			Assert::IsFalse(w.m_players.at(0)->canBuy(Mycard));
+
+
+		}
+
+		TEST_METHOD(CanBuyWithNeighborTest)
 		{
 			//TODO
 			Assert::AreEqual(0, 1);

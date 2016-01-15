@@ -27,7 +27,8 @@ public:
 	unsigned int getScore() const;
 	unsigned int getMoney() const;
 	const CardSet& getBoard() const;
-	void canBuy(int price);
+	bool canBuy(CardSet c);
+	bool canBuyWithNeighbor(CardSet c);
 	void setHand(const CardSet& newHand);
 	const CardSet& getHand() const;
 	void prepareTurn();

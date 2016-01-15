@@ -2,9 +2,9 @@
 #include "RedCard.h"
 
 
-Player::Player(CardSet* discard) : m_discard(discard),money(0), military(0), m_hand(), m_board(), m_cardToPlay(nullptr)
+Player::Player(CardSet* discard) : m_discard(discard),money(3), military(0), m_hand(), m_board(), m_cardToPlay(nullptr)
 {
-	std::array<int, RESOURCES_COUNT> resources = { -1, 0, 0, 0, 0, 0, 0 };
+	std::array<int, RESOURCES_COUNT> resources = { 0, 0, 0, 0, 0, 0, 0 };
 	m_resources.push_back(resources);
 }
 
@@ -58,8 +58,32 @@ const CardSet Player::getPlayableCards() const
 }
 
 
-void Player::canBuy(int price)
+bool Player::canBuy(CardSet c)
 {
+	if (c.at(0)->m_price > money)
+	{
+		return false;
+	}
+	for (int j = 0; j < m_resources.size(); j++)
+	{
+		for (int i = 0; i < RESOURCES_COUNT; i++)
+		{
+			if (c.at(j)->m_Cost[i] > m_resources.at(j).at(i))
+			{
+				break;
+			}
+			else if (i == RESOURCES_COUNT - 1)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool Player::canBuyWithNeighbor(CardSet c)
+{
+	return true;
 	//TODO
 }
 
@@ -113,12 +137,6 @@ void Player::playTurn()
 
 void Player::AddResource(array<int, RESOURCES_COUNT> resource)
 {
-	if (std::get<WOOD>(m_resources.at(0)) == -1)
-	{
-		m_resources.clear();
-		m_resources.push_back(resource);
-	}
-	else {
 		for (int i = 0 ; i < m_resources.size() ; i++)
 		{
 			for (int j = 0; j < RESOURCES_COUNT; j++)
@@ -126,24 +144,9 @@ void Player::AddResource(array<int, RESOURCES_COUNT> resource)
 			m_resources.at(i).at(j) += resource.at(j);
 			}
 		}
-	}
 }
 void Player::AddResourceWithChoice(array<int, RESOURCES_COUNT> resource)
 {
-	if (std::get<WOOD>(m_resources.at(0)) == -1)
-	{
-		m_resources.clear();
-		for (int i = 0; i < RESOURCES_COUNT; i++)
-		{
-			if (resource.at(i) > 0)
-			{
-				std::array<int, RESOURCES_COUNT> temp = { 0, 0, 0, 0, 0, 0};
-				temp.at(i) = resource.at(i);
-				m_resources.push_back(temp);
-			}
-		}
-	}
-	else {
 		vector<array<int, RESOURCES_COUNT>> tempResource(m_resources);
 		int s;
 		m_resources.clear();
@@ -160,7 +163,6 @@ void Player::AddResourceWithChoice(array<int, RESOURCES_COUNT> resource)
 				}
 			}
 		}
-	}
 }
 
 std::vector<std::array<int, RESOURCES_COUNT>> Player::getResources() {
