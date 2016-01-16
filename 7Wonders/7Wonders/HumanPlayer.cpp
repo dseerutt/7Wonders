@@ -20,12 +20,27 @@ void HumanPlayer::pickCard()
 		cout << i << ". " << m_hand.at(i)->m_name << endl;
 	}
 	unsigned int choice;
+	bool continueLoop = false;
 	do
 	{
 		cout << "Select : ";
 		cin >> choice;
+		continueLoop = false;
+		if (choice >= m_hand.size())
+		{
+			continueLoop = true;
+			cout << "Please select a card into the given range" << endl;
+		}
+		else
+		{
+			if (canBuyWithNeighbor(m_hand.at(choice)) == -1)
+			{
+				continueLoop = true;
+				cout << "You can't buy this card, try another one" << endl;;
+			}
+		}
 	}
-	while (choice >= m_hand.size());
+	while (continueLoop);
 
 	m_cardToPlay = m_hand.at(choice);
 }

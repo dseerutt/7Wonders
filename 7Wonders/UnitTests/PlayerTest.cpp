@@ -529,5 +529,51 @@ namespace UnitTests
 			Assert::AreEqual(1, cp.getResources().at(5).at(STONE));
 			Assert::AreEqual(1, cp.getResources().at(5).at(TEXTILE));
 		}
+
+		TEST_METHOD(IdentifyResourcetest)
+		{
+			Assert::AreEqual((int)WOOD, Player::identifyResource('b'));
+			Assert::AreEqual((int)STONE, Player::identifyResource('p'));
+			Assert::AreEqual((int)BRICK, Player::identifyResource('a'));
+			Assert::AreEqual((int)MINERAL, Player::identifyResource('m'));
+			Assert::AreEqual((int)PAPYRUS, Player::identifyResource('q'));
+			Assert::AreEqual((int)GLASS, Player::identifyResource('v'));
+			Assert::AreEqual((int)TEXTILE, Player::identifyResource('t'));
+		}
+
+			TEST_METHOD(ApplyEffectstestBrown)
+		{
+			World w(2, 5);
+			w.startAge();
+			int index = 0;
+			for (int i = 0; i < w.m_deck.size(); i++)
+			{
+				if (w.m_deck.at(i)->m_name == "FRICHE")
+				{
+					index = i;
+					break;
+				}
+			}
+			w.m_players.at(0)->applyEffects(w.m_deck.at(index));
+			Assert::AreEqual(1, w.m_players.at(0)->getResources().at(0).at(WOOD));
+			Assert::AreEqual(1, w.m_players.at(0)->getResources().at(1).at(BRICK));
+		}
+
+			TEST_METHOD(ApplyEffectstestBrown2)
+			{
+				World w(2, 5);
+				w.startAge();
+				w.startAge();
+				int index = 0;
+				for (int i = 0; i < w.m_deck.size(); i++)
+				{
+					string s = w.m_deck.at(i)->m_name;
+					if (w.m_deck.at(i)->m_name == "SCIERIE")
+					{
+						index = i;
+						break;
+					}
+				}
+			}
 	};
 }

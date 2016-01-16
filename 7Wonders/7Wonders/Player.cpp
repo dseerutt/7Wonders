@@ -58,6 +58,87 @@ const CardSet Player::getPlayableCards() const
 }
 
 
+int Player::identifyResource(char c)
+{
+	switch (c)
+	{
+	case('b') :
+		return WOOD;
+		break;
+	case('p') :
+		return STONE;
+		break;
+	case('a') :
+		return BRICK;
+		break;
+	case('m') :
+		return MINERAL;
+		break;
+	case('t') :
+		return TEXTILE;
+		break;
+	case('v') :
+		return GLASS;
+		break;
+	case('q') :
+		return PAPYRUS;
+		break;
+	default:
+		throw "char not found in identifyResource";
+	}
+}
+
+void Player::applyEffects(Card* c)
+{
+	std::array<int, RESOURCES_COUNT> rec = { 0, 0, 0, 0, 0, 0, 0 };
+	if (c->m_color == BROWN)
+	{
+		string s = ((BrownCard*)c)->getProduction();
+		if (s.length() == 1)
+		{
+			rec.at(identifyResource(s.at(0))) += 1;
+			AddResource(rec);
+		}
+		else {
+			if (s.at(1) == '/')
+			{
+				//Cas choix ressources
+				rec.at(identifyResource(s.at(0))) += 1;
+				rec.at(identifyResource(s.at(2))) += 1;
+				AddResourceWithChoice(rec);
+				return;
+			}
+			else {
+				//Cas classique 2 ressources
+				rec.at(identifyResource(s.at(0))) += 1;
+				rec.at(identifyResource(s.at(1))) += 1;
+				AddResource(rec);
+			}
+		}
+	}
+	else if (c->m_color == GRAY)
+	{
+		
+	}
+	else if (c->m_color == RED)
+	{
+		military += c->getPower();
+	}
+	else if (c->m_color == BLUE)
+	{
+		//Pas de traitement en cours de jeu
+	}
+	else if (c->m_color == GREEN)
+	{
+		//Pas de traitement en cours de jeu
+	}
+	else if (c->m_color == YELLOW)
+	{
+		//TODO
+	}
+}
+
+
 bool Player::canBuy(Card* c)
 {
 	if (c->m_price > money)
@@ -296,9 +377,7 @@ void Player::AddResource(array<int, RESOURCES_COUNT> resource)
 void Player::AddResourceWithChoice(array<int, RESOURCES_COUNT> resource)
 {
 		vector<array<int, RESOURCES_COUNT>> tempResource(m_resources);
-		int s;
 		m_resources.clear();
-		vector<array<int, RESOURCES_COUNT>> final();
 		for (int i = 0; i < RESOURCES_COUNT; i++)
 		{
 			if (resource.at(i) > 0)

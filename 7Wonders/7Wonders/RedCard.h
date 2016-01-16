@@ -10,6 +10,6 @@ public:
 	~RedCard();
 
 	virtual unsigned int getPoints() const;
-	virtual unsigned int getPower() const;
+	unsigned int getPower() const;
 };
 

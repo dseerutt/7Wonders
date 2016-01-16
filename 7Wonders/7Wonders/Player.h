@@ -2,6 +2,7 @@
 #include <vector>
 #include "CardSet.h"
 #include "Card.h"
+#include "BrownCard.h"
 #include <array>
 
 using namespace std;
@@ -27,8 +28,10 @@ public:
 	unsigned int getScore() const;
 	unsigned int getMoney() const;
 	const CardSet& getBoard() const;
+	static int identifyResource(char c);
 	bool canBuy(Card* c);
 	bool Buy(Card* c);
+	void applyEffects(Card* c);
 	int canBuyWithNeighbor(Card* c);
 	bool canProvide(array<int, RESOURCES_COUNT> resource);
 	static int countResources(array<int, RESOURCES_COUNT> resource);
