@@ -595,5 +595,14 @@ namespace UnitTests
 				w.m_players.at(0)->applyEffects(w.m_deck.at(index));
 				Assert::AreEqual(1, w.m_players.at(0)->getResources().at(0).at(TEXTILE));
 			}
+			/*
+			TEST_METHOD(DisplayResourceTest)
+			{
+				CardSet set;
+				ComputerPlayer cp(&set);
+				std::array<int, RESOURCES_COUNT> nombre2 = { 1, 1, 0, 0, 0, 0, 0 };
+				cp.AddResourceWithChoice(nombre2);
+				Assert::AreEqual("You can have: 1 Wood \nYou can have: 1 Stone",cp.displayResource().c_str());
+			}*/
 	};
 }

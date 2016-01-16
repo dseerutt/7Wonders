@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "RedCard.h"
+#include <string>
 
 
 Player::Player(CardSet* discard) : m_discard(discard),money(3), military(0), m_hand(), m_board(), m_cardToPlay(nullptr)
@@ -55,6 +56,78 @@ const CardSet Player::getPlayableCards() const
 {
 	CardSet cards = m_hand;
 	return cards;
+}
+
+
+string Player::displayResourceManager(string me)
+{
+	if (me == "You")
+	{
+		return displayResource(me, m_resources);
+	} else
+		if (me == "Left Neighbor")
+		{
+			return displayResource(me, leftNeighbor->getResources());
+		}
+		else
+		{
+			return displayResource(me, rightNeighbor->getResources());
+		}
+}
+
+string Player::displayResource(string txt, std::vector<std::array<int, RESOURCES_COUNT>> rec)
+{
+	string resul = "";
+	for (int j = 0; j < rec.size(); j++)
+	{
+		if (j != 0)
+		{
+			resul += "\n";
+		}
+		resul += txt + " can have: ";
+		for (int i = 0; i < RESOURCES_COUNT; i++)
+		{
+			if (rec.at(j).at(i) != 0)
+			{
+				resul += std::to_string(rec.at(j).at(i)) + " " + displayResourceType(i) + " ";
+			}
+		}
+		if (resul == txt + " can have: ")
+		{
+			return "No resource for " + txt;
+		}
+	}
+	return resul;
+}
+
+string Player::displayResourceType(int i)
+{
+	switch (i)
+	{
+	case 0:
+		return "Wood";
+		break;
+	case 1:
+		return "Stone";
+		break;
+	case 2:
+		return "Clay";
+		break;
+	case 3:
+		return "Mineral";
+		break;
+	case 4:
+		return "Papyrus";
+		break;
+	case 5:
+		return "Glass";
+		break;
+	case 6:
+		return "Textile";
+		break;
+	default:
+		throw "error";
+	}
 }
 
 
@@ -347,12 +420,17 @@ void Player::playTurn()
 	{
 		throw("Taille de la main non conforme");
 	}
-	Buy(m_cardToPlay);
-	m_board.push_back(m_cardToPlay);
-	if (m_cardToPlay->m_color == RED)
+	if (defausse)
 	{
-		military += m_cardToPlay->getPower();
+		defausse = false;
+		money += 3;
 	}
+	else {
+		Buy(m_cardToPlay);
+		m_board.push_back(m_cardToPlay);
+		applyEffects(m_cardToPlay);
+	}
+	
 
 	CardSet::iterator cardToErase;
 	for (auto it = m_hand.begin(); it != m_hand.end(); ++it)

@@ -16,6 +16,7 @@ protected:
 	int money;
 	int military;
 	Card* m_cardToPlay;
+	bool defausse = false;
 	std::vector<std::array<int, RESOURCES_COUNT> > m_resources;
 public:
 	std::vector<std::array<int, RESOURCES_COUNT>> getResources();
@@ -23,6 +24,9 @@ public:
 	Player* rightNeighbor;
 	Player(CardSet* discard);
 	~Player();
+	string displayResourceManager(string me);
+	string displayResource(string me, std::vector<std::array<int, RESOURCES_COUNT>>);
+	static string displayResourceType(int i);
 
 	unsigned int getMilitary() const;
 	unsigned int getScore() const;
