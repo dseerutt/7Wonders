@@ -18,7 +18,8 @@ void HumanPlayer::pickCard()
 	cout << displayResourceManager("Left Neighbor") << endl;
 	cout << displayResourceManager("Right Neighbor") << endl;
 	cout << "You have " << money << " gold coins" << endl;
-	cout << "You have " << military << " army unities" << endl;
+	cout << "You have " << military << " army unities (" << leftNeighbor->getMilitary()
+		<< "," << rightNeighbor->getMilitary() << ")" << endl;
 	cout << "Pick a card" << endl;
 	for (unsigned int i = 0; i < m_hand.size(); i++)
 	{

@@ -55,6 +55,7 @@ public:
 	void draft(unsigned int age);
 	void prepareTurn();
 	void playTurn();
+	void updateMilitary();
 	void computeScores();
 	void displayScores() const;
 	unsigned int computeScienceScore(const CardSet& board) const;

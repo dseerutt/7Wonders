@@ -68,6 +68,7 @@ void World::run()
 	{
 		if (betweenTurns())
 		{
+			updateMilitary();
 			startAge();
 		}
 		Player& p = *m_players[0];
@@ -93,6 +94,16 @@ void World::playOthers(Player& player)
 		{
 			play(*p);
 		}
+	}
+}
+
+void World::updateMilitary()
+{
+	for (int i = 0; i < m_players.size(); i++)
+	{
+		int s = getMilitaryScore(m_players.at(i));
+		int r = m_scores[i][WAR];
+		m_scores[i][WAR] += s;
 	}
 }
 
@@ -169,14 +180,6 @@ bool World::gameOver() const
 	return m_gameOver;
 }
 
-/*
-void World::processTurn()
-{
-	prepareTurn();
-	playTurn();
-	draft(m_age);
-}*/
-
 CardSet World::generateDeck(int age)
 {
 	return m_cardDatabaseParser.generateDeck(age);
@@ -249,7 +252,7 @@ void World::computeScores()
 	{
 		const Player& player = *(m_players.at(i));
 		const CardSet& board = player.getBoard();
-		std::cout << "Player " << (i + 1) << std::endl;
+		//std::cout << "Player " << (i + 1) << std::endl;
 
 		//Blue cards score -----------------------------------------------------
 		for (unsigned int j = 0; j < board.size(); j++)
@@ -295,7 +298,7 @@ void World::displayScores() const
 	}
 	for (auto e : m_discard)
 	{
-		std::cout << e->m_name << std::endl;
+		//std::cout << e->m_name << std::endl;
 	}
 }
 
@@ -307,7 +310,7 @@ unsigned int World::computeScienceScore(const CardSet& board) const
 		const GreenCard& card = (GreenCard&) (*board[i]);
 		if (card.m_color == GREEN)
 		{
-			std::cout << card.m_name << "()()" << std::endl;
+			//std::cout << card.m_name << "()()" << std::endl;
 			if (card.getType() == 'c')
 				compass++;
 			if (card.getType() == 'g')
@@ -316,7 +319,7 @@ unsigned int World::computeScienceScore(const CardSet& board) const
 				tablet++;
 		}
 	}
-	std::cout << "c:" << compass << " g:" << gear << " t:" << tablet << std::endl;
+	//std::cout << "c:" << compass << " g:" << gear << " t:" << tablet << std::endl;
 	unsigned int res = compass*compass + gear*gear + tablet*tablet + 7*std::min(compass, std::min(gear, tablet));
 	return res;
 }

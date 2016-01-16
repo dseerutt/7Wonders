@@ -445,6 +445,5 @@ namespace UnitTests
 			w.distributeCards();
 			Assert::AreEqual(0,(int) w.m_players[0]->getHand().size());
 		}
-
 	};
 }
