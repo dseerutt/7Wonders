@@ -574,6 +574,26 @@ namespace UnitTests
 						break;
 					}
 				}
+				w.m_players.at(0)->applyEffects(w.m_deck.at(index));
+				Assert::AreEqual(2, w.m_players.at(0)->getResources().at(0).at(WOOD));
+			}
+
+			TEST_METHOD(ApplyEffectstestGray)
+			{
+				World w(2, 5);
+				w.startAge();
+				int index = 0;
+				for (int i = 0; i < w.m_deck.size(); i++)
+				{
+					string s = w.m_deck.at(i)->m_name;
+					if (w.m_deck.at(i)->m_name == "METIER_A_TISSER")
+					{
+						index = i;
+						break;
+					}
+				}
+				w.m_players.at(0)->applyEffects(w.m_deck.at(index));
+				Assert::AreEqual(1, w.m_players.at(0)->getResources().at(0).at(TEXTILE));
 			}
 	};
 }

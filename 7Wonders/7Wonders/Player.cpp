@@ -118,6 +118,9 @@ void Player::applyEffects(Card* c)
 	}
 	else if (c->m_color == GRAY)
 	{
+		std::array<int, RESOURCES_COUNT> rec = { 0, 0, 0, 0, 0, 0, 0 };
+		rec.at(identifyResource(c->m_production.at(0))) += 1;
+		AddResource(rec);
 		
 	}
 	else if (c->m_color == RED)
