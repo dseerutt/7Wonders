@@ -121,7 +121,7 @@ namespace UnitTests
 
 		TEST_METHOD(YellowCardConstructor)
 		{
-			YellowCard c("nomCarte");
+			YellowCard c("nomCarte","");
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
 			Assert::AreEqual((int)YELLOW, (int)c.m_color);
 			Assert::AreEqual((unsigned)0, c.getPoints());
@@ -129,7 +129,7 @@ namespace UnitTests
 
 		TEST_METHOD(YellowGetPoints)
 		{
-			YellowCard c("ee");
+			YellowCard c("ee","");
 			Assert::AreEqual((unsigned)0, c.getPoints());
 		}
 
