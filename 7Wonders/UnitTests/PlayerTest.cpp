@@ -610,6 +610,7 @@ namespace UnitTests
 			TEST_METHOD(ComptoirsTest)
 			{
 				World w(2, 5);
+				w.startAge();
 				std::array<int, RESOURCES_COUNT> nombre2 = { 1, 0, 0, 0, 0, 0, 0 };
 				w.m_players.at(0)->leftNeighbor->AddResourceWithChoice(nombre2);
 				int index = 0;
@@ -622,5 +623,87 @@ namespace UnitTests
 						break;
 					}
 				}
+				Assert::IsTrue(w.m_players.at(0)->canBuy(w.m_deck.at(index)));
+				w.m_players.at(0)->Buy(w.m_deck.at(index));
+				w.m_players.at(0)->applyEffects(w.m_deck.at(index));
+				for (int i = 0; i < w.m_deck.size(); i++)
+				{
+					string s = w.m_deck.at(i)->m_name;
+					if (w.m_deck.at(i)->m_name == "PALISSADE")
+					{
+						index = i;
+						break;
+					}
+				}
+				w.m_players.at(0)->Buy(w.m_deck.at(index));
+				Assert::AreEqual((unsigned)4, w.m_players.at(0)->leftNeighbor->getMoney());
+				Assert::AreEqual((unsigned)2, w.m_players.at(0)->getMoney());
+			}
+
+			TEST_METHOD(ComptoirsTest2)
+			{
+				World w(2, 5);
+				w.startAge();
+				std::array<int, RESOURCES_COUNT> nombre2 = { 1, 0, 0, 0, 0, 0, 0 };
+				w.m_players.at(0)->rightNeighbor->AddResourceWithChoice(nombre2);
+				int index = 0;
+				for (int i = 0; i < w.m_deck.size(); i++)
+				{
+					string s = w.m_deck.at(i)->m_name;
+					if (w.m_deck.at(i)->m_name == "COMPTOIR_EST")
+					{
+						index = i;
+						break;
+					}
+				}
+				Assert::IsTrue(w.m_players.at(0)->canBuy(w.m_deck.at(index)));
+				w.m_players.at(0)->Buy(w.m_deck.at(index));
+				w.m_players.at(0)->applyEffects(w.m_deck.at(index));
+				for (int i = 0; i < w.m_deck.size(); i++)
+				{
+					string s = w.m_deck.at(i)->m_name;
+					if (w.m_deck.at(i)->m_name == "PALISSADE")
+					{
+						index = i;
+						break;
+					}
+				}
+				w.m_players.at(0)->Buy(w.m_deck.at(index));
+				Assert::AreEqual((unsigned)4, w.m_players.at(0)->rightNeighbor->getMoney());
+				Assert::AreEqual((unsigned)2, w.m_players.at(0)->getMoney());
+			}
+
+			TEST_METHOD(ComptoirsTest3)
+			{
+				World w(2, 5);
+				w.startAge();
+				std::array<int, RESOURCES_COUNT> nombre2 = { 0, 0, 0, 0, 0, 0, 1 };
+				w.m_players.at(0)->rightNeighbor->AddResourceWithChoice(nombre2);
+				int index = 0;
+				for (int i = 0; i < w.m_deck.size(); i++)
+				{
+					string s = w.m_deck.at(i)->m_name;
+					if (w.m_deck.at(i)->m_name == "MARCHE")
+					{
+						index = i;
+						break;
+					}
+				}
+				Assert::IsTrue(w.m_players.at(0)->canBuy(w.m_deck.at(index)));
+				w.m_players.at(0)->Buy(w.m_deck.at(index));
+				w.m_players.at(0)->applyEffects(w.m_deck.at(index));
+				for (int i = 0; i < w.m_deck.size(); i++)
+				{
+					string s = w.m_deck.at(i)->m_name;
+					if (w.m_deck.at(i)->m_name == "OFFICINE")
+					{
+						index = i;
+						break;
+					}
+				}
+				w.m_players.at(0)->Buy(w.m_deck.at(index));
+				Assert::AreEqual((unsigned)4, w.m_players.at(0)->rightNeighbor->getMoney());
+				Assert::AreEqual((unsigned)2, w.m_players.at(0)->getMoney());
+			}
 	};
 }

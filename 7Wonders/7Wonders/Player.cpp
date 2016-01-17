@@ -217,12 +217,12 @@ void Player::applyEffects(Card* c)
 			if (s.at(0) == 'g')
 			{
 				//Trade à gauche
-				comptoir1 = true;
+				comptoir2 = true;
 			} else
 				if (s.at(0) == 'd')
 				{
 				//Trade à droite
-				comptoir2 = true;
+				comptoir1 = true;
 				}
 				else
 					if (s.at(0) == 'm')
@@ -459,10 +459,12 @@ bool Player::Buy(Card* c)
 						if (count2 > count)
 						{
 							rightNeighbor->money += count2;
+							money -= count2;
 							return true;
 						}
 						else {
 							leftNeighbor->money += count;
+							money -= count;
 							return true;
 						}
 					}
@@ -470,11 +472,13 @@ bool Player::Buy(Card* c)
 					{
 						int count = countResourcesL(ToBuy.at(i));
 						leftNeighbor->money += count;
+						money -= count;
 						return true;
 					}
 					else {
 						int count2 = countResourcesR(ToBuy.at(i));
 						rightNeighbor->money += count2;
+						money -= count2;
 						return true;
 					}
 				}
