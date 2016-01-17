@@ -203,57 +203,18 @@ namespace UnitTests
 
 		TEST_METHOD(TestingRedCardScore)
 		{
-			World w(0, 4);
-			w.startAge();
-			w.m_players[0]->leftNeighbor = w.m_players[1];
-			w.m_players[0]->rightNeighbor = w.m_players[3];
-			w.m_players[1]->leftNeighbor = w.m_players[0];
-			w.m_players[1]->rightNeighbor = w.m_players[2];
-			w.m_players[2]->leftNeighbor = w.m_players[1];
-			w.m_players[2]->rightNeighbor = w.m_players[3];
-			w.m_players[3]->leftNeighbor = w.m_players[0];
-			w.m_players[3]->rightNeighbor = w.m_players[2];
-			RedCard b("Carte 1", 1);
-			RedCard b1("Carte 2", 2);
-			RedCard b2("Carte 3", 2);
-			BrownCard d("Carte Marron", "Production");
-
-			RedCard c1("Carte 4", 3);
-			RedCard c2("Carte 5", 1);
-			for (int i = 3; i < w.m_deck.size(); i++)
-			{
-					w.m_deck[i] = &d;
-			}
+			World w(0, 5);
+			w.m_age++;
+			w.m_deck = w.generateDeck(0);
+			RedCard b("Card 1", 2);
+			RedCard b2("Card 2", 1);
 			w.m_deck[0] = &b;
-			w.m_deck[1] = &b1;
-			w.m_deck[2] = &b2;
-			w.m_deck[7] = &c1;
-			w.m_deck[14] = &c2;
-
 			w.distributeCards();
-
-			w.play(*(w.m_players.at(0)));
-			w.playOthers(*(w.m_players.at(0)));
+			w.play(*w.m_players.at(0));
+			w.playOthers(*w.m_players.at(0));
+			w.prepareTurn();
 			w.playTurn();
-
-			w.play(*(w.m_players.at(0)));
-			w.playOthers(*(w.m_players.at(0)));
-			w.playTurn();
-
-			w.play(*(w.m_players.at(0)));
-			w.playOthers(*(w.m_players.at(0)));
-			w.playTurn();
-
-			w.computeScores();
-			Assert::AreEqual(2, (int)w.m_scores[0][WAR]);
-			Assert::AreEqual(0, (int)w.m_scores[1][WAR]);
-			Assert::AreEqual(0, (int)w.m_scores[2][WAR]);
-			Assert::AreEqual(-2, (int)w.m_scores[3][WAR]);
 			w.startAge();
-			w.computeScores();
-			Assert::AreEqual(6+2, (int)w.m_scores[0][WAR]);
-			Assert::AreEqual(2, (int)w.m_scores[1][WAR]);
-			Assert::AreEqual(2, (int)w.m_scores[2][WAR]);
 			Assert::AreEqual(-2-2, (int)w.m_scores[3][WAR]);
 		}
 

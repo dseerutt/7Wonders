@@ -31,8 +31,12 @@ void HumanPlayer::pickCard()
 	do
 	{
 		cout << "Select : ";
-		cin >> choice;
-		continueLoop = false; 
+		while (!(cin >> choice)){
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Invalid input.  Try again: \n";
+		}
+		continueLoop = false;
 		if (choice == m_hand.size())
 		{
 			defausse = true;

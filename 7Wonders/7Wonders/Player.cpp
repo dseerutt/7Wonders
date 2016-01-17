@@ -185,7 +185,7 @@ int Player::tradeCountColor(int color)
 		}
 	}
 
-	for (int i = 0; i < m_board.size(); i++)
+	for (int i = 0; i < leftNeighbor->m_board.size(); i++)
 	{
 		if (leftNeighbor->m_board.at(i)->m_color == color)
 		{
@@ -193,7 +193,7 @@ int Player::tradeCountColor(int color)
 		}
 	}
 
-	for (int i = 0; i < m_board.size(); i++)
+	for (int i = 0; i < rightNeighbor->m_board.size(); i++)
 	{
 		if (rightNeighbor->m_board.at(i)->m_color == color)
 		{
