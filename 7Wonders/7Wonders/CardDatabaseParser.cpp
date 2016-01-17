@@ -101,7 +101,7 @@ m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 			break; }
 		case YELLOW:{
 			file >> productionG;
-			YellowCard y(name,"");
+			YellowCard y(name, productionG);
 			y.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
 			m_yellowCards[age - 1].push_back(y);
 			break; }

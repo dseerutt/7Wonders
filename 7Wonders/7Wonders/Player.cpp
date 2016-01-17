@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "RedCard.h"
+#include "YellowCard.h"
 #include <string>
 
 
@@ -210,7 +211,26 @@ void Player::applyEffects(Card* c)
 	}
 	else if (c->m_color == YELLOW)
 	{
-		//TODO
+		string s = ((YellowCard*)c)->getProduction();
+		if (s.length() == 1)
+		{
+			if (s.at(0) == 'g')
+			{
+				//Trade à gauche
+			} else
+				if (s.at(0) == 'd')
+				{
+				//Trade à droite
+				}
+				else
+					if (s.at(0) == 'm')
+					{
+				//Trade des 2 côtés
+					}
+					else {
+						money += 5;
+					}
+		}
 	}
 }
 

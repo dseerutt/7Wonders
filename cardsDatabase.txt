@@ -31,15 +31,15 @@ NOM_CARTE nbJoueurs couleur or bois pierre briques minerais textile verre papyru
 1 THEATRE 3 b 0 0 0 0 0 0 0 0 2
 1 THEATRE 6 b 0 0 0 0 0 0 0 0 2
 
-1 TAVERNE 4 y 0 0 0 0 0 0 0 0 a
-1 TAVERNE 5 y 0 0 0 0 0 0 0 0 a
-1 TAVERNE 7 y 0 0 0 0 0 0 0 0 a
-1 COMPTOIR_EST 3 y 0 0 0 0 0 0 0 0 a
-1 COMPTOIR_EST 7 y 0 0 0 0 0 0 0 0 a
-1 COMPTOIR_OUEST 3 y 0 0 0 0 0 0 0 0 a
-1 COMPTOIR_OUEST 7 y 0 0 0 0 0 0 0 0 a
-1 MARCHE 3 y 0 0 0 0 0 0 0 0 a
-1 MARCHE 6 y 0 0 0 0 0 0 0 0 a
+1 TAVERNE 4 y 0 0 0 0 0 0 0 0 5
+1 TAVERNE 5 y 0 0 0 0 0 0 0 0 5
+1 TAVERNE 7 y 0 0 0 0 0 0 0 0 5
+1 COMPTOIR_EST 3 y 0 0 0 0 0 0 0 0 g
+1 COMPTOIR_EST 7 y 0 0 0 0 0 0 0 0 g
+1 COMPTOIR_OUEST 3 y 0 0 0 0 0 0 0 0 d
+1 COMPTOIR_OUEST 7 y 0 0 0 0 0 0 0 0 d
+1 MARCHE 3 y 0 0 0 0 0 0 0 0 m
+1 MARCHE 6 y 0 0 0 0 0 0 0 0 m
 
 1 PALISSADE 3 r 0 1 0 0 0 0 0 0 1
 1 PALISSADE 7 r 0 1 0 0 0 0 0 0 1
