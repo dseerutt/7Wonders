@@ -174,6 +174,35 @@ int Player::identifyResource(char c)
 	}
 }
 
+int Player::tradeCountColor(int color)
+{
+	int resul = 0;
+	for (int i = 0; i < m_board.size(); i++)
+	{
+		if (m_board.at(i)->m_color == color)
+		{
+			resul++;
+		}
+	}
+
+	for (int i = 0; i < m_board.size(); i++)
+	{
+		if (leftNeighbor->m_board.at(i)->m_color == color)
+		{
+			resul++;
+		}
+	}
+
+	for (int i = 0; i < m_board.size(); i++)
+	{
+		if (rightNeighbor->m_board.at(i)->m_color == color)
+		{
+			resul++;
+		}
+	}
+	return resul;
+}
+
 void Player::applyEffects(Card* c)
 {
 	std::array<int, RESOURCES_COUNT> rec = { 0, 0, 0, 0, 0, 0, 0 };
@@ -252,10 +281,10 @@ void Player::applyEffects(Card* c)
 				AddResourceWithChoice(rec2);
 				break;
 			case 'v':
-				//TODO
+				money += tradeCountColor(BROWN);
 				break;
 			case 'b':
-				//TODO
+				money += 2 * tradeCountColor(GRAY);
 				break;
 			default:
 				break;

@@ -740,5 +740,39 @@ namespace UnitTests
 				Assert::AreEqual(1, w.m_players.at(0)->getResources().at(2).at(BRICK));
 				Assert::AreEqual(1, w.m_players.at(0)->getResources().at(3).at(MINERAL));
 			}
+
+			TEST_METHOD(TradeCountColorTest)
+			{
+				World w(0, 5);
+				w.m_age++;
+				w.m_deck = w.generateDeck(0);
+				YellowCard b("Card 1", "c");
+				w.m_deck[0] = &b;
+				w.distributeCards();
+				w.play(*w.m_players.at(0));
+				w.playOthers(*w.m_players.at(0));
+				w.prepareTurn();
+				w.playTurn();
+				int cpt = 1;
+				if (w.m_players.at(0)->leftNeighbor->getBoard().at(0)->m_color == YELLOW)
+				{
+					cpt++;
+				}
+				if (w.m_players.at(0)->rightNeighbor->getBoard().at(0)->m_color == YELLOW)
+				{
+					cpt++;
+				}
+				int cpt2 = 0;
+				if (w.m_players.at(0)->leftNeighbor->getBoard().at(0)->m_color == GRAY)
+				{
+					cpt2++;
+				}
+				if (w.m_players.at(0)->rightNeighbor->getBoard().at(0)->m_color == GRAY)
+				{
+					cpt2++;
+				}
+				Assert::AreEqual(cpt, w.m_players.at(0)->tradeCountColor(YELLOW));
+				Assert::AreEqual(cpt2, w.m_players.at(0)->tradeCountColor(GRAY));
+			}
 	};
 }
