@@ -692,7 +692,6 @@ namespace UnitTests
 
 			TEST_METHOD(AlreadyPlayedTest)
 			{
-
 				World w(0, 5);
 				w.m_age++;
 				w.m_deck = w.generateDeck(0);
@@ -705,6 +704,41 @@ namespace UnitTests
 				w.playTurn();
 				Assert::IsFalse(w.m_players.at(0)->alreadyPlayed("Card 2"));
 				Assert::IsTrue(w.m_players.at(0)->alreadyPlayed("Card 1"));
+			}
+
+			TEST_METHOD(ForumTest)
+			{
+				World w(0, 5);
+				w.m_age++;
+				w.m_deck = w.generateDeck(0);
+				YellowCard b("Card 1", "f");
+				w.m_deck[0] = &b;
+				w.distributeCards();
+				w.play(*w.m_players.at(0));
+				w.playOthers(*w.m_players.at(0));
+				w.prepareTurn();
+				w.playTurn();
+				Assert::AreEqual(1, w.m_players.at(0)->getResources().at(0).at(PAPYRUS));
+				Assert::AreEqual(1, w.m_players.at(0)->getResources().at(1).at(GLASS));
+				Assert::AreEqual(1, w.m_players.at(0)->getResources().at(2).at(TEXTILE));
+			}
+
+			TEST_METHOD(CaravanserailTest)
+			{
+				World w(0, 5);
+				w.m_age++;
+				w.m_deck = w.generateDeck(0);
+				YellowCard b("Card 1", "c");
+				w.m_deck[0] = &b;
+				w.distributeCards();
+				w.play(*w.m_players.at(0));
+				w.playOthers(*w.m_players.at(0));
+				w.prepareTurn();
+				w.playTurn();
+				Assert::AreEqual(1, w.m_players.at(0)->getResources().at(0).at(WOOD));
+				Assert::AreEqual(1, w.m_players.at(0)->getResources().at(1).at(STONE));
+				Assert::AreEqual(1, w.m_players.at(0)->getResources().at(2).at(BRICK));
+				Assert::AreEqual(1, w.m_players.at(0)->getResources().at(3).at(MINERAL));
 			}
 	};
 }

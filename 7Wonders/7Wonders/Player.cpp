@@ -226,25 +226,40 @@ void Player::applyEffects(Card* c)
 		string s = ((YellowCard*)c)->getProduction();
 		if (s.length() == 1)
 		{
-			if (s.at(0) == 'g')
+			std::array<int, RESOURCES_COUNT> rec = { 0, 0, 0, 0, 1, 1, 1 };
+			std::array<int, RESOURCES_COUNT> rec2 = { 1, 1, 1, 1, 0, 0, 0 };
+			switch (s.at(0))
 			{
+			case 'g':
 				//Trade à gauche
 				comptoir2 = true;
-			} else
-				if (s.at(0) == 'd')
-				{
+				break;
+			case 'd':
 				//Trade à droite
 				comptoir1 = true;
-				}
-				else
-					if (s.at(0) == 'm')
-					{
+				break;
+			case 'm':
 				//Trade des 2 côtés
 				market = 1;
-					}
-					else {
-						money += 5;
-					}
+				break;
+			case 't':
+				money += 5;
+				break;
+			case 'f':
+				AddResourceWithChoice(rec);
+				break;
+			case 'c':
+				AddResourceWithChoice(rec2);
+				break;
+			case 'v':
+				//TODO
+				break;
+			case 'b':
+				//TODO
+				break;
+			default:
+				break;
+			}
 		}
 	}
 }
