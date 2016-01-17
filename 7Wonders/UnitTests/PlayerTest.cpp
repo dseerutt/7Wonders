@@ -146,7 +146,7 @@ namespace UnitTests
 			Assert::AreEqual(-1, w.m_players.at(0)->canBuyWithNeighbor(w.m_deck.at(index)));
 			std::array<int, RESOURCES_COUNT> rec = { 1, 0, 0, 0, 0, 0, 0 };
 			w.m_players.at(0)->leftNeighbor->AddResource(rec);
-			Assert::AreEqual(1, w.m_players.at(0)->canBuyWithNeighbor(w.m_deck.at(index)));
+			Assert::AreEqual(2, w.m_players.at(0)->canBuyWithNeighbor(w.m_deck.at(index)));
 
 			for (int i = 0; i < w.m_deck.size(); i++)
 			{
@@ -160,7 +160,7 @@ namespace UnitTests
 			Assert::AreEqual(-1, w.m_players.at(0)->canBuyWithNeighbor(w.m_deck.at(index)));
 			std::array<int, RESOURCES_COUNT> rec2 = { 0, 0, 0, 0, 1, 0, 0 };
 			w.m_players.at(0)->rightNeighbor->AddResource(rec2);
-			Assert::AreEqual(1, w.m_players.at(0)->canBuyWithNeighbor(w.m_deck.at(index)));
+			Assert::AreEqual(2, w.m_players.at(0)->canBuyWithNeighbor(w.m_deck.at(index)));
 
 			//Besoin des deux voisins
 			//Besoin d'une fonction de fusion des resources
@@ -246,8 +246,8 @@ namespace UnitTests
 			Assert::IsFalse(w.m_players.at(0)->Buy(w.m_deck.at(index)));
 			std::array<int, RESOURCES_COUNT> rec2 = { 0, 0, 0, 0, 1, 0, 0 };
 			w.m_players.at(0)->rightNeighbor->AddResource(rec2);
-			Assert::IsFalse(w.m_players.at(0)->Buy(w.m_deck.at(index)));
-			Assert::AreEqual((unsigned)3, w.m_players.at(0)->rightNeighbor->getMoney());
+			Assert::IsTrue(w.m_players.at(0)->Buy(w.m_deck.at(index)));
+			Assert::AreEqual((unsigned)5, w.m_players.at(0)->rightNeighbor->getMoney());
 
 
 			//Besoin des deux voisins
@@ -306,10 +306,12 @@ namespace UnitTests
 
 		TEST_METHOD(CountResourcesTest)
 		{
+			CardSet c;
+			ComputerPlayer cp(&c);
 			array<int, RESOURCES_COUNT> choice = { 0, 0, 0, 0, 0, 1, 2 };
-			Assert::AreEqual(3, Player::countResources(choice));
+			Assert::AreEqual(6, cp.countResourcesL(choice));
 			array<int, RESOURCES_COUNT> choice2 = { 0, 0, 0, 0, 0, 0, 0 };
-			Assert::AreEqual(0, Player::countResources(choice2));
+			Assert::AreEqual(0, cp.countResourcesL(choice2));
 		}
 
 		TEST_METHOD(GetScoreTest)
@@ -604,5 +606,21 @@ namespace UnitTests
 				cp.AddResourceWithChoice(nombre2);
 				Assert::AreEqual("You can have: 1 Wood \nYou can have: 1 Stone",cp.displayResource().c_str());
 			}*/
+
+			TEST_METHOD(ComptoirsTest)
+			{
+				World w(2, 5);
+				std::array<int, RESOURCES_COUNT> nombre2 = { 1, 0, 0, 0, 0, 0, 0 };
+				w.m_players.at(0)->leftNeighbor->AddResourceWithChoice(nombre2);
+				int index = 0;
+				for (int i = 0; i < w.m_deck.size(); i++)
+				{
+					string s = w.m_deck.at(i)->m_name;
+					if (w.m_deck.at(i)->m_name == "COMPTOIR_OUEST")
+					{
+						index = i;
+						break;
+					}
+				}
 	};
 }

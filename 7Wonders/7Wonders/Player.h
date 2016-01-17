@@ -13,6 +13,9 @@ protected:
 	CardSet m_hand;
 	CardSet m_board;
 	CardSet* m_discard;
+	bool comptoir1 = false;
+	bool comptoir2 = false;
+	bool market = false;
 	int money;
 	int military;
 	Card* m_cardToPlay;
@@ -38,7 +41,8 @@ public:
 	void applyEffects(Card* c);
 	int canBuyWithNeighbor(Card* c);
 	bool canProvide(array<int, RESOURCES_COUNT> resource);
-	static int countResources(array<int, RESOURCES_COUNT> resource);
+	int countResourcesL(array<int, RESOURCES_COUNT> resource);
+	int countResourcesR(array<int, RESOURCES_COUNT> resource);
 	void setHand(const CardSet& newHand);
 	const CardSet& getHand() const;
 	void prepareTurn();
