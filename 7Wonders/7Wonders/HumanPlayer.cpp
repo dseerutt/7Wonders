@@ -47,11 +47,19 @@ void HumanPlayer::pickCard()
 			}
 			else
 			{
-				if (canBuyWithNeighbor(m_hand.at(choice)) == -1)
+				if (alreadyPlayed(m_hand.at(choice)->m_name))
 				{
 					continueLoop = true;
-					cout << "You can't buy this card, try another one" << endl;;
+					cout << "Sorry, you can't play the same card twice" << endl;
 				}
+				else {
+					if (canBuyWithNeighbor(m_hand.at(choice)) == -1)
+					{
+						continueLoop = true;
+						cout << "You can't buy this card, try another one" << endl;;
+					}
+				}
+				
 			}
 		}
 		

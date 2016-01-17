@@ -161,22 +161,6 @@ namespace UnitTests
 			std::array<int, RESOURCES_COUNT> rec2 = { 0, 0, 0, 0, 1, 0, 0 };
 			w.m_players.at(0)->rightNeighbor->AddResource(rec2);
 			Assert::AreEqual(2, w.m_players.at(0)->canBuyWithNeighbor(w.m_deck.at(index)));
-
-			//Besoin des deux voisins
-			//Besoin d'une fonction de fusion des resources
-			/*
-			Mycard.clear();
-			BlueCard b("Ma carte", 5); 
-			b.m_price = 0;
-			b.m_Cost[WOOD] = 1;
-			b.m_Cost[STONE] = 0;
-			b.m_Cost[BRICK] = 0;
-			b.m_Cost[MINERAL] = 0;
-			b.m_Cost[PAPYRUS] = 1;
-			b.m_Cost[GLASS] = 0;
-			b.m_Cost[TEXTILE] = 0;
-			Mycard.push_back(&b);
-			Assert::AreEqual(2, w.m_players.at(0)->canBuyWithNeighbor(Mycard));*/
 		}
 
 
@@ -704,6 +688,23 @@ namespace UnitTests
 				w.m_players.at(0)->Buy(w.m_deck.at(index));
 				Assert::AreEqual((unsigned)4, w.m_players.at(0)->rightNeighbor->getMoney());
 				Assert::AreEqual((unsigned)2, w.m_players.at(0)->getMoney());
+			}
+
+			TEST_METHOD(AlreadyPlayedTest)
+			{
+
+				World w(0, 5);
+				w.m_age++;
+				w.m_deck = w.generateDeck(0);
+				BlueCard b("Card 1", 5);
+				w.m_deck[0] = &b;
+				w.distributeCards();
+				w.play(*w.m_players.at(0));
+				w.playOthers(*w.m_players.at(0));
+				w.prepareTurn();
+				w.playTurn();
+				Assert::IsFalse(w.m_players.at(0)->alreadyPlayed("Card 2"));
+				Assert::IsTrue(w.m_players.at(0)->alreadyPlayed("Card 1"));
 			}
 	};
 }

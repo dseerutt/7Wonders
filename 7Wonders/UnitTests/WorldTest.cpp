@@ -257,19 +257,6 @@ namespace UnitTests
 			Assert::AreEqual(-2-2, (int)w.m_scores[3][WAR]);
 		}
 
-		TEST_METHOD(ComputeGoldScoreTest)
-		{
-			World w(0, 3);/*
-			w.m_players[0]->money = 7;
-			w.m_players[2]->money = 15;*/
-			w.computeScores();
-			Assert::AreEqual(2, (int)w.m_scores[0][GOLD]);
-			Assert::AreEqual(0, (int)w.m_scores[1][GOLD]);
-			Assert::AreEqual(5, (int)w.m_scores[2][GOLD]);
-			Assert::AreEqual(0, 1);
-			//TOChange when buy finished
-		}
-
 		TEST_METHOD(ComputeScienceScoreTest)
 		{
 			World w(0, 3);

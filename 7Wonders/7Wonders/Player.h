@@ -23,6 +23,7 @@ protected:
 	std::vector<std::array<int, RESOURCES_COUNT> > m_resources;
 public:
 	std::vector<std::array<int, RESOURCES_COUNT>> getResources();
+	bool alreadyPlayed(string s);
 	Player* leftNeighbor;
 	Player* rightNeighbor;
 	Player(CardSet* discard);

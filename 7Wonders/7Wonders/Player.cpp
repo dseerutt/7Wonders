@@ -48,6 +48,18 @@ void Player::setHand(const CardSet& newHand)
 	}
 }
 
+bool Player::alreadyPlayed(string s)
+{
+	for (unsigned int i = 0; i < m_board.size(); i++)
+	{
+		if (m_board.at(i)->m_name == s)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 const CardSet& Player::getHand() const
 {
 	return m_hand;
@@ -240,6 +252,14 @@ void Player::applyEffects(Card* c)
 
 bool Player::canBuy(Card* c)
 {
+	if (defausse)
+	{
+		return true;
+	}
+	if (alreadyPlayed(c->m_name))
+	{
+		return false;
+	}
 	if (c->m_price > money)
 	{
 		return false;
@@ -263,6 +283,10 @@ bool Player::canBuy(Card* c)
 
 int Player::canBuyWithNeighbor(Card* c)
 {
+	if (alreadyPlayed(c->m_name))
+	{
+		return false;
+	}
 	int virtualMoney = money;
 	if (canBuy(c))
 	{
