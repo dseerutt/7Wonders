@@ -7,5 +7,6 @@ public:
 	Marvel(int level);
 	~Marvel();
 	int getMarvelLevel();
+	//virtual void upgrade();
 };
 

@@ -92,6 +92,7 @@
     <ClCompile Include="CardSetTest.cpp" />
     <ClCompile Include="ComputerPlayerTest.cpp" />
     <ClCompile Include="HumanPlayerTest.cpp" />
+    <ClCompile Include="MarvelDefaultTest.cpp" />
     <ClCompile Include="PlayerTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

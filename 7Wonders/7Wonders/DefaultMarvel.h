@@ -5,5 +5,6 @@ class DefaultMarvel : public Marvel
 public:
 	DefaultMarvel();
 	~DefaultMarvel();
+	 void upgrade();
 };
 
