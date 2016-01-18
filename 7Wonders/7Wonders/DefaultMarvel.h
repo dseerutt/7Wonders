@@ -10,5 +10,8 @@ public:
 	void upgrade1();
 	void upgrade2();
 	void upgrade3();
+	bool canUpgrade1();
+	bool canUpgrade2();
+	bool canUpgrade3();
 };
 

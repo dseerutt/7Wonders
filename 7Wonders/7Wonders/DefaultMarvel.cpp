@@ -37,11 +37,25 @@ bool DefaultMarvel::canUpgrade()
 	{
 		return false;
 	}
-	return true;
+	switch (marvelLevel)
+	{
+	case 0:
+		return canUpgrade1();
+		break;
+	case 1:
+		return canUpgrade2();
+		break;
+	case 2:
+		return canUpgrade3();
+		break;
+	default:
+		break;
+	}
 }
 
 void DefaultMarvel::upgrade1()
 {
+
 }
 
 void DefaultMarvel::upgrade2()
@@ -52,4 +66,19 @@ void DefaultMarvel::upgrade2()
 void DefaultMarvel::upgrade3()
 {
 
+}
+
+bool DefaultMarvel::canUpgrade1()
+{
+	return true;
+}
+
+bool DefaultMarvel::canUpgrade2()
+{
+	return true;
+}
+
+bool DefaultMarvel::canUpgrade3()
+{
+	return true;
 }

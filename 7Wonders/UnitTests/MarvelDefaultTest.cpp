@@ -15,6 +15,8 @@ namespace UnitTests
 		{
 			DefaultMarvel m;
 			Assert::AreEqual(0, m.getMarvelLevel());
+			Assert::AreEqual(0, m.getMarvelMoney());
+			Assert::AreEqual(0, m.getMarvelScore());
 			Assert::AreEqual(3, m.getMarvelMaxLevel());
 		}
 

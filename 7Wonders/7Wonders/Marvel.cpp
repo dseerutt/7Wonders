@@ -5,6 +5,8 @@ Marvel::Marvel(int level)
 {
 	marvelLevel = 0;
 	marvelMaxLevel = level;
+	marvelMoney = 0;
+	marvelScore = 0;
 }
 
 
@@ -20,4 +22,14 @@ int Marvel::getMarvelLevel()
 int Marvel::getMarvelMaxLevel()
 {
 	return marvelMaxLevel;
+}
+
+int Marvel::getMarvelScore()
+{
+	return marvelScore;
+}
+
+int Marvel::getMarvelMoney()
+{
+	return marvelMoney;
 }
