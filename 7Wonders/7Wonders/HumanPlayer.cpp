@@ -14,12 +14,37 @@ HumanPlayer::~HumanPlayer()
 
 void HumanPlayer::pickCard()
 {
-	cout << displayResourceManager("You") << endl;
-	cout << displayResourceManager("Left Neighbor") << endl;
-	cout << displayResourceManager("Right Neighbor") << endl;
+	//cout << displayResourceManager("You") << endl;
+	//cout << displayResourceManager("Left Neighbor") << endl;
+	//cout << displayResourceManager("Right Neighbor") << endl;
+	if (resourcesDisplay == "")
+	{
+		cout << "You have no resource " << endl;
+	}
+	else {
+		cout << "You have: " << resourcesDisplay << endl;
+	}
+
+	if (this->leftNeighbor->resourcesDisplay == "")
+	{
+		cout << "Your left neighbor has no resource " << endl;
+	}
+	else {
+		cout << "Your left neighbor: " << this->leftNeighbor->resourcesDisplay << endl;
+	}
+
+	if (this->rightNeighbor->resourcesDisplay == "")
+	{
+		cout << "Your right neighbor has no resource " << endl;
+	}
+	else {
+		cout << "Your right neighbor: " << this->rightNeighbor->resourcesDisplay << endl;
+	}
+	
 	cout << "You have " << money << " gold coins" << endl;
 	cout << "You have " << military << " army unities (" << leftNeighbor->getMilitary()
 		<< "," << rightNeighbor->getMilitary() << ")" << endl;
+	cout << "Wonder level: " << marvel->marvelLevel << "/" <<  marvel->marvelMaxLevel <<endl;
 	cout << "Pick a card" << endl;
 	for (unsigned int i = 0; i < m_hand.size(); i++)
 	{

@@ -14,6 +14,32 @@ Player::Player(CardSet* discard, int rec) : m_discard(discard), money(3), milita
 	}
 	std::array<int, RESOURCES_COUNT> resources = { 0, 0, 0, 0, 0, 0, 0 };
 	resources.at(rec)++;
+	switch (rec)
+	{
+	case 0:
+		resourcesDisplay += "b ";
+		break;
+	case 1:
+		resourcesDisplay += "p ";
+		break;
+	case 2:
+		resourcesDisplay += "a ";
+		break;
+	case 3:
+		resourcesDisplay += "m ";
+		break;
+	case 4:
+		resourcesDisplay += "q ";
+		break;
+	case 5:
+		resourcesDisplay += "g ";
+		break;
+	case 6:
+		resourcesDisplay += "t ";
+		break;
+	default:
+		break;
+	}
 	m_resources.push_back(resources);
 }
 
@@ -264,6 +290,7 @@ void Player::applyEffects(Card* c)
 		{
 			rec.at(identifyResource(s.at(0))) += 1;
 			AddResource(rec);
+			resourcesDisplay += (s + " ");
 		}
 		else {
 			if (s.at(1) == '/')
@@ -272,6 +299,7 @@ void Player::applyEffects(Card* c)
 				rec.at(identifyResource(s.at(0))) += 1;
 				rec.at(identifyResource(s.at(2))) += 1;
 				AddResourceWithChoice(rec);
+				resourcesDisplay += (s + " ");
 				return;
 			}
 			else {
@@ -279,6 +307,7 @@ void Player::applyEffects(Card* c)
 				rec.at(identifyResource(s.at(0))) += 1;
 				rec.at(identifyResource(s.at(1))) += 1;
 				AddResource(rec);
+				resourcesDisplay += (s + " ");
 			}
 		}
 	}
@@ -286,6 +315,7 @@ void Player::applyEffects(Card* c)
 	{
 		std::array<int, RESOURCES_COUNT> rec = { 0, 0, 0, 0, 0, 0, 0 };
 		rec.at(identifyResource(c->m_production.at(0))) += 1;
+		resourcesDisplay += (c->m_production + " ");
 		AddResource(rec);
 		
 	}
@@ -328,9 +358,11 @@ void Player::applyEffects(Card* c)
 				break;
 			case 'f':
 				AddResourceWithChoice(rec);
+				resourcesDisplay += (s + " ");
 				break;
 			case 'c':
 				AddResourceWithChoice(rec2);
+				resourcesDisplay += (s + " ");
 				break;
 			case 'v':
 				money += tradeCountColor(BROWN);

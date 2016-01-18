@@ -24,7 +24,8 @@ protected:
 	bool MarvelTreatment = false;
 	std::vector<std::array<int, RESOURCES_COUNT> > m_resources;
 public:
-
+	
+	std::string resourcesDisplay = "";
 	Player(CardSet* discard, int rec);
 	~Player();
 	Marvel* getMarvel();

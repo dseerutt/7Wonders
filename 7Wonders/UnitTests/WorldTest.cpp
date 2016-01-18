@@ -201,23 +201,6 @@ namespace UnitTests
 			Assert::AreEqual(5, w.m_scores.at(0).at(BLUE_CARDS));
 		}
 
-		TEST_METHOD(TestingRedCardScore)
-		{
-			World w(0, 5);
-			w.m_age++;
-			w.m_deck = w.generateDeck(0);
-			RedCard b("Card 1", 2, "-");
-			RedCard b2("Card 2", 1, "-");
-			w.m_deck[0] = &b;
-			w.distributeCards();
-			w.play(*w.m_players.at(0));
-			w.playOthers(*w.m_players.at(0));
-			w.prepareTurn();
-			w.playTurn();
-			w.startAge();
-			Assert::AreEqual(-2-2, (int)w.m_scores[3][WAR]);
-		}
-
 		TEST_METHOD(ComputeScienceScoreTest)
 		{
 			World w(0, 3);
