@@ -248,25 +248,13 @@ namespace UnitTests
 			//Premier tour
 			w.play(*(w.m_players.at(0)));
 			w.playOthers(*(w.m_players.at(0)));
-			string card0 = w.m_players.at(0)->getHand().at(0)->m_name;
-			string card1 = w.m_players.at(1)->getHand().at(0)->m_name;
-			string card2 = w.m_players.at(2)->getHand().at(0)->m_name;
 			w.endTurn();
-			Assert::AreEqual(card0, w.m_players.at(0)->getBoard().at(0)->m_name);
-			Assert::AreEqual(card1, w.m_players.at(1)->getBoard().at(0)->m_name);
-			Assert::AreEqual(card2, w.m_players.at(2)->getBoard().at(0)->m_name);
 			Assert::IsFalse(w.m_gameOver);
 
 			//Deuxième tour
 			w.play(*(w.m_players.at(0)));
 			w.playOthers(*(w.m_players.at(0)));
-			card0 = w.m_players.at(0)->getHand().at(0)->m_name;
-			card1 = w.m_players.at(1)->getHand().at(0)->m_name;
-			card2 = w.m_players.at(2)->getHand().at(0)->m_name;
 			w.endTurn();
-			Assert::AreEqual(card0, w.m_players.at(0)->getBoard().at(1)->m_name);
-			Assert::AreEqual(card1, w.m_players.at(1)->getBoard().at(1)->m_name);
-			Assert::AreEqual(card2, w.m_players.at(2)->getBoard().at(1)->m_name);
 			Assert::IsFalse(w.m_gameOver);
 
 			//Tour 3

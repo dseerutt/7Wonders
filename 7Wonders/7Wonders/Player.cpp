@@ -31,6 +31,12 @@ unsigned int Player::getMilitary() const
 	return military;
 }
 
+
+Marvel* Player::getMarvel()
+{
+	return marvel;
+}
+
 unsigned int Player::getGeneratedScore() const
 {
 	return generatedScore;
@@ -83,9 +89,16 @@ const CardSet& Player::getHand() const
 	return m_hand;
 }
 
-const CardSet Player::getPlayableCards() const
+CardSet Player::getPlayableCards()
 {
-	CardSet cards = m_hand;
+	CardSet cards;
+	for (int i = 0; i < m_hand.size(); i++)
+	{
+		if (canBuyWithNeighbor(m_hand.at(i)) != -1)
+		{
+			cards.push_back(m_hand.at(i));
+		}
+	}
 	return cards;
 }
 
@@ -651,7 +664,8 @@ void Player::playTurn()
 	{
 		defausse = false;
 		MarvelTreatment = false;
-		money += 3;
+		marvel->upgrade(m_resources);
+		money += marvel->getMarvelMoney();
 	}
 	if (defausse)
 	{

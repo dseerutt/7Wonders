@@ -27,6 +27,7 @@ public:
 
 	Player(CardSet* discard, int rec);
 	~Player();
+	Marvel* getMarvel();
 	void upgradeMarvelMoney(int coins);
 	int tradeCountColor(int color);
 	int countColor(int color);
@@ -59,7 +60,7 @@ public:
 	void AddResource(array<int, RESOURCES_COUNT> resource);
 	void AddResourceWithChoice(array<int, RESOURCES_COUNT> resource);
 protected:
-	const CardSet getPlayableCards() const;
+	CardSet getPlayableCards();
 	virtual void pickCard() = 0;
 };
 

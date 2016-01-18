@@ -47,10 +47,18 @@ void HumanPlayer::pickCard()
 		else {
 			if (choice == m_hand.size() + 1)
 			{
-				defausse = true;
-				continueLoop = true;
-				MarvelTreatment = true;
-				cout << "Please select the card to discard to build your marvel" << endl;
+				if (marvel->canUpgrade(m_resources))
+				{
+					defausse = true;
+					continueLoop = true;
+					MarvelTreatment = true;
+					cout << "Please select the card to discard to build your wonder" << endl;
+				}
+				else {
+					continueLoop = true;
+					cout << "Sorry, you don't have enough resources to build your wonder" << endl;
+				}
+				
 			}
 				else {
 				if (choice >= m_hand.size())

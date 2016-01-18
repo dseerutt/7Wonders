@@ -317,6 +317,13 @@ namespace UnitTests
 			Assert::AreEqual((unsigned)0, cp.getScore());
 		}
 
+		TEST_METHOD(GetMarvel)
+		{
+			CardSet set;
+			ComputerPlayer cp(&set, 6);
+			Assert::AreEqual(3, cp.getMarvel()->marvelMaxLevel);
+		}
+
 		TEST_METHOD(GetMilitaryTest)
 		{
 			CardSet set;
