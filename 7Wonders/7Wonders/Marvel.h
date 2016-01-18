@@ -3,10 +3,13 @@ class Marvel
 {
 public:
 	int marvelLevel;
+	int marvelMaxLevel;
 public:
 	Marvel(int level);
 	~Marvel();
 	int getMarvelLevel();
-	//virtual void upgrade();
+	int getMarvelMaxLevel();
+	virtual void upgrade() = 0;
+	virtual bool canUpgrade() = 0;
 };
 

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include "../7Wonders/Marvel.cpp"
+#include "../7Wonders/DefaultMarvel.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -12,8 +13,9 @@ namespace UnitTests
 		
 		TEST_METHOD(DefaultMarvelConstructor)
 		{
-			Marvel m(5);
-			Assert::AreEqual(0, 0);
+			DefaultMarvel m;
+			Assert::AreEqual(0, m.getMarvelLevel());
+			Assert::AreEqual(3, m.getMarvelMaxLevel());
 		}
 
 	};
