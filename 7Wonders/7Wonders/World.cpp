@@ -246,6 +246,12 @@ void World::playTurn()
 	}
 }
 
+
+void upgradeMarvel(World* w, Player* p, int PV)
+{
+	//TODO
+}
+
 void World::computeScores()
 {
 	for (unsigned int i = 0; i < m_players.size(); i++)

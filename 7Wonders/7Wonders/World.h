@@ -27,11 +27,10 @@ public:
 	//Game state
 	bool m_gameOver;
 	unsigned int m_age;
-	//std::vector<HumanPlayer> m_humanPlayers;
-	//std::vector<ComputerPlayer> m_computerPlayers;
 	CardSet m_deck;
 	CardSet m_discard;
 
+	static void upgradeMarvel(World* w, Player* p, int PV);
 	int getMilitaryScore(Player* p);
 	std::vector<Player*> m_players;
 	std::vector<std::vector<unsigned int> > m_scores;

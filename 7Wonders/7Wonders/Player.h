@@ -1,15 +1,17 @@
 #pragma once
 #include <vector>
+#include <array>
 #include "CardSet.h"
 #include "Card.h"
 #include "BrownCard.h"
-#include <array>
+//#include "Marvel.h";
 
 using namespace std;
 
 class Player
 {
 protected:
+	//Marvel* marvel;
 	CardSet m_hand;
 	CardSet m_board;
 	CardSet* m_discard;
@@ -22,6 +24,8 @@ protected:
 	bool defausse = false;
 	std::vector<std::array<int, RESOURCES_COUNT> > m_resources;
 public:
+
+	void upgradeMarvelMoney(int coins);
 	int Player::tradeCountColor(int color);
 	std::vector<std::array<int, RESOURCES_COUNT>> getResources();
 	bool alreadyPlayed(string s);

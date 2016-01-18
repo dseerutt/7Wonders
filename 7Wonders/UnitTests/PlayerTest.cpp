@@ -774,5 +774,12 @@ namespace UnitTests
 				Assert::AreEqual(cpt, w.m_players.at(0)->tradeCountColor(YELLOW));
 				Assert::AreEqual(cpt2, w.m_players.at(0)->tradeCountColor(GRAY));
 			}
+
+			TEST_METHOD(UpgradeMarvelMoneyTest)
+			{
+				World w(0, 5);
+				w.m_players.at(0)->upgradeMarvelMoney(4);
+				Assert::AreEqual((unsigned int) 7, w.m_players.at(0)->getMoney());
+			}
 	};
 }

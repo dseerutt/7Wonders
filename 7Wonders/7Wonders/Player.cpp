@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "RedCard.h"
 #include "YellowCard.h"
+#include "World.h"
 #include <string>
 
 
@@ -8,6 +9,7 @@ Player::Player(CardSet* discard) : m_discard(discard),money(3), military(0), m_h
 {
 	std::array<int, RESOURCES_COUNT> resources = { 0, 0, 0, 0, 0, 0, 0 };
 	m_resources.push_back(resources);
+	//marvel = &DefaultMarvel();
 }
 
 Player::~Player()
@@ -58,6 +60,12 @@ bool Player::alreadyPlayed(string s)
 		}
 	}
 	return false;
+}
+
+
+void Player::upgradeMarvelMoney(int coins)
+{
+	money += coins;
 }
 
 const CardSet& Player::getHand() const
