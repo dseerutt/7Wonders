@@ -26,6 +26,7 @@ void HumanPlayer::pickCard()
 		cout << i << ". " << m_hand.at(i)->m_name << endl;
 	}
 	cout << m_hand.size() << ". " << "Discard a card" << endl;
+	cout << m_hand.size()+1 << ". " << "Build a level" << endl;
 	unsigned int choice;
 	bool continueLoop = false;
 	do
@@ -44,29 +45,36 @@ void HumanPlayer::pickCard()
 			cout << "Select the card to discard" << endl;
 		}
 		else {
-			if (choice >= m_hand.size())
+			if (choice == m_hand.size() + 1)
 			{
+				defausse = true;
 				continueLoop = true;
-				cout << "Please select a card into the given range" << endl;
+				MarvelTreatment = true;
+				cout << "Please select the card to discard to build your marvel" << endl;
 			}
-			else
-			{
-				if (!defausse&&alreadyPlayed(m_hand.at(choice)->m_name))
+				else {
+				if (choice >= m_hand.size())
 				{
 					continueLoop = true;
-					cout << "Sorry, you can't play the same card twice" << endl;
+					cout << "Please select a card into the given range" << endl;
 				}
-				else {
-					if (canBuyWithNeighbor(m_hand.at(choice)) == -1)
+				else
+				{
+					if (!defausse&&alreadyPlayed(m_hand.at(choice)->m_name))
 					{
 						continueLoop = true;
-						cout << "You can't buy this card, try another one" << endl;;
+						cout << "Sorry, you can't play the same card twice" << endl;
+					}
+					else {
+						if (canBuyWithNeighbor(m_hand.at(choice)) == -1)
+						{
+							continueLoop = true;
+							cout << "You can't buy this card, try another one" << endl;;
+						}
 					}
 				}
-				
 			}
 		}
-		
 	}
 	while (continueLoop);
 

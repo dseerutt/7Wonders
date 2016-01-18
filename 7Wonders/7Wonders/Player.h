@@ -2,8 +2,6 @@
 #include <vector>
 #include <array>
 #include "CardSet.h"
-#include "Card.h"
-#include "BrownCard.h"
 #include "Marvel.h"
 
 using namespace std;
@@ -11,7 +9,7 @@ using namespace std;
 class Player
 {
 protected:
-	//Marvel* marvel;
+	Marvel* marvel;
 	CardSet m_hand;
 	CardSet m_board;
 	CardSet* m_discard;
@@ -23,6 +21,7 @@ protected:
 	int military;
 	Card* m_cardToPlay;
 	bool defausse = false;
+	bool MarvelTreatment = false;
 	std::vector<std::array<int, RESOURCES_COUNT> > m_resources;
 public:
 

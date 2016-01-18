@@ -1,9 +1,9 @@
 #pragma once
 #include <vector>
-#include "HumanPlayer.h"
-#include "ComputerPlayer.h"
 #include "CardSet.h"
 #include "CardDatabaseParser.h"
+#include "HumanPlayer.h"
+#include "ComputerPlayer.h"
 #define NUMBER_OF_AGES 3
 
 enum Scores

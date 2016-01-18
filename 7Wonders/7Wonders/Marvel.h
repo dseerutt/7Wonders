@@ -1,4 +1,7 @@
 #pragma once
+#include <vector>
+#include <array>
+#include "Card.h"
 class Marvel
 {
 protected:
@@ -14,7 +17,7 @@ public:
 	int getMarvelMaxLevel();
 	int getMarvelMoney();
 	int getMarvelScore();
-	virtual void upgrade() = 0;
-	virtual bool canUpgrade() = 0;
+	virtual void upgrade(std::vector<std::array<int, RESOURCES_COUNT> > resources) = 0;
+	virtual bool canUpgrade(std::vector<std::array<int, RESOURCES_COUNT> > resources) = 0;
 };
 

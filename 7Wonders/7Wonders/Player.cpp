@@ -1,11 +1,12 @@
 #include "Player.h"
 #include "RedCard.h"
 #include "YellowCard.h"
-#include "World.h"
+#include "BrownCard.h"
 #include <string>
+//#include "DefaultMarvel.h"
 
 
-Player::Player(CardSet* discard, int rec) : m_discard(discard),money(3), military(0), m_hand(), m_board(), m_cardToPlay(nullptr)
+Player::Player(CardSet* discard, int rec) : m_discard(discard), money(3), military(0), m_hand(), m_board(), m_cardToPlay(nullptr)//, marvel(new DefaultMarvel())
 {
 	if (rec >= RESOURCES_COUNT)
 	{
@@ -14,7 +15,6 @@ Player::Player(CardSet* discard, int rec) : m_discard(discard),money(3), militar
 	std::array<int, RESOURCES_COUNT> resources = { 0, 0, 0, 0, 0, 0, 0 };
 	resources.at(rec)++;
 	m_resources.push_back(resources);
-	//marvel = &DefaultMarvel();
 }
 
 Player::~Player()
@@ -646,6 +646,12 @@ void Player::playTurn()
 	if (m_hand.size() <= 1)
 	{
 		throw("Taille de la main non conforme");
+	}
+	if (defausse && MarvelTreatment)
+	{
+		defausse = false;
+		MarvelTreatment = false;
+		money += 3;
 	}
 	if (defausse)
 	{
