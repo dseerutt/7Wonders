@@ -4,6 +4,7 @@
 #include "ComputerPlayer.h"
 #include "CardSet.h"
 #include "CardDatabaseParser.h"
+//#include "Marvel.h"
 #define NUMBER_OF_AGES 3
 
 enum Scores
@@ -30,7 +31,7 @@ public:
 	CardSet m_deck;
 	CardSet m_discard;
 
-	static void upgradeMarvel(World* w, Player* p, int PV);
+	void upgradeMarvel(Player* p, int PV);
 	int getMilitaryScore(Player* p);
 	std::vector<Player*> m_players;
 	std::vector<std::vector<unsigned int> > m_scores;

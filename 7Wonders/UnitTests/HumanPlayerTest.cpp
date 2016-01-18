@@ -21,7 +21,7 @@ namespace UnitTests
 			CardSet set;
 			BlueCard card("carte bleue", 5);
 			set.push_back(&card);
-			HumanPlayer cp(&set);
+			HumanPlayer cp(&set, 6);
 			//impossible de tester discard, non accessible
 			Assert::IsTrue(true);
 		}

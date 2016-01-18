@@ -5,9 +5,14 @@
 #include <string>
 
 
-Player::Player(CardSet* discard) : m_discard(discard),money(3), military(0), m_hand(), m_board(), m_cardToPlay(nullptr)
+Player::Player(CardSet* discard, int rec) : m_discard(discard),money(3), military(0), m_hand(), m_board(), m_cardToPlay(nullptr)
 {
+	if (rec >= RESOURCES_COUNT)
+	{
+		throw "Error in Player constructor, int resource chosen out of bound";
+	}
 	std::array<int, RESOURCES_COUNT> resources = { 0, 0, 0, 0, 0, 0, 0 };
+	resources.at(rec)++;
 	m_resources.push_back(resources);
 	//marvel = &DefaultMarvel();
 }
@@ -24,6 +29,11 @@ unsigned int Player::getMoney() const
 unsigned int Player::getMilitary() const
 {
 	return military;
+}
+
+unsigned int Player::getGeneratedScore() const
+{
+	return generatedScore;
 }
 
 unsigned int Player::getScore() const
@@ -77,6 +87,13 @@ const CardSet Player::getPlayableCards() const
 {
 	CardSet cards = m_hand;
 	return cards;
+}
+
+void Player::resetResources()
+{
+	m_resources.clear();
+	std::array<int, RESOURCES_COUNT> resources = { 0, 0, 0, 0, 0, 0, 0 };
+	m_resources.push_back(resources);
 }
 
 
@@ -182,6 +199,19 @@ int Player::identifyResource(char c)
 	}
 }
 
+int Player::countColor(int color)
+{
+	int resul = 0;
+	for (int i = 0; i < m_board.size(); i++)
+	{
+		if (m_board.at(i)->m_color == color)
+		{
+			resul++;
+		}
+	}
+	return resul;
+}
+
 int Player::tradeCountColor(int color)
 {
 	int resul = 0;
@@ -265,6 +295,7 @@ void Player::applyEffects(Card* c)
 		{
 			std::array<int, RESOURCES_COUNT> rec = { 0, 0, 0, 0, 1, 1, 1 };
 			std::array<int, RESOURCES_COUNT> rec2 = { 1, 1, 1, 1, 0, 0, 0 };
+			int res = 0;
 			switch (s.at(0))
 			{
 			case 'g':
@@ -293,6 +324,24 @@ void Player::applyEffects(Card* c)
 				break;
 			case 'b':
 				money += 2 * tradeCountColor(GRAY);
+				break;
+			case 'p':
+				res = countColor(BROWN);
+				money += res;
+				generatedScore = res;
+				break;
+			case 'q':
+				res = countColor(YELLOW);
+				money += res;
+				generatedScore = res;
+				break;
+			case 'r':
+				res = 2*countColor(GRAY);
+				money += res;
+				generatedScore = res;
+				break;
+			case 'a':
+				//TODO
 				break;
 			default:
 				break;

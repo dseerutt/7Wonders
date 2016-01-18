@@ -20,10 +20,11 @@ namespace UnitTests
 			CardSet set;
 			BlueCard card("carte bleue", 5);
 			set.push_back(&card);
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 			Assert::IsTrue(cp.getBoard().empty());
 			Assert::AreEqual((unsigned) 0, cp.getScore());
-			Assert::AreEqual((unsigned) 3, cp.getMoney());
+			Assert::AreEqual((unsigned)3, cp.getMoney());
+			Assert::AreEqual((unsigned int) 0, cp.getGeneratedScore());
 			Assert::IsTrue(cp.getBoard().empty());
 			Assert::IsTrue(cp.getHand().empty());
 			Assert::AreEqual(0, std::get<WOOD>(cp.getResources().at(0)));
@@ -32,7 +33,7 @@ namespace UnitTests
 			Assert::AreEqual(0, std::get<MINERAL>(cp.getResources().at(0)));
 			Assert::AreEqual(0, std::get<PAPYRUS>(cp.getResources().at(0)));
 			Assert::AreEqual(0, std::get<GLASS>(cp.getResources().at(0)));
-			Assert::AreEqual(0, std::get<TEXTILE>(cp.getResources().at(0)));
+			Assert::AreEqual(1, std::get<TEXTILE>(cp.getResources().at(0)));
 			//pas de test de m_discard, m_cardToPlay car protected
 
 		}
@@ -40,13 +41,14 @@ namespace UnitTests
 		TEST_METHOD(GetMoneyTest)
 		{
 			CardSet set;
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 			Assert::AreEqual((unsigned)3, cp.getMoney());
 		}
 
 		TEST_METHOD(CanBuyTest)
 		{
 			World w(2, 5);
+			w.m_players.at(0)->resetResources();
 			w.startAge();
 			int index = 0;
 			for (int i = 0; i < w.m_deck.size(); i++)
@@ -132,6 +134,9 @@ namespace UnitTests
 		{
 			//Cas des voisins
 			World w(2, 5);
+			w.m_players.at(0)->resetResources();
+			w.m_players.at(0)->leftNeighbor->resetResources();
+			w.m_players.at(0)->rightNeighbor->resetResources();
 			w.startAge();
 			CardSet Mycard;
 			int index = 0;
@@ -201,6 +206,9 @@ namespace UnitTests
 		{
 			//Cas des voisins
 			World w(2, 5);
+			w.m_players.at(0)->resetResources();
+			w.m_players.at(0)->leftNeighbor->resetResources();
+			w.m_players.at(0)->rightNeighbor->resetResources();
 			w.startAge();
 			CardSet Mycard;
 			int index = 0;
@@ -277,7 +285,8 @@ namespace UnitTests
 		TEST_METHOD(CanProvideTest)
 		{
 			CardSet c;
-			ComputerPlayer cp(&c);
+			ComputerPlayer cp(&c, 6);
+			cp.resetResources();
 			array<int, RESOURCES_COUNT> stock = { 1, 0, 0, 0, 0, 0, 0 };
 			array<int, RESOURCES_COUNT> pb = { 1, 0, 0, 0, 0, 0, 1 };
 			cp.AddResource(stock);
@@ -291,7 +300,7 @@ namespace UnitTests
 		TEST_METHOD(CountResourcesTest)
 		{
 			CardSet c;
-			ComputerPlayer cp(&c);
+			ComputerPlayer cp(&c, 6);
 			array<int, RESOURCES_COUNT> choice = { 0, 0, 0, 0, 0, 1, 2 };
 			Assert::AreEqual(6, cp.countResourcesL(choice));
 			array<int, RESOURCES_COUNT> choice2 = { 0, 0, 0, 0, 0, 0, 0 };
@@ -301,28 +310,28 @@ namespace UnitTests
 		TEST_METHOD(GetScoreTest)
 		{
 			CardSet set;
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 			Assert::AreEqual((unsigned)0, cp.getScore());
 		}
 
 		TEST_METHOD(GetMilitaryTest)
 		{
 			CardSet set;
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 			Assert::AreEqual((unsigned)0, cp.getMilitary());
 		}
 
 		TEST_METHOD(GetBoardTest)
 		{
 			CardSet set;
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 			Assert::IsTrue(cp.getBoard().empty());
 		}
 
 		TEST_METHOD(SetHandTest)
 		{
 			CardSet set;
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 			Assert::IsTrue(cp.getHand().empty());
 
 			CardSet set2;
@@ -336,7 +345,7 @@ namespace UnitTests
 		TEST_METHOD(GetHandTest)
 		{
 			CardSet set;
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 			Assert::IsTrue(cp.getHand().empty());
 			CardSet set2;
 			BlueCard card("carte bleue", 5);
@@ -350,7 +359,7 @@ namespace UnitTests
 			CardSet set;
 			BlueCard card("carte bleue", 5);
 			set.push_back(&card);
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 
 			CardSet hand;
 			BlueCard card0("carte bleue0", 1);
@@ -384,7 +393,7 @@ namespace UnitTests
 			CardSet set;
 			BlueCard card("carte bleue", 5);
 			set.push_back(&card);
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 			CardSet hand;
 			BlueCard card0("carte bleue0", 1);
 			BlueCard card1("carte bleue1", 2);
@@ -407,7 +416,7 @@ namespace UnitTests
 			CardSet set;
 			BlueCard card("carte bleue", 5);
 			set.push_back(&card);
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 			CardSet hand;
 			BlueCard card0("carte bleue0", 1);
 			BlueCard card1("carte bleue1", 2);
@@ -435,7 +444,7 @@ namespace UnitTests
 			CardSet set;
 			BlueCard card("carte bleue", 5);
 			set.push_back(&card);
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 			CardSet hand;
 			cp.setHand(hand);
 			try {
@@ -449,7 +458,7 @@ namespace UnitTests
 		TEST_METHOD(AddResourcetest)
 		{
 			CardSet set;
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 			std::array<int, RESOURCES_COUNT> nombre = { 0, 0, 0, 0, 2, 0, 0 };
 			cp.AddResource(nombre);
 			Assert::AreEqual(2, std::get<PAPYRUS>(cp.getResources().at(0)));
@@ -463,7 +472,7 @@ namespace UnitTests
 		TEST_METHOD(AddResourceAvecChoixtest)
 		{
 			CardSet set;
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 			std::array<int, RESOURCES_COUNT> nombre = { 1, 0, 0, 0, 1, 0, 0 };
 			cp.AddResourceWithChoice(nombre);
 			Assert::AreEqual(1, std::get<WOOD>(cp.getResources().at(0)));
@@ -480,7 +489,7 @@ namespace UnitTests
 		TEST_METHOD(AddResourceAvecChoixtest2)
 		{
 			CardSet set;
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 			std::array<int, RESOURCES_COUNT> nombre2 = { 1, 0, 0, 0, 0, 0, 0 };
 			cp.AddResource(nombre2);
 			Assert::AreEqual(1, std::get<WOOD>(cp.getResources().at(0)));
@@ -496,7 +505,8 @@ namespace UnitTests
 		TEST_METHOD(AddResourceAvecChoixtest3)
 		{
 			CardSet set;
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
+			cp.resetResources();
 			std::array<int, RESOURCES_COUNT> nombre2 = { 1, 1, 0, 0, 0, 0, 0 };
 			cp.AddResourceWithChoice(nombre2);
 
@@ -531,6 +541,7 @@ namespace UnitTests
 		{
 			World w(2, 5);
 			w.startAge();
+			w.m_players.at(0)->resetResources();
 			int index = 0;
 			for (int i = 0; i < w.m_deck.size(); i++)
 			{
@@ -548,6 +559,7 @@ namespace UnitTests
 			TEST_METHOD(ApplyEffectstestBrown2)
 			{
 				World w(2, 5);
+				w.m_players.at(0)->resetResources();
 				w.startAge();
 				w.startAge();
 				int index = 0;
@@ -581,19 +593,13 @@ namespace UnitTests
 				w.m_players.at(0)->applyEffects(w.m_deck.at(index));
 				Assert::AreEqual(1, w.m_players.at(0)->getResources().at(0).at(TEXTILE));
 			}
-			/*
-			TEST_METHOD(DisplayResourceTest)
-			{
-				CardSet set;
-				ComputerPlayer cp(&set);
-				std::array<int, RESOURCES_COUNT> nombre2 = { 1, 1, 0, 0, 0, 0, 0 };
-				cp.AddResourceWithChoice(nombre2);
-				Assert::AreEqual("You can have: 1 Wood \nYou can have: 1 Stone",cp.displayResource().c_str());
-			}*/
 
 			TEST_METHOD(ComptoirsTest)
 			{
 				World w(2, 5);
+				w.m_players.at(0)->resetResources();
+				w.m_players.at(0)->leftNeighbor->resetResources();
+				w.m_players.at(0)->rightNeighbor->resetResources();
 				w.startAge();
 				std::array<int, RESOURCES_COUNT> nombre2 = { 1, 0, 0, 0, 0, 0, 0 };
 				w.m_players.at(0)->leftNeighbor->AddResourceWithChoice(nombre2);
@@ -627,6 +633,9 @@ namespace UnitTests
 			TEST_METHOD(ComptoirsTest2)
 			{
 				World w(2, 5);
+				w.m_players.at(0)->resetResources();
+				w.m_players.at(0)->leftNeighbor->resetResources();
+				w.m_players.at(0)->rightNeighbor->resetResources();
 				w.startAge();
 				std::array<int, RESOURCES_COUNT> nombre2 = { 1, 0, 0, 0, 0, 0, 0 };
 				w.m_players.at(0)->rightNeighbor->AddResourceWithChoice(nombre2);
@@ -726,6 +735,7 @@ namespace UnitTests
 			TEST_METHOD(CaravanserailTest)
 			{
 				World w(0, 5);
+				w.m_players.at(0)->resetResources();
 				w.m_age++;
 				w.m_deck = w.generateDeck(0);
 				YellowCard b("Card 1", "c");
@@ -775,11 +785,54 @@ namespace UnitTests
 				Assert::AreEqual(cpt2, w.m_players.at(0)->tradeCountColor(GRAY));
 			}
 
+			TEST_METHOD(CountColorTest)
+			{
+				World w(0, 5);
+				w.startAge();
+				w.play(*w.m_players.at(0));
+				w.playOthers(*w.m_players.at(0));
+				w.prepareTurn();
+				w.playTurn();
+				w.play(*w.m_players.at(0));
+				w.playOthers(*w.m_players.at(0));
+				w.prepareTurn();
+				w.playTurn();
+				w.play(*w.m_players.at(0));
+				w.playOthers(*w.m_players.at(0));
+				w.prepareTurn();
+				w.playTurn();
+				int cpt = 0;
+				if (w.m_players.at(0)->getBoard().at(0)->m_color == BROWN)
+				{
+					cpt++;
+				}
+				if (w.m_players.at(0)->getBoard().at(1)->m_color == BROWN)
+				{
+					cpt++;
+				}
+				if (w.m_players.at(0)->getBoard().at(2)->m_color == BROWN)
+				{
+					cpt++;
+				}
+				Assert::AreEqual(cpt, w.m_players.at(0)->countColor(BROWN));
+			}
+
 			TEST_METHOD(UpgradeMarvelMoneyTest)
 			{
 				World w(0, 5);
 				w.m_players.at(0)->upgradeMarvelMoney(4);
 				Assert::AreEqual((unsigned int) 7, w.m_players.at(0)->getMoney());
+			}
+
+			TEST_METHOD(ResetResourceTest)
+			{
+				World w(0, 5);
+				w.m_players.at(0)->resetResources();
+				Assert::AreEqual((size_t) 1, w.m_players.at(0)->getResources().size());
+				for (int i = 0; i < RESOURCES_COUNT; i++)
+				{
+					Assert::AreEqual(0, w.m_players.at(0)->getResources().at(0).at(i));
+				}
 			}
 	};
 }

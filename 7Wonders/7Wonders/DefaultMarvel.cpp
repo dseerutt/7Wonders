@@ -43,6 +43,7 @@ bool DefaultMarvel::canUpgrade()
 void DefaultMarvel::upgrade1(Player* p, World* w)
 {
 	p->upgradeMarvelMoney(2);
+	w->upgradeMarvel(p, 2);
 }
 
 void DefaultMarvel::upgrade2(Player* p, World* w)

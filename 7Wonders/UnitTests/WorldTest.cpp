@@ -370,5 +370,12 @@ namespace UnitTests
 			w.distributeCards();
 			Assert::AreEqual(0,(int) w.m_players[0]->getHand().size());
 		}
+
+		TEST_METHOD(UpdateMarveltest)
+		{
+			World w(1, 2);
+			w.upgradeMarvel(w.m_players.at(0), 5);
+			Assert::AreEqual(5, (int) w.m_scores[0][WONDER_LEVEL]);
+		}
 	};
 }

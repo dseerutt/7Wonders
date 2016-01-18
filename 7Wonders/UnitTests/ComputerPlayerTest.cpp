@@ -21,7 +21,7 @@ namespace UnitTests
 			CardSet set;
 			BlueCard card("carte bleue", 5);
 			set.push_back(&card);
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set,6);
 			//impossible de tester discard, non accessible
 			Assert::IsTrue(true);
 		}
@@ -31,7 +31,7 @@ namespace UnitTests
 			CardSet set;
 			BlueCard card("carte bleue", 5);
 			set.push_back(&card);
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 
 
 			CardSet hand;
@@ -67,7 +67,7 @@ namespace UnitTests
 			CardSet set;
 			BlueCard card("carte bleue", 5);
 			set.push_back(&card);
-			ComputerPlayer cp(&set);
+			ComputerPlayer cp(&set, 6);
 
 
 			CardSet hand;
@@ -98,7 +98,7 @@ namespace UnitTests
 			CardSet set2;
 			BlueCard card222("carte bleue", 5);
 			set2.push_back(&card222);
-			ComputerPlayer cp2(&set);
+			ComputerPlayer cp2(&set, 6);
 
 
 			CardSet hand2;

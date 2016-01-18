@@ -4,7 +4,7 @@
 using namespace std;
 
 
-HumanPlayer::HumanPlayer(CardSet* discard) : Player(discard)
+HumanPlayer::HumanPlayer(CardSet* discard, int rec) : Player(discard, rec)
 {
 }
 

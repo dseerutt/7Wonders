@@ -13,13 +13,16 @@ World::World(unsigned int nh, unsigned int nc) :
 	m_gameOver(false), m_age(0), m_cardDatabaseParser(nh + nc),
 	m_deck(), m_discard(), m_scores(nh + nc, std::vector<unsigned int>(TOTAL_SCORE+1)), m_winner(nullptr), m_draw(false)
 {
+	int index = 0;
 	for (unsigned int i = 0; i < nh; i++)
 	{
-		m_players.push_back(new HumanPlayer(&m_discard));
+		m_players.push_back(new HumanPlayer(&m_discard,index));
+		index++;
 	}
 	for (unsigned int i = 0; i < nc; i++)
 	{
-		m_players.push_back(new ComputerPlayer(&m_discard));
+		m_players.push_back(new ComputerPlayer(&m_discard,index));
+		index++;
 	}
 	//Choix des voisins
 	vector<int> unused;
@@ -247,9 +250,17 @@ void World::playTurn()
 }
 
 
-void upgradeMarvel(World* w, Player* p, int PV)
+void World::upgradeMarvel(Player* p, int PV)
 {
-	//TODO
+	int index = 0;
+	for (int i = 0; i < m_players.size(); i++)
+	{
+		if (m_players.at(i) == p)
+		{
+			index = i;
+		}
+	}
+	m_scores[index][WONDER_LEVEL] += PV;
 }
 
 void World::computeScores()
@@ -278,6 +289,9 @@ void World::computeScores()
 
 		//Science score --------------------------------------------------------
 		m_scores[i][SCIENCE] = computeScienceScore(board);
+
+		//MarvelPV score --------------------------------------------------------
+		m_scores[i][WONDER_LEVEL] = m_players[i]->getGeneratedScore();
 
 		//Total score ----------------------------------------------------------
 		m_scores[i][TOTAL_SCORE] = m_scores[i][BLUE_CARDS] + m_scores[i][SCIENCE] + m_scores[i][GOLD];
