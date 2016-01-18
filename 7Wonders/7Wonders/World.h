@@ -34,7 +34,7 @@ public:
 	void upgradeMarvel(Player* p, int PV);
 	int getMilitaryScore(Player* p);
 	std::vector<Player*> m_players;
-	std::vector<std::vector<unsigned int> > m_scores;
+	std::vector<std::vector<int> > m_scores;
 	const Player* m_winner;
 	bool m_draw;
 

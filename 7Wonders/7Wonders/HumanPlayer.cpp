@@ -51,7 +51,7 @@ void HumanPlayer::pickCard()
 			}
 			else
 			{
-				if (alreadyPlayed(m_hand.at(choice)->m_name))
+				if (!defausse&&alreadyPlayed(m_hand.at(choice)->m_name))
 				{
 					continueLoop = true;
 					cout << "Sorry, you can't play the same card twice" << endl;

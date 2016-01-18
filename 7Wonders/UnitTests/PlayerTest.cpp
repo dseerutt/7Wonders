@@ -263,6 +263,9 @@ namespace UnitTests
 		{
 			//Cas des voisins
 			World w(2, 5);
+			w.m_players.at(0)->resetResources();
+			w.m_players.at(0)->leftNeighbor->resetResources();
+			w.m_players.at(0)->rightNeighbor->resetResources();
 			w.startAge();
 			int index = 0;
 

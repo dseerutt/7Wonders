@@ -11,7 +11,7 @@
 
 World::World(unsigned int nh, unsigned int nc) : 
 	m_gameOver(false), m_age(0), m_cardDatabaseParser(nh + nc),
-	m_deck(), m_discard(), m_scores(nh + nc, std::vector<unsigned int>(TOTAL_SCORE+1)), m_winner(nullptr), m_draw(false)
+	m_deck(), m_discard(), m_scores(nh + nc, std::vector<int>(TOTAL_SCORE+1)), m_winner(nullptr), m_draw(false)
 {
 	int index = 0;
 	for (unsigned int i = 0; i < nh; i++)
@@ -104,9 +104,7 @@ void World::updateMilitary()
 {
 	for (int i = 0; i < m_players.size(); i++)
 	{
-		int s = getMilitaryScore(m_players.at(i));
-		int r = m_scores[i][WAR];
-		m_scores[i][WAR] += s;
+		m_scores[i][WAR] += getMilitaryScore(m_players.at(i));
 	}
 }
 
