@@ -17,7 +17,4 @@ public:
 	static std::array<int, RESOURCES_COUNT> up2;
 	static std::array<int, RESOURCES_COUNT> up3;
 };
-std::array<int, RESOURCES_COUNT> DefaultMarvel::up1 = { 1, 0, 0, 0, 0, 0, 0 };
-std::array<int, RESOURCES_COUNT> DefaultMarvel::up2 = { 2, 0, 0, 0, 0, 0, 0 };
-std::array<int, RESOURCES_COUNT> DefaultMarvel::up3 = { 3, 0, 0, 0, 0, 0, 0 };
 

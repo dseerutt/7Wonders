@@ -2,8 +2,7 @@
 #include <vector>
 #include "CardSet.h"
 #include "CardDatabaseParser.h"
-#include "HumanPlayer.h"
-#include "ComputerPlayer.h"
+#include "Player.h"
 #define NUMBER_OF_AGES 3
 
 enum Scores

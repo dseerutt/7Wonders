@@ -3,10 +3,10 @@
 #include "YellowCard.h"
 #include "BrownCard.h"
 #include <string>
-//#include "DefaultMarvel.h"
+#include "DefaultMarvel.h"
 
 
-Player::Player(CardSet* discard, int rec) : m_discard(discard), money(3), military(0), m_hand(), m_board(), m_cardToPlay(nullptr)//, marvel(new DefaultMarvel())
+Player::Player(CardSet* discard, int rec) : m_discard(discard), money(3), military(0), m_hand(), m_board(), m_cardToPlay(nullptr), marvel(new DefaultMarvel())
 {
 	if (rec >= RESOURCES_COUNT)
 	{
