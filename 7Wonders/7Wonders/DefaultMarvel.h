@@ -5,10 +5,10 @@ class DefaultMarvel : public Marvel
 public:
 	DefaultMarvel();
 	~DefaultMarvel();
-	virtual void upgrade();
+	virtual void upgrade(Player* p);
 	virtual bool canUpgrade();
-	void upgrade1();
-	void upgrade2();
-	void upgrade3();
+	void upgrade1(Player* p);
+	void upgrade2(Player* p);
+	void upgrade3(Player* p);
 };
 
