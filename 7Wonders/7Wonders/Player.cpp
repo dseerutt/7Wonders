@@ -341,7 +341,9 @@ void Player::applyEffects(Card* c)
 				generatedScore = res;
 				break;
 			case 'a':
-				//TODO
+				//int res = marvel.getMarvelLevel();
+				//money += 3*res;
+				//generatedScore = res;
 				break;
 			default:
 				break;

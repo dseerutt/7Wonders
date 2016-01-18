@@ -4,7 +4,7 @@
 class YellowCard : public Card
 {
 public:
-	YellowCard(const std::string& name, const std::string& production);
+	YellowCard(const std::string& name, const std::string& production, std::string cardName);
 	~YellowCard();
 
 	virtual unsigned int getPoints() const;

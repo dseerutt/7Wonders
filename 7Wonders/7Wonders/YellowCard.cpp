@@ -1,6 +1,6 @@
 #include "YellowCard.h"
 
-YellowCard::YellowCard(const std::string& name, const std::string& production) : Card(name, YELLOW)
+YellowCard::YellowCard(const std::string& name, const std::string& production, std::string cardName) : Card(name, YELLOW, cardName)
 {
 	m_production = production;
 }

@@ -78,44 +78,51 @@ m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 
 		std::string productionB;
 		std::string productionG;
+		std::string cardName;
 		switch (color)
 		{
 		case BROWN:{
 			file >> productionB;
-			BrownCard b(name, productionB);
+			file >> cardName;
+			BrownCard b(name, productionB, cardName);
 			b.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
 			m_brownCards[age - 1].push_back(b);
 			break; }
 		case GRAY:{
 			file >> productionG;
-			GrayCard g(name, productionG);
+			file >> cardName;
+			GrayCard g(name, productionG, cardName);
 			g.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
 			m_grayCards[age - 1].push_back(g);
 			break; }
 		case BLUE:{
 			int points;
 			file >> points;
-			BlueCard c(name, points);
+			file >> cardName;
+			BlueCard c(name, points, cardName);
 			c.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
 			m_blueCards[age - 1].push_back(c);
 			break; }
 		case YELLOW:{
 			file >> productionG;
-			YellowCard y(name, productionG);
+			file >> cardName;
+			YellowCard y(name, productionG, cardName);
 			y.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
 			m_yellowCards[age - 1].push_back(y);
 			break; }
 		case RED:{
 			unsigned int power;
 			file >> power;
-			RedCard r(name, power);
+			file >> cardName;
+			RedCard r(name, power, cardName);
 			r.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
 			m_redCards[age - 1].push_back(r);
 			break; }
 		case GREEN:{
 			char type;
 			file >> type;
-			GreenCard gr(name, type);
+			file >> cardName;
+			GreenCard gr(name, type, cardName);
 			gr.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
 			m_greenCards[age - 1].push_back(gr);
 			break; }

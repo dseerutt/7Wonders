@@ -19,7 +19,7 @@ namespace UnitTests
 		TEST_METHOD(HumanPlayerConstructor)
 		{
 			CardSet set;
-			BlueCard card("carte bleue", 5);
+			BlueCard card("carte bleue", 5, "-");
 			set.push_back(&card);
 			HumanPlayer cp(&set, 6);
 			//impossible de tester discard, non accessible

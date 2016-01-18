@@ -8,7 +8,7 @@ class BrownCard : public Card
 private:
 	const std::string m_production;
 public:
-	BrownCard(const std::string& name, const std::string& production);
+	BrownCard(const std::string& name, const std::string& production, std::string cardName);
 	~BrownCard();
 
 	virtual unsigned int getPoints() const;

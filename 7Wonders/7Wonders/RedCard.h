@@ -6,7 +6,7 @@ class RedCard : public Card
 private:
 	unsigned int m_power;
 public:
-	RedCard(const std::string& name, unsigned int power);
+	RedCard(const std::string& name, unsigned int power, std::string cardName);
 	~RedCard();
 
 	virtual unsigned int getPoints() const;

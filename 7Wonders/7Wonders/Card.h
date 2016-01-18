@@ -28,12 +28,13 @@ class Card
 {
 public:
 	std::string m_name;
+	std::string buyForFreeIf;
 	CardColor m_color;
 	int m_price;
 	std::string m_production;
 
 public:
-	Card(const std::string& name, CardColor color);
+	Card(const std::string& name, CardColor color, std::string cardName);
 	~Card();
 	int m_Cost[RESOURCES_COUNT];
 	virtual unsigned int getPoints() const = 0;

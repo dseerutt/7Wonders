@@ -18,7 +18,7 @@ namespace UnitTests
 		TEST_METHOD(PlayerConstructor)
 		{
 			CardSet set;
-			BlueCard card("carte bleue", 5);
+			BlueCard card("carte bleue", 5, "-");
 			set.push_back(&card);
 			ComputerPlayer cp(&set, 6);
 			Assert::IsTrue(cp.getBoard().empty());
@@ -335,7 +335,7 @@ namespace UnitTests
 			Assert::IsTrue(cp.getHand().empty());
 
 			CardSet set2;
-			BlueCard card("carte bleue", 5);
+			BlueCard card("carte bleue", 5, "-");
 			set2.push_back(&card);
 			cp.setHand(set2);
 			Assert::IsTrue(!cp.getHand().empty());
@@ -348,7 +348,7 @@ namespace UnitTests
 			ComputerPlayer cp(&set, 6);
 			Assert::IsTrue(cp.getHand().empty());
 			CardSet set2;
-			BlueCard card("carte bleue", 5);
+			BlueCard card("carte bleue", 5, "-");
 			set2.push_back(&card);
 			cp.setHand(set2);
 			Assert::AreEqual(set2.at(0)->m_name, cp.getHand().at(0)->m_name);
@@ -357,19 +357,19 @@ namespace UnitTests
 		TEST_METHOD(PrepareTurnETPlayTurnTest)
 		{
 			CardSet set;
-			BlueCard card("carte bleue", 5);
+			BlueCard card("carte bleue", 5, "-");
 			set.push_back(&card);
 			ComputerPlayer cp(&set, 6);
 
 			CardSet hand;
-			BlueCard card0("carte bleue0", 1);
-			BlueCard card1("carte bleue1", 2);
-			BlueCard card2("carte bleue2", 3);
-			BlueCard card3("carte bleue3", 4);
-			BlueCard card4("carte bleue4", 5);
-			BlueCard card5("carte bleue5", 6);
-			BlueCard card6("carte bleue6", 7);
-			BlueCard card7("carte bleue7", 8);
+			BlueCard card0("carte bleue0", 1, "-");
+			BlueCard card1("carte bleue1", 2, "-");
+			BlueCard card2("carte bleue2", 3, "-");
+			BlueCard card3("carte bleue3", 4, "-");
+			BlueCard card4("carte bleue4", 5, "-");
+			BlueCard card5("carte bleue5", 6, "-");
+			BlueCard card6("carte bleue6", 7, "-");
+			BlueCard card7("carte bleue7", 8, "-");
 			hand.push_back(&card0);
 			hand.push_back(&card1);
 			hand.push_back(&card2);
@@ -391,13 +391,13 @@ namespace UnitTests
 		TEST_METHOD(playTurnTestBadCases1)
 		{
 			CardSet set;
-			BlueCard card("carte bleue", 5);
+			BlueCard card("carte bleue", 5, "-");
 			set.push_back(&card);
 			ComputerPlayer cp(&set, 6);
 			CardSet hand;
-			BlueCard card0("carte bleue0", 1);
-			BlueCard card1("carte bleue1", 2);
-			BlueCard card7("carte bleue7", 8);
+			BlueCard card0("carte bleue0", 1, "-");
+			BlueCard card1("carte bleue1", 2, "-");
+			BlueCard card7("carte bleue7", 8, "-");
 			hand.push_back(&card0);
 			hand.push_back(&card1);
 			hand.push_back(&card7);
@@ -414,13 +414,13 @@ namespace UnitTests
 		TEST_METHOD(playTurnTestBadCases2)
 		{
 			CardSet set;
-			BlueCard card("carte bleue", 5);
+			BlueCard card("carte bleue", 5, "-");
 			set.push_back(&card);
 			ComputerPlayer cp(&set, 6);
 			CardSet hand;
-			BlueCard card0("carte bleue0", 1);
-			BlueCard card1("carte bleue1", 2);
-			BlueCard card7("carte bleue7", 8);
+			BlueCard card0("carte bleue0", 1, "-");
+			BlueCard card1("carte bleue1", 2, "-");
+			BlueCard card7("carte bleue7", 8, "-");
 			hand.push_back(&card0);
 			hand.push_back(&card1);
 			hand.push_back(&card7);
@@ -442,7 +442,7 @@ namespace UnitTests
 		TEST_METHOD(PrepareTurnTestBadCases1)
 		{
 			CardSet set;
-			BlueCard card("carte bleue", 5);
+			BlueCard card("carte bleue", 5, "-");
 			set.push_back(&card);
 			ComputerPlayer cp(&set, 6);
 			CardSet hand;
@@ -669,6 +669,9 @@ namespace UnitTests
 			TEST_METHOD(ComptoirsTest3)
 			{
 				World w(2, 5);
+				w.m_players.at(0)->resetResources();
+				w.m_players.at(0)->leftNeighbor->resetResources();
+				w.m_players.at(0)->rightNeighbor->resetResources();
 				w.startAge();
 				std::array<int, RESOURCES_COUNT> nombre2 = { 0, 0, 0, 0, 0, 0, 1 };
 				w.m_players.at(0)->rightNeighbor->AddResourceWithChoice(nombre2);
@@ -704,7 +707,7 @@ namespace UnitTests
 				World w(0, 5);
 				w.m_age++;
 				w.m_deck = w.generateDeck(0);
-				BlueCard b("Card 1", 5);
+				BlueCard b("Card 1", 5, "-");
 				w.m_deck[0] = &b;
 				w.distributeCards();
 				w.play(*w.m_players.at(0));
@@ -720,7 +723,7 @@ namespace UnitTests
 				World w(0, 5);
 				w.m_age++;
 				w.m_deck = w.generateDeck(0);
-				YellowCard b("Card 1", "f");
+				YellowCard b("Card 1", "f", "-");
 				w.m_deck[0] = &b;
 				w.distributeCards();
 				w.play(*w.m_players.at(0));
@@ -738,7 +741,7 @@ namespace UnitTests
 				w.m_players.at(0)->resetResources();
 				w.m_age++;
 				w.m_deck = w.generateDeck(0);
-				YellowCard b("Card 1", "c");
+				YellowCard b("Card 1", "c", "-");
 				w.m_deck[0] = &b;
 				w.distributeCards();
 				w.play(*w.m_players.at(0));
@@ -756,7 +759,7 @@ namespace UnitTests
 				World w(0, 5);
 				w.m_age++;
 				w.m_deck = w.generateDeck(0);
-				YellowCard b("Card 1", "c");
+				YellowCard b("Card 1", "c", "-");
 				w.m_deck[0] = &b;
 				w.distributeCards();
 				w.play(*w.m_players.at(0));

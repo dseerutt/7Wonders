@@ -187,7 +187,7 @@ namespace UnitTests
 			World w(0, 5); 
 			w.m_age++;
 			w.m_deck = w.generateDeck(0);
-			BlueCard b("Card 1", 5);
+			BlueCard b("Card 1", 5,"-");
 			w.m_deck[0] = &b;
 			w.distributeCards();
 			w.play(*w.m_players.at(0));
@@ -206,8 +206,8 @@ namespace UnitTests
 			World w(0, 5);
 			w.m_age++;
 			w.m_deck = w.generateDeck(0);
-			RedCard b("Card 1", 2);
-			RedCard b2("Card 2", 1);
+			RedCard b("Card 1", 2, "-");
+			RedCard b2("Card 2", 1, "-");
 			w.m_deck[0] = &b;
 			w.distributeCards();
 			w.play(*w.m_players.at(0));
@@ -222,16 +222,16 @@ namespace UnitTests
 		{
 			World w(0, 3);
 			CardSet set;
-			GreenCard g0("Card 1", 'c');
-			GreenCard g1("Card 2", 'g');
+			GreenCard g0("Card 1", 'c', "-");
+			GreenCard g1("Card 2", 'g', "-");
 			set.push_back(&g0);
 			set.push_back(&g1);
 			Assert::AreEqual( (unsigned) 2, w.computeScienceScore(set));
-			GreenCard g2("Card 3", 't');
+			GreenCard g2("Card 3", 't', "-");
 			set.push_back(&g2);
 			Assert::AreEqual((unsigned)10, w.computeScienceScore(set));
-			GreenCard g3("Card 4", 't');
-			GreenCard g4("Card 5", 't');
+			GreenCard g3("Card 4", 't', "-");
+			GreenCard g4("Card 5", 't', "-");
 			set.push_back(&g3);
 			set.push_back(&g4);
 			Assert::AreEqual((unsigned)18, w.computeScienceScore(set));

@@ -1,7 +1,7 @@
 #include "GrayCard.h"
 
 
-GrayCard::GrayCard(const std::string& name, const std::string& production) : Card(name, GRAY)
+GrayCard::GrayCard(const std::string& name, const std::string& production, std::string cardName) : Card(name, GRAY, cardName)
 {
 	m_production = production;
 }
