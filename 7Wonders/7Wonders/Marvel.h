@@ -1,6 +1,4 @@
 #pragma once
-#include "Player.h"
-#include "World.h"
 class Marvel
 {
 public:
@@ -11,7 +9,7 @@ public:
 	~Marvel();
 	int getMarvelLevel();
 	int getMarvelMaxLevel();
-	virtual void upgrade(Player* p, World* w) = 0;
+	virtual void upgrade() = 0;
 	virtual bool canUpgrade() = 0;
 };
 

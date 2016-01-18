@@ -10,20 +10,20 @@ DefaultMarvel::~DefaultMarvel()
 {
 }
 
-void DefaultMarvel::upgrade(Player* p, World* w)
+void DefaultMarvel::upgrade()
 {
 	if (canUpgrade())
 	{
 		switch (marvelLevel)
 		{
 		case 0:
-			upgrade1(p, w);
+			upgrade1();
 			break;
 		case 1:
-			upgrade2(p,w);
+			upgrade2();
 			break;
 		case 2:
-			upgrade3(p,w);
+			upgrade3();
 			break;
 		default:
 			break;
@@ -40,20 +40,16 @@ bool DefaultMarvel::canUpgrade()
 	return true;
 }
 
-void DefaultMarvel::upgrade1(Player* p, World* w)
+void DefaultMarvel::upgrade1()
 {
-	p->upgradeMarvelMoney(2);
-	w->upgradeMarvel(p, 2);
 }
 
-void DefaultMarvel::upgrade2(Player* p, World* w)
+void DefaultMarvel::upgrade2()
 {
-	p->upgradeMarvelMoney(4);
 
 }
 
-void DefaultMarvel::upgrade3(Player* p, World* w)
+void DefaultMarvel::upgrade3()
 {
-	p->upgradeMarvelMoney(6);
 
 }

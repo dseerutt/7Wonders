@@ -4,7 +4,6 @@
 #include "ComputerPlayer.h"
 #include "CardSet.h"
 #include "CardDatabaseParser.h"
-//#include "Marvel.h"
 #define NUMBER_OF_AGES 3
 
 enum Scores

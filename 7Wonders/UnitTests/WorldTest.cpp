@@ -198,7 +198,7 @@ namespace UnitTests
 			w.startAge();
 			w.startAge();
 			w.computeScores();
-			Assert::AreEqual((unsigned)5, w.m_scores.at(0).at(BLUE_CARDS));
+			Assert::AreEqual(5, w.m_scores.at(0).at(BLUE_CARDS));
 		}
 
 		TEST_METHOD(TestingRedCardScore)
