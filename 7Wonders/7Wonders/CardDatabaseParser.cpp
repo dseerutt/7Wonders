@@ -115,9 +115,9 @@ m_violetCards(NUMBER_OF_AGES, std::vector<VioletCard>())
 		case VIOLET:{
 			file >> productionG;
 			file >> cardName;
-			YellowCard y(name, productionG, cardName);
+			VioletCard y(name, productionG, cardName);
 			y.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
-			m_yellowCards[age - 1].push_back(y);
+			m_violetCards[age - 1].push_back(y);
 			break; }
 		case RED:{
 			unsigned int power;
@@ -139,6 +139,12 @@ m_violetCards(NUMBER_OF_AGES, std::vector<VioletCard>())
 			break; }
 		}
 	}
+	std::srand(std::time(0));
+	for (int i = 0; i < 10 - (playerNumber + 2); i++)
+	{
+		int randomIndex = rand() % (m_violetCards.size());
+		m_violetCards[2].erase(m_violetCards[2].begin() + randomIndex);
+	}
 	/*
 		At this point, the decks m_[color]Cards contains every card of the database that have the required number of players
 	*/
@@ -151,12 +157,6 @@ CardDatabaseParser::~CardDatabaseParser()
 
 CardSet CardDatabaseParser::generateDeck(int age)
 {
-	if (age == 0)
-	{
-		std::srand(std::time(0));
-		int randomIndex = rand() % (m_violetCards.size());
-		m_violetCards.erase(m_violetCards.begin() + randomIndex);
-	}
 	CardSet v;
 	for (unsigned int i = 0; i < m_brownCards[age].size(); i++)
 	{
