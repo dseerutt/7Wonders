@@ -14,9 +14,13 @@ void ComputerPlayer::pickCard()
 	if (cards.empty())
 	{
 		defausse = true;
+		m_cardToPlay = getHand().at(0);
+	}
+	else {
+		m_cardToPlay = cards.at(0);
 	}
 
-		m_cardToPlay = cards.at(0);
+		
 	//To build a wonder -> defausse = true; marvelTreatment = true;
 
 	/*std::mt19937 mt;
