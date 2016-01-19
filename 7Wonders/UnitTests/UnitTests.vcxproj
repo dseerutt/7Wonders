@@ -100,6 +100,7 @@
     </ClCompile>
     <ClCompile Include="DefaultTest.cpp" />
     <ClCompile Include="CardColorTest.cpp" />
+    <ClCompile Include="TestingScoreTest.cpp" />
     <ClCompile Include="WorldTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
