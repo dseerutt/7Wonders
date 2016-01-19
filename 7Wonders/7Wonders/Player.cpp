@@ -2,6 +2,7 @@
 #include "RedCard.h"
 #include "YellowCard.h"
 #include "BrownCard.h"
+#include "GreenCard.h"
 #include <string>
 #include "DefaultMarvel.h"
 
@@ -58,6 +59,10 @@ unsigned int Player::getMilitary() const
 	return military;
 }
 
+unsigned int Player::getMilitaryMalus() const
+{
+	return militaryMalus;
+}
 
 Marvel* Player::getMarvel()
 {
@@ -281,6 +286,100 @@ int Player::tradeCountColor(int color)
 	return resul;
 }
 
+void Player::applyEndingEffects(Card* c)
+{
+	if (c->m_color == VIOLET)
+	{
+		int res = 0;
+		switch (c->m_production.at(0))
+		{
+		case 'a':
+			res = leftNeighbor->countColor(BROWN) + rightNeighbor->countColor(BROWN);
+			generatedScore += res;
+			break;
+		case 'b':
+			res = leftNeighbor->countColor(GRAY) + rightNeighbor->countColor(GRAY);
+			generatedScore += 2 * res;
+			break;
+		case 'c':
+			res = leftNeighbor->countColor(YELLOW) + rightNeighbor->countColor(YELLOW);
+			generatedScore += res;
+			break;
+		case 'd':
+			res = leftNeighbor->countColor(GREEN) + rightNeighbor->countColor(GREEN);
+			generatedScore += res;
+			break;
+		case 'e':
+			res = leftNeighbor->countColor(RED) + rightNeighbor->countColor(RED);
+			generatedScore += res;
+			break;
+		case 'f':
+			res = leftNeighbor->getMilitaryMalus() + rightNeighbor->getMilitaryMalus();
+			generatedScore += res;
+			break;
+		case 'g':
+			res = countColor(BROWN) + countColor(GRAY) + countColor(VIOLET);
+			generatedScore += res;
+			break;
+		case 'h':
+			//Ajouter toutes les combinaisons puis garder la meilleure
+			scientistGuildTreatment();
+			break;
+		case 'i':
+			res = leftNeighbor->countColor(BLUE) + rightNeighbor->countColor(BLUE);
+			generatedScore += res;
+			break;
+		case 'j':
+			res = leftNeighbor->getMarvel()->getMarvelLevel()
+				+ rightNeighbor->getMarvel()->getMarvelLevel()
+				+ getMarvel()->getMarvelLevel();
+			generatedScore += res;
+			break;
+		default:
+			break;
+		}
+	}
+	if (c->m_color == YELLOW)
+	{
+		string s = ((YellowCard*)c)->getProduction();
+		if (s.length() == 1)
+		{
+			std::array<int, RESOURCES_COUNT> rec = { 0, 0, 0, 0, 1, 1, 1 };
+			std::array<int, RESOURCES_COUNT> rec2 = { 1, 1, 1, 1, 0, 0, 0 };
+			int res = 0;
+			switch (s.at(0))
+			{
+			case 'f':
+				AddResourceWithChoice(rec);
+				resourcesDisplay += (s + " ");
+				break;
+			case 'c':
+				AddResourceWithChoice(rec2);
+				resourcesDisplay += (s + " ");
+				break;
+			case 'p':
+				res = countColor(BROWN);
+				generatedScore += res;
+				break;
+			case 'q':
+				res = countColor(YELLOW);
+				generatedScore += res;
+				break;
+			case 'r':
+				res = 2 * countColor(GRAY);
+				generatedScore += res;
+				break;
+			case 'a':
+				res = marvel->getMarvelLevel();
+				generatedScore += res;
+				break;
+			default:
+				break;
+			}
+		}
+	}
+}
+
 void Player::applyEffects(Card* c)
 {
 	std::array<int, RESOURCES_COUNT> rec = { 0, 0, 0, 0, 0, 0, 0 };
@@ -324,14 +423,6 @@ void Player::applyEffects(Card* c)
 	{
 		military += c->getPower();
 	}
-	else if (c->m_color == BLUE)
-	{
-		//Pas de traitement en cours de jeu
-	}
-	else if (c->m_color == GREEN)
-	{
-		//Pas de traitement en cours de jeu
-	}
 	else if (c->m_color == YELLOW)
 	{
 		string s = ((YellowCard*)c)->getProduction();
@@ -374,22 +465,22 @@ void Player::applyEffects(Card* c)
 			case 'p':
 				res = countColor(BROWN);
 				money += res;
-				generatedScore = res;
+				//generatedScore += res;
 				break;
 			case 'q':
 				res = countColor(YELLOW);
 				money += res;
-				generatedScore = res;
+				//generatedScore += res;
 				break;
 			case 'r':
 				res = 2*countColor(GRAY);
 				money += res;
-				generatedScore = res;
+				//generatedScore += res;
 				break;
 			case 'a':
 				res = marvel->getMarvelLevel();
 				money += 3*res;
-				generatedScore = res;
+				//generatedScore += res;
 				break;
 			default:
 				break;
@@ -398,6 +489,36 @@ void Player::applyEffects(Card* c)
 	}
 }
 
+void Player::scientistGuildTreatment()
+{
+	int v1 = computeScienceScore(0);
+	int v2 = computeScienceScore(1);
+	int v3 = computeScienceScore(2);
+	char cc = '-';
+	if (v1 >= v2)
+	{
+		if (v3 >= v1)
+		{
+			cc = 'c';
+		}
+	}
+	if (v2 >= v3)
+	{
+		if (v2 >= v1)
+		{
+			cc = 'g';
+		}
+	}
+	if (v3 >= v1)
+	{
+		if (v3 >= v2)
+		{
+			cc = 't';
+		}
+	}
+	GreenCard card("Guild_CARD", cc, "-");
+	m_board.push_back(&card);
+}
 
 bool Player::canBuy(Card* c)
 {
@@ -428,6 +549,37 @@ bool Player::canBuy(Card* c)
 		}
 	}
 	return false;
+}
+
+unsigned int Player::computeScienceScore(int value) const
+{
+	unsigned int compass = 0, gear = 0, tablet = 0;
+	if (value == 0)
+	{
+		compass++;
+	}
+	else if (value == 1)
+	{
+		gear++;
+	}
+	else {
+		tablet++;
+	}
+	for (unsigned int i = 0; i < m_board.size(); i++)
+	{
+		const GreenCard& card = (GreenCard&)(*m_board[i]);
+		if (card.m_color == GREEN)
+		{
+			if (card.getType() == 'c')
+				compass++;
+			if (card.getType() == 'g')
+				gear++;
+			if (card.getType() == 't')
+				tablet++;
+		}
+	}
+	unsigned int res = compass*compass + gear*gear + tablet*tablet + 7 * std::min(compass, std::min(gear, tablet));
+	return res;
 }
 
 int Player::canBuyWithNeighbor(Card* c)

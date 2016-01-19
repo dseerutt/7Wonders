@@ -26,22 +26,26 @@ protected:
 public:
 	
 	std::string resourcesDisplay = "";
+	int militaryMalus = 0;
 	Player(CardSet* discard, int rec);
 	~Player();
 	Marvel* getMarvel();
 	void upgradeMarvelMoney(int coins);
+	unsigned int computeScienceScore(int value) const;
 	int tradeCountColor(int color);
 	int countColor(int color);
 	std::vector<std::array<int, RESOURCES_COUNT>> getResources();
 	bool alreadyPlayed(string s);
 	Player* leftNeighbor;
 	Player* rightNeighbor;
+	void scientistGuildTreatment();
 	string displayResourceManager(string me);
 	string displayResource(string me, std::vector<std::array<int, RESOURCES_COUNT>>);
 	static string displayResourceType(int i);
 	void resetResources();
 
 	unsigned int getMilitary() const;
+	unsigned int getMilitaryMalus() const;
 	unsigned int getGeneratedScore() const;
 	unsigned int getScore() const;
 	unsigned int getMoney() const;
@@ -51,6 +55,7 @@ public:
 	bool canBuy(Card* c);
 	bool Buy(Card* c);
 	void applyEffects(Card* c);
+	void applyEndingEffects(Card* c);
 	int canBuyWithNeighbor(Card* c);
 	bool canProvide(array<int, RESOURCES_COUNT> resource);
 	int countResourcesL(array<int, RESOURCES_COUNT> resource);

@@ -135,6 +135,7 @@ int World::getMilitaryScore(Player* p)
 	if (leftScore > myscore)
 	{
 		resul--;
+		p->militaryMalus++;
 	}
 		else
 		if (leftScore < myscore)
@@ -145,6 +146,7 @@ int World::getMilitaryScore(Player* p)
 	if (rightScore > myscore)
 	{
 		resul--;
+		p->militaryMalus++;
 	}
 	else
 		if (rightScore < myscore)
@@ -276,6 +278,7 @@ void World::computeScores()
 		//Blue cards score -----------------------------------------------------
 		for (unsigned int j = 0; j < board.size(); j++)
 		{
+			m_players.at(0)->applyEndingEffects(board.at(j));
 			const Card& card = *board[j];
 			if (card.m_color == BLUE)
 			{
