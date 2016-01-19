@@ -3,6 +3,7 @@
 #include "../7Wonders/Card.h"
 #include "../7Wonders/CardSet.cpp"
 #include "../7Wonders/CardDatabaseParser.cpp"
+#include "../7Wonders/VioletCard.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;

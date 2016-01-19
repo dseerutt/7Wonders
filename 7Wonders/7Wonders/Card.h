@@ -9,6 +9,7 @@ enum CardColor
 	YELLOW,
 	RED,
 	GREEN,
+	VIOLET,
 	COLOR_COUNT
 };
 

@@ -110,6 +110,13 @@ m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 			y.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
 			m_yellowCards[age - 1].push_back(y);
 			break; }
+		case VIOLET:{
+			file >> productionG;
+			file >> cardName;
+			YellowCard y(name, productionG, cardName);
+			y.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_yellowCards[age - 1].push_back(y);
+			break; }
 		case RED:{
 			unsigned int power;
 			file >> power;
@@ -167,6 +174,10 @@ CardSet CardDatabaseParser::generateDeck(int age)
 	{
 		v.push_back(&m_greenCards[age][i]);
 	}
+	for (unsigned int i = 0; i < m_violetCards[age].size(); i++)
+	{
+		v.push_back(&m_violetCards[age][i]);
+	}
 	v.shuffle();
 	return v;
 }
@@ -193,6 +204,9 @@ CardColor CardDatabaseParser::getColor(char c) const
 		break;
 	case 'e':
 		color = GREEN;
+		break;
+	case 'v':
+		color = VIOLET;
 		break;
 	default:
 		std::cerr << "Erreur : Couleur non reconnue : " << c << std::endl;
