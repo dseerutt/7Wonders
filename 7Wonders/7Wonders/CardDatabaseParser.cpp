@@ -4,6 +4,7 @@
 #include <string>
 #include <algorithm>
 #include <random>
+#include <ctime>
 #include <chrono>
 #include "World.h"
 
@@ -13,7 +14,8 @@ m_grayCards(NUMBER_OF_AGES, std::vector<GrayCard>()),
 m_blueCards(NUMBER_OF_AGES, std::vector<BlueCard>()),
 m_yellowCards(NUMBER_OF_AGES, std::vector<YellowCard>()),
 m_redCards(NUMBER_OF_AGES, std::vector<RedCard>()),
-m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
+m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>()),
+m_violetCards(NUMBER_OF_AGES, std::vector<VioletCard>())
 {
 	std::fstream file;
 	file.open(DATABASE_PATH);
@@ -149,6 +151,12 @@ CardDatabaseParser::~CardDatabaseParser()
 
 CardSet CardDatabaseParser::generateDeck(int age)
 {
+	if (age == 0)
+	{
+		std::srand(std::time(0));
+		int randomIndex = rand() % (m_violetCards.size());
+		m_violetCards.erase(m_violetCards.begin() + randomIndex);
+	}
 	CardSet v;
 	for (unsigned int i = 0; i < m_brownCards[age].size(); i++)
 	{
