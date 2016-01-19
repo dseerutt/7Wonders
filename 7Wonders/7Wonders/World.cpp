@@ -296,7 +296,13 @@ void World::computeScores()
 		m_scores[i][SCIENCE] = computeScienceScore(board);
 
 		//MarvelPV score --------------------------------------------------------
-		m_scores[i][WONDER_LEVEL] = m_players[i]->getGeneratedScore();
+		m_scores[i][WONDER_LEVEL] = m_players[i]->getMarvel()->getMarvelScore();
+
+		//Guild score --------------------------------------------------------
+		m_scores[i][YELLOW_CARDS] = m_players[i]->getGeneratedScore();
+
+		//Guild score --------------------------------------------------------
+		m_scores[i][GUILDS] = m_players[i]->getGuildScore();
 
 		//Total score ----------------------------------------------------------
 		m_scores[i][TOTAL_SCORE] = m_scores[i][BLUE_CARDS] + m_scores[i][SCIENCE] + m_scores[i][GOLD];

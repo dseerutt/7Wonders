@@ -54,6 +54,11 @@ unsigned int Player::getMoney() const
 	return money;
 }
 
+unsigned int Player::getGuildScore() const
+{
+	return guildScore;
+}
+
 unsigned int Player::getMilitary() const
 {
 	return military;
@@ -108,12 +113,6 @@ bool Player::alreadyPlayed(string s)
 		}
 	}
 	return false;
-}
-
-
-void Player::upgradeMarvelMoney(int coins)
-{
-	money += coins;
 }
 
 const CardSet& Player::getHand() const
@@ -295,31 +294,31 @@ void Player::applyEndingEffects(Card* c)
 		{
 		case 'a':
 			res = leftNeighbor->countColor(BROWN) + rightNeighbor->countColor(BROWN);
-			generatedScore += res;
+			guildScore += res;
 			break;
 		case 'b':
 			res = leftNeighbor->countColor(GRAY) + rightNeighbor->countColor(GRAY);
-			generatedScore += 2 * res;
+			guildScore += 2 * res;
 			break;
 		case 'c':
 			res = leftNeighbor->countColor(YELLOW) + rightNeighbor->countColor(YELLOW);
-			generatedScore += res;
+			guildScore += res;
 			break;
 		case 'd':
 			res = leftNeighbor->countColor(GREEN) + rightNeighbor->countColor(GREEN);
-			generatedScore += res;
+			guildScore += res;
 			break;
 		case 'e':
 			res = leftNeighbor->countColor(RED) + rightNeighbor->countColor(RED);
-			generatedScore += res;
+			guildScore += res;
 			break;
 		case 'f':
 			res = leftNeighbor->getMilitaryMalus() + rightNeighbor->getMilitaryMalus();
-			generatedScore += res;
+			guildScore += res;
 			break;
 		case 'g':
 			res = countColor(BROWN) + countColor(GRAY) + countColor(VIOLET);
-			generatedScore += res;
+			guildScore += res;
 			break;
 		case 'h':
 			//Ajouter toutes les combinaisons puis garder la meilleure
@@ -327,13 +326,13 @@ void Player::applyEndingEffects(Card* c)
 			break;
 		case 'i':
 			res = leftNeighbor->countColor(BLUE) + rightNeighbor->countColor(BLUE);
-			generatedScore += res;
+			guildScore += res;
 			break;
 		case 'j':
 			res = leftNeighbor->getMarvel()->getMarvelLevel()
 				+ rightNeighbor->getMarvel()->getMarvelLevel()
 				+ getMarvel()->getMarvelLevel();
-			generatedScore += res;
+			guildScore += res;
 			break;
 		default:
 			break;
@@ -349,14 +348,6 @@ void Player::applyEndingEffects(Card* c)
 			int res = 0;
 			switch (s.at(0))
 			{
-			case 'f':
-				AddResourceWithChoice(rec);
-				resourcesDisplay += (s + " ");
-				break;
-			case 'c':
-				AddResourceWithChoice(rec2);
-				resourcesDisplay += (s + " ");
-				break;
 			case 'p':
 				res = countColor(BROWN);
 				generatedScore += res;

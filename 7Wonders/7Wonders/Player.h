@@ -17,6 +17,7 @@ protected:
 	bool comptoir2 = false;
 	bool market = false;
 	int generatedScore = 0;
+	int guildScore = 0;
 	int money;
 	int military;
 	Card* m_cardToPlay;
@@ -30,7 +31,6 @@ public:
 	Player(CardSet* discard, int rec);
 	~Player();
 	Marvel* getMarvel();
-	void upgradeMarvelMoney(int coins);
 	unsigned int computeScienceScore(int value) const;
 	int tradeCountColor(int color);
 	int countColor(int color);
@@ -49,6 +49,7 @@ public:
 	unsigned int getGeneratedScore() const;
 	unsigned int getScore() const;
 	unsigned int getMoney() const;
+	unsigned int getGuildScore() const;
 	const CardSet& getBoard() const;
 	const CardSet& getHand() const;
 	static int identifyResource(char c);
