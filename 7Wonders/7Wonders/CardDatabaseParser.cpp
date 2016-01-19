@@ -115,9 +115,9 @@ m_violetCards(NUMBER_OF_AGES, std::vector<VioletCard>())
 		case VIOLET:{
 			file >> productionG;
 			file >> cardName;
-			VioletCard y(name, productionG, cardName);
-			y.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
-			m_violetCards[age - 1].push_back(y);
+			VioletCard v(name, productionG, cardName);
+			v.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_violetCards[age - 1].push_back(v);
 			break; }
 		case RED:{
 			unsigned int power;
