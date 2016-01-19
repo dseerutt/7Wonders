@@ -42,6 +42,8 @@ void World::run()
 		play(p);
 		playOthers(p);
 		endTurn();
+
+		display.draw();
 	}
 
 	computeScores();
