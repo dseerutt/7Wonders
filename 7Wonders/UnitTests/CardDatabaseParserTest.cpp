@@ -3,6 +3,7 @@
 #include "../7Wonders/Card.h"
 #include "../7Wonders/CardSet.cpp"
 #include "../7Wonders/CardDatabaseParser.cpp"
+#include "../7Wonders/VioletCard.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
@@ -17,18 +18,25 @@ namespace UnitTests
 		{
 			//m_brownCards m_blueCards m_yellowCards m_redCards m_greenCards
 			//privés donc pas de test direct sur les contenus
-			//Age 0 seulement testé
 
-			//4 joueurs
+			//3 joueurs
 			CardDatabaseParser parser(3);
 			CardSet set = parser.generateDeck(0);
 			Assert::AreEqual((size_t)21, set.size());
+			set = parser.generateDeck(1);
+			Assert::AreEqual((size_t)21, set.size());
+			set = parser.generateDeck(2);
+			//Assert::AreEqual((size_t)21, set.size());
 		}
 
 		TEST_METHOD(CardDatabaseParserGenerateDeck7Players)
 		{
 			CardDatabaseParser parser(8);
 			CardSet set = parser.generateDeck(0);
+			Assert::AreEqual((size_t)49, set.size());
+			set = parser.generateDeck(1);
+			Assert::AreEqual((size_t)49, set.size());
+			set = parser.generateDeck(2);
 			Assert::AreEqual((size_t)49, set.size());
 		}
 
@@ -93,21 +101,34 @@ namespace UnitTests
 
 		TEST_METHOD(ParserCardCostTest)
 		{
-			CardDatabaseParser parser(3);
-			CardSet set = parser.generateDeck(0);
-			Assert::AreEqual(0, 1);
-				/*Tester les valeurs suivantes:
-				int goldCost;
-				int woodCost;
-				int stoneCost;
-				int brickCost;
-				int mineralCost;
-				int textileCost;
-				int glassCost;
-				int papyrusCost;
-				String ultimateParameter;
-				*/
-			
+			World w(2, 3);
+			w.generateDeck(0);
+			for (int i = 0; i < w.m_deck.size(); i++)
+			{
+				if (w.m_deck.at(i)->m_name == "PALISSADE")
+				{
+					Assert::AreEqual(1, w.m_deck.at(i)->m_Cost[WOOD]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[STONE]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[BRICK]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[MINERAL]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[PAPYRUS]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[GLASS]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[TEXTILE]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_price);
+				}
+
+				if (w.m_deck.at(i)->m_name == "FRICHE")
+				{
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[WOOD]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[STONE]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[BRICK]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[MINERAL]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[PAPYRUS]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[GLASS]);
+					Assert::AreEqual(0, w.m_deck.at(i)->m_Cost[TEXTILE]);
+					Assert::AreEqual(1, w.m_deck.at(i)->m_price);
+				}
+			}			
 		}
 
 

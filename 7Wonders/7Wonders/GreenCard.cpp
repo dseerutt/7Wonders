@@ -1,6 +1,6 @@
 #include "GreenCard.h"
 
-GreenCard::GreenCard(const std::string& name, char type) : Card(name, GREEN), m_type(type)
+GreenCard::GreenCard(const std::string& name, char type, std::string cardName) : Card(name, GREEN, cardName), m_type(type)
 {
 }
 
@@ -14,6 +14,11 @@ char GreenCard::getType() const
 }
 
 unsigned int GreenCard::getPoints() const
+{
+	return 0;
+}
+
+unsigned int GreenCard::getPower() const
 {
 	return 0;
 }

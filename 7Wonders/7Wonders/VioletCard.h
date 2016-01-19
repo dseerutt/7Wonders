@@ -1,11 +1,11 @@
 #pragma once
 #include "Card.h"
 
-class YellowCard : public Card
+class VioletCard : public Card
 {
 public:
-	YellowCard(const std::string& name, const std::string& production, std::string cardName);
-	~YellowCard();
+	VioletCard(const std::string& name, const std::string& production, std::string cardName);
+	~VioletCard();
 
 	virtual unsigned int getPoints() const;
 	virtual unsigned int getPower() const;

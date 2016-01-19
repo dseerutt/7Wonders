@@ -1,8 +1,9 @@
 #include "GrayCard.h"
 
 
-GrayCard::GrayCard(const std::string& name, const std::string& production) : Card(name, GRAY), m_production(production)
+GrayCard::GrayCard(const std::string& name, const std::string& production, std::string cardName) : Card(name, GRAY, cardName)
 {
+	m_production = production;
 }
 
 
@@ -18,4 +19,9 @@ unsigned int GrayCard::getPoints() const
 string GrayCard::getProduction()
 {
 	return m_production;
+}
+
+unsigned int GrayCard::getPower() const
+{
+	return 0;
 }

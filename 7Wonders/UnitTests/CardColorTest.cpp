@@ -20,7 +20,7 @@ namespace UnitTests
 		
 		TEST_METHOD(BlueCardConstructor)
 		{
-			BlueCard c("nomCarte", 5);
+			BlueCard c("nomCarte", 5, "-");
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
 			Assert::AreEqual((int)BLUE, (int)c.m_color);
 			Assert::AreEqual((unsigned)5, c.getPoints());
@@ -28,13 +28,13 @@ namespace UnitTests
 
 		TEST_METHOD(BlueGetPoints)
 		{
-			BlueCard c("ee", 5);
+			BlueCard c("ee", 5, "-");
 			Assert::AreEqual((unsigned)5, c.getPoints());
 		}
 
 		TEST_METHOD(BrownCardConstructor)
 		{
-			BrownCard c("nomCarte", "prod");
+			BrownCard c("nomCarte", "prod", "-");
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
 			Assert::AreEqual((int)BROWN, (int)c.m_color);
 			Assert::AreEqual((unsigned)0, c.getPoints());
@@ -43,19 +43,19 @@ namespace UnitTests
 
 		TEST_METHOD(BrownGetPoints)
 		{
-			BrownCard c("ee", "prod");
+			BrownCard c("ee", "prod", "-");
 			Assert::AreEqual((unsigned)0, c.getPoints());
 		}
 
 		TEST_METHOD(BrownGetProduction)
 		{
-			BrownCard c("ee", "prod");
+			BrownCard c("ee", "prod", "-");
 			Assert::AreEqual("prod", c.getProduction().c_str());
 		}
 
 		TEST_METHOD(GrayCardConstructor)
 		{
-			GrayCard c("nomCarte", "prod");
+			GrayCard c("nomCarte", "prod", "-");
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
 			Assert::AreEqual((int)GRAY, (int)c.m_color);
 			Assert::AreEqual((unsigned)0, c.getPoints());
@@ -64,19 +64,19 @@ namespace UnitTests
 
 		TEST_METHOD(GrayGetPoints)
 		{
-			GrayCard c("ee", "prod");
+			GrayCard c("ee", "prod", "-");
 			Assert::AreEqual((unsigned)0, c.getPoints());
 		}
 
 		TEST_METHOD(GrayGetProduction)
 		{
-			GrayCard c("ee", "prod");
+			GrayCard c("ee", "prod", "-");
 			Assert::AreEqual("prod", c.getProduction().c_str());
 		}
 
 		TEST_METHOD(GreenCardConstructor)
 		{
-			GreenCard c("nomCarte", 't');
+			GreenCard c("nomCarte", 't', "-");
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
 			Assert::AreEqual((int)GREEN, (int)c.m_color);
 			Assert::AreEqual((unsigned)0, c.getPoints());
@@ -85,20 +85,20 @@ namespace UnitTests
 
 		TEST_METHOD(GreenGetPoints)
 		{
-			GreenCard c("ee", 't');
+			GreenCard c("ee", 't', "-");
 			Assert::AreEqual((unsigned)0, c.getPoints());
 		}
 
 		TEST_METHOD(GreenGetType)
 		{
-			GreenCard c("ee", 't');
+			GreenCard c("ee", 't', "-");
 			Assert::IsTrue('t' == c.getType());
 		}
 
 
 		TEST_METHOD(RedCardConstructor)
 		{
-			RedCard c("nomCarte", 2);
+			RedCard c("nomCarte", 2, "-");
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
 			Assert::AreEqual((int)RED, (int)c.m_color);
 			Assert::AreEqual((unsigned)0, c.getPoints());
@@ -107,7 +107,7 @@ namespace UnitTests
 
 		TEST_METHOD(RedGetPoints)
 		{
-			RedCard c("ee", 2);
+			RedCard c("ee", 2, "-");
 			Assert::AreEqual((unsigned)0, c.getPoints());
 		}
 
@@ -115,13 +115,13 @@ namespace UnitTests
 
 		TEST_METHOD(RedGetPower)
 		{
-			RedCard c("ee", 2);
+			RedCard c("ee", 2, "-");
 			Assert::AreEqual((unsigned)2, c.getPower());
 		}
 
 		TEST_METHOD(YellowCardConstructor)
 		{
-			YellowCard c("nomCarte");
+			YellowCard c("nomCarte", "", "-");
 			Assert::AreEqual("nomCarte", c.m_name.c_str());
 			Assert::AreEqual((int)YELLOW, (int)c.m_color);
 			Assert::AreEqual((unsigned)0, c.getPoints());
@@ -129,7 +129,7 @@ namespace UnitTests
 
 		TEST_METHOD(YellowGetPoints)
 		{
-			YellowCard c("ee");
+			YellowCard c("ee", "", "-");
 			Assert::AreEqual((unsigned)0, c.getPoints());
 		}
 

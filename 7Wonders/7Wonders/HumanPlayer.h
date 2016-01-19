@@ -4,7 +4,7 @@
 class HumanPlayer : public Player
 {
 public:
-	HumanPlayer(CardSet* discard);
+	HumanPlayer(CardSet* discard, int rec);
 	~HumanPlayer();
 protected:
 	virtual void pickCard();

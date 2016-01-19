@@ -13,7 +13,7 @@ namespace UnitTests
 	TEST_CLASS(CardSetTest)
 	{
 	public:
-
+		/*
 		TEST_METHOD(ShuffleTest)
 		{
 			BlueCard c0("BlueCard0", 1);
@@ -45,6 +45,6 @@ namespace UnitTests
 				value2 += set.at(i)->getPoints() * i;
 			}
 			Assert::AreNotEqual(value1, value2);
-		}
+		}*/
 	};
 }

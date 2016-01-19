@@ -4,6 +4,7 @@
 #include <string>
 #include <algorithm>
 #include <random>
+#include <ctime>
 #include <chrono>
 #include "World.h"
 
@@ -13,7 +14,8 @@ m_grayCards(NUMBER_OF_AGES, std::vector<GrayCard>()),
 m_blueCards(NUMBER_OF_AGES, std::vector<BlueCard>()),
 m_yellowCards(NUMBER_OF_AGES, std::vector<YellowCard>()),
 m_redCards(NUMBER_OF_AGES, std::vector<RedCard>()),
-m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
+m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>()),
+m_violetCards(NUMBER_OF_AGES, std::vector<VioletCard>())
 {
 	std::fstream file;
 	file.open(DATABASE_PATH);
@@ -35,6 +37,9 @@ m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 			std::cerr << "Erreur : boucle infinie dans la lecture de la base de données." << std::endl;
 			exit(-1);
 		}
+		int age;
+		file >> age;
+
 		std::string name;
 		file >> name;
 
@@ -58,7 +63,6 @@ m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 
 		int goldCost;
 		file >> goldCost;
-
 		int woodCost;
 		file >> woodCost;
 		int stoneCost;
@@ -67,7 +71,6 @@ m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 		file >> brickCost;
 		int mineralCost;
 		file >> mineralCost;
-
 		int textileCost;
 		file >> textileCost;
 		int glassCost;
@@ -77,43 +80,70 @@ m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>())
 
 		std::string productionB;
 		std::string productionG;
+		std::string cardName;
 		switch (color)
 		{
-		case BROWN:
+		case BROWN:{
 			file >> productionB;
-
-			m_brownCards[0].push_back(BrownCard(name, productionB));
-			break;
-		case GRAY:
+			file >> cardName;
+			BrownCard b(name, productionB, cardName);
+			b.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_brownCards[age - 1].push_back(b);
+			break; }
+		case GRAY:{
 			file >> productionG;
-
-			m_grayCards[0].push_back(GrayCard(name, productionG));
-			break;
-		case BLUE:
+			file >> cardName;
+			GrayCard g(name, productionG, cardName);
+			g.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_grayCards[age - 1].push_back(g);
+			break; }
+		case BLUE:{
 			int points;
 			file >> points;
-
-			m_blueCards[0].push_back(BlueCard(name, points));
-			break;
-		case YELLOW:
-
-			m_yellowCards[0].push_back(YellowCard(name));
-			break;
-		case RED:
+			file >> cardName;
+			BlueCard c(name, points, cardName);
+			c.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_blueCards[age - 1].push_back(c);
+			break; }
+		case YELLOW:{
+			file >> productionG;
+			file >> cardName;
+			YellowCard y(name, productionG, cardName);
+			y.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_yellowCards[age - 1].push_back(y);
+			break; }
+		case VIOLET:{
+			file >> productionG;
+			file >> cardName;
+			VioletCard v(name, productionG, cardName);
+			v.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_violetCards[age - 1].push_back(v);
+			break; }
+		case RED:{
 			unsigned int power;
 			file >> power;
-
-			m_redCards[0].push_back(RedCard(name, power));
-			break;
-		case GREEN:
+			file >> cardName;
+			RedCard r(name, power, cardName);
+			r.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_redCards[age - 1].push_back(r);
+			break; }
+		case GREEN:{
 			char type;
 			file >> type;
-
-			m_greenCards[0].push_back(GreenCard(name, type));
-			break;
-		default:
-			break;
+			file >> cardName;
+			GreenCard gr(name, type, cardName);
+			gr.initCost(woodCost, stoneCost, brickCost, mineralCost, papyrusCost, glassCost, textileCost, goldCost);
+			m_greenCards[age - 1].push_back(gr);
+			break; }
+		default:{
+			break; }
 		}
+	}
+	std::srand(std::time(0));
+	for (int i = 0; i < 10 - (playerNumber + 2); i++)
+	{
+		int randomIndex = rand() % (m_violetCards.size());
+		m_violetCards[2].erase(m_violetCards[2].begin() + randomIndex);
 	}
 	/*
 		At this point, the decks m_[color]Cards contains every card of the database that have the required number of players
@@ -152,6 +182,10 @@ CardSet CardDatabaseParser::generateDeck(int age)
 	{
 		v.push_back(&m_greenCards[age][i]);
 	}
+	for (unsigned int i = 0; i < m_violetCards[age].size(); i++)
+	{
+		v.push_back(&m_violetCards[age][i]);
+	}
 	v.shuffle();
 	return v;
 }
@@ -178,6 +212,9 @@ CardColor CardDatabaseParser::getColor(char c) const
 		break;
 	case 'e':
 		color = GREEN;
+		break;
+	case 'v':
+		color = VIOLET;
 		break;
 	default:
 		std::cerr << "Erreur : Couleur non reconnue : " << c << std::endl;

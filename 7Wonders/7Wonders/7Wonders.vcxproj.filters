@@ -57,12 +57,6 @@
     <ClInclude Include="GreenCard.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="allocator.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="display_node.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="fast_log.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -85,6 +79,15 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="statistics.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="allocator.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="display_node.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Marvel.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -156,6 +159,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="statistics.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Marvel.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

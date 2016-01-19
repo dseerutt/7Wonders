@@ -6,13 +6,12 @@ using namespace std;
 class GrayCard :
 	public Card
 {
-private:
-	std::string m_production;
 public:
-	GrayCard(const std::string& name, const std::string& production);
+	GrayCard(const std::string& name, const std::string& production, std::string cardName);
 	~GrayCard();
 
 	virtual unsigned int getPoints() const;
+	virtual unsigned int getPower() const;
 	string getProduction();
 };
 

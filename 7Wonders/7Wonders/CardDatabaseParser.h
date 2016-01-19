@@ -7,6 +7,7 @@
 #include "YellowCard.h"
 #include "RedCard.h"
 #include "GreenCard.h"
+#include "VioletCard.h"
 
 #define DATABASE_PATH "../../cardsDatabase.txt"
 
@@ -19,6 +20,7 @@ private:
 	std::vector<std::vector<YellowCard> > m_yellowCards;
 	std::vector<std::vector<RedCard> > m_redCards;
 	std::vector<std::vector<GreenCard> > m_greenCards;
+	std::vector<std::vector<VioletCard> > m_violetCards;
 
 public:
 	CardDatabaseParser(int playerNumber);

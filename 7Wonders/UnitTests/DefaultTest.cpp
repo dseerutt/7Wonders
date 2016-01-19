@@ -14,7 +14,7 @@ namespace UnitTests
 		TEST_METHOD(DefaultTestsMethod2)
 		{
 			Assert::AreEqual(0, 0);
-			BlueCard c("ee", 5);
+			BlueCard c("ee", 5, "-");
 		}
 
 		TEST_METHOD(DefaultTestsMethod1)
