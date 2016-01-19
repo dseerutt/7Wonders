@@ -6,6 +6,7 @@
 #include "../7Wonders/GreenCard.cpp"
 #include "../7Wonders/RedCard.cpp"
 #include "../7Wonders/YellowCard.cpp"
+#include "../7Wonders/VioletCard.h"
 #include "../7Wonders/Card.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -132,6 +133,19 @@ namespace UnitTests
 			YellowCard c("ee", "", "-");
 			Assert::AreEqual((unsigned)0, c.getPoints());
 		}
+		
+		TEST_METHOD(VioletCardConstructor)
+		{
+			VioletCard c("nomCarte", "", "-");
+			Assert::AreEqual("nomCarte", c.m_name.c_str());
+			Assert::AreEqual((int)VIOLET, (int)c.m_color);
+			Assert::AreEqual((unsigned)0, c.getPoints());
+		}
 
+		TEST_METHOD(VioletGetPoints)
+		{
+			VioletCard c("ee", "", "-");
+			Assert::AreEqual((unsigned)0, c.getPoints());
+		}
 	};
 }

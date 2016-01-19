@@ -31,21 +31,13 @@ namespace UnitTests
 
 		TEST_METHOD(CardDatabaseParserGenerateDeck7Players)
 		{
-			CardDatabaseParser parser(8);
+			CardDatabaseParser parser(7);
 			CardSet set = parser.generateDeck(0);
 			Assert::AreEqual((size_t)49, set.size());
 			set = parser.generateDeck(1);
 			Assert::AreEqual((size_t)49, set.size());
 			set = parser.generateDeck(2);
 			Assert::AreEqual((size_t)49, set.size());
-		}
-
-		TEST_METHOD(CardDatabaseParserGenerateDeck2Players)
-		{
-			CardDatabaseParser parser(2);
-			CardSet set = parser.generateDeck(0);
-			Assert::AreEqual((size_t)0, set.size());
-			//pas de cartes pour 2 joueurs
 		}
 
 		TEST_METHOD(CardDatabaseParserTestContentsAge0)
@@ -140,7 +132,8 @@ namespace UnitTests
 			Assert::AreEqual((int)BROWN, (int)parser.getColor('w'));
 			Assert::AreEqual((int)GREEN, (int)parser.getColor('e'));
 			Assert::AreEqual((int)YELLOW, (int) parser.getColor('y'));
-			Assert::AreEqual((int)RED, (int) parser.getColor('r'));
+			Assert::AreEqual((int)RED, (int)parser.getColor('r'));
+			Assert::AreEqual((int)VIOLET, (int)parser.getColor('v'));
 		}
 	};
 }
