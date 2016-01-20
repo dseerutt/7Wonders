@@ -507,7 +507,7 @@ void Player::scientistGuildTreatment()
 			cc = 't';
 		}
 	}
-	GreenCard card("Guild_CARD", cc, "-");
+	GreenCard card("GUILD_CARD", cc, "-");
 	m_board.push_back(&card);
 }
 

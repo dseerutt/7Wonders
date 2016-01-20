@@ -278,7 +278,7 @@ namespace UnitTests
 
 		TEST_METHOD(GuildeDesTravailleursTest)
 		{
-			World w(0, 5);
+			World w(0, 7);
 			BrownCard b("Fake Card", "t", "-");
 			b.initCost(0, 0, 0, 0, 0, 0, 0, 0);
 			while (!w.m_gameOver)
@@ -296,6 +296,7 @@ namespace UnitTests
 							{
 								if (w.m_deck.at(i)->m_color == VIOLET)
 								{
+									Card* ccc = w.m_deck.at(i);
 									if (w.m_deck.at(i)->m_name != "GUILDE_DES_TRAVAILLEURS")
 									{
 										w.m_deck.at(i) = &b;
@@ -316,22 +317,549 @@ namespace UnitTests
 				w.playOthers(p);
 				w.endTurn();
 			}
-			Assert::IsTrue(false);
+			w.computeScores();
+
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				for (int j = 0; j < w.m_players.at(i)->getBoard().size(); j++)
+				{
+					Card* ccc = w.m_players.at(i)->getBoard().at(j);
+					if (w.m_players.at(i)->getBoard().at(j)->m_name == "GUILDE_DES_TRAVAILLEURS")
+					{
+						int res = w.m_players.at(i)->leftNeighbor->countColor(BROWN);
+						res += w.m_players.at(i)->rightNeighbor->countColor(BROWN);
+						Assert::AreEqual(res, w.m_scores.at(i).at(GUILDS));
+					}
+				}
+			}
 		}
 
+		TEST_METHOD(GuildeDesArtisansTest)
+		{
+			World w(0, 7);
+			BrownCard b("Fake Card", "t", "-");
+			b.initCost(0, 0, 0, 0, 0, 0, 0, 0);
+			while (!w.m_gameOver)
+			{
+				if (w.betweenTurns())
+				{
+					if (w.m_age == 2)
+					{
+						w.updateMilitary();
+						w.m_age++;
+						if (w.m_age <= NUMBER_OF_AGES)
+						{
+							w.m_deck = w.generateDeck(w.m_age - 1);
+							for (int i = 0; i < w.m_deck.size(); i++)
+							{
+								if (w.m_deck.at(i)->m_color == VIOLET)
+								{
+									Card* ccc = w.m_deck.at(i);
+									if (w.m_deck.at(i)->m_name != "GUILDE_DES_ARTISANS")
+									{
+										w.m_deck.at(i) = &b;
+									}
+								}
+							}
+							w.distributeCards();
+						}
+					}
+					else {
+						w.updateMilitary();
+						w.startAge();
+					}
+
+				}
+				Player& p = *w.m_players[0];
+				w.play(p);
+				w.playOthers(p);
+				w.endTurn();
+			}
+			w.computeScores();
+
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				for (int j = 0; j < w.m_players.at(i)->getBoard().size(); j++)
+				{
+					Card* ccc = w.m_players.at(i)->getBoard().at(j);
+					if (w.m_players.at(i)->getBoard().at(j)->m_name == "GUILDE_DES_ARTISANS")
+					{
+						int res = w.m_players.at(i)->leftNeighbor->countColor(GRAY);
+						res += w.m_players.at(i)->rightNeighbor->countColor(GRAY);
+						Assert::AreEqual(2*res, w.m_scores.at(i).at(GUILDS));
+					}
+				}
+			}
+		}
+
+		TEST_METHOD(GuildeDesCommercantsTest)
+		{
+			World w(0, 7);
+			BrownCard b("Fake Card", "t", "-");
+			b.initCost(0, 0, 0, 0, 0, 0, 0, 0);
+			while (!w.m_gameOver)
+			{
+				if (w.betweenTurns())
+				{
+					if (w.m_age == 2)
+					{
+						w.updateMilitary();
+						w.m_age++;
+						if (w.m_age <= NUMBER_OF_AGES)
+						{
+							w.m_deck = w.generateDeck(w.m_age - 1);
+							for (int i = 0; i < w.m_deck.size(); i++)
+							{
+								if (w.m_deck.at(i)->m_color == VIOLET)
+								{
+									Card* ccc = w.m_deck.at(i);
+									if (w.m_deck.at(i)->m_name != "GUILDE_DES_COMMERCANTS")
+									{
+										w.m_deck.at(i) = &b;
+									}
+								}
+							}
+							w.distributeCards();
+						}
+					}
+					else {
+						w.updateMilitary();
+						w.startAge();
+					}
+
+				}
+				Player& p = *w.m_players[0];
+				w.play(p);
+				w.playOthers(p);
+				w.endTurn();
+			}
+			w.computeScores();
+
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				for (int j = 0; j < w.m_players.at(i)->getBoard().size(); j++)
+				{
+					Card* ccc = w.m_players.at(i)->getBoard().at(j);
+					if (w.m_players.at(i)->getBoard().at(j)->m_name == "GUILDE_DES_COMMERCANTS")
+					{
+						int res = w.m_players.at(i)->leftNeighbor->countColor(YELLOW);
+						res += w.m_players.at(i)->rightNeighbor->countColor(YELLOW);
+						Assert::AreEqual(res, w.m_scores.at(i).at(GUILDS));
+					}
+				}
+			}
+		}
+
+		TEST_METHOD(GuildeDesPhilosophesTest)
+		{
+			World w(0, 7);
+			BrownCard b("Fake Card", "t", "-");
+			b.initCost(0, 0, 0, 0, 0, 0, 0, 0);
+			while (!w.m_gameOver)
+			{
+				if (w.betweenTurns())
+				{
+					if (w.m_age == 2)
+					{
+						w.updateMilitary();
+						w.m_age++;
+						if (w.m_age <= NUMBER_OF_AGES)
+						{
+							w.m_deck = w.generateDeck(w.m_age - 1);
+							for (int i = 0; i < w.m_deck.size(); i++)
+							{
+								if (w.m_deck.at(i)->m_color == VIOLET)
+								{
+									Card* ccc = w.m_deck.at(i);
+									if (w.m_deck.at(i)->m_name != "GUILDE_DES_PHILOSOPHES")
+									{
+										w.m_deck.at(i) = &b;
+									}
+								}
+							}
+							w.distributeCards();
+						}
+					}
+					else {
+						w.updateMilitary();
+						w.startAge();
+					}
+
+				}
+				Player& p = *w.m_players[0];
+				w.play(p);
+				w.playOthers(p);
+				w.endTurn();
+			}
+			w.computeScores();
+
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				for (int j = 0; j < w.m_players.at(i)->getBoard().size(); j++)
+				{
+					Card* ccc = w.m_players.at(i)->getBoard().at(j);
+					if (w.m_players.at(i)->getBoard().at(j)->m_name == "GUILDE_DES_PHILOSOPHES")
+					{
+						int res = w.m_players.at(i)->leftNeighbor->countColor(GREEN);
+						res += w.m_players.at(i)->rightNeighbor->countColor(GREEN);
+						Assert::AreEqual(res, w.m_scores.at(i).at(GUILDS));
+					}
+				}
+			}
+		}
+
+		TEST_METHOD(GuildeDesEspionsTest)
+		{
+			World w(0, 7);
+			BrownCard b("Fake Card", "t", "-");
+			b.initCost(0, 0, 0, 0, 0, 0, 0, 0);
+			while (!w.m_gameOver)
+			{
+				if (w.betweenTurns())
+				{
+					if (w.m_age == 2)
+					{
+						w.updateMilitary();
+						w.m_age++;
+						if (w.m_age <= NUMBER_OF_AGES)
+						{
+							w.m_deck = w.generateDeck(w.m_age - 1);
+							for (int i = 0; i < w.m_deck.size(); i++)
+							{
+								if (w.m_deck.at(i)->m_color == VIOLET)
+								{
+									Card* ccc = w.m_deck.at(i);
+									if (w.m_deck.at(i)->m_name != "GUILDE_DES_ESPIONS")
+									{
+										w.m_deck.at(i) = &b;
+									}
+								}
+							}
+							w.distributeCards();
+						}
+					}
+					else {
+						w.updateMilitary();
+						w.startAge();
+					}
+
+				}
+				Player& p = *w.m_players[0];
+				w.play(p);
+				w.playOthers(p);
+				w.endTurn();
+			}
+			w.computeScores();
+
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				for (int j = 0; j < w.m_players.at(i)->getBoard().size(); j++)
+				{
+					Card* ccc = w.m_players.at(i)->getBoard().at(j);
+					if (w.m_players.at(i)->getBoard().at(j)->m_name == "GUILDE_DES_ESPIONS")
+					{
+						int res = w.m_players.at(i)->leftNeighbor->countColor(RED);
+						res += w.m_players.at(i)->rightNeighbor->countColor(RED);
+						Assert::AreEqual(res, w.m_scores.at(i).at(GUILDS));
+					}
+				}
+			}
+		}
+
+		TEST_METHOD(GuildeDesStrategesTest)
+		{
+			World w(0, 7);
+			BrownCard b("Fake Card", "t", "-");
+			b.initCost(0, 0, 0, 0, 0, 0, 0, 0);
+			while (!w.m_gameOver)
+			{
+				if (w.betweenTurns())
+				{
+					if (w.m_age == 2)
+					{
+						w.updateMilitary();
+						w.m_age++;
+						if (w.m_age <= NUMBER_OF_AGES)
+						{
+							w.m_deck = w.generateDeck(w.m_age - 1);
+							for (int i = 0; i < w.m_deck.size(); i++)
+							{
+								if (w.m_deck.at(i)->m_color == VIOLET)
+								{
+									Card* ccc = w.m_deck.at(i);
+									if (w.m_deck.at(i)->m_name != "GUILDE_DES_STRATEGES")
+									{
+										w.m_deck.at(i) = &b;
+									}
+								}
+							}
+							w.distributeCards();
+						}
+					}
+					else {
+						w.updateMilitary();
+						w.startAge();
+					}
+
+				}
+				Player& p = *w.m_players[0];
+				w.play(p);
+				w.playOthers(p);
+				w.endTurn();
+			}
+			w.computeScores();
+
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				for (int j = 0; j < w.m_players.at(i)->getBoard().size(); j++)
+				{
+					Card* ccc = w.m_players.at(i)->getBoard().at(j);
+					if (w.m_players.at(i)->getBoard().at(j)->m_name == "GUILDE_DES_STRATEGES")
+					{
+						int res = w.m_players.at(i)->leftNeighbor->getMilitaryMalus();
+						res += w.m_players.at(i)->rightNeighbor->getMilitaryMalus();
+						Assert::AreEqual(res, w.m_scores.at(i).at(GUILDS));
+					}
+				}
+			}
+		}
+
+		TEST_METHOD(GuildeDesArmateursTest)
+		{
+			World w(0, 7);
+			BrownCard b("Fake Card", "t", "-");
+			b.initCost(0, 0, 0, 0, 0, 0, 0, 0);
+			while (!w.m_gameOver)
+			{
+				if (w.betweenTurns())
+				{
+					if (w.m_age == 2)
+					{
+						w.updateMilitary();
+						w.m_age++;
+						if (w.m_age <= NUMBER_OF_AGES)
+						{
+							w.m_deck = w.generateDeck(w.m_age - 1);
+							for (int i = 0; i < w.m_deck.size(); i++)
+							{
+								if (w.m_deck.at(i)->m_color == VIOLET)
+								{
+									Card* ccc = w.m_deck.at(i);
+									if (w.m_deck.at(i)->m_name != "GUILDE_DES_ARMATEURS")
+									{
+										w.m_deck.at(i) = &b;
+									}
+								}
+							}
+							w.distributeCards();
+						}
+					}
+					else {
+						w.updateMilitary();
+						w.startAge();
+					}
+
+				}
+				Player& p = *w.m_players[0];
+				w.play(p);
+				w.playOthers(p);
+				w.endTurn();
+			}
+			w.computeScores();
+
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				for (int j = 0; j < w.m_players.at(i)->getBoard().size(); j++)
+				{
+					Card* ccc = w.m_players.at(i)->getBoard().at(j);
+					if (w.m_players.at(i)->getBoard().at(j)->m_name == "GUILDE_DES_ARMATEURS")
+					{
+						int res = w.m_players.at(i)->countColor(BROWN);
+						res += w.m_players.at(i)->countColor(GRAY) + w.m_players.at(i)->countColor(VIOLET);
+						Assert::AreEqual(res, w.m_scores.at(i).at(GUILDS));
+					}
+				}
+			}
+		}
+
+		TEST_METHOD(GuildeDesMagistratsTest)
+		{
+			World w(0, 7);
+			BrownCard b("Fake Card", "t", "-");
+			b.initCost(0, 0, 0, 0, 0, 0, 0, 0);
+			while (!w.m_gameOver)
+			{
+				if (w.betweenTurns())
+				{
+					if (w.m_age == 2)
+					{
+						w.updateMilitary();
+						w.m_age++;
+						if (w.m_age <= NUMBER_OF_AGES)
+						{
+							w.m_deck = w.generateDeck(w.m_age - 1);
+							for (int i = 0; i < w.m_deck.size(); i++)
+							{
+								if (w.m_deck.at(i)->m_color == VIOLET)
+								{
+									Card* ccc = w.m_deck.at(i);
+									if (w.m_deck.at(i)->m_name != "GUILDE_DES_MAGISTRATS")
+									{
+										w.m_deck.at(i) = &b;
+									}
+								}
+							}
+							w.distributeCards();
+						}
+					}
+					else {
+						w.updateMilitary();
+						w.startAge();
+					}
+
+				}
+				Player& p = *w.m_players[0];
+				w.play(p);
+				w.playOthers(p);
+				w.endTurn();
+			}
+			w.computeScores();
+
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				for (int j = 0; j < w.m_players.at(i)->getBoard().size(); j++)
+				{
+					Card* ccc = w.m_players.at(i)->getBoard().at(j);
+					if (w.m_players.at(i)->getBoard().at(j)->m_name == "GUILDE_DES_MAGISTRATS")
+					{
+						int res = w.m_players.at(i)->leftNeighbor->countColor(BLUE);
+						res += w.m_players.at(i)->rightNeighbor->countColor(BLUE);
+						Assert::AreEqual(res, w.m_scores.at(i).at(GUILDS));
+					}
+				}
+			}
+		}
+
+		TEST_METHOD(GuildeDesBatisseursTest)
+		{
+			World w(0, 7);
+			BrownCard b("Fake Card", "t", "-");
+			b.initCost(0, 0, 0, 0, 0, 0, 0, 0);
+			while (!w.m_gameOver)
+			{
+				if (w.betweenTurns())
+				{
+					if (w.m_age == 2)
+					{
+						w.updateMilitary();
+						w.m_age++;
+						if (w.m_age <= NUMBER_OF_AGES)
+						{
+							w.m_deck = w.generateDeck(w.m_age - 1);
+							for (int i = 0; i < w.m_deck.size(); i++)
+							{
+								if (w.m_deck.at(i)->m_color == VIOLET)
+								{
+									Card* ccc = w.m_deck.at(i);
+									if (w.m_deck.at(i)->m_name != "GUILDE_DES_BATISSEURS")
+									{
+										w.m_deck.at(i) = &b;
+									}
+								}
+							}
+							w.distributeCards();
+						}
+					}
+					else {
+						w.updateMilitary();
+						w.startAge();
+					}
+
+				}
+				Player& p = *w.m_players[0];
+				w.play(p);
+				w.playOthers(p);
+				w.endTurn();
+			}
+			w.computeScores();
+
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				for (int j = 0; j < w.m_players.at(i)->getBoard().size(); j++)
+				{
+					Card* ccc = w.m_players.at(i)->getBoard().at(j);
+					if (w.m_players.at(i)->getBoard().at(j)->m_name == "GUILDE_DES_SCIENTIFIQUES")
+					{
+						int res = w.m_players.at(i)->leftNeighbor->getMarvel()->getMarvelLevel();
+						res += w.m_players.at(i)->rightNeighbor->getMarvel()->getMarvelLevel() + w.m_players.at(i)->getMarvel()->getMarvelLevel();
+						Assert::AreEqual(res, w.m_scores.at(i).at(GUILDS));
+					}
+				}
+			}
+		}
+
+		TEST_METHOD(GuildeDesScientifiquesTest)
+		{
+			World w(0, 7);
+			BrownCard b("Fake Card", "t", "-");
+			b.initCost(0, 0, 0, 0, 0, 0, 0, 0);
+			while (!w.m_gameOver)
+			{
+				if (w.betweenTurns())
+				{
+					if (w.m_age == 2)
+					{
+						w.updateMilitary();
+						w.m_age++;
+						if (w.m_age <= NUMBER_OF_AGES)
+						{
+							w.m_deck = w.generateDeck(w.m_age - 1);
+							for (int i = 0; i < w.m_deck.size(); i++)
+							{
+								if (w.m_deck.at(i)->m_color == VIOLET)
+								{
+									Card* ccc = w.m_deck.at(i);
+									if (w.m_deck.at(i)->m_name != "GUILDE_DES_SCIENTIFIQUES")
+									{
+										w.m_deck.at(i) = &b;
+									}
+								}
+							}
+							w.distributeCards();
+						}
+					}
+					else {
+						w.updateMilitary();
+						w.startAge();
+					}
+
+				}
+				Player& p = *w.m_players[0];
+				w.play(p);
+				w.playOthers(p);
+				w.endTurn();
+			}
+			w.computeScores();
+
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				for (int j = 0; j < w.m_players.at(i)->getBoard().size(); j++)
+				{
+					Card* ccc = w.m_players.at(i)->getBoard().at(j);
+					if (w.m_players.at(i)->getBoard().at(j)->m_name == "GUILDE_DES_SCIENTIFIQUES")
+					{
+						Assert::AreEqual(0, w.m_scores.at(i).at(GUILDS));
+					}
+				}
+			}
+		}
 		//TOTEST
 		/*
-		3 GUILDE_DES_TRAVAILLEURS
-		3 GUILDE_DES_ARTISANS
-		3 GUILDE_DES_COMMERCANTS
-		3 GUILDE_DES_PHILOSOPHES
-		3 GUILDE_DES_ESPIONS
-		3 GUILDE_DES_STRATEGES
-		3 GUILDE_DES_ARMATEURS 
+		Armateurs
 		3 GUILDE_DES_SCIENTIFIQUES
-		3 GUILDE_DES_MAGISTRATS
-		3 GUILDE_DES_BATISSEURS
-		//Carte à jouer gratuitement
+		//faire merveille avec voisin
+		//acheter resource partagée
+		//Gold Check
 		*/
 	};
 }
