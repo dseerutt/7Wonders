@@ -276,6 +276,49 @@ namespace UnitTests
 			Assert::IsTrue(w.m_players.at(0)->getMoney() >= 3);
 		}
 
+		TEST_METHOD(GuildeDesTravailleursTest)
+		{
+			World w(0, 5);
+			BrownCard b("Fake Card", "t", "-");
+			b.initCost(0, 0, 0, 0, 0, 0, 0, 0);
+			while (!w.m_gameOver)
+			{
+				if (w.betweenTurns())
+				{
+					if (w.m_age == 2)
+					{
+						w.updateMilitary();
+						w.m_age++;
+						if (w.m_age <= NUMBER_OF_AGES)
+						{
+							w.m_deck = w.generateDeck(w.m_age - 1);
+							for (int i = 0; i < w.m_deck.size(); i++)
+							{
+								if (w.m_deck.at(i)->m_color == VIOLET)
+								{
+									if (w.m_deck.at(i)->m_name != "GUILDE_DES_TRAVAILLEURS")
+									{
+										w.m_deck.at(i) = &b;
+									}
+								}
+							}
+							w.distributeCards();
+						}
+					}
+					else {
+						w.updateMilitary();
+						w.startAge();
+					}
+
+				}
+				Player& p = *w.m_players[0];
+				w.play(p);
+				w.playOthers(p);
+				w.endTurn();
+			}
+			Assert::IsTrue(false);
+		}
+
 		//TOTEST
 		/*
 		3 GUILDE_DES_TRAVAILLEURS
