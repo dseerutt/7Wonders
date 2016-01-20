@@ -97,6 +97,9 @@
     <ClInclude Include="VioletCard.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="YellowCard.h" />
+    <ClInclude Include="test_mcts_two_players.hpp" />
+    <ClInclude Include="test_two_players_game.hpp" />
+
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BlueCard.cpp" />
@@ -117,6 +120,9 @@
     <ClCompile Include="VioletCard.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="YellowCard.cpp" />
+    <ClCompile Include="test_mcts_two_players.cpp" />
+    <ClCompile Include="test_two_players_game.cpp" />
+
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
