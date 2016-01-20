@@ -278,7 +278,7 @@ void World::computeScores()
 		//Blue cards score -----------------------------------------------------
 		for (unsigned int j = 0; j < board.size(); j++)
 		{
-			m_players.at(0)->applyEndingEffects(board.at(j));
+			m_players.at(i)->applyEndingEffects(board.at(j));
 			const Card& card = *board[j];
 			if (card.m_color == BLUE)
 			{
@@ -298,7 +298,7 @@ void World::computeScores()
 		//MarvelPV score --------------------------------------------------------
 		m_scores[i][WONDER_LEVEL] = m_players[i]->getMarvel()->getMarvelScore();
 
-		//Guild score --------------------------------------------------------
+		//Yellow Card Score --------------------------------------------------------
 		m_scores[i][YELLOW_CARDS] = m_players[i]->getGeneratedScore();
 
 		//Guild score --------------------------------------------------------
@@ -323,8 +323,12 @@ void World::displayScores() const
 	for (unsigned int i = 0; i < m_players.size(); i++)
 	{
 		std::cout << "  Blue cards : " << m_scores[i][BLUE_CARDS] << std::endl;
+		std::cout << "  Yellow cards : " << m_scores[i][YELLOW_CARDS] << std::endl;
 		std::cout << "  War : " << m_scores[i][WAR] << std::endl;
 		std::cout << "  Science : " << m_scores[i][SCIENCE] << std::endl;
+		std::cout << "  WonderScore : " << m_scores[i][WONDER_LEVEL] << std::endl;
+		std::cout << "  Guilds : " << m_scores[i][GUILDS] << std::endl;
+		std::cout << "  Gold Score : " << m_scores[i][GOLD] << std::endl;
 		std::cout << "Total : " << m_scores[i][TOTAL_SCORE] << std::endl << std::endl;
 	}
 	for (auto e : m_discard)

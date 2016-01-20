@@ -143,9 +143,49 @@ namespace UnitTests
 				int bluePoints = 0;
 				for (int j = 0; j < w.m_players.at(i)->getBoard().size(); j++)
 				{
-
+					Card* c = w.m_players.at(i)->getBoard().at(j);
+					if (c->m_color == BLUE)
+					{
+						bluePoints += c->getPoints();
+					}
 				}
-				Assert::AreEqual(w.m_players.at(i)->getMoney() / 3, (unsigned int)w.m_scores.at(i).at(GOLD));
+				Assert::AreEqual(bluePoints, w.m_scores.at(i).at(BLUE_CARDS));
+			}
+		}
+
+		TEST_METHOD(YellowPoints)
+		{
+			World w(0, 5);
+			w.run();
+			Assert::IsTrue(w.m_gameOver);
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				int value = 0;
+				for (int j = 0; j < w.m_players.at(i)->getBoard().size(); j++)
+				{
+					Card* c = w.m_players.at(i)->getBoard().at(j);
+					if (c->m_color == YELLOW)
+					{
+						if (c->m_name == "PORT")
+						{
+							value += w.m_players.at(i)->countColor(BROWN);
+						}
+						if (c->m_name == "PHARE")
+						{
+							value += w.m_players.at(i)->countColor(YELLOW);
+						}
+						if (c->m_name == "CHAMBRE_DE_COMMERCE")
+						{
+							value += 2*w.m_players.at(i)->countColor(GRAY);
+						}if (c->m_name == "ARENE")
+						{
+							value += w.m_players.at(i)->getMarvel()->getMarvelLevel();
+						}
+					}
+				}
+				int s = w.m_scores.at(i).at(YELLOW_CARDS);
+				int t = w.m_players.at(i)->getGeneratedScore();
+				Assert::AreEqual(value, w.m_scores.at(i).at(YELLOW_CARDS));
 			}
 		}
 
@@ -161,10 +201,7 @@ namespace UnitTests
 		3 GUILDE_DES_SCIENTIFIQUES
 		3 GUILDE_DES_MAGISTRATS
 		3 GUILDE_DES_BATISSEURS
-		Points jaunes
-		BLUE_CARDS,
-		YELLOW_CARDS,
-		GUILDS,
+		SCIENCE
 		*/
 	};
 }
