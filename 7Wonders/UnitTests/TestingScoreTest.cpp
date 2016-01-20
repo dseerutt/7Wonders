@@ -188,6 +188,12 @@ namespace UnitTests
 				Assert::AreEqual(value, w.m_scores.at(i).at(YELLOW_CARDS));
 			}
 		}
+		TEST_METHOD(SciencePoints)
+		{
+			World w(0, 5);
+			
+
+		}
 
 		//TOTEST
 		/*
