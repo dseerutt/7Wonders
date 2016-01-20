@@ -99,6 +99,8 @@
     <ClInclude Include="YellowCard.h" />
     <ClInclude Include="test_mcts_two_players.hpp" />
     <ClInclude Include="test_two_players_game.hpp" />
+    <ClInclude Include="MCTSImplementation.h" />
+
 
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +124,8 @@
     <ClCompile Include="YellowCard.cpp" />
     <ClCompile Include="test_mcts_two_players.cpp" />
     <ClCompile Include="test_two_players_game.cpp" />
+    <ClCompile Include="MCTSImplementation.cpp" />
+
 
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
