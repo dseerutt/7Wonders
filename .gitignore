@@ -39,8 +39,7 @@
 7Wonders/Release/*
 7Wonders/ipch/
 *.v12.suo
-*.vcxproj
+.vcxproj
 !UnitTests.vcxproj
-*.vcxproj.filters
 #.ipch
 7Wonders/TestResults/*
