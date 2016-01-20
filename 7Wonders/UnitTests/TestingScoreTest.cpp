@@ -191,8 +191,89 @@ namespace UnitTests
 		TEST_METHOD(SciencePoints)
 		{
 			World w(0, 5);
-			
+			int index = 0;
+			for (int i = 0; i < w.m_deck.size(); i++)
+			{
+				if (w.m_deck.at(i)->m_name == "GUILDE_DES_SCIENTIFIQUES")
+				{
+					index = i;
+				}
+			}
+			BrownCard b("Carte_de_Substitution","b","-");
 
+			while (!w.m_gameOver)
+			{
+				if (w.betweenTurns())
+				{
+					w.updateMilitary();
+					w.m_age++;
+					if (w.m_age <= NUMBER_OF_AGES)
+					{
+						w.m_deck = w.generateDeck(w.m_age - 1);
+						w.m_deck.at(index) = &b;
+						w.distributeCards();
+					}
+				}
+				Player& p = *w.m_players[0];
+				w.play(p);
+				w.playOthers(p);
+				w.endTurn();
+			}
+
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				unsigned int compass = 0, gear = 0, tablet = 0;
+				for (int j = 0; j < w.m_players.at(i)->getBoard().size(); j++)
+				{
+					const GreenCard& card = (GreenCard&)(w.m_players.at(i)->getBoard().at(j));
+					if (card.m_color == GREEN)
+					{
+						if (card.getType() == 'c')
+							compass++;
+						if (card.getType() == 'g')
+							gear++;
+						if (card.getType() == 't')
+							tablet++;
+					}
+				}
+				int res = compass*compass + gear*gear + tablet*tablet + 7 * std::min(compass, std::min(gear, tablet));
+				Assert::AreEqual(res, w.m_scores.at(i).at(SCIENCE));
+			}
+		}
+
+		TEST_METHOD(FreeCardTest)
+		{
+			World w(0, 5);
+			int index = 0;
+			BrownCard b("Carte_de_Substitution", "b", "CHANTIER");
+			b.initCost(5, 5, 5, 5, 5, 5, 5, 5);
+
+			w.m_age++;
+			w.m_deck = w.generateDeck(w.m_age - 1);
+			for (int i = 0; i < w.m_deck.size(); i++)
+			{
+				if (w.m_deck.at(i)->m_name == "CHANTIER")
+				{
+					index = i;
+				}
+			}
+			w.m_deck.at(0) = w.m_deck.at(index);
+			w.distributeCards();
+			Player& p = *w.m_players[0];
+			w.play(p);
+			w.playOthers(p);
+			w.endTurn();
+			Assert::AreEqual("CHANTIER", w.m_players.at(0)->getBoard().at(0)->m_name.c_str());
+			w.m_age++;
+			w.m_deck = w.generateDeck(w.m_age - 1);
+			w.m_deck.at(0) = &b;
+			w.distributeCards();
+			Assert::IsTrue(w.m_players.at(0)->canBuy(&b));
+			w.play(p);
+			w.playOthers(p);
+			w.playTurn();
+			Assert::AreEqual("Carte_de_Substitution", w.m_players.at(0)->getBoard().at(1)->m_name.c_str());
+			Assert::IsTrue(w.m_players.at(0)->getMoney() >= 3);
 		}
 
 		//TOTEST
@@ -207,7 +288,7 @@ namespace UnitTests
 		3 GUILDE_DES_SCIENTIFIQUES
 		3 GUILDE_DES_MAGISTRATS
 		3 GUILDE_DES_BATISSEURS
-		SCIENCE
+		//Carte à jouer gratuitement
 		*/
 	};
 }

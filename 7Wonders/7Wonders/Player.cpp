@@ -521,6 +521,15 @@ bool Player::canBuy(Card* c)
 	{
 		return false;
 	}
+	//Free card
+	for (int i = 0; i < m_board.size(); i++)
+	{
+		if (m_board.at(i)->m_name == c->buyForFreeIf)
+		{
+			c->m_price = 0;
+			return true;
+		}
+	}
 	if (c->m_price > money)
 	{
 		return false;

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
+#include "../7Wonders/World.h"
 #include "../7Wonders/Card.h"
 #include "../7Wonders/CardSet.cpp"
 #include "../7Wonders/CardDatabaseParser.cpp"
@@ -20,7 +21,7 @@ namespace UnitTests
 			//privés donc pas de test direct sur les contenus
 
 			//3 joueurs
-			CardDatabaseParser parser(3);
+			CardDatabaseParser parser(3,3);
 			CardSet set = parser.generateDeck(0);
 			Assert::AreEqual((size_t)21, set.size());
 			set = parser.generateDeck(1);
@@ -31,7 +32,7 @@ namespace UnitTests
 
 		TEST_METHOD(CardDatabaseParserGenerateDeck7Players)
 		{
-			CardDatabaseParser parser(7);
+			CardDatabaseParser parser(7, 3);
 			CardSet set = parser.generateDeck(0);
 			Assert::AreEqual((size_t)49, set.size());
 			set = parser.generateDeck(1);
@@ -47,7 +48,7 @@ namespace UnitTests
 			//Age 0 seulement testé
 
 			//4 joueurs
-			CardDatabaseParser parser(3);
+			CardDatabaseParser parser(3, 3);
 			CardSet set = parser.generateDeck(0);
 			Assert::AreEqual((size_t)21, set.size());
 			vector<string> contents;
@@ -126,7 +127,7 @@ namespace UnitTests
 
 		TEST_METHOD(GetColorTest)
 		{
-			CardDatabaseParser parser(3);
+			CardDatabaseParser parser(3, 3);
 			Assert::AreEqual((int)BLUE, (int)parser.getColor('b'));
 			Assert::AreEqual((int)GRAY, (int)parser.getColor('g'));
 			Assert::AreEqual((int)BROWN, (int)parser.getColor('w'));
