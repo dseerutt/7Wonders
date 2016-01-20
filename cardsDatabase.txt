@@ -122,12 +122,12 @@ NOM_CARTE nbJoueurs couleur or bois pierre briques minerais textile verre papyru
 3 SENAT 3 b 0 2 1 0 1 0 0 0 6 -
 3 SENAT 5 b 0 2 1 0 1 0 0 0 6 -
 
-3 PORT 3 y 0 1 0 0 1 0 0 1 a -
-3 PORT 4 y 0 1 0 0 1 0 0 1 a -
-3 PHARE 3 y 0 0 1 0 0 0 1 0 a -
-3 PHARE 6 y 0 0 1 0 0 0 1 0 a -
-3 CHAMBRE_DE_COMMERCE 4 y 0 0 0 1 0 1 0 0 a -
-3 CHAMBRE_DE_COMMERCE 6 y 0 0 0 1 0 1 0 0 a -
+3 PORT 3 y 0 1 0 0 1 0 0 1 p -
+3 PORT 4 y 0 1 0 0 1 0 0 1 p -
+3 PHARE 3 y 0 0 1 0 0 0 1 0 q -
+3 PHARE 6 y 0 0 1 0 0 0 1 0 q -
+3 CHAMBRE_DE_COMMERCE 4 y 0 0 0 1 0 1 0 0 r -
+3 CHAMBRE_DE_COMMERCE 6 y 0 0 0 1 0 1 0 0 r -
 3 ARENE 3 y 0 0 2 0 1 0 0 0 a -
 3 ARENE 5 y 0 0 2 0 1 0 0 0 a -
 3 ARENE 7 y 0 0 2 0 1 0 0 0 a -
