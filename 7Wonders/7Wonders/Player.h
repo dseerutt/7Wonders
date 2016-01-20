@@ -66,8 +66,8 @@ public:
 	void playTurn();
 	void AddResource(array<int, RESOURCES_COUNT> resource);
 	void AddResourceWithChoice(array<int, RESOURCES_COUNT> resource);
-protected:
 	CardSet getPlayableCards();
+protected:
 	virtual void pickCard() = 0;
 };
 

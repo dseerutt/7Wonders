@@ -23,7 +23,7 @@ private:
 	std::vector<std::vector<VioletCard> > m_violetCards;
 
 public:
-	CardDatabaseParser(int playerNumber);
+	CardDatabaseParser(int playerNumber, int numberOfAge);
 	~CardDatabaseParser();
 
 	CardSet generateDeck(int age);

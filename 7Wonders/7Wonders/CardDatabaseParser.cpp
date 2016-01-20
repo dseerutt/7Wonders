@@ -6,16 +6,15 @@
 #include <random>
 #include <ctime>
 #include <chrono>
-#include "World.h"
 
-CardDatabaseParser::CardDatabaseParser(int playerNumber) :
-m_brownCards(NUMBER_OF_AGES, std::vector<BrownCard>()),
-m_grayCards(NUMBER_OF_AGES, std::vector<GrayCard>()),
-m_blueCards(NUMBER_OF_AGES, std::vector<BlueCard>()),
-m_yellowCards(NUMBER_OF_AGES, std::vector<YellowCard>()),
-m_redCards(NUMBER_OF_AGES, std::vector<RedCard>()),
-m_greenCards(NUMBER_OF_AGES, std::vector<GreenCard>()),
-m_violetCards(NUMBER_OF_AGES, std::vector<VioletCard>())
+CardDatabaseParser::CardDatabaseParser(int playerNumber, int numberOfAge) :
+m_brownCards(numberOfAge, std::vector<BrownCard>()),
+m_grayCards(numberOfAge, std::vector<GrayCard>()),
+m_blueCards(numberOfAge, std::vector<BlueCard>()),
+m_yellowCards(numberOfAge, std::vector<YellowCard>()),
+m_redCards(numberOfAge, std::vector<RedCard>()),
+m_greenCards(numberOfAge, std::vector<GreenCard>()),
+m_violetCards(numberOfAge, std::vector<VioletCard>())
 {
 	std::fstream file;
 	file.open(DATABASE_PATH);

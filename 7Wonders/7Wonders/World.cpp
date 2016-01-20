@@ -10,7 +10,7 @@
 #include <ctime>
 
 World::World(unsigned int nh, unsigned int nc) : 
-	m_gameOver(false), m_age(0), m_cardDatabaseParser(nh + nc),
+	m_gameOver(false), m_age(0), m_cardDatabaseParser(nh + nc, NUMBER_OF_AGES),
 	m_deck(), m_discard(), m_scores(nh + nc, std::vector<int>(TOTAL_SCORE+1)), m_winner(nullptr), m_draw(false)
 {
 	int index = 0;
