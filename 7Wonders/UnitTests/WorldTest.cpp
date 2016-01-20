@@ -153,7 +153,7 @@ namespace UnitTests
 		TEST_METHOD(GenerateDeck3PlayersTest)
 		{
 			//3 joueurs
-			CardDatabaseParser parser(3);
+			CardDatabaseParser parser(3, 3);
 			CardSet set = parser.generateDeck(0);
 			Assert::AreEqual((size_t)21, set.size());
 			set = parser.generateDeck(1);
