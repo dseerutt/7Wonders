@@ -571,6 +571,7 @@ namespace UnitTests
 			World w(0, 7);
 			BrownCard b("Fake Card", "t", "-");
 			b.initCost(0, 0, 0, 0, 0, 0, 0, 0);
+			unsigned int tab[7] = {};
 			while (!w.m_gameOver)
 			{
 				if (w.betweenTurns())
@@ -578,6 +579,19 @@ namespace UnitTests
 					if (w.m_age == 2)
 					{
 						w.updateMilitary();
+						for (int i = 0; i < w.m_players.size(); i++)
+						{
+							int value = w.m_players.at(i)->getMilitaryMalus();
+							if (w.m_players.at(i)->getMilitary() < w.m_players.at(i)->leftNeighbor->getMilitary())
+							{
+								tab[i]++;
+							}
+							if (w.m_players.at(i)->getMilitary() < w.m_players.at(i)->rightNeighbor->getMilitary())
+							{
+								tab[i]++;
+							}
+							Assert::AreEqual(tab[i], w.m_players.at(i)->getMilitaryMalus());
+						}
 						w.m_age++;
 						if (w.m_age <= NUMBER_OF_AGES)
 						{
@@ -598,6 +612,19 @@ namespace UnitTests
 					}
 					else {
 						w.updateMilitary();
+						for (int i = 0; i < w.m_players.size(); i++)
+						{
+								int value = w.m_players.at(i)->getMilitaryMalus();
+								if (w.m_players.at(i)->getMilitary() < w.m_players.at(i)->leftNeighbor->getMilitary())
+								{
+									tab[i]++;
+								}
+								if (w.m_players.at(i)->getMilitary() < w.m_players.at(i)->rightNeighbor->getMilitary())
+								{
+									tab[i]++;
+								}
+								Assert::AreEqual(tab[i], w.m_players.at(i)->getMilitaryMalus());
+						}
 						w.startAge();
 					}
 
@@ -608,6 +635,20 @@ namespace UnitTests
 				w.endTurn();
 			}
 			w.computeScores();
+			for (int i = 0; i < w.m_players.size(); i++)
+			{
+				int value = w.m_players.at(i)->getMilitaryMalus();
+				if (w.m_players.at(i)->getMilitary() < w.m_players.at(i)->leftNeighbor->getMilitary())
+				{
+					tab[i]++;
+				}
+				if (w.m_players.at(i)->getMilitary() < w.m_players.at(i)->rightNeighbor->getMilitary())
+				{
+					tab[i]++;
+				}
+				Assert::AreEqual(tab[i], w.m_players.at(i)->getMilitaryMalus());
+			}
+			
 
 			for (int i = 0; i < w.m_players.size(); i++)
 			{
@@ -616,8 +657,10 @@ namespace UnitTests
 					Card* ccc = w.m_players.at(i)->getBoard().at(j);
 					if (w.m_players.at(i)->getBoard().at(j)->m_name == "GUILDE_DES_STRATEGES")
 					{
+						Assert::AreEqual(tab[i], w.m_players.at(i)->getMilitaryMalus());
 						int res = w.m_players.at(i)->leftNeighbor->getMilitaryMalus();
 						res += w.m_players.at(i)->rightNeighbor->getMilitaryMalus();
+						int res2 = w.m_scores.at(i).at(GUILDS);
 						Assert::AreEqual(res, w.m_scores.at(i).at(GUILDS));
 					}
 				}

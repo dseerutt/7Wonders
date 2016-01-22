@@ -83,6 +83,7 @@ void World::run()
 		display.draw();
 #endif // !TESTING
 	}
+	//updateMilitary();
 
 	computeScores();
 	displayScores();
@@ -269,6 +270,7 @@ void World::upgradeMarvel(Player* p, int PV)
 
 void World::computeScores()
 {
+	updateMilitary();
 	for (unsigned int i = 0; i < m_players.size(); i++)
 	{
 		const Player& player = *(m_players.at(i));
@@ -290,7 +292,7 @@ void World::computeScores()
 		m_scores[i][GOLD] = ((int)m_players[i]->getMoney() / 3);
 
 		//War score --------------------------------------------------------
-		m_scores[i][WAR] += getMilitaryScore(m_players.at(i));
+		//m_scores[i][WAR] += getMilitaryScore(m_players.at(i));
 
 		//Science score --------------------------------------------------------
 		m_scores[i][SCIENCE] = computeScienceScore(board, m_players.at(i)->getScienceGuild());
