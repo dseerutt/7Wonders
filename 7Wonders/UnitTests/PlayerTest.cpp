@@ -619,7 +619,7 @@ namespace UnitTests
 				for (int i = 0; i < w.m_deck.size(); i++)
 				{
 					string s = w.m_deck.at(i)->m_name;
-					if (w.m_deck.at(i)->m_name == "COMPTOIR_OUEST")
+					if (w.m_deck.at(i)->m_name == "COMPTOIR_EST")
 					{
 						index = i;
 						break;
@@ -655,7 +655,7 @@ namespace UnitTests
 				for (int i = 0; i < w.m_deck.size(); i++)
 				{
 					string s = w.m_deck.at(i)->m_name;
-					if (w.m_deck.at(i)->m_name == "COMPTOIR_EST")
+					if (w.m_deck.at(i)->m_name == "COMPTOIR_OUEST")
 					{
 						index = i;
 						break;

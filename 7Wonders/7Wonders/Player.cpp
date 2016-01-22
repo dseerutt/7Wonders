@@ -130,7 +130,7 @@ CardSet Player::getPlayableCards()
 	CardSet cards;
 	for (unsigned int i = 0; i < m_hand.size(); i++)
 	{
-		if (canBuyWithNeighbor(m_hand.at(i)) != -1)
+		if (canBuyWithNeighbor(m_hand.at(i)) >= 0)
 		{
 			cards.push_back(m_hand.at(i));
 		}
@@ -581,7 +581,7 @@ int Player::canBuyWithNeighbor(Card* c)
 {
 	if (alreadyPlayed(c->m_name))
 	{
-		return false;
+		return -1;
 	}
 	int virtualMoney = money;
 	if (canBuy(c))
@@ -735,6 +735,13 @@ bool Player::canProvide(array<int, RESOURCES_COUNT> resource)
 
 bool Player::Buy(Card* c)
 {
+	for (int i = 0; i < m_board.size(); i++)
+	{
+		if (m_board.at(i)->m_name == c->buyForFreeIf)
+		{
+			return true;
+		}
+	}
 	if (canBuy(c))
 	{
 		money -= c->m_price;
@@ -779,6 +786,11 @@ bool Player::Buy(Card* c)
 						if (count2 > count)
 						{
 							rightNeighbor->money += count2;
+							if (money - count2 < 0)
+							{
+								int s = 0;
+								return true;
+							}
 							money -= count2;
 							return true;
 						}

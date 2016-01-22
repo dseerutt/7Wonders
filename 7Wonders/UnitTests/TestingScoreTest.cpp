@@ -933,11 +933,5 @@ namespace UnitTests
 				Assert::AreEqual(newValue, w.m_scores.at(index).at(SCIENCE));
 			}
 		}
-		//TOTEST
-		/*
-		//faire merveille avec voisin
-		//acheter resource partagée
-		//Gold Check
-		*/
 	};
 }
