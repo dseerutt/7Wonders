@@ -883,7 +883,7 @@ namespace UnitTests
 				w.endTurn();
 			}
 			w.computeScores();
-			int index = 0, c = 0, g = 0, t = 0;
+			int index = -1, c = 0, g = 0, t = 0;
 			for (int i = 0; i < w.m_players.size(); i++)
 			{
 				for (int j = 0; j < w.m_players.at(i)->getBoard().size(); j++)
@@ -896,42 +896,45 @@ namespace UnitTests
 					}
 				}
 			}
-			for (int j = 0; j < w.m_players.at(index)->getBoard().size(); j++)
+			if (index != -1)
 			{
-				if (w.m_players.at(index)->getBoard().at(j)->m_color == GREEN)
+				for (int j = 0; j < w.m_players.at(index)->getBoard().size(); j++)
 				{
-					switch (((GreenCard*) w.m_players.at(index)->getBoard().at(j))->getType())
+					if (w.m_players.at(index)->getBoard().at(j)->m_color == GREEN)
 					{
-					case 'c':
-						c++;
-						break;
-					case 'g':
-						g++;
-						break;
-					case 't':
-						t++;
-						break;
-					default:
-						break;
+						switch (((GreenCard*)w.m_players.at(index)->getBoard().at(j))->getType())
+						{
+						case 'c':
+							c++;
+							break;
+						case 'g':
+							g++;
+							break;
+						case 't':
+							t++;
+							break;
+						default:
+							break;
+						}
 					}
 				}
+				int value = c*c + g*g + t*t + 7 * std::min(c, std::min(g, t));
+				c++;
+				int v1 = c*c + g*g + t*t + 7 * std::min(c, std::min(g, t));
+				c--;
+				g++;
+				int v2 = c*c + g*g + t*t + 7 * std::min(c, std::min(g, t));
+				g--;
+				t++;
+				int v3 = c*c + g*g + t*t + 7 * std::min(c, std::min(g, t));
+				t--;
+				int newValue = std::max(std::max(v1, v2), v3);
+				int newValue2 = w.m_scores.at(index).at(SCIENCE);
+				Assert::AreEqual(newValue, w.m_scores.at(index).at(SCIENCE));
 			}
-			int value = c*c + g*g + t*t + 7 * std::min(c, std::min(g, t));
-			c++;
-			int v1 = c*c + g*g + t*t + 7 * std::min(c, std::min(g, t));
-			c--;
-			g++;
-			int v2 = c*c + g*g + t*t + 7 * std::min(c, std::min(g, t));
-			g--;
-			t++;
-			int v3 = c*c + g*g + t*t + 7 * std::min(c, std::min(g, t));
-			t--;
-			int newValue = std::max(std::max(v1, v2), v3);
-			Assert::AreEqual(newValue, w.m_scores.at(index).at(SCIENCE));
 		}
 		//TOTEST
 		/*
-		Armateurs
 		//faire merveille avec voisin
 		//acheter resource partagée
 		//Gold Check

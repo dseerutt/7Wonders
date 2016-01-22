@@ -294,8 +294,6 @@ void World::computeScores()
 		//War score --------------------------------------------------------
 		//m_scores[i][WAR] += getMilitaryScore(m_players.at(i));
 
-		//Science score --------------------------------------------------------
-		m_scores[i][SCIENCE] = computeScienceScore(board, m_players.at(i)->getScienceGuild());
 
 		//MarvelPV score --------------------------------------------------------
 		m_scores[i][WONDER_LEVEL] = m_players[i]->getMarvel()->getMarvelScore();
@@ -305,10 +303,24 @@ void World::computeScores()
 
 		//Guild score --------------------------------------------------------
 		m_scores[i][GUILDS] = m_players[i]->getGuildScore();
+	}
+
+	for (unsigned int i = 0; i < m_players.size(); i++)
+	{
+		const Player& player = *(m_players.at(i));
+		const CardSet& board = player.getBoard();
+		//Science score --------------------------------------------------------
+		m_scores[i][SCIENCE] = computeScienceScore(board, m_players.at(i)->getScienceGuild());
 
 		//Total score ----------------------------------------------------------
-		m_scores[i][TOTAL_SCORE] = m_scores[i][BLUE_CARDS] + m_scores[i][SCIENCE] + m_scores[i][GOLD];
+		int resul = 0;
+		for (int j = 0; j < TOTAL_SCORE; j++)
+		{
+			resul += m_scores[i][j];
+		}
+		m_scores[i][TOTAL_SCORE] = resul;
 	}
+
 	unsigned int winner = 0;
 	for (unsigned int i = 1; i < m_scores.size(); i++)
 	{
