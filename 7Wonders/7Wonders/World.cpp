@@ -293,7 +293,7 @@ void World::computeScores()
 		m_scores[i][WAR] += getMilitaryScore(m_players.at(i));
 
 		//Science score --------------------------------------------------------
-		m_scores[i][SCIENCE] = computeScienceScore(board);
+		m_scores[i][SCIENCE] = computeScienceScore(board, m_players.at(i)->getScienceGuild());
 
 		//MarvelPV score --------------------------------------------------------
 		m_scores[i][WONDER_LEVEL] = m_players[i]->getMarvel()->getMarvelScore();
@@ -337,9 +337,25 @@ void World::displayScores() const
 	}
 }
 
-unsigned int World::computeScienceScore(const CardSet& board) const
+unsigned int World::computeScienceScore(const CardSet& board, char guild) const
 {
 	unsigned int compass = 0, gear = 0, tablet = 0;
+	switch (guild)
+	{
+	case 'n':
+			break;
+	case 'c':
+		compass++;
+		break;
+	case 'g':
+		gear++;
+			break;
+	case 't':
+		tablet++;
+			break;
+		default:
+			break;
+	}
 	for (unsigned int i = 0; i < board.size(); i++)
 	{
 		const GreenCard& card = (GreenCard&) (*board[i]);

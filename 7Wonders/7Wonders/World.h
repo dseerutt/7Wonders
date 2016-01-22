@@ -56,7 +56,7 @@ public:
 	void updateMilitary();
 	void computeScores();
 	void displayScores() const;
-	unsigned int computeScienceScore(const CardSet& board) const;
+	unsigned int computeScienceScore(const CardSet& board, char guild) const;
 	bool hasWon(const Player& player) const;
 	bool draw() const;
 	unsigned int getPlayerId(const Player& player) const;

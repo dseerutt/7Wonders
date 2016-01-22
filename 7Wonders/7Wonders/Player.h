@@ -9,6 +9,7 @@ using namespace std;
 class Player
 {
 protected:
+	char scienceGuild = 'n';
 	Marvel* marvel;
 	CardSet m_hand;
 	CardSet m_board;
@@ -45,6 +46,7 @@ public:
 	void resetResources();
 
 	unsigned int getMilitary() const;
+	char getScienceGuild() const;
 	unsigned int getMilitaryMalus() const;
 	unsigned int getGeneratedScore() const;
 	unsigned int getScore() const;

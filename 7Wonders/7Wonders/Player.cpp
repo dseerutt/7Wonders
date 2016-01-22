@@ -59,6 +59,11 @@ unsigned int Player::getGuildScore() const
 	return guildScore;
 }
 
+char Player::getScienceGuild() const
+{
+	return scienceGuild;
+}
+
 unsigned int Player::getMilitary() const
 {
 	return military;
@@ -486,29 +491,19 @@ void Player::scientistGuildTreatment()
 	int v2 = computeScienceScore(1);
 	int v3 = computeScienceScore(2);
 	char cc = '-';
-	if (v1 >= v2)
+	int value = std::max(std::max(v1, v2),v3);
+	if (value == v1)
 	{
-		if (v3 >= v1)
-		{
-			cc = 'c';
-		}
+		scienceGuild = 'c';
 	}
-	if (v2 >= v3)
+	if (value == v2)
 	{
-		if (v2 >= v1)
-		{
-			cc = 'g';
-		}
+		scienceGuild = 'g';
 	}
-	if (v3 >= v1)
+	if (value == v3)
 	{
-		if (v3 >= v2)
-		{
-			cc = 't';
-		}
+		scienceGuild = 't';
 	}
-	GreenCard card("GUILD_CARD", cc, "-");
-	m_board.push_back(&card);
 }
 
 bool Player::canBuy(Card* c)

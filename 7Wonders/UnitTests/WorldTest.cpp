@@ -209,15 +209,15 @@ namespace UnitTests
 			GreenCard g1("Card 2", 'g', "-");
 			set.push_back(&g0);
 			set.push_back(&g1);
-			Assert::AreEqual( (unsigned) 2, w.computeScienceScore(set));
+			Assert::AreEqual((unsigned)2, w.computeScienceScore(set, 'n'));
 			GreenCard g2("Card 3", 't', "-");
 			set.push_back(&g2);
-			Assert::AreEqual((unsigned)10, w.computeScienceScore(set));
+			Assert::AreEqual((unsigned)10, w.computeScienceScore(set, 'n'));
 			GreenCard g3("Card 4", 't', "-");
 			GreenCard g4("Card 5", 't', "-");
 			set.push_back(&g3);
 			set.push_back(&g4);
-			Assert::AreEqual((unsigned)18, w.computeScienceScore(set));
+			Assert::AreEqual((unsigned)18, w.computeScienceScore(set, 'n'));
 		}
 
 		TEST_METHOD(EndTurntest)
