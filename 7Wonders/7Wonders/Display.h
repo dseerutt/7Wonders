@@ -27,6 +27,7 @@ protected:
 	void testMaximumCapacity();
 	void drawSprite(string path, int wherex, int wherey);
 	void drawSprite(string path, sf::Vector2f size, int wherex, int wherey);
+	void drawSpriteWithScale(string path, sf::Vector2f size, sf::Vector2f scale, int wherex, int wherey);
 	void drawBackground();
 	void drawPlayer(const Player& p);
 	void drawPlayerDemo(const Player& p, const Player& p1, const Player& p2);

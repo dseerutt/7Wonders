@@ -56,6 +56,39 @@ void Display::drawPlayerDemo(const Player& p0, const Player& p1, const Player& p
 
 void Display::testMaximumCapacity()
 {
+	//Age 1
+	drawSprite("1.png", sf::Vector2f(0, 0), 46, 61);
+	drawSprite("1.png", sf::Vector2f(760, 0), 46, 61);
+
+	//Age 2
+	drawSprite("2.png", sf::Vector2f(0, 0), 59, 61);
+	drawSprite("2.png", sf::Vector2f(750, 0), 59, 61);
+
+	//Age 3
+	drawSprite("3.png", sf::Vector2f(0, 0), 59, 61);
+	drawSprite("3.png", sf::Vector2f(735, 0), 59, 61);
+
+	//Player names
+	drawSprite("Player1.png", sf::Vector2f(70, 5), 500, 500);
+	drawSprite("Player2.png", sf::Vector2f(330, 5), 133, 55);
+	drawSprite("Player3.png", sf::Vector2f(600, 5), 133, 55);
+
+	//Jetons
+
+	drawSpriteWithScale("coin.png", sf::Vector2f(35, 60), sf::Vector2f(0.05, 0.05), 512, 512);
+	drawSpriteWithScale("coin.png", sf::Vector2f(305, 60), sf::Vector2f(0.05, 0.05), 512, 512);
+	drawSpriteWithScale("coin.png", sf::Vector2f(575, 60), sf::Vector2f(0.05, 0.05), 512, 512);
+	drawSpriteWithScale("sword.png", sf::Vector2f(80, 59), sf::Vector2f(0.03, 0.03), 894, 894);
+	drawSpriteWithScale("sword.png", sf::Vector2f(350, 59), sf::Vector2f(0.03, 0.03), 894, 894);
+	drawSpriteWithScale("sword.png", sf::Vector2f(620, 59), sf::Vector2f(0.03, 0.03), 894, 894);
+	drawSpriteWithScale("shield.png", sf::Vector2f(157, 60), sf::Vector2f(0.30, 0.30), 84, 84);
+	drawSpriteWithScale("shield.png", sf::Vector2f(427, 60), sf::Vector2f(0.30, 0.30), 84, 84);
+	drawSpriteWithScale("shield.png", sf::Vector2f(697, 60), sf::Vector2f(0.30, 0.30), 84, 84);
+	drawSpriteWithScale("pyr.png", sf::Vector2f(200, 56), sf::Vector2f(0.06, 0.06), 600, 600);
+	drawSpriteWithScale("pyr.png", sf::Vector2f(470, 56), sf::Vector2f(0.06, 0.06), 600, 600);
+	drawSpriteWithScale("pyr.png", sf::Vector2f(740, 56), sf::Vector2f(0.06, 0.06), 600, 600);
+
+	//Cards display
 	//Colonne 1
 	int tempWidth = 140;
 	for (int i = 0; i < 9; i++)
@@ -205,6 +238,21 @@ void Display::drawSprite(string path, sf::Vector2f pos, int wherex, int wherey)
 	{
 		m_window.close();
 	}
+	m_window.draw(sprite2);
+}
+
+void Display::drawSpriteWithScale(string path, sf::Vector2f pos, sf::Vector2f scale, int wherex, int wherey)
+{
+	sf::Texture texture2;
+	texture2.create(wherex, wherey);
+	sf::Sprite sprite2;
+	sprite2.setPosition(pos);
+	sprite2.setTexture(texture2);
+	if (!texture2.loadFromFile(RelativePath + path))
+	{
+		m_window.close();
+	}
+	sprite2.scale(scale);
 	m_window.draw(sprite2);
 }
 
