@@ -87,6 +87,9 @@ void Display::drawCard(const Card& c, sf::Vector2f pos)
 	case GREEN:
 		rect.setFillColor(sf::Color::Green);
 		break;
+	case VIOLET:
+		rect.setFillColor(sf::Color::White);
+		break;
 	default:
 		rect.setFillColor(sf::Color::White);
 		break;

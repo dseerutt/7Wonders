@@ -22,7 +22,7 @@ int main(int argc, char** argv)
 	unsigned int nc = 4;// nb de joueurs ordinateurs
 	World world(nh, nc);
 
-	//world.run();
+	world.run();
 
 	game::run_test_two_players_game(game::MCTSImplementation(&world));
 	//mcts::run_test_mcts_two_players(game::MCTSImplementation(&world));
