@@ -1,0 +1,108 @@
+﻿Build started 25/01/2016 04:35:36.
+     1>Project "E:\cygwin\home\WIN SEVEN\projects\HighestNum\HighestNum\HighestNum.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt HighestNumber.cpp allocator.cpp mcts_two_players.cpp openings.cpp test_mcts_two_players.cpp
+         HighestNumber.cpp
+     1>e:\cygwin\home\win seven\projects\highestnum\highestnum\node.hpp(52): warning C4305: '=' : truncation from 'double' to 'float'
+     1>e:\cygwin\home\win seven\projects\highestnum\highestnum\node.hpp(57): warning C4305: '=' : truncation from 'double' to 'float'
+     1>e:\cygwin\home\win seven\projects\highestnum\highestnum\node.hpp(114): warning C4068: unknown pragma
+     1>e:\cygwin\home\win seven\projects\highestnum\highestnum\node.hpp(134): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>e:\cygwin\home\win seven\projects\highestnum\highestnum\test_mcts_two_players.hpp(72): warning C4305: 'argument' : truncation from 'double' to 'float'
+                 e:\cygwin\home\win seven\projects\highestnum\highestnum\test_mcts_two_players.hpp(70) : while compiling class template member function 'void mcts::test_mcts_two_players<Game>::play(Game)'
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+                 e:\cygwin\home\win seven\projects\highestnum\highestnum\test_mcts_two_players.hpp(34) : see reference to function template instantiation 'void mcts::test_mcts_two_players<Game>::play(Game)' being compiled
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+                 e:\cygwin\home\win seven\projects\highestnum\highestnum\test_mcts_two_players.hpp(31) : while compiling class template member function 'mcts::test_mcts_two_players<Game>::test_mcts_two_players(const Game &)'
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+                 e:\cygwin\home\win seven\projects\highestnum\highestnum\test_mcts_two_players.hpp(41) : see reference to function template instantiation 'mcts::test_mcts_two_players<Game>::test_mcts_two_players(const Game &)' being compiled
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+                 e:\cygwin\home\win seven\projects\highestnum\highestnum\test_mcts_two_players.hpp(41) : see reference to class template instantiation 'mcts::test_mcts_two_players<Game>' being compiled
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+                 e:\cygwin\home\win seven\projects\highestnum\highestnum\highestnumber.cpp(20) : see reference to function template instantiation 'void mcts::run_test_mcts_two_players<game::HighestNumber>(const Game &)' being compiled
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+     1>e:\cygwin\home\win seven\projects\highestnum\highestnum\mcts_two_players.hpp(68): warning C4244: 'argument' : conversion from 'const unsigned int' to 'float', possible loss of data
+                 e:\cygwin\home\win seven\projects\highestnum\highestnum\mcts_two_players.hpp(65) : while compiling class template member function 'mcts::node *mcts::mcts_two_players<Game>::select(const std::shared_ptr<game::HighestNumber> &,std::mt19937 &,mcts::node *)'
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+                 e:\cygwin\home\win seven\projects\highestnum\highestnum\mcts_two_players.hpp(151) : see reference to function template instantiation 'mcts::node *mcts::mcts_two_players<Game>::select(const std::shared_ptr<game::HighestNumber> &,std::mt19937 &,mcts::node *)' being compiled
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+                 e:\cygwin\home\win seven\projects\highestnum\highestnum\mcts_two_players.hpp(135) : while compiling class template member function 'void mcts::mcts_two_players<Game>::think(const std::shared_ptr<game::HighestNumber> &)'
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+                 e:\cygwin\home\win seven\projects\highestnum\highestnum\mcts_two_players.hpp(209) : see reference to function template instantiation 'void mcts::mcts_two_players<Game>::think(const std::shared_ptr<game::HighestNumber> &)' being compiled
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+                 e:\cygwin\home\win seven\projects\highestnum\highestnum\mcts_two_players.hpp(52) : while compiling class template member function 'void mcts::mcts_two_players<Game>::reset(void)'
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+                 e:\cygwin\home\win seven\projects\highestnum\highestnum\test_mcts_two_players.hpp(72) : see reference to class template instantiation 'mcts::mcts_two_players<Game>' being compiled
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+                 e:\cygwin\home\win seven\projects\highestnum\highestnum\test_mcts_two_players.hpp(70) : while compiling class template member function 'void mcts::test_mcts_two_players<Game>::play(Game)'
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+                 e:\cygwin\home\win seven\projects\highestnum\highestnum\test_mcts_two_players.hpp(34) : see reference to function template instantiation 'void mcts::test_mcts_two_players<Game>::play(Game)' being compiled
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         test_mcts_two_players.cpp
+         openings.cpp
+         mcts_two_players.cpp
+         allocator.cpp
+       Link:
+         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\cygwin\home\WIN SEVEN\projects\HighestNum\Debug\HighestNum.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\cygwin\home\WIN SEVEN\projects\HighestNum\Debug\HighestNum.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\cygwin\home\WIN SEVEN\projects\HighestNum\Debug\HighestNum.lib" /MACHINE:X86 Debug\allocator.obj
+         Debug\display_node.obj
+         Debug\fast_log.obj
+         Debug\HighestNumber.obj
+         Debug\mcts_two_players.obj
+         Debug\monte_carlo.obj
+         Debug\node.obj
+         Debug\omp_util.obj
+         Debug\openings.obj
+         Debug\statistics.obj
+         Debug\test_HN.obj
+         Debug\test_mcts_two_players.obj
+         Debug\test_monte_carlo.obj
+         Debug\test_two_players_game.obj
+         HighestNum.vcxproj -> E:\cygwin\home\WIN SEVEN\projects\HighestNum\Debug\HighestNum.exe
+     1>Done Building Project "E:\cygwin\home\WIN SEVEN\projects\HighestNum\HighestNum\HighestNum.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.97
