@@ -1,7 +1,5 @@
 #include "MCTSImplementation.h"
 
-#include "World.h"
-
 #define set(bitboard, col, row) (bitboard |= (1LL << (((col) << 3) + (row))))
 
 namespace game
@@ -24,6 +22,9 @@ namespace game
 	std::vector<std::vector<uint64_t>> MCTSImplementation::cross_hash_values = create_hash_values();
 	std::vector<std::vector<uint64_t>> MCTSImplementation::circle_hash_values = create_hash_values();
 
+	MCTSImplementation::MCTSImplementation() : game(), world(new World(1, 2))
+	{
+	}
 	MCTSImplementation::MCTSImplementation(World* w) : world(w)
 	{
 	}
@@ -121,29 +122,7 @@ namespace game
 
 	void MCTSImplementation::play(uint16_t m)
 	{
-		/*uint8_t position = ((state.moves >> (m * 3)) & 7);
-		uint8_t p = position * 3;
-		uint8_t f = (state.free >> p) & 7;
-		//    state.hash_value ^= current_player() == CIRCLE ? circle_hash_values[position][f] : cross_hash_values[position][f];
-		//    state.board[position] |= current_player_representation() << (f << 1);
-		if (current_player() == CROSS)
-		{
-			set(state.cross_bitboard, position, f);
-		}
-		else
-		{
-			set(state.circle_bitboard, position, f);
-		}
-		update_win();
-		++f;
-		state.free = (state.free & ~(((uint32_t)7) << p)) | (f << p);
-		if (f == 6)
-		{
-			update_moves(m);
-		}
-		++state.total_moves;*/
-		//world->run();
-
+		uint8_t p = current_player();
 
 
 	}
@@ -174,20 +153,23 @@ namespace game
 
 	std::string MCTSImplementation::to_string() const
 	{
-		return "";
+		return "[TOSTRING]";
 	}
 
 	std::string MCTSImplementation::player_to_string(uint8_t player) const
 	{
 		//return player == CROSS ? "X" : (player == CIRCLE ? "O" : " ");
-		return "";
+		if (player == 0)
+			return "Human Player";
+		else
+			return "Computer Player";
 	}
 
 	std::string MCTSImplementation::move_to_string(uint16_t m) const
 	{
 		/*uint8_t position = ((state.moves >> (m * 3)) & 7);
 		return std::to_string(position);*/
-		return "";
+		return std::to_string(m);
 	}
 
 	unsigned int MCTSImplementation::numberOfMoves(uint8_t player) const

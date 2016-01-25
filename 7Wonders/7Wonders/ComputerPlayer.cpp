@@ -1,6 +1,6 @@
 #include "ComputerPlayer.h"
 
-ComputerPlayer::ComputerPlayer(CardSet* discard, int rec) : Player(discard, rec)//, m_mcts(*this)
+ComputerPlayer::ComputerPlayer(CardSet* discard, int rec) : Player(discard, rec)
 {
 }
 

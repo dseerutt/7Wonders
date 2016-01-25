@@ -10,6 +10,7 @@
 #define NODE_WON_VALUE 1e15f
 #define NODE_LOST_VALUE -1e15f
 
+
 namespace mcts
 {
   class node

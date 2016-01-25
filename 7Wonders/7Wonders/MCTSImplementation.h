@@ -6,12 +6,10 @@
 #include <memory>
 #include <stdint.h>
 
+#include "World.h"
 #include "CardSet.h"
 #include "ComputerPlayer.h"
 #include "HumanPlayer.h"
-class HumanPlayer;
-class ComputerPlayer;
-class World;
 
 namespace game
 {
@@ -39,6 +37,7 @@ namespace game
 	class MCTSImplementation : public game<GameState>
 	{
 	public:
+		MCTSImplementation();
 		MCTSImplementation(World* w);
 		~MCTSImplementation();
 		MCTSImplementation(const MCTSImplementation& c4) = default;
@@ -66,9 +65,6 @@ namespace game
 
 	private:
 		unsigned int numberOfMoves(uint8_t player) const;
-
-		const uint8_t CROSS = 0;
-		const uint8_t CIRCLE = 1;
 
 		GameState state;
 		World* world;
