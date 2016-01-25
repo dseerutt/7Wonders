@@ -54,26 +54,9 @@ void Display::drawPlayerDemo(const Player& p0, const Player& p1, const Player& p
 
 void Display::drawBackground()
 {
-	sf::Texture texture;
-	texture.create(800, 600);
-	sf::Sprite sprite;
-	sprite.setTexture(texture);
-	if (!texture.loadFromFile(RelativePath + "wallpaper.jpg"))
-	{
-		m_window.close();
-	}
-	m_window.draw(sprite);
+	drawSprite("wallpaper.jpg", 800, 600);
 
-	sf::Texture texture2;
-	texture2.create(108, 30);
-	sf::Sprite sprite2;
-	sprite2.setPosition(sf::Vector2f(108, 30));
-	sprite2.setTexture(texture2);
-	if (!texture2.loadFromFile(RelativePath + "CHANTIER_MINI.png"))
-	{
-		m_window.close();
-	}
-	m_window.draw(sprite2);
+	drawSprite("CHANTIER_MINI.png",sf::Vector2f(108, 30), 108, 30);
 }
 
 void Display::drawHands()
@@ -86,16 +69,7 @@ void Display::drawHand(const Player& p)
 	int tempWidth = 0;
 	for (int i = 0; i < p.getHand().size(); i++)
 	{
-		sf::Texture texture2;
-		texture2.create(CardHeight, CardWidth);
-		sf::Sprite sprite2;
-		sprite2.setPosition(sf::Vector2f(tempWidth, 425));
-		sprite2.setTexture(texture2);
-		if (!texture2.loadFromFile(RelativePath + "CHANTIER.png"))
-		{
-			m_window.close();
-		}
-		m_window.draw(sprite2);
+		drawSprite("CHANTIER.png", sf::Vector2f(tempWidth, 425), CardHeight, CardWidth);
 		tempWidth += CardHeight;
 	}
 	
@@ -164,4 +138,32 @@ void Display::drawCard(const Card& c, sf::Vector2f pos)
 	}
 
 	m_window.draw(rect);
+}
+
+
+void Display::drawSprite(string path, sf::Vector2f pos, int wherex, int wherey)
+{
+	sf::Texture texture2;
+	texture2.create(wherex, wherey);
+	sf::Sprite sprite2;
+	sprite2.setPosition(pos);
+	sprite2.setTexture(texture2);
+	if (!texture2.loadFromFile(RelativePath + path))
+	{
+		m_window.close();
+	}
+	m_window.draw(sprite2);
+}
+
+void Display::drawSprite(string path, int wherex, int wherey)
+{
+	sf::Texture texture2;
+	texture2.create(wherex, wherey);
+	sf::Sprite sprite2;
+	sprite2.setTexture(texture2);
+	if (!texture2.loadFromFile(RelativePath + path))
+	{
+		m_window.close();
+	}
+	m_window.draw(sprite2);
 }
