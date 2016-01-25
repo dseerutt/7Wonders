@@ -73,15 +73,23 @@ void World::run()
 		{
 			updateMilitary();
 			startAge();
+#ifndef TESTING
+			display.setAge(m_age);
+#endif // !TESTING
 		}
+#ifndef TESTING
+		display.draw();
+#endif // !TESTING
 		Player& p = *m_players[0];
 		play(p);
 		playOthers(p);
 		endTurn();
 
+		/*
 #ifndef TESTING
 		display.draw();
 #endif // !TESTING
+*/
 	}
 	//updateMilitary();
 
@@ -176,6 +184,7 @@ void World::startAge()
 		m_deck = generateDeck(m_age-1);
 		distributeCards();
 	}
+
 }
 
 bool World::betweenTurns() const

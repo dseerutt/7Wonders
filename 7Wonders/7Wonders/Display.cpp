@@ -1,5 +1,7 @@
 #include "Display.h"
-
+#define DEMO
+#define CardHeight 114
+#define CardWidth 172
 Display::Display(const std::vector<Player*>& players) : 
 m_players(players), m_window(sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), "7 Wonders")
 {
@@ -7,6 +9,11 @@ m_players(players), m_window(sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), "7 Won
 
 Display::~Display()
 {
+}
+
+void Display::setAge(int age0)
+{
+	age = age0;
 }
 
 void Display::run() //FIXME
@@ -25,11 +32,47 @@ void Display::run() //FIXME
 void Display::draw()
 {
 	m_window.clear();
-	for (unsigned int i = 0; i < 1/*m_players.size()*/; i++)
+	/*
+	for (unsigned int i = 0; i < 1//m_players.size(); i++)
 	{
 		drawPlayer(*m_players.at(i));
-	}
+	}*/
+	drawBackground();
+	drawPlayerDemo(*m_players.at(0), *m_players.at(0), *m_players.at(0));
+	drawHand(*m_players.at(0));
 	m_window.display();
+}
+
+
+void Display::drawPlayerDemo(const Player& p0, const Player& p1, const Player& p2)
+{
+	sf::Vector2f pos(WINDOW_SIZE_X / 2 + 100.f, WINDOW_SIZE_Y - 100.f);
+	const CardSet& board = p0.getBoard();
+	drawBoard(board, pos);
+}
+
+
+void Display::drawBackground()
+{
+	drawSprite("wallpaper.jpg", 800, 600);
+
+	drawSprite("CHANTIER_MINI.png",sf::Vector2f(108, 30), 108, 30);
+}
+
+void Display::drawHands()
+{
+	drawHand(*m_players.at(0));
+}
+
+void Display::drawHand(const Player& p)
+{
+	int tempWidth = 0;
+	for (int i = 0; i < p.getHand().size(); i++)
+	{
+		drawSprite("CHANTIER.png", sf::Vector2f(tempWidth, 425), CardHeight, CardWidth);
+		tempWidth += CardHeight;
+	}
+	
 }
 
 void Display::drawPlayer(const Player& p)
@@ -37,7 +80,6 @@ void Display::drawPlayer(const Player& p)
 	sf::Vector2f pos(WINDOW_SIZE_X / 2 + 100.f, WINDOW_SIZE_Y - 100.f);
 	const CardSet& board = p.getBoard();
 	drawBoard(board, pos);
-
 }
 
 void Display::drawBoard(const CardSet& board, sf::Vector2f pos)
@@ -57,7 +99,7 @@ void Display::drawBoard(const CardSet& board, sf::Vector2f pos)
 
 	sf::RectangleShape wonder;
 	wonder.setPosition(pos);
-	wonder.setSize(sf::Vector2f(130.f, 100.f));
+	wonder.setSize(sf::Vector2f(140.f, 100.f));
 	wonder.setFillColor(sf::Color::White);
 	m_window.draw(wonder);
 }
@@ -70,13 +112,13 @@ void Display::drawCard(const Card& c, sf::Vector2f pos)
 	switch (c.m_color)
 	{
 	case BROWN:
-		rect.setFillColor(sf::Color::Magenta);
+		rect.setFillColor(sf::Color::Color(102,51,0,255));
 		break;
 	case GRAY:
-		rect.setFillColor(sf::Color::Cyan);
+		rect.setFillColor(sf::Color::Color(128, 128, 128, 255));
 		break;
 	case BLUE:
-		rect.setFillColor(sf::Color::Blue);
+		rect.setFillColor(sf::Color::Color(0, 204, 204, 255));
 		break;
 	case YELLOW:
 		rect.setFillColor(sf::Color::Yellow);
@@ -87,10 +129,41 @@ void Display::drawCard(const Card& c, sf::Vector2f pos)
 	case GREEN:
 		rect.setFillColor(sf::Color::Green);
 		break;
+	case VIOLET:
+		rect.setFillColor(sf::Color::Color(51, 0, 102, 255));
+		break;
 	default:
 		rect.setFillColor(sf::Color::White);
 		break;
 	}
 
 	m_window.draw(rect);
+}
+
+
+void Display::drawSprite(string path, sf::Vector2f pos, int wherex, int wherey)
+{
+	sf::Texture texture2;
+	texture2.create(wherex, wherey);
+	sf::Sprite sprite2;
+	sprite2.setPosition(pos);
+	sprite2.setTexture(texture2);
+	if (!texture2.loadFromFile(RelativePath + path))
+	{
+		m_window.close();
+	}
+	m_window.draw(sprite2);
+}
+
+void Display::drawSprite(string path, int wherex, int wherey)
+{
+	sf::Texture texture2;
+	texture2.create(wherex, wherey);
+	sf::Sprite sprite2;
+	sprite2.setTexture(texture2);
+	if (!texture2.loadFromFile(RelativePath + path))
+	{
+		m_window.close();
+	}
+	m_window.draw(sprite2);
 }

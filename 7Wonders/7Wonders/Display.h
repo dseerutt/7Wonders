@@ -12,16 +12,25 @@ class Display
 protected:
 	sf::RenderWindow m_window;
 	const std::vector<Player*>& m_players;
+	int age = 0;
+	string RelativePath = "Pictures/";
 public:
 	Display(const std::vector<Player*>& players);
 	~Display();
 
+	void setAge(int age0);
 	void run();
 	void draw();
+	void drawHands();
 
 protected:
+	void drawSprite(string path, int wherex, int wherey);
+	void drawSprite(string path, sf::Vector2f size, int wherex, int wherey);
+	void drawBackground();
 	void drawPlayer(const Player& p);
+	void drawPlayerDemo(const Player& p, const Player& p1, const Player& p2);
 	void drawBoard(const CardSet& board, sf::Vector2f pos);
+	void drawHand(const Player& p);
 	void drawCard(const Card& c, sf::Vector2f pos);
 };
 

@@ -99,7 +99,7 @@ void HumanPlayer::pickCard()
 						cout << "Sorry, you can't play the same card twice" << endl;
 					}
 					else {
-						if (canBuyWithNeighbor(m_hand.at(choice)) == -1)
+						if (!defausse&&canBuyWithNeighbor(m_hand.at(choice)) == -1)
 						{
 							continueLoop = true;
 							cout << "You can't buy this card, try another one" << endl;;
