@@ -13,6 +13,7 @@ protected:
 	sf::RenderWindow m_window;
 	const std::vector<Player*>& m_players;
 	int age = 0;
+	string RelativePath = "Pictures/";
 public:
 	Display(const std::vector<Player*>& players);
 	~Display();

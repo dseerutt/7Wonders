@@ -58,11 +58,22 @@ void Display::drawBackground()
 	texture.create(800, 600);
 	sf::Sprite sprite;
 	sprite.setTexture(texture);
-	if (!texture.loadFromFile("Pictures/wallpaper.jpg"))
+	if (!texture.loadFromFile(RelativePath + "wallpaper.jpg"))
 	{
 		m_window.close();
 	}
 	m_window.draw(sprite);
+
+	sf::Texture texture2;
+	texture2.create(108, 30);
+	sf::Sprite sprite2;
+	sprite2.setPosition(sf::Vector2f(108, 30));
+	sprite2.setTexture(texture2);
+	if (!texture2.loadFromFile(RelativePath + "CHANTIER_MINI.png"))
+	{
+		m_window.close();
+	}
+	m_window.draw(sprite2);
 }
 
 void Display::drawHands()
@@ -80,7 +91,7 @@ void Display::drawHand(const Player& p)
 		sf::Sprite sprite2;
 		sprite2.setPosition(sf::Vector2f(tempWidth, 425));
 		sprite2.setTexture(texture2);
-		if (!texture2.loadFromFile("Pictures/CHANTIER.png"))
+		if (!texture2.loadFromFile(RelativePath + "CHANTIER.png"))
 		{
 			m_window.close();
 		}
