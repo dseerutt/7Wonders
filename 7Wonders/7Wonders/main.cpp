@@ -1,14 +1,15 @@
 #include <iostream>
-#include "World.h"
 #include "MCTSImplementation.h"
+#include "test_monte_carlo.hpp"
 #include "test_mcts_two_players.hpp"
 #include "test_two_players_game.hpp"
+#include "test_game.h"
 
 int main(int argc, char** argv)
 {
 	/*if (argc != 2)
 	{
-		std::cerr << "Erreur : 1 argument attendu, " << (argc - 1) << " donné(s)." << std::endl;
+		std::cerr << "Erreur : 1 argument attendu, " << (argc - 1) << " donnEs)." << std::endl;
 		exit(-1);
 	}
 	int n = atoi(argv[1]);
@@ -19,12 +20,12 @@ int main(int argc, char** argv)
 	}*/
 
 	unsigned int nh = 1;// nb de joueurs humains
-	unsigned int nc = 4;// nb de joueurs ordinateurs
+	unsigned int nc = 2;// nb de joueurs ordinateurs
 	World world(nh, nc);
 
 	world.run();
 
-	game::run_test_two_players_game(game::MCTSImplementation(&world));
+	//game::run_test_two_players_game(game::MCTSImplementation());
 	//mcts::run_test_mcts_two_players(game::MCTSImplementation(&world));
 
 

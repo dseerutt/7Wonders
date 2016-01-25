@@ -419,7 +419,7 @@ namespace UnitTests
 				cp.playTurn();
 			}
 			catch (const char* & ex){
-				Assert::AreEqual("Pas de carte à jouer sélectionnée", ex);
+				Assert::AreEqual("Pas de carte Ejouer sélectionnée", ex);
 			}
 		}
 

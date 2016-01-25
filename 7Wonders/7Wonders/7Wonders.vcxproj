@@ -80,6 +80,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="allocator.hpp" />
     <ClInclude Include="BlueCard.h" />
     <ClInclude Include="BrownCard.h" />
     <ClInclude Include="Card.h" />
@@ -88,22 +89,33 @@
     <ClInclude Include="ComputerPlayer.h" />
     <ClInclude Include="DefaultMarvel.h" />
     <ClInclude Include="Display.h" />
+    <ClInclude Include="display_node.hpp" />
+    <ClInclude Include="fast_log.hpp" />
+    <ClInclude Include="game.hpp" />
     <ClInclude Include="GrayCard.h" />
     <ClInclude Include="GreenCard.h" />
     <ClInclude Include="HumanPlayer.h" />
     <ClInclude Include="Marvel.h" />
+    <ClInclude Include="mcts.hpp" />
+    <ClInclude Include="mcts_two_players.hpp" />
+    <ClInclude Include="monte_carlo.hpp" />
+    <ClInclude Include="node.hpp" />
+    <ClInclude Include="omp_util.hpp" />
+    <ClInclude Include="openings.hpp" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RedCard.h" />
+    <ClInclude Include="statistics.hpp" />
+    <ClInclude Include="test_game.h" />
+    <ClInclude Include="test_monte_carlo.hpp" />
     <ClInclude Include="VioletCard.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="YellowCard.h" />
     <ClInclude Include="test_mcts_two_players.hpp" />
     <ClInclude Include="test_two_players_game.hpp" />
     <ClInclude Include="MCTSImplementation.h" />
-
-
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="allocator.cpp" />
     <ClCompile Include="BlueCard.cpp" />
     <ClCompile Include="BrownCard.cpp" />
     <ClCompile Include="Card.cpp" />
@@ -112,21 +124,29 @@
     <ClCompile Include="ComputerPlayer.cpp" />
     <ClCompile Include="DefaultMarvel.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="display_node.cpp" />
+    <ClCompile Include="fast_log.cpp" />
     <ClCompile Include="GrayCard.cpp" />
     <ClCompile Include="GreenCard.cpp" />
     <ClCompile Include="HumanPlayer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Marvel.cpp" />
+    <ClCompile Include="mcts_two_players.cpp" />
+    <ClCompile Include="monte_carlo.cpp" />
+    <ClCompile Include="node.cpp" />
+    <ClCompile Include="omp_util.cpp" />
+    <ClCompile Include="openings.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RedCard.cpp" />
+    <ClCompile Include="statistics.cpp" />
+    <ClCompile Include="test_game.cpp" />
+    <ClCompile Include="test_monte_carlo.cpp" />
     <ClCompile Include="VioletCard.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="YellowCard.cpp" />
     <ClCompile Include="test_mcts_two_players.cpp" />
     <ClCompile Include="test_two_players_game.cpp" />
     <ClCompile Include="MCTSImplementation.cpp" />
-
-
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

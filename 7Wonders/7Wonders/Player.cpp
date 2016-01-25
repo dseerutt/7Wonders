@@ -430,11 +430,11 @@ void Player::applyEffects(Card* c)
 			switch (s.at(0))
 			{
 			case 'g':
-				//Trade ‡ gauche
+				//Trade ÅEgauche
 				comptoir2 = true;
 				break;
 			case 'd':
-				//Trade ‡ droite
+				//Trade ÅEdroite
 				comptoir1 = true;
 				break;
 			case 'm':
@@ -845,7 +845,7 @@ void Player::playTurn()
 {
 	if (m_cardToPlay == 0)
 	{
-		throw("Pas de carte ‡ jouer sÈlectionnÈe");
+		throw("Pas de carte ÅEjouer sÈlectionnÈe");
 	}
 
 	if (m_hand.size() <= 1)

@@ -222,7 +222,7 @@ namespace UnitTests
 
 		TEST_METHOD(EndTurntest)
 		{
-			//Dans cet exemple, 6 tours de jeu ‡ l'‚ge 3
+			//Dans cet exemple, 6 tours de jeu ÅEl'‚ge 3
 			World w(0, 3);
 			w.generateDeck(0);
 			w.startAge();

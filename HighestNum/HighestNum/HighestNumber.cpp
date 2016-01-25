@@ -4,9 +4,9 @@
 #include "test_two_players_game.hpp"
 
 #include "test_monte_carlo.hpp"
+#include "test_mcts_two_players.hpp"
 //#include "test_fast_log.hpp"
 //#include "test_allocator.hpp"
-#include "test_mcts_two_players.hpp"
 //#include "test_minmax.hpp"
 //#include "test_bits.hpp"
 //#include "learning.hpp"
