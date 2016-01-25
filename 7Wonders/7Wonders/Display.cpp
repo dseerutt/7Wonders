@@ -57,7 +57,7 @@ void Display::drawBoard(const CardSet& board, sf::Vector2f pos)
 
 	sf::RectangleShape wonder;
 	wonder.setPosition(pos);
-	wonder.setSize(sf::Vector2f(130.f, 100.f));
+	wonder.setSize(sf::Vector2f(140.f, 100.f));
 	wonder.setFillColor(sf::Color::White);
 	m_window.draw(wonder);
 }
