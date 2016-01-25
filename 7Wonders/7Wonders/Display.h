@@ -24,6 +24,7 @@ public:
 	void drawHands();
 
 protected:
+	void testMaximumCapacity();
 	void drawSprite(string path, int wherex, int wherey);
 	void drawSprite(string path, sf::Vector2f size, int wherex, int wherey);
 	void drawBackground();

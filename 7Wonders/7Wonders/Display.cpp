@@ -37,8 +37,11 @@ void Display::draw()
 	{
 		drawPlayer(*m_players.at(i));
 	}*/
-	drawBackground();
+	/*
 	drawPlayerDemo(*m_players.at(0), *m_players.at(0), *m_players.at(0));
+	*/
+	drawBackground();
+	testMaximumCapacity(); 
 	drawHand(*m_players.at(0));
 	m_window.display();
 }
@@ -51,6 +54,56 @@ void Display::drawPlayerDemo(const Player& p0, const Player& p1, const Player& p
 	drawBoard(board, pos);
 }
 
+void Display::testMaximumCapacity()
+{
+	//Colonne 1
+	int tempWidth = 140;
+	for (int i = 0; i < 9; i++)
+	{
+		drawSprite("CHANTIER_MINI.png", sf::Vector2f(20, tempWidth), 108, 30);
+		tempWidth += 30;
+	}
+
+	//Colonne 2
+	int tempWidth2 = 140;
+	for (int i = 0; i < 9; i++)
+	{
+		drawSprite("CHANTIER_MINI.png", sf::Vector2f(140, tempWidth2), 108, 30);
+		tempWidth2 += 30;
+	}
+
+	//Colonne 3
+	int tempWidth3 = 140;
+	for (int i = 0; i < 9; i++)
+	{
+		drawSprite("CHANTIER_MINI.png", sf::Vector2f(290, tempWidth3), 108, 30);
+		tempWidth3 += 30;
+	}
+
+	//Colonne 4
+	int tempWidth4 = 140;
+	for (int i = 0; i < 9; i++)
+	{
+		drawSprite("CHANTIER_MINI.png", sf::Vector2f(410, tempWidth4), 108, 30);
+		tempWidth4 += 30;
+	}
+
+	//Colonne 5
+	int tempWidth5 = 140;
+	for (int i = 0; i < 9; i++)
+	{
+		drawSprite("CHANTIER_MINI.png", sf::Vector2f(560, tempWidth5), 108, 30);
+		tempWidth5 += 30;
+	}
+
+	//Colonne 6
+	int tempWidth6 = 140;
+	for (int i = 0; i < 9; i++)
+	{
+		drawSprite("CHANTIER_MINI.png", sf::Vector2f(680, tempWidth6), 108, 30);
+		tempWidth6 += 30;
+	}
+}
 
 void Display::drawBackground()
 {
