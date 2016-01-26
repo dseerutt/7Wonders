@@ -42,10 +42,30 @@ void Display::draw()
 	*/
 	//testMaximumCapacity(*m_players.at(0), *m_players.at(0), *m_players.at(0));
 
+
 	drawBackground();
 	drawHand(*m_players.at(0));
 	drawBoards(*m_players.at(0), *m_players.at(1), *m_players.at(2));
 	drawStatistics(*m_players.at(0), *m_players.at(1), *m_players.at(2));
+	m_window.display();
+}
+
+void Display::drawScores(std::vector<std::vector<int> > m_scores)
+{
+	drawBackground();
+	drawSprite("Player1.png", sf::Vector2f(270, 100), 500, 500);
+	drawSprite("Player2.png", sf::Vector2f(420, 100), 133, 55);
+	drawSprite("Player3.png", sf::Vector2f(570, 100), 133, 55);
+	writeText("WAR", sf::Vector2f(42, 170), 20);
+	writeText("GOLD", sf::Vector2f(42, 210), 20);
+	writeText("WONDER_LEVEL", sf::Vector2f(42, 250), 20);
+	writeText("BLUE_CARDS", sf::Vector2f(42, 290), 20);
+	writeText("YELLOW_CARDS", sf::Vector2f(42, 340), 20);
+	writeText("GUILDS", sf::Vector2f(42, 390), 20);
+	writeText("SCIENCE", sf::Vector2f(42, 440), 20);
+	writeText("TOTAL_SCORE", sf::Vector2f(42, 490), 20);
+
+
 	m_window.display();
 }
 

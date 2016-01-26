@@ -23,6 +23,7 @@ public:
 	void run();
 	void draw();
 	void drawHands();
+	void drawScores(std::vector<std::vector<int> > m_scores);
 
 
 protected:
