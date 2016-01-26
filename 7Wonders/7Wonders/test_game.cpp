@@ -76,7 +76,7 @@ namespace game
 			g.display();
 			player = 1 - player;
 		}
-		g.getResults();
+		g.displayResults();
 		if (g.won(0)) std::cout << g.player_to_string(0) << " won";
 		else if (g.won(1)) std::cout << g.player_to_string(1) << " won";
 		else std::cout << "draw";

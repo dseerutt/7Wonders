@@ -255,10 +255,12 @@ namespace game
 		return res;
 	}
 
-	std::string MCTSImplementation::getResults() const
+	void MCTSImplementation::displayResults() const
 	{
 		world->displayScores();
-		return "";
+#ifndef TESTING
+		world->getDisplay().drawScores(world->m_scores);
+#endif // !TESTING
 	}
 
 	void MCTSImplementation::display() const

@@ -58,7 +58,7 @@ namespace game
 		std::string to_string() const;
 		std::string to_string_before() const;
 		std::string to_string_after() const;
-		std::string getResults() const;
+		void displayResults() const;
 		void display() const;
 		void playout(std::mt19937& engine, int max_depth = -1);
 		std::set<int> to_input_vector() const;
