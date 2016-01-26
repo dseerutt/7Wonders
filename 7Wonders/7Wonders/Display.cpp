@@ -40,8 +40,9 @@ void Display::draw()
 	/*
 	drawPlayerDemo(*m_players.at(0), *m_players.at(0), *m_players.at(0));
 	*/
-	drawBackground();
 	//testMaximumCapacity(*m_players.at(0), *m_players.at(0), *m_players.at(0));
+
+	drawBackground();
 	drawHand(*m_players.at(0));
 	drawBoards(*m_players.at(0), *m_players.at(1), *m_players.at(2));
 	drawStatistics(*m_players.at(0), *m_players.at(1), *m_players.at(2));
@@ -51,9 +52,12 @@ void Display::draw()
 void Display::drawStatistics(const Player& p0, const Player& p1, const Player& p2)
 {
 	//Player names
-	drawSprite("Player1.png", sf::Vector2f(70, 5), 500, 500);
-	drawSprite("Player2.png", sf::Vector2f(330, 5), 133, 55);
-	drawSprite("Player3.png", sf::Vector2f(600, 5), 133, 55);
+	drawSprite("Player1.png", sf::Vector2f(50, 5), 500, 500);
+	drawSpriteWithScale("wood.png", sf::Vector2f(202, 15), sf::Vector2f(0.25, 0.25), 123, 118);
+	drawSprite("Player2.png", sf::Vector2f(310, 5), 133, 55);
+	drawSpriteWithScale("stone.png", sf::Vector2f(472, 15), sf::Vector2f(0.25, 0.25), 123, 118);
+	drawSprite("Player3.png", sf::Vector2f(580, 5), 133, 55);
+	drawSpriteWithScale("clay.png", sf::Vector2f(720, 15), sf::Vector2f(0.25, 0.25), 123, 118);
 
 	//Jetons
 	drawSpriteWithScale("coin.png", sf::Vector2f(35, 60), sf::Vector2f(0.05, 0.05), 512, 512);
@@ -65,13 +69,13 @@ void Display::drawStatistics(const Player& p0, const Player& p1, const Player& p
 	
 	drawSpriteWithScale("pyr.png", sf::Vector2f(85, 55), sf::Vector2f(0.06, 0.06), 600, 600);
 	writeText(to_string(p0.getMarvel()->getMarvelLevel()), sf::Vector2f(97, 90), 20);
-	drawSpriteWithScale("pyr.png", sf::Vector2f(350, 55), sf::Vector2f(0.06, 0.06), 600, 600);
-	writeText(to_string(p1.getMarvel()->getMarvelLevel()), sf::Vector2f(363, 90), 20);
-	drawSpriteWithScale("pyr.png", sf::Vector2f(620, 55), sf::Vector2f(0.06, 0.06), 600, 600);
-	writeText(to_string(p2.getMarvel()->getMarvelLevel()), sf::Vector2f(633, 90), 20);
+	drawSpriteWithScale("pyr.png", sf::Vector2f(355, 55), sf::Vector2f(0.06, 0.06), 600, 600);
+	writeText(to_string(p1.getMarvel()->getMarvelLevel()), sf::Vector2f(368, 90), 20);
+	drawSpriteWithScale("pyr.png", sf::Vector2f(625, 55), sf::Vector2f(0.06, 0.06), 600, 600);
+	writeText(to_string(p2.getMarvel()->getMarvelLevel()), sf::Vector2f(638, 90), 20);
 
-	drawSpriteWithScale("sword.png", sf::Vector2f(157, 60), sf::Vector2f(0.03, 0.03), 894, 894);
-	writeText(to_string(p0.getMilitaryBonus()), sf::Vector2f(164, 90), 20);
+	drawSpriteWithScale("sword.png", sf::Vector2f(150, 60), sf::Vector2f(0.03, 0.03), 894, 894);
+	writeText(to_string(p0.getMilitaryBonus()), sf::Vector2f(157, 90), 20);
 	drawSpriteWithScale("sword.png", sf::Vector2f(420, 60), sf::Vector2f(0.03, 0.03), 894, 894);
 	writeText(to_string(p1.getMilitaryBonus()), sf::Vector2f(427, 90), 20);
 	drawSpriteWithScale("sword.png", sf::Vector2f(697, 60), sf::Vector2f(0.03, 0.03), 894, 894);
@@ -170,8 +174,6 @@ void Display::testMaximumCapacity(const Player& p0, const Player& p1, const Play
 void Display::drawBackground()
 {
 	drawSprite("wallpaper.jpg", 800, 600);
-
-	drawSprite("CHANTIER_MINI.png",sf::Vector2f(108, 30), 108, 30);
 }
 
 void Display::drawHands()
