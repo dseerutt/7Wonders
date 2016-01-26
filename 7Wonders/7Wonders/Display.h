@@ -27,6 +27,7 @@ public:
 	void init();
 
 
+
 protected:
 	void testMaximumCapacity(const Player& p0, const Player& p1, const Player& p2);
 	void drawStatistics(const Player& p0, const Player& p1, const Player& p2);
@@ -45,5 +46,6 @@ protected:
 	void drawBoard3(const CardSet& board);
 	void drawHand(const Player& p);
 	void drawCard(const Card& c, sf::Vector2f pos);
+	const static string miniPath;
 };
 
