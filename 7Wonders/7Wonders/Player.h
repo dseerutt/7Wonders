@@ -31,7 +31,7 @@ public:
 	int militaryMalus = 0;
 	Player(CardSet* discard, int rec);
 	~Player();
-	Marvel* getMarvel();
+	Marvel* getMarvel()const;
 	unsigned int computeScienceScore(int value) const;
 	int tradeCountColor(int color);
 	int countColor(int color);

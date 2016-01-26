@@ -74,7 +74,7 @@ unsigned int Player::getMilitaryMalus() const
 	return militaryMalus;
 }
 
-Marvel* Player::getMarvel()
+Marvel* Player::getMarvel() const
 {
 	return marvel;
 }

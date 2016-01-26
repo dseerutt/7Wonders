@@ -90,18 +90,18 @@ void Display::testMaximumCapacity(const Player& p0, const Player& p1, const Play
 	writeText(to_string(p2.getMilitary()), sf::Vector2f(627, 90), 20);
 
 	drawSpriteWithScale("shield.png", sf::Vector2f(157, 60), sf::Vector2f(0.30, 0.30), 84, 84);
-	writeText(to_string(p0.getMilitary()), sf::Vector2f(164, 90), 20);
+	writeText(to_string(p0.getMilitaryMalus()), sf::Vector2f(164, 90), 20);
 	drawSpriteWithScale("shield.png", sf::Vector2f(420, 60), sf::Vector2f(0.30, 0.30), 84, 84);
-	writeText(to_string(p1.getMilitary()), sf::Vector2f(427, 90), 20);
+	writeText(to_string(p1.getMilitaryMalus()), sf::Vector2f(427, 90), 20);
 	drawSpriteWithScale("shield.png", sf::Vector2f(697, 60), sf::Vector2f(0.30, 0.30), 84, 84);
-	writeText(to_string(p2.getMilitary()), sf::Vector2f(704, 90), 20);
+	writeText(to_string(p2.getMilitaryMalus()), sf::Vector2f(704, 90), 20);
 
 	drawSpriteWithScale("pyr.png", sf::Vector2f(200, 56), sf::Vector2f(0.06, 0.06), 600, 600);
-	writeText(to_string(p0.getMilitary()), sf::Vector2f(212, 90), 20);
+	writeText(to_string(p0.getMarvel()->getMarvelLevel()), sf::Vector2f(212, 90), 20);
 	drawSpriteWithScale("pyr.png", sf::Vector2f(470, 56), sf::Vector2f(0.06, 0.06), 600, 600);
-	writeText(to_string(p1.getMilitary()), sf::Vector2f(482, 90), 20);
+	writeText(to_string(p1.getMarvel()->getMarvelLevel()), sf::Vector2f(482, 90), 20);
 	drawSpriteWithScale("pyr.png", sf::Vector2f(740, 56), sf::Vector2f(0.06, 0.06), 600, 600);
-	writeText(to_string(p2.getMilitary()), sf::Vector2f(752, 90), 20);
+	writeText(to_string(p2.getMarvel()->getMarvelLevel()), sf::Vector2f(752, 90), 20);
 
 
 	//Cards display
