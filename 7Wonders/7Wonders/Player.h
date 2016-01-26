@@ -21,11 +21,14 @@ protected:
 	int guildScore = 0;
 	int money;
 	int military;
+	std::vector<std::array<int, RESOURCES_COUNT> > m_resources;
+public:
 	Card* m_cardToPlay;
 	bool defausse = false;
 	bool MarvelTreatment = false;
-	std::vector<std::array<int, RESOURCES_COUNT> > m_resources;
+
 public:
+	void play(Card* card, bool discard, bool marvelTreatment);
 	
 	std::string resourcesDisplay = "";
 	int militaryMalus = 0;

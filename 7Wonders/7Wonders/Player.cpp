@@ -49,6 +49,13 @@ Player::~Player()
 {
 }
 
+void Player::play(Card* card, bool discard, bool upgradeWonder)
+{
+	m_cardToPlay = card;
+	defausse = discard;
+	MarvelTreatment = upgradeWonder;
+}
+
 unsigned int Player::getMoney() const
 {
 	return money;
@@ -848,7 +855,7 @@ void Player::playTurn()
 		throw("Pas de carte ÅEjouer sÈlectionnÈe");
 	}
 
-	if (m_hand.size() <= 1)
+	if (m_hand.size() <= 0)
 	{
 		throw("Taille de la main non conforme");
 	}

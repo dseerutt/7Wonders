@@ -1,9 +1,6 @@
 #include "World.h"
 #include "HumanPlayer.h"
 #include "ComputerPlayer.h"
-#ifndef TESTING
-#include "Display.h"
-#endif // !TESTING
 #include <string>
 #include <iostream>
 #include <algorithm>
@@ -11,7 +8,10 @@
 
 World::World(unsigned int nh, unsigned int nc) : 
 	m_gameOver(false), m_age(0), m_cardDatabaseParser(nh + nc, NUMBER_OF_AGES),
-	m_deck(), m_discard(), m_scores(nh + nc, std::vector<int>(TOTAL_SCORE+1)), m_winner(nullptr), m_draw(false)
+	m_deck(), m_discard(), m_scores(nh + nc, std::vector<int>(TOTAL_SCORE + 1)), m_winner(nullptr), m_draw(false)
+#ifndef TESTING
+	, m_display(m_players)
+#endif // !TESTING
 {
 	int index = 0;
 	for (unsigned int i = 0; i < nh; i++)
@@ -172,6 +172,7 @@ void World::endTurn()
 	draft(m_age);
 	if (m_age >= NUMBER_OF_AGES && betweenTurns())
 	{
+		computeScores();
 		m_gameOver = true;
 	}
 }
@@ -179,12 +180,12 @@ void World::endTurn()
 void World::startAge()
 {
 	m_age++;
-	if (m_age <= NUMBER_OF_AGES)
-	{
-		m_deck = generateDeck(m_age-1);
-		distributeCards();
-	}
+	m_deck = generateDeck(m_age-1);
+	distributeCards();
 
+#ifndef TESTING
+	m_display.setAge(m_age);
+#endif // !TESTING
 }
 
 bool World::betweenTurns() const
@@ -421,3 +422,10 @@ unsigned int World::getPlayerId(const Player& player) const
 	}
 	return res;
 }
+
+#ifndef TESTING
+Display& World::getDisplay()
+{
+	return m_display;
+}
+#endif // !TESTING

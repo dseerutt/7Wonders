@@ -3,6 +3,9 @@
 #include "CardSet.h"
 #include "CardDatabaseParser.h"
 #include "Player.h"
+#ifndef TESTING
+#include "Display.h"
+#endif // !TESTING
 #define NUMBER_OF_AGES 3
 
 enum Scores
@@ -28,6 +31,10 @@ public:
 	unsigned int m_age;
 	CardSet m_deck;
 	CardSet m_discard;
+#ifndef TESTING
+	Display m_display;
+	Display& getDisplay();
+#endif // !TESTING
 
 	void upgradeMarvel(Player* p, int PV);
 	int getMilitaryScore(Player* p);

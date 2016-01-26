@@ -23,6 +23,8 @@ namespace game
 
 		CardSet moves;
 
+		uint8_t current_player = 0;
+
 		/*uint64_t cross_bitboard = 0;
 		uint64_t circle_bitboard = 0;
 		uint32_t moves = 0x1AC688;
@@ -54,6 +56,10 @@ namespace game
 		std::string player_to_string(uint8_t player) const;
 		std::string move_to_string(std::uint16_t m) const;
 		std::string to_string() const;
+		std::string to_string_before() const;
+		std::string to_string_after() const;
+		std::string getResults() const;
+		void display() const;
 		void playout(std::mt19937& engine, int max_depth = -1);
 		std::set<int> to_input_vector() const;
 		void from_input_vector(const std::set<int>& input);
@@ -64,11 +70,12 @@ namespace game
 		std::uint64_t hash() const;
 
 	private:
-		unsigned int numberOfMoves(uint8_t player) const;
+		unsigned int numberOfMoves(unsigned int player) const;
+		void playerMove(int i, uint16_t m);
+		void player2Move(uint16_t m);
 
 		GameState state;
 		World* world;
-		std::vector<Player*> players;
 
 		static std::vector<std::vector<uint64_t>> cross_hash_values;
 		static std::vector<std::vector<uint64_t>> circle_hash_values;

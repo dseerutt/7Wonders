@@ -52,28 +52,23 @@ namespace game
 	bool MCTSImplementation::end_of_game() const
 	{
 		//return state.first_player_win || state.second_player_win || state.total_moves == 42;
-		return world->m_age == (NUMBER_OF_AGES - 1) && world->m_players[0]->getHand().size() == 0;
+		return world->gameOver();
 	}
 
 	bool MCTSImplementation::won(uint8_t player) const
 	{
 		if (player == 0)
 		{
-			for (Player* p : players)
-			{
-				if (world->hasWon(*p))
-					return true;
-			}
-			return false;
+			return world->hasWon(*world->m_players.at(0));
 		}
 		else
 		{
-			for (Player* p : players)
+			for (unsigned int i = 1; i < world->m_players.size(); i++)
 			{
-				if (world->hasWon(*p))
-					return false;
+				if (world->hasWon(*world->m_players.at(i)))
+					return true;
 			}
-			return true;
+			return false;
 		}
 	}
 
@@ -89,12 +84,16 @@ namespace game
 
 	uint8_t MCTSImplementation::current_player() const
 	{
-		return 0;// state.total_moves & 1 ? CIRCLE : CROSS;
+		return state.current_player;
 	}
 
 	int MCTSImplementation::value(uint8_t player) const
 	{
-		if (won(player))
+		if (draw(player))
+		{
+			return 0;
+		}
+		else if (won(player))
 		{
 			return 1;
 		}
@@ -102,12 +101,24 @@ namespace game
 		{
 			return -1;
 		}
-		return 0;
 	}
 
 	uint16_t MCTSImplementation::number_of_moves() const
 	{
-		return state.moves.size();
+		uint8_t player = current_player();
+		if (player == 0)
+		{
+			return numberOfMoves(0);
+		}
+		else
+		{
+			unsigned int res = 0;
+			for (unsigned int i = 1; i < world->m_players.size(); i++)
+			{
+				res += numberOfMoves(i);
+			}
+			return res;
+		}
 	}
 
 	std::set<int> MCTSImplementation::to_input_vector() const
@@ -122,9 +133,62 @@ namespace game
 
 	void MCTSImplementation::play(uint16_t m)
 	{
+		if (world->m_players.at(0)->getHand().size() == 0)
+		{
+			world->startAge();
+		}
+
 		uint8_t p = current_player();
+		if (p == 0)
+		{
+			playerMove(0, m);
+		}
+		else
+		{
+			player2Move(m);
 
+			world->endTurn();
+		}
 
+		state.current_player = 1 - state.current_player;
+	}
+
+	void MCTSImplementation::playerMove(int i, uint16_t m)
+	{
+		Player& p = *world->m_players.at(i);
+		CardSet hand = p.getHand();
+		CardSet playableHand = p.getPlayableCards();
+		unsigned int nbMoves = 0;
+
+		nbMoves += playableHand.size();
+		nbMoves += hand.size();
+		if (p.getMarvel()->canUpgrade(p.getResources()))
+		{
+			nbMoves += hand.size();
+		}
+
+		if (m < playableHand.size())
+		{
+			p.play(hand.at(m), false, false);
+		}
+		else if (m < playableHand.size() + hand.size())
+		{
+			p.play(hand.at(m - playableHand.size()), true, false);
+		}
+		else
+		{
+			p.play(hand.at(m - playableHand.size() - hand.size()), true, true);
+		}
+		//p.prepareTurn();
+	}
+
+	void MCTSImplementation::player2Move(uint16_t m)
+	{
+		for (unsigned int i = 1; i < world->m_players.size(); i++)
+		{
+			uint16_t move = 0;
+			playerMove(i, move);
+		}
 	}
 
 	std::uint64_t MCTSImplementation::hash() const
@@ -156,6 +220,53 @@ namespace game
 		return "[TOSTRING]";
 	}
 
+	std::string MCTSImplementation::to_string_before() const
+	{
+		unsigned int nbPlays = 0;
+		unsigned int nbDiscard = 0;
+		unsigned int nbWonder = 0;
+		Player& p = *world->m_players.at(0);
+		nbPlays = p.getPlayableCards().size();
+		nbDiscard = p.getHand().size();
+		if (p.getMarvel()->canUpgrade(p.getResources()))
+		{
+			nbWonder = p.getHand().size();
+		}
+
+		std::string res = "";
+
+		if (nbPlays == 0)
+			res += "Moves []";
+		else
+			res += "Moves [0-" + std::to_string(nbPlays - 1) + "]";
+		res += " [" + std::to_string(nbPlays) + "-" + std::to_string(nbPlays + nbDiscard - 1) + "]";
+		if (nbWonder == 0)
+			res += " []";
+		else
+			res += " [" + std::to_string(nbPlays + nbDiscard) + "-" + std::to_string(nbPlays + nbDiscard + nbWonder - 1) + "]";
+		return res;
+	}
+
+	std::string MCTSImplementation::to_string_after() const
+	{
+		std::string res = "";
+		res += "Age " + std::to_string(world->m_age);
+		res += ", board : " + std::to_string(world->m_players.at(0)->getBoard().size());
+
+		return res;
+	}
+
+	std::string MCTSImplementation::getResults() const
+	{
+		world->displayScores();
+		return "";
+	}
+
+	void MCTSImplementation::display() const
+	{
+		world->getDisplay().draw();
+	}
+
 	std::string MCTSImplementation::player_to_string(uint8_t player) const
 	{
 		//return player == CROSS ? "X" : (player == CIRCLE ? "O" : " ");
@@ -172,27 +283,19 @@ namespace game
 		return std::to_string(m);
 	}
 
-	unsigned int MCTSImplementation::numberOfMoves(uint8_t player) const
+	unsigned int MCTSImplementation::numberOfMoves(unsigned int player) const
 	{
-		std::vector<unsigned int> nbMoves(players.size());
-		for (int i = 0; i < players.size(); i++)
+		unsigned int nbMoves = 0;
+		Player& p = *world->m_players.at(player);
+		nbMoves = 0;
+		nbMoves += p.getPlayableCards().size();
+		nbMoves += p.getHand().size();
+		if (p.getMarvel()->canUpgrade(p.getResources()))
 		{
-			Player& p = *players.at(i);
-			nbMoves[i] = 0;
-			nbMoves[i] += p.getPlayableCards().size();
-			nbMoves[i] += p.getHand().size();
-			if (p.getMarvel()->canUpgrade(p.getResources()))
-			{
-				nbMoves[i] += p.getHand().size();
-			}
+			nbMoves += p.getHand().size();
 		}
 
-		unsigned int res = 0;
-		for (unsigned int n : nbMoves)
-		{
-			res += n;
-		}
-		return res;
+		return nbMoves;
 	}
 
 }

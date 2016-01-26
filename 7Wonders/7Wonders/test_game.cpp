@@ -10,7 +10,7 @@ namespace game
 {
 	test_game::test_game()
 	{
-		playout();
+		//playout();
 		play();
 	}
 
@@ -55,5 +55,31 @@ namespace game
 		else if (c4.value(1) == 1) cout << c4.player_to_string(1) << " won";
 		else cout << "draw";
 		cout << endl;*/
+
+		MCTSImplementation g;
+		int player = 0;
+		std::cout << "play one game" << std::endl;
+		while (!g.end_of_game())
+		{
+			std::cout << g.to_string_before() << std::endl;
+			std::cout << g.player_to_string(player) << " move: ";
+			std::map<std::string, int> m;
+			for (int i = 0; i < g.number_of_moves(); ++i)
+			{
+				m[g.move_to_string(i)] = i;
+			}
+			std::string move;
+			std::cin >> move;
+			g.play(m[move]);
+
+			std::cout << g.to_string_after() << std::endl;
+			g.display();
+			player = 1 - player;
+		}
+		g.getResults();
+		if (g.won(0)) std::cout << g.player_to_string(0) << " won";
+		else if (g.won(1)) std::cout << g.player_to_string(1) << " won";
+		else std::cout << "draw";
+		std::cout << std::endl;
 	}
 }
