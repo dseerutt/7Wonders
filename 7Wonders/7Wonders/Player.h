@@ -28,7 +28,7 @@ public:
 	bool MarvelTreatment = false;
 
 public:
-	void play(Card* card, bool discard, bool marvelTreatment);
+	void playCard(Card* card, bool discard, bool marvelTreatment);
 	
 	std::string resourcesDisplay = "";
 	int militaryMalus = 0;

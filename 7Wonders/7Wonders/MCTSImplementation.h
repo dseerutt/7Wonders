@@ -15,25 +15,10 @@ namespace game
 {
 	struct GameState
 	{
-		unsigned int m_age;
-		std::vector<HumanPlayer> m_humanPlayers;
-		std::vector<ComputerPlayer> m_computerPlayers;
-		CardSet m_deck;
-		CardSet m_discard;
-
-		CardSet moves;
-
 		uint8_t current_player = 0;
-
-		/*uint64_t cross_bitboard = 0;
-		uint64_t circle_bitboard = 0;
-		uint32_t moves = 0x1AC688;
-		uint32_t free = 0;
-		uint64_t hash_value = 0;
-		uint16_t nb_moves = 7;
-		uint8_t total_moves = 0;
-		bool first_player_win = false;
-		bool second_player_win = false;*/
+		World* world;
+		std::vector<HumanPlayer> hp;
+		std::vector<ComputerPlayer> cp;
 	};
 
 	class MCTSImplementation : public game<GameState>
@@ -45,22 +30,18 @@ namespace game
 		MCTSImplementation(const MCTSImplementation& c4) = default;
 		MCTSImplementation& operator=(const MCTSImplementation& c4) = default;
 		bool end_of_game() const;
-		int value(uint8_t player) const;
-		bool won(uint8_t player) const;
-		bool lost(uint8_t player) const;
-		bool draw(uint8_t player) const;
-		std::uint8_t current_player() const;
+		int value(std::uint8_t player) const;
+		bool won(std::uint8_t player) const;
+		bool lost(std::uint8_t player) const;
+		bool draw(std::uint8_t player) const;
+		uint8_t current_player() const;
 		std::uint16_t number_of_moves() const;
 		void play(std::uint16_t m);
 		void undo(std::uint16_t m) {}
-		std::string player_to_string(uint8_t player) const;
+		std::string player_to_string(std::uint8_t player) const;
 		std::string move_to_string(std::uint16_t m) const;
 		std::string to_string() const;
-		std::string to_string_before() const;
-		std::string to_string_after() const;
-		void displayResults() const;
-		void display() const;
-		void playout(std::mt19937& engine, int max_depth = -1);
+		//    void playout(std::mt19937& engine, int max_depth = -1);
 		std::set<int> to_input_vector() const;
 		void from_input_vector(const std::set<int>& input);
 		GameState get_state();
@@ -69,13 +50,17 @@ namespace game
 		std::uint64_t hash(std::uint16_t m) const;
 		std::uint64_t hash() const;
 
+		std::string to_string_before() const;
+		std::string to_string_after() const;
+		void displayResults() const;
+		void display() const;
+
 	private:
 		unsigned int numberOfMoves(unsigned int player) const;
 		void playerMove(int i, uint16_t m);
 		void player2Move(uint16_t m);
 
 		GameState state;
-		World* world;
 
 		static std::vector<std::vector<uint64_t>> cross_hash_values;
 		static std::vector<std::vector<uint64_t>> circle_hash_values;

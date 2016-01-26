@@ -1,8 +1,8 @@
 #include <iostream>
-#include "MCTSImplementation.h"
-#include "test_monte_carlo.hpp"
-#include "test_mcts_two_players.hpp"
 #include "test_game.h"
+//#include "MCTS_test.h"
+#include "test_mcts_two_players.hpp"
+#include "MCTSImplementation.h"
 
 int main(int argc, char** argv)
 {
@@ -24,9 +24,10 @@ int main(int argc, char** argv)
 
 	//world.run();
 
-	game::test_game();
+	//game::test_game();
 	//game::run_test_two_players_game(game::MCTSImplementation());
-	//mcts::run_test_mcts_two_players(game::MCTSImplementation(&world));
+	//mcts::MCTS_test(game::MCTSImplementation(&world));
+	mcts::run_test_mcts_two_players(game::MCTSImplementation(&world));
 
 
 	getchar();

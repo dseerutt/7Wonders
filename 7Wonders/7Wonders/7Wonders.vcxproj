@@ -108,11 +108,11 @@
     <ClInclude Include="RedCard.h" />
     <ClInclude Include="statistics.hpp" />
     <ClInclude Include="test_game.h" />
+    <ClInclude Include="test_mcts_two_players.hpp" />
     <ClInclude Include="test_monte_carlo.hpp" />
     <ClInclude Include="VioletCard.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="YellowCard.h" />
-    <ClInclude Include="test_mcts_two_players.hpp" />
     <ClInclude Include="test_two_players_game.hpp" />
     <ClInclude Include="MCTSImplementation.h" />
   </ItemGroup>
@@ -142,11 +142,11 @@
     <ClCompile Include="RedCard.cpp" />
     <ClCompile Include="statistics.cpp" />
     <ClCompile Include="test_game.cpp" />
+    <ClCompile Include="test_mcts_two_players.cpp" />
     <ClCompile Include="test_monte_carlo.cpp" />
     <ClCompile Include="VioletCard.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="YellowCard.cpp" />
-    <ClCompile Include="test_mcts_two_players.cpp" />
     <ClCompile Include="test_two_players_game.cpp" />
     <ClCompile Include="MCTSImplementation.cpp" />
   </ItemGroup>

@@ -49,7 +49,7 @@ Player::~Player()
 {
 }
 
-void Player::play(Card* card, bool discard, bool upgradeWonder)
+void Player::playCard(Card* card, bool discard, bool upgradeWonder)
 {
 	m_cardToPlay = card;
 	defausse = discard;

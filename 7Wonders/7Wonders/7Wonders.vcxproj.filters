@@ -69,9 +69,6 @@
     <ClInclude Include="DefaultMarvel.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="test_mcts_two_players.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="test_two_players_game.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -112,6 +109,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="test_game.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="test_mcts_two_players.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -173,9 +173,6 @@
     <ClCompile Include="DefaultMarvel.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="test_mcts_two_players.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="test_two_players_game.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -210,6 +207,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="test_game.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="test_mcts_two_players.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

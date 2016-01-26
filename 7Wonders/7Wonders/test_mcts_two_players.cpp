@@ -1,6 +1,4 @@
-#include "mcts_two_players.hpp"
 #include "test_mcts_two_players.hpp"
-#include "MCTSImplementation.h"
 #include <iostream>
 #include <iomanip>
 #include <map>
