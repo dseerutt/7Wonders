@@ -4,6 +4,8 @@
 #define DEMO
 #define CardHeight 114
 #define CardWidth 172
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
 const string Display::miniPath = "Mini/";
 const string Display::cardPath = "Cards/";
 
@@ -562,15 +564,21 @@ void Display::test(CardSet m_deck)
 {
 	for (int i = 0; i < m_deck.size(); i++)
 	{
-		sf::Texture texture2;
-		texture2.create(50, 50);
-		sf::Sprite sprite2;
-		sprite2.setTexture(texture2);
-		string path = m_deck.at(i)->m_name + ".png";
-		if (!texture2.loadFromFile(RelativePath + path))
-		{
-			m_window.close();
+		string path0 = RelativePath + Display::cardPath + m_deck.at(i)->m_name + ".png";
+		string path1 = RelativePath + Display::miniPath + m_deck.at(i)->m_name + "_MINI.png";
+		if (FILE *file = fopen(path0.c_str(), "r")) {
+			fclose(file);
 		}
-		m_window.draw(sprite2);
+		else {
+			int s = 0;
+		}
+
+		if (FILE *file = fopen(path1.c_str(), "r")) {
+			fclose(file);
+		}
+		else {
+			int s = 0;
+		}
+
 	}
 }

@@ -24,6 +24,14 @@ namespace game
 
 	MCTSImplementation::MCTSImplementation() : game(), world(new World(1, 2))
 	{
+		/*Card Picture Testing
+		world->startAge();
+		world->m_display.test(world->m_deck);
+		world->startAge();
+		world->m_display.test(world->m_deck);
+		world->startAge();
+		world->m_display.test(world->m_deck);
+		getchar();*/
 	}
 	MCTSImplementation::MCTSImplementation(World* w) : world(w)
 	{
