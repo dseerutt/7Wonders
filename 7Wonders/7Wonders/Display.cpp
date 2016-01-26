@@ -131,9 +131,9 @@ void Display::drawScores(std::vector<std::vector<int> > m_scores)
 
 
 	m_window.display();
-	std::cout << "Enter any value to exit" << std::endl;
+	/*std::cout << "Enter any value to exit" << std::endl;
 	getchar();
-	exit(0);
+	exit(0);*/
 }
 
 void Display::drawStatistics(const Player& p0, const Player& p1, const Player& p2)

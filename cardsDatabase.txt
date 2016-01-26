@@ -96,10 +96,10 @@ NOM_CARTE nbJoueurs couleur or bois pierre briques minerais textile verre papyru
 2 PLACE_D'ARMES 4 r 0 1 0 0 2 0 0 0 2 -
 2 PLACE_D'ARMES 6 r 0 1 0 0 2 0 0 0 2 -
 2 PLACE_D'ARMES 7 r 0 1 0 0 2 0 0 0 2 -
-2 ECURIE 3 r 0 1 0 1 1 0 0 0 2 -
-2 ECURIE 5 r 0 1 0 1 1 0 0 0 2 -
-2 CHAMP_DE_TIR 3 r 0 2 0 0 1 0 0 0 2 -
-2 CHAMP_DE_TIR 6 r 0 2 0 0 1 0 0 0 2 -
+2 ECURIES 3 r 0 1 0 1 1 0 0 0 2 -
+2 ECURIES 5 r 0 1 0 1 1 0 0 0 2 -
+2 CHAMPS_DE_TIR 3 r 0 2 0 0 1 0 0 0 2 -
+2 CHAMPS_DE_TIR 6 r 0 2 0 0 1 0 0 0 2 -
 
 2 DISPENSAIRE 3 e 0 0 0 0 2 0 1 0 c -
 2 DISPENSAIRE 4 e 0 0 0 0 2 0 1 0 c -

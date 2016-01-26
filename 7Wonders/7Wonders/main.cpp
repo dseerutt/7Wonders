@@ -2,7 +2,6 @@
 #include "MCTSImplementation.h"
 #include "test_monte_carlo.hpp"
 #include "test_mcts_two_players.hpp"
-#include "test_two_players_game.hpp"
 #include "test_game.h"
 
 int main(int argc, char** argv)
@@ -23,8 +22,9 @@ int main(int argc, char** argv)
 	unsigned int nc = 2;// nb de joueurs ordinateurs
 	World world(nh, nc);
 
-	world.run();
+	//world.run();
 
+	game::test_game();
 	//game::run_test_two_players_game(game::MCTSImplementation());
 	//mcts::run_test_mcts_two_players(game::MCTSImplementation(&world));
 
