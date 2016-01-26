@@ -1,4 +1,5 @@
 #include "Display.h"
+#include <conio.h>
 #define DEMO
 #define CardHeight 114
 #define CardWidth 172
@@ -38,7 +39,8 @@ void Display::init()
 	writeTextBlack("The Game", sf::Vector2f(300, 230), 60);
 	drawSpriteWithScale("begin.png", sf::Vector2f(360, 350), sf::Vector2f(1, 1), 88, 50);
 	m_window.display();
-	system("pause");
+	std::cout << "Enter any value to continue" << std::endl;
+	getchar();
 	
 }
 
@@ -93,7 +95,8 @@ void Display::drawScores(std::vector<std::vector<int> > m_scores)
 
 
 	m_window.display();
-	system("pause");
+	std::cout << "Enter any value to exit" << std::endl;
+	getchar();
 	exit(0);
 }
 
