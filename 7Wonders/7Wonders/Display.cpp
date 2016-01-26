@@ -2,6 +2,7 @@
 #define DEMO
 #define CardHeight 114
 #define CardWidth 172
+
 Display::Display(const std::vector<Player*>& players) : 
 m_players(players), m_window(sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), "7 Wonders")
 {
@@ -80,6 +81,8 @@ void Display::drawScores(std::vector<std::vector<int> > m_scores)
 
 
 	m_window.display();
+	system("pause");
+	exit(0);
 }
 
 void Display::drawStatistics(const Player& p0, const Player& p1, const Player& p2)
@@ -451,12 +454,12 @@ void Display::writeTextBlack(string text, sf::Vector2f position, int size)
 {
 	sf::Text atext;
 	sf::Font font;
-	if (!font.loadFromFile(RelativePath + "arial.ttf"))
+	if (!font.loadFromFile(RelativePath + "parc.ttf"))
 	{
 		// error
 	}
 	atext.setFont(font);
-	atext.setCharacterSize(size);
+	atext.setCharacterSize(size+10);
 	atext.setStyle(sf::Text::Bold);
 	atext.setColor(sf::Color::Black);
 	atext.setPosition(position.x, position.y);

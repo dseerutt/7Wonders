@@ -80,8 +80,7 @@ void World::run()
 		}
 
 #ifndef TESTING
-		//display.draw();
-		display.drawScores(m_scores);
+		display.draw();
 #endif // !TESTING
 
 		Player& p = *m_players[0];
