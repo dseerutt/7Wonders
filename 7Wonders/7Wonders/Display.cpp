@@ -303,15 +303,15 @@ void Display::drawBoard1(const CardSet& board)
 		for (int i = 0; i < 9; i++)
 		{
 			string temp = miniPath + board.at(i)->m_name + "_MINI.png";
-			drawMiniCardSprite(temp, sf::Vector2f(20, tempWidth), 200, 60);
-			tempWidth += 46;
+			drawMiniCardSprite(temp, sf::Vector2f(20, tempWidth), 108, 30);
+			tempWidth += 30;
 		}
 		//Colonne 2
-		int tempWidth2 = 150;
+		int tempWidth2 = 140;
 		for (int i = 9; i < board.size(); i++)
 		{
 			string temp = miniPath + board.at(i)->m_name + "_MINI.png";
-			drawMiniCardSprite(temp, sf::Vector2f(140, tempWidth2), 144, 46);
+			drawMiniCardSprite(temp, sf::Vector2f(140, tempWidth2), 108, 30);
 			tempWidth2 += 46;
 		}
 	}
