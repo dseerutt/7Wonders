@@ -1,8 +1,11 @@
 #include "Display.h"
+#define TESTING
 #include <conio.h>
 #define DEMO
 #define CardHeight 114
 #define CardWidth 172
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
 const string Display::miniPath = "Mini/";
 const string Display::cardPath = "Cards/";
 
@@ -24,22 +27,24 @@ void Display::setAge(int age0)
 	{
 	case 1:
 		//Age 1
-		drawSprite("I.png", sf::Vector2f(0, 0), 46, 61);
+		drawSprite("I.png", sf::Vector2f(130, 240), 600, 600);
+		//drawSprite("end.png", sf::Vector2f(50, 180), 700, 700);
 		break;
 	case 2:
 		//Age 2
-		drawSprite("II.png", sf::Vector2f(0, 0), 59, 61);
+		drawSprite("II.png", sf::Vector2f(120, 220), 600, 600);
 		break;
 	case 3:
 		//Age 3
-		drawSprite("III.png", sf::Vector2f(0, 0), 59, 61);
+		drawSprite("III.png", sf::Vector2f(60, 240), 700, 700);
 		break;
 	default:
 		break;
-		m_window.display();
-		sf::sleep(sf::milliseconds(1000));
-		draw();
 	}
+		m_window.display();
+		sf::sleep(sf::milliseconds(100));
+		draw();
+		m_window.display();
 }
 
 void Display::run() //FIXMEPLEASE
@@ -91,6 +96,15 @@ void Display::draw()
 
 void Display::drawScores(std::vector<std::vector<int> > m_scores)
 {
+	m_window.clear();
+	drawBackground();
+	drawSprite("end.png", sf::Vector2f(50, 180), 700, 700);
+	m_window.display();
+	sf::sleep(sf::milliseconds(100));
+	draw();
+	m_window.display();
+
+
 	drawBackground();
 	drawSpriteWithScale("pap.png", sf::Vector2f(0, 0), sf::Vector2f(1.25, 1.1), 640, 533);
 	int offset = 35;
@@ -291,16 +305,16 @@ void Display::drawBoard1(const CardSet& board)
 		for (int i = 0; i < 9; i++)
 		{
 			string temp = miniPath + board.at(i)->m_name + "_MINI.png";
-			drawMiniCardSprite(temp, sf::Vector2f(20, tempWidth), 200, 60);
-			tempWidth += 46;
+			drawMiniCardSprite(temp, sf::Vector2f(20, tempWidth), 108, 30);
+			tempWidth += 30;
 		}
 		//Colonne 2
-		int tempWidth2 = 150;
+		int tempWidth2 = 140;
 		for (int i = 9; i < board.size(); i++)
 		{
 			string temp = miniPath + board.at(i)->m_name + "_MINI.png";
-			drawMiniCardSprite(temp, sf::Vector2f(140, tempWidth2), 144, 46);
-			tempWidth2 += 46;
+			drawMiniCardSprite(temp, sf::Vector2f(140, tempWidth2), 108, 30);
+			tempWidth2 += 30;
 		}
 	}
 	else
@@ -544,4 +558,27 @@ void Display::writeTextBlack(string text, sf::Vector2f position, int size)
 	atext.setPosition(position.x, position.y);
 	atext.setString(text);
 	m_window.draw(atext);
+}
+
+void Display::test(CardSet m_deck)
+{
+	for (int i = 0; i < m_deck.size(); i++)
+	{
+		string path0 = RelativePath + Display::cardPath + m_deck.at(i)->m_name + ".png";
+		string path1 = RelativePath + Display::miniPath + m_deck.at(i)->m_name + "_MINI.png";
+		if (FILE *file = fopen(path0.c_str(), "r")) {
+			fclose(file);
+		}
+		else {
+			int s = 0;
+		}
+
+		if (FILE *file = fopen(path1.c_str(), "r")) {
+			fclose(file);
+		}
+		else {
+			int s = 0;
+		}
+
+	}
 }

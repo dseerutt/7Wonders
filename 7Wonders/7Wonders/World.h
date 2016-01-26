@@ -36,8 +36,6 @@ public:
 	Display& getDisplay();
 #endif // !TESTING
 
-	void upgradeMarvel(Player* p, int PV);
-	int getMilitaryScore(Player* p);
 	std::vector<Player*> m_players;
 	std::vector<std::vector<int> > m_scores;
 	const Player* m_winner;
@@ -47,6 +45,8 @@ public:
 	World(unsigned int nh, unsigned int nc);
 	~World();
 
+	void upgradeMarvel(Player* p, int PV);
+	int getMilitaryScore(Player* p);
 	void run();
 	void play(Player& player);
 	void playOthers(Player& player);
