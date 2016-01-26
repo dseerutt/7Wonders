@@ -36,6 +36,8 @@ protected:
 	void drawSprite(string path, int wherex, int wherey);
 	void drawSprite(string path, sf::Vector2f size, int wherex, int wherey);
 	void drawSpriteWithScale(string path, sf::Vector2f size, sf::Vector2f scale, int wherex, int wherey);
+	void drawCardSprite(string path, sf::Vector2f pos, int wherex, int wherey);
+	void drawMiniCardSprite(string path, sf::Vector2f pos, int wherex, int wherey);
 	void drawBackground();
 	void drawPlayer(const Player& p);
 	void drawPlayerDemo(const Player& p, const Player& p1, const Player& p2);
@@ -47,5 +49,6 @@ protected:
 	void drawHand(const Player& p);
 	void drawCard(const Card& c, sf::Vector2f pos);
 	const static string miniPath;
+	const static string cardPath;
 };
 

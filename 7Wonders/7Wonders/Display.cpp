@@ -4,6 +4,7 @@
 #define CardHeight 114
 #define CardWidth 172
 const string Display::miniPath = "Mini/";
+const string Display::cardPath = "Cards/";
 
 Display::Display(const std::vector<Player*>& players) : 
 m_players(players), m_window(sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), "7 Wonders")
@@ -260,7 +261,8 @@ void Display::drawHand(const Player& p)
 	int tempWidth = 0;
 	for (int i = 0; i < p.getHand().size(); i++)
 	{
-		drawSprite("CHANTIER.png", sf::Vector2f(tempWidth, 425), CardHeight, CardWidth);
+		string temp = cardPath + p.getHand().at(i)->m_name + ".png";
+		drawCardSprite(temp, sf::Vector2f(tempWidth, 425), 514, 794);
 		tempWidth += CardHeight;
 	}
 	
@@ -289,16 +291,16 @@ void Display::drawBoard1(const CardSet& board)
 		for (int i = 0; i < 9; i++)
 		{
 			string temp = miniPath + board.at(i)->m_name + "_MINI.png";
-			drawSprite(temp, sf::Vector2f(20, tempWidth), 108, 30);
-			tempWidth += 30;
+			drawMiniCardSprite(temp, sf::Vector2f(20, tempWidth), 200, 60);
+			tempWidth += 46;
 		}
 		//Colonne 2
-		int tempWidth2 = 140;
+		int tempWidth2 = 150;
 		for (int i = 9; i < board.size(); i++)
 		{
 			string temp = miniPath + board.at(i)->m_name + "_MINI.png";
-			drawSprite(temp, sf::Vector2f(140, tempWidth2), 108, 30);
-			tempWidth2 += 30;
+			drawMiniCardSprite(temp, sf::Vector2f(140, tempWidth2), 144, 46);
+			tempWidth2 += 46;
 		}
 	}
 	else
@@ -307,7 +309,7 @@ void Display::drawBoard1(const CardSet& board)
 		for (int i = 0; i < board.size(); i++)
 		{
 			string temp = miniPath + board.at(i)->m_name + "_MINI.png";
-			drawSprite(temp, sf::Vector2f(20, tempWidth), 108, 30);
+			drawMiniCardSprite(temp, sf::Vector2f(20, tempWidth), 108, 30);
 			tempWidth += 30;
 		}
 	}
@@ -322,7 +324,7 @@ void Display::drawBoard2(const CardSet& board)
 		for (int i = 0; i < 9; i++)
 		{
 			string temp = miniPath + board.at(i)->m_name + "_MINI.png";
-			drawSprite(temp, sf::Vector2f(290, tempWidth), 108, 30);
+			drawMiniCardSprite(temp, sf::Vector2f(290, tempWidth), 108, 30);
 			tempWidth += 30;
 		}
 		//Colonne 2
@@ -330,7 +332,7 @@ void Display::drawBoard2(const CardSet& board)
 		for (int i = 9; i < board.size(); i++)
 		{
 			string temp = miniPath + board.at(i)->m_name + "_MINI.png";
-			drawSprite(temp, sf::Vector2f(410, tempWidth2), 108, 30);
+			drawMiniCardSprite(temp, sf::Vector2f(410, tempWidth2), 108, 30);
 			tempWidth2 += 30;
 		}
 	}
@@ -340,7 +342,7 @@ void Display::drawBoard2(const CardSet& board)
 		for (int i = 0; i < board.size(); i++)
 		{
 			string temp = miniPath + board.at(i)->m_name + "_MINI.png";
-			drawSprite(temp, sf::Vector2f(290, tempWidth), 108, 30);
+			drawMiniCardSprite(temp, sf::Vector2f(290, tempWidth), 108, 30);
 			tempWidth += 30;
 		}
 	}
@@ -355,7 +357,7 @@ void Display::drawBoard3(const CardSet& board)
 		for (int i = 0; i < 9; i++)
 		{
 			string temp = miniPath + board.at(i)->m_name + "_MINI.png";
-			drawSprite(temp, sf::Vector2f(560, tempWidth), 108, 30);
+			drawMiniCardSprite(temp, sf::Vector2f(560, tempWidth), 108, 30);
 			tempWidth += 30;
 		}
 		//Colonne 2
@@ -363,7 +365,7 @@ void Display::drawBoard3(const CardSet& board)
 		for (int i = 9; i < board.size(); i++)
 		{
 			string temp = miniPath + board.at(i)->m_name + "_MINI.png";
-			drawSprite(temp, sf::Vector2f(680, tempWidth2), 108, 30);
+			drawMiniCardSprite(temp, sf::Vector2f(680, tempWidth2), 108, 30);
 			tempWidth2 += 30;
 		}
 	}
@@ -373,7 +375,7 @@ void Display::drawBoard3(const CardSet& board)
 		for (int i = 0; i < board.size(); i++)
 		{
 			string temp = miniPath + board.at(i)->m_name + "_MINI.png";
-			drawSprite(temp, sf::Vector2f(560, tempWidth), 108, 30);
+			drawMiniCardSprite(temp, sf::Vector2f(560, tempWidth), 108, 30);
 			tempWidth += 30;
 		}
 	}
@@ -464,6 +466,36 @@ void Display::drawSpriteWithScale(string path, sf::Vector2f pos, sf::Vector2f sc
 		m_window.close();
 	}
 	sprite2.scale(scale);
+	m_window.draw(sprite2);
+}
+
+void Display::drawCardSprite(string path, sf::Vector2f pos, int wherex, int wherey)
+{
+	sf::Texture texture2;
+	texture2.create(wherex, wherey);
+	sf::Sprite sprite2;
+	sprite2.setPosition(pos);
+	sprite2.setTexture(texture2);
+	sprite2.setScale(0.23, 0.23);
+	if (!texture2.loadFromFile(RelativePath + path))
+	{
+		m_window.close();
+	}
+	m_window.draw(sprite2);
+}
+
+void Display::drawMiniCardSprite(string path, sf::Vector2f pos, int wherex, int wherey)
+{
+	sf::Texture texture2;
+	texture2.create(wherex, wherey);
+	sf::Sprite sprite2;
+	sprite2.setPosition(pos);
+	sprite2.setTexture(texture2);
+	sprite2.setScale(1, 1);
+	if (!texture2.loadFromFile(RelativePath + path))
+	{
+		m_window.close();
+	}
 	m_window.draw(sprite2);
 }
 
