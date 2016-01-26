@@ -14,6 +14,7 @@ protected:
 	const std::vector<Player*>& m_players;
 	int age = 0;
 	string RelativePath = "Pictures/";
+
 public:
 	Display(const std::vector<Player*>& players);
 	~Display();
@@ -22,16 +23,32 @@ public:
 	void run();
 	void draw();
 	void drawHands();
+	void drawScores(std::vector<std::vector<int> > m_scores);
+	void init();
+
+
 
 protected:
-	void testMaximumCapacity();
+	void testMaximumCapacity(const Player& p0, const Player& p1, const Player& p2);
+	void drawStatistics(const Player& p0, const Player& p1, const Player& p2);
+	void writeText(string text, sf::Vector2f position, int size);
+	void writeTextBlack(string text, sf::Vector2f position, int size);
 	void drawSprite(string path, int wherex, int wherey);
 	void drawSprite(string path, sf::Vector2f size, int wherex, int wherey);
+	void drawSpriteWithScale(string path, sf::Vector2f size, sf::Vector2f scale, int wherex, int wherey);
+	void drawCardSprite(string path, sf::Vector2f pos, int wherex, int wherey);
+	void drawMiniCardSprite(string path, sf::Vector2f pos, int wherex, int wherey);
 	void drawBackground();
 	void drawPlayer(const Player& p);
 	void drawPlayerDemo(const Player& p, const Player& p1, const Player& p2);
-	void drawBoard(const CardSet& board, sf::Vector2f pos);
+	void drawOldBoard(const CardSet& board, sf::Vector2f pos);
+	void drawBoards(const Player& p0, const Player& p1, const Player& p2);
+	void drawBoard1(const CardSet& board);
+	void drawBoard2(const CardSet& board);
+	void drawBoard3(const CardSet& board);
 	void drawHand(const Player& p);
 	void drawCard(const Card& c, sf::Vector2f pos);
+	const static string miniPath;
+	const static string cardPath;
 };
 

@@ -14,7 +14,7 @@ Marvel::~Marvel()
 {
 }
 
-int Marvel::getMarvelLevel()
+int Marvel::getMarvelLevel()const
 {
 	return marvelLevel;
 }

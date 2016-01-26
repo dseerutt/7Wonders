@@ -14,7 +14,7 @@ public:
 public:
 	Marvel(int level);
 	~Marvel();
-	int getMarvelLevel();
+	int getMarvelLevel() const;
 	int getMarvelMaxLevel();
 	int getMarvelMoney();
 	int getMarvelScore();

@@ -64,7 +64,7 @@ void World::run()
 {
 #ifndef TESTING
 	Display display(m_players);
-	display.draw();
+	display.init();
 #endif // !TESTING
 
 	while (!m_gameOver)
@@ -73,28 +73,28 @@ void World::run()
 		{
 			updateMilitary();
 			startAge();
+
 #ifndef TESTING
 			display.setAge(m_age);
 #endif // !TESTING
+
 		}
+
 #ifndef TESTING
 		display.draw();
 #endif // !TESTING
+
 		Player& p = *m_players[0];
 		play(p);
 		playOthers(p);
 		endTurn();
-
-		/*
-#ifndef TESTING
-		display.draw();
-#endif // !TESTING
-*/
 	}
-	//updateMilitary();
 
 	computeScores();
 	displayScores();
+#ifndef TESTING
+	display.drawScores(m_scores);
+#endif // !TESTING
 }
 
 void World::play(Player& player)
@@ -150,6 +150,7 @@ int World::getMilitaryScore(Player* p)
 		if (leftScore < myscore)
 		{
 		resul += factor;
+		p->militaryBonus += factor;
 		}
 
 	if (rightScore > myscore)

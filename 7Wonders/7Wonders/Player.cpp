@@ -81,7 +81,12 @@ unsigned int Player::getMilitaryMalus() const
 	return militaryMalus;
 }
 
-Marvel* Player::getMarvel()
+unsigned int Player::getMilitaryBonus() const
+{
+	return militaryBonus;
+}
+
+Marvel* Player::getMarvel() const
 {
 	return marvel;
 }
