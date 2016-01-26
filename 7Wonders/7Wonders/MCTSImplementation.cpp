@@ -179,7 +179,6 @@ namespace game
 		{
 			p.play(hand.at(m - playableHand.size() - hand.size()), true, true);
 		}
-		//p.prepareTurn();
 	}
 
 	void MCTSImplementation::player2Move(uint16_t m)

@@ -191,7 +191,7 @@ void World::startAge()
 
 bool World::betweenTurns() const
 {
-	return m_players[0]->getHand().size() <= 1;
+	return m_players[0]->getHand().size() <= 0;
 }
 
 bool World::gameOver() const
