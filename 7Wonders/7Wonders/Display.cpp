@@ -43,31 +43,12 @@ void Display::draw()
 	drawBackground();
 	testMaximumCapacity(*m_players.at(0), *m_players.at(0), *m_players.at(0));
 	drawHand(*m_players.at(0));
+	drawStatistics(*m_players.at(0), *m_players.at(0), *m_players.at(0));
 	m_window.display();
 }
 
-
-void Display::drawPlayerDemo(const Player& p0, const Player& p1, const Player& p2)
+void Display::drawStatistics(const Player& p0, const Player& p1, const Player& p2)
 {
-	sf::Vector2f pos(WINDOW_SIZE_X / 2 + 100.f, WINDOW_SIZE_Y - 100.f);
-	const CardSet& board = p0.getBoard();
-	drawBoard(board, pos);
-}
-
-void Display::testMaximumCapacity(const Player& p0, const Player& p1, const Player& p2)
-{
-	//Age 1
-	drawSprite("1.png", sf::Vector2f(0, 0), 46, 61);
-	drawSprite("1.png", sf::Vector2f(760, 0), 46, 61);
-
-	//Age 2
-	drawSprite("2.png", sf::Vector2f(0, 0), 59, 61);
-	drawSprite("2.png", sf::Vector2f(750, 0), 59, 61);
-
-	//Age 3
-	drawSprite("3.png", sf::Vector2f(0, 0), 59, 61);
-	drawSprite("3.png", sf::Vector2f(735, 0), 59, 61);
-
 	//Player names
 	drawSprite("Player1.png", sf::Vector2f(70, 5), 500, 500);
 	drawSprite("Player2.png", sf::Vector2f(330, 5), 133, 55);
@@ -102,6 +83,39 @@ void Display::testMaximumCapacity(const Player& p0, const Player& p1, const Play
 	writeText(to_string(p1.getMarvel()->getMarvelLevel()), sf::Vector2f(482, 90), 20);
 	drawSpriteWithScale("pyr.png", sf::Vector2f(740, 56), sf::Vector2f(0.06, 0.06), 600, 600);
 	writeText(to_string(p2.getMarvel()->getMarvelLevel()), sf::Vector2f(752, 90), 20);
+	
+	switch (age)
+	{
+	case 1:
+		//Age 1
+		drawSprite("1.png", sf::Vector2f(0, 0), 46, 61);
+		drawSprite("1.png", sf::Vector2f(760, 0), 46, 61);
+		break;
+	case 2:
+		//Age 2
+		drawSprite("2.png", sf::Vector2f(0, 0), 59, 61);
+		drawSprite("2.png", sf::Vector2f(750, 0), 59, 61);
+		break;
+	case 3:
+		//Age 3
+		drawSprite("3.png", sf::Vector2f(0, 0), 59, 61);
+		drawSprite("3.png", sf::Vector2f(735, 0), 59, 61);
+		break;
+	default:
+		break;
+	}
+
+}
+
+void Display::drawPlayerDemo(const Player& p0, const Player& p1, const Player& p2)
+{
+	sf::Vector2f pos(WINDOW_SIZE_X / 2 + 100.f, WINDOW_SIZE_Y - 100.f);
+	const CardSet& board = p0.getBoard();
+	drawBoard(board, pos);
+}
+
+void Display::testMaximumCapacity(const Player& p0, const Player& p1, const Player& p2)
+{
 
 
 	//Cards display
