@@ -16,7 +16,7 @@ void Display::setAge(int age0)
 	age = age0;
 }
 
-void Display::run() //FIXME
+void Display::run() //FIXMEPLEASE
 {
 	while (m_window.isOpen())
 	{
@@ -41,7 +41,7 @@ void Display::draw()
 	drawPlayerDemo(*m_players.at(0), *m_players.at(0), *m_players.at(0));
 	*/
 	drawBackground();
-	testMaximumCapacity(); 
+	testMaximumCapacity(*m_players.at(0), *m_players.at(0), *m_players.at(0));
 	drawHand(*m_players.at(0));
 	m_window.display();
 }
@@ -54,7 +54,7 @@ void Display::drawPlayerDemo(const Player& p0, const Player& p1, const Player& p
 	drawBoard(board, pos);
 }
 
-void Display::testMaximumCapacity()
+void Display::testMaximumCapacity(const Player& p0, const Player& p1, const Player& p2)
 {
 	//Age 1
 	drawSprite("1.png", sf::Vector2f(0, 0), 46, 61);
@@ -76,17 +76,33 @@ void Display::testMaximumCapacity()
 	//Jetons
 
 	drawSpriteWithScale("coin.png", sf::Vector2f(35, 60), sf::Vector2f(0.05, 0.05), 512, 512);
+	writeText(to_string(p0.getMoney()), sf::Vector2f(42, 90), 20);
 	drawSpriteWithScale("coin.png", sf::Vector2f(305, 60), sf::Vector2f(0.05, 0.05), 512, 512);
+	writeText(to_string(p1.getMoney()), sf::Vector2f(312, 90), 20);
 	drawSpriteWithScale("coin.png", sf::Vector2f(575, 60), sf::Vector2f(0.05, 0.05), 512, 512);
+	writeText(to_string(p2.getMoney()), sf::Vector2f(582, 90), 20);
+
 	drawSpriteWithScale("sword.png", sf::Vector2f(80, 59), sf::Vector2f(0.03, 0.03), 894, 894);
+	writeText(to_string(p0.getMilitary()), sf::Vector2f(88, 90), 20);
 	drawSpriteWithScale("sword.png", sf::Vector2f(350, 59), sf::Vector2f(0.03, 0.03), 894, 894);
+	writeText(to_string(p1.getMilitary()), sf::Vector2f(357, 90), 20);
 	drawSpriteWithScale("sword.png", sf::Vector2f(620, 59), sf::Vector2f(0.03, 0.03), 894, 894);
+	writeText(to_string(p2.getMilitary()), sf::Vector2f(627, 90), 20);
+
 	drawSpriteWithScale("shield.png", sf::Vector2f(157, 60), sf::Vector2f(0.30, 0.30), 84, 84);
-	drawSpriteWithScale("shield.png", sf::Vector2f(427, 60), sf::Vector2f(0.30, 0.30), 84, 84);
+	writeText(to_string(p0.getMilitary()), sf::Vector2f(164, 90), 20);
+	drawSpriteWithScale("shield.png", sf::Vector2f(420, 60), sf::Vector2f(0.30, 0.30), 84, 84);
+	writeText(to_string(p1.getMilitary()), sf::Vector2f(427, 90), 20);
 	drawSpriteWithScale("shield.png", sf::Vector2f(697, 60), sf::Vector2f(0.30, 0.30), 84, 84);
+	writeText(to_string(p2.getMilitary()), sf::Vector2f(704, 90), 20);
+
 	drawSpriteWithScale("pyr.png", sf::Vector2f(200, 56), sf::Vector2f(0.06, 0.06), 600, 600);
+	writeText(to_string(p0.getMilitary()), sf::Vector2f(212, 90), 20);
 	drawSpriteWithScale("pyr.png", sf::Vector2f(470, 56), sf::Vector2f(0.06, 0.06), 600, 600);
+	writeText(to_string(p1.getMilitary()), sf::Vector2f(482, 90), 20);
 	drawSpriteWithScale("pyr.png", sf::Vector2f(740, 56), sf::Vector2f(0.06, 0.06), 600, 600);
+	writeText(to_string(p2.getMilitary()), sf::Vector2f(752, 90), 20);
+
 
 	//Cards display
 	//Colonne 1
@@ -136,6 +152,7 @@ void Display::testMaximumCapacity()
 		drawSprite("CHANTIER_MINI.png", sf::Vector2f(680, tempWidth6), 108, 30);
 		tempWidth6 += 30;
 	}
+
 }
 
 void Display::drawBackground()
@@ -267,4 +284,21 @@ void Display::drawSprite(string path, int wherex, int wherey)
 		m_window.close();
 	}
 	m_window.draw(sprite2);
+}
+
+void Display::writeText(string text, sf::Vector2f position, int size)
+{
+	sf::Text atext;
+	sf::Font font;
+	if (!font.loadFromFile(RelativePath + "arial.ttf"))
+	{
+		// error
+	}
+	atext.setFont(font);
+	atext.setCharacterSize(size);
+	atext.setStyle(sf::Text::Bold);
+	atext.setColor(sf::Color::White);
+	atext.setPosition(position.x, position.y);
+	atext.setString(text);
+	m_window.draw(atext);
 }

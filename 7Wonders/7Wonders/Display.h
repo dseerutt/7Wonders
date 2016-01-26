@@ -14,6 +14,7 @@ protected:
 	const std::vector<Player*>& m_players;
 	int age = 0;
 	string RelativePath = "Pictures/";
+
 public:
 	Display(const std::vector<Player*>& players);
 	~Display();
@@ -23,8 +24,10 @@ public:
 	void draw();
 	void drawHands();
 
+
 protected:
-	void testMaximumCapacity();
+	void testMaximumCapacity(const Player& p0, const Player& p1, const Player& p2);
+	void writeText(string text, sf::Vector2f position, int size);
 	void drawSprite(string path, int wherex, int wherey);
 	void drawSprite(string path, sf::Vector2f size, int wherex, int wherey);
 	void drawSpriteWithScale(string path, sf::Vector2f size, sf::Vector2f scale, int wherex, int wherey);
