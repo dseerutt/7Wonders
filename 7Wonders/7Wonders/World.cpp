@@ -66,7 +66,8 @@ void World::run()
 	Display display(m_players);
 	display.init();
 #endif // !TESTING
-
+	
+			//display.test(m_deck);
 	while (!m_gameOver)
 	{
 		if (betweenTurns())

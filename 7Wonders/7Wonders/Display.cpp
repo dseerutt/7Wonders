@@ -557,3 +557,20 @@ void Display::writeTextBlack(string text, sf::Vector2f position, int size)
 	atext.setString(text);
 	m_window.draw(atext);
 }
+
+void Display::test(CardSet m_deck)
+{
+	for (int i = 0; i < m_deck.size(); i++)
+	{
+		sf::Texture texture2;
+		texture2.create(50, 50);
+		sf::Sprite sprite2;
+		sprite2.setTexture(texture2);
+		string path = m_deck.at(i)->m_name + ".png";
+		if (!texture2.loadFromFile(RelativePath + path))
+		{
+			m_window.close();
+		}
+		m_window.draw(sprite2);
+	}
+}
