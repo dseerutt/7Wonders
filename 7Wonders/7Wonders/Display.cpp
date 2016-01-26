@@ -312,7 +312,7 @@ void Display::drawBoard1(const CardSet& board)
 		{
 			string temp = miniPath + board.at(i)->m_name + "_MINI.png";
 			drawMiniCardSprite(temp, sf::Vector2f(140, tempWidth2), 108, 30);
-			tempWidth2 += 46;
+			tempWidth2 += 30;
 		}
 	}
 	else

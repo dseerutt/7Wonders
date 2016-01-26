@@ -808,6 +808,11 @@ bool Player::Buy(Card* c)
 						}
 						else {
 							leftNeighbor->money += count;
+							if (money - count < 0)
+							{
+								int s = 0;
+								return true;
+							}
 							money -= count;
 							return true;
 						}
@@ -816,12 +821,22 @@ bool Player::Buy(Card* c)
 					{
 						int count = countResourcesL(ToBuy.at(i));
 						leftNeighbor->money += count;
+						if (money - count < 0)
+						{
+							int s = 0;
+							return true;
+						}
 						money -= count;
 						return true;
 					}
 					else {
 						int count2 = countResourcesR(ToBuy.at(i));
 						rightNeighbor->money += count2;
+						if (money - count2 < 0)
+						{
+							int s = 0;
+							return true;
+						}
 						money -= count2;
 						return true;
 					}
