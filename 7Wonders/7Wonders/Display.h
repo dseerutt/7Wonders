@@ -35,7 +35,11 @@ protected:
 	void drawBackground();
 	void drawPlayer(const Player& p);
 	void drawPlayerDemo(const Player& p, const Player& p1, const Player& p2);
-	void drawBoard(const CardSet& board, sf::Vector2f pos);
+	void drawOldBoard(const CardSet& board, sf::Vector2f pos);
+	void drawBoards(const Player& p0, const Player& p1, const Player& p2);
+	void drawBoard1(const CardSet& board);
+	void drawBoard2(const CardSet& board);
+	void drawBoard3(const CardSet& board);
 	void drawHand(const Player& p);
 	void drawCard(const Card& c, sf::Vector2f pos);
 };

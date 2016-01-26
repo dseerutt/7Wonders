@@ -41,9 +41,10 @@ void Display::draw()
 	drawPlayerDemo(*m_players.at(0), *m_players.at(0), *m_players.at(0));
 	*/
 	drawBackground();
-	testMaximumCapacity(*m_players.at(0), *m_players.at(0), *m_players.at(0));
+	//testMaximumCapacity(*m_players.at(0), *m_players.at(0), *m_players.at(0));
 	drawHand(*m_players.at(0));
-	drawStatistics(*m_players.at(0), *m_players.at(0), *m_players.at(0));
+	drawBoards(*m_players.at(0), *m_players.at(1), *m_players.at(2));
+	drawStatistics(*m_players.at(0), *m_players.at(1), *m_players.at(2));
 	m_window.display();
 }
 
@@ -55,7 +56,6 @@ void Display::drawStatistics(const Player& p0, const Player& p1, const Player& p
 	drawSprite("Player3.png", sf::Vector2f(600, 5), 133, 55);
 
 	//Jetons
-
 	drawSpriteWithScale("coin.png", sf::Vector2f(35, 60), sf::Vector2f(0.05, 0.05), 512, 512);
 	writeText(to_string(p0.getMoney()), sf::Vector2f(42, 90), 20);
 	drawSpriteWithScale("coin.png", sf::Vector2f(305, 60), sf::Vector2f(0.05, 0.05), 512, 512);
@@ -66,9 +66,9 @@ void Display::drawStatistics(const Player& p0, const Player& p1, const Player& p
 	drawSpriteWithScale("pyr.png", sf::Vector2f(85, 55), sf::Vector2f(0.06, 0.06), 600, 600);
 	writeText(to_string(p0.getMarvel()->getMarvelLevel()), sf::Vector2f(97, 90), 20);
 	drawSpriteWithScale("pyr.png", sf::Vector2f(350, 55), sf::Vector2f(0.06, 0.06), 600, 600);
-	writeText(to_string(p0.getMarvel()->getMarvelLevel()), sf::Vector2f(363, 90), 20);
+	writeText(to_string(p1.getMarvel()->getMarvelLevel()), sf::Vector2f(363, 90), 20);
 	drawSpriteWithScale("pyr.png", sf::Vector2f(620, 55), sf::Vector2f(0.06, 0.06), 600, 600);
-	writeText(to_string(p0.getMarvel()->getMarvelLevel()), sf::Vector2f(633, 90), 20);
+	writeText(to_string(p2.getMarvel()->getMarvelLevel()), sf::Vector2f(633, 90), 20);
 
 	drawSpriteWithScale("sword.png", sf::Vector2f(157, 60), sf::Vector2f(0.03, 0.03), 894, 894);
 	writeText(to_string(p0.getMilitaryBonus()), sf::Vector2f(164, 90), 20);
@@ -111,13 +111,11 @@ void Display::drawPlayerDemo(const Player& p0, const Player& p1, const Player& p
 {
 	sf::Vector2f pos(WINDOW_SIZE_X / 2 + 100.f, WINDOW_SIZE_Y - 100.f);
 	const CardSet& board = p0.getBoard();
-	drawBoard(board, pos);
+	drawOldBoard(board, pos);
 }
 
 void Display::testMaximumCapacity(const Player& p0, const Player& p1, const Player& p2)
 {
-
-
 	//Cards display
 	//Colonne 1
 	int tempWidth = 140;
@@ -196,10 +194,107 @@ void Display::drawPlayer(const Player& p)
 {
 	sf::Vector2f pos(WINDOW_SIZE_X / 2 + 100.f, WINDOW_SIZE_Y - 100.f);
 	const CardSet& board = p.getBoard();
-	drawBoard(board, pos);
+	drawOldBoard(board, pos);
 }
 
-void Display::drawBoard(const CardSet& board, sf::Vector2f pos)
+void Display::drawBoards(const Player& p0, const Player& p1, const Player& p2)
+{
+	drawBoard1(p0.getBoard());
+	drawBoard2(p1.getBoard());
+	drawBoard3(p2.getBoard());
+}
+
+void Display::drawBoard1(const CardSet& board)
+{
+	int tempWidth = 140;
+	if (board.size() > 9)
+	{
+		//Colonne 1
+		for (int i = 0; i < 9; i++)
+		{
+			drawSprite("CHANTIER_MINI.png", sf::Vector2f(20, tempWidth), 108, 30);
+			tempWidth += 30;
+		}
+		//Colonne 2
+		int tempWidth2 = 140;
+		for (int i = 9; i < board.size(); i++)
+		{
+			drawSprite("CHANTIER_MINI.png", sf::Vector2f(140, tempWidth2), 108, 30);
+			tempWidth2 += 30;
+		}
+	}
+	else
+	{
+		//Colonne 1
+		for (int i = 0; i < board.size(); i++)
+		{
+			drawSprite("CHANTIER_MINI.png", sf::Vector2f(20, tempWidth), 108, 30);
+			tempWidth += 30;
+		}
+	}
+}
+
+void Display::drawBoard2(const CardSet& board)
+{
+	int tempWidth = 140;
+	if (board.size() > 9)
+	{
+		//Colonne 1
+		for (int i = 0; i < 9; i++)
+		{
+			drawSprite("CHANTIER_MINI.png", sf::Vector2f(290, tempWidth), 108, 30);
+			tempWidth += 30;
+		}
+		//Colonne 2
+		int tempWidth2 = 140;
+		for (int i = 9; i < board.size(); i++)
+		{
+			drawSprite("CHANTIER_MINI.png", sf::Vector2f(410, tempWidth2), 108, 30);
+			tempWidth2 += 30;
+		}
+	}
+	else
+	{
+		//Colonne 1
+		for (int i = 0; i < board.size(); i++)
+		{
+			drawSprite("CHANTIER_MINI.png", sf::Vector2f(290, tempWidth), 108, 30);
+			tempWidth += 30;
+		}
+	}
+}
+
+void Display::drawBoard3(const CardSet& board)
+{
+	int tempWidth = 140;
+	if (board.size() > 9)
+	{
+		//Colonne 1
+		for (int i = 0; i < 9; i++)
+		{
+			drawSprite("CHANTIER_MINI.png", sf::Vector2f(560, tempWidth), 108, 30);
+			tempWidth += 30;
+		}
+		//Colonne 2
+		int tempWidth2 = 140;
+		for (int i = 9; i < board.size(); i++)
+		{
+			drawSprite("CHANTIER_MINI.png", sf::Vector2f(680, tempWidth2), 108, 30);
+			tempWidth2 += 30;
+		}
+	}
+	else
+	{
+		//Colonne 1
+		for (int i = 0; i < board.size(); i++)
+		{
+			drawSprite("CHANTIER_MINI.png", sf::Vector2f(560, tempWidth), 108, 30);
+			tempWidth += 30;
+		}
+	}
+}
+
+void Display::drawOldBoard(const CardSet& board, sf::Vector2f pos)
 {
 	std::vector<unsigned int> count(COLOR_COUNT);
 	for (unsigned int i = 0; i < COLOR_COUNT; i++)
