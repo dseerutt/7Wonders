@@ -29,6 +29,7 @@ public:
 	
 	std::string resourcesDisplay = "";
 	int militaryMalus = 0;
+	int militaryBonus = 0;
 	Player(CardSet* discard, int rec);
 	~Player();
 	Marvel* getMarvel()const;
@@ -48,6 +49,7 @@ public:
 	unsigned int getMilitary() const;
 	char getScienceGuild() const;
 	unsigned int getMilitaryMalus() const;
+	unsigned int getMilitaryBonus() const;
 	unsigned int getGeneratedScore() const;
 	unsigned int getScore() const;
 	unsigned int getMoney() const;

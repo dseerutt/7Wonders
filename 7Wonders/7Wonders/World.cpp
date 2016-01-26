@@ -150,6 +150,7 @@ int World::getMilitaryScore(Player* p)
 		if (leftScore < myscore)
 		{
 		resul += factor;
+		p->militaryBonus += factor;
 		}
 
 	if (rightScore > myscore)

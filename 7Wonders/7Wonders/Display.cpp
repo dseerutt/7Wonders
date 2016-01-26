@@ -62,27 +62,27 @@ void Display::drawStatistics(const Player& p0, const Player& p1, const Player& p
 	writeText(to_string(p1.getMoney()), sf::Vector2f(312, 90), 20);
 	drawSpriteWithScale("coin.png", sf::Vector2f(575, 60), sf::Vector2f(0.05, 0.05), 512, 512);
 	writeText(to_string(p2.getMoney()), sf::Vector2f(582, 90), 20);
+	
+	drawSpriteWithScale("pyr.png", sf::Vector2f(85, 55), sf::Vector2f(0.06, 0.06), 600, 600);
+	writeText(to_string(p0.getMarvel()->getMarvelLevel()), sf::Vector2f(97, 90), 20);
+	drawSpriteWithScale("pyr.png", sf::Vector2f(350, 55), sf::Vector2f(0.06, 0.06), 600, 600);
+	writeText(to_string(p0.getMarvel()->getMarvelLevel()), sf::Vector2f(363, 90), 20);
+	drawSpriteWithScale("pyr.png", sf::Vector2f(620, 55), sf::Vector2f(0.06, 0.06), 600, 600);
+	writeText(to_string(p0.getMarvel()->getMarvelLevel()), sf::Vector2f(633, 90), 20);
 
-	drawSpriteWithScale("sword.png", sf::Vector2f(80, 59), sf::Vector2f(0.03, 0.03), 894, 894);
-	writeText(to_string(p0.getMilitary()), sf::Vector2f(88, 90), 20);
-	drawSpriteWithScale("sword.png", sf::Vector2f(350, 59), sf::Vector2f(0.03, 0.03), 894, 894);
-	writeText(to_string(p1.getMilitary()), sf::Vector2f(357, 90), 20);
-	drawSpriteWithScale("sword.png", sf::Vector2f(620, 59), sf::Vector2f(0.03, 0.03), 894, 894);
-	writeText(to_string(p2.getMilitary()), sf::Vector2f(627, 90), 20);
+	drawSpriteWithScale("sword.png", sf::Vector2f(157, 60), sf::Vector2f(0.03, 0.03), 894, 894);
+	writeText(to_string(p0.getMilitaryBonus()), sf::Vector2f(164, 90), 20);
+	drawSpriteWithScale("sword.png", sf::Vector2f(420, 60), sf::Vector2f(0.03, 0.03), 894, 894);
+	writeText(to_string(p1.getMilitaryBonus()), sf::Vector2f(427, 90), 20);
+	drawSpriteWithScale("sword.png", sf::Vector2f(697, 60), sf::Vector2f(0.03, 0.03), 894, 894);
+	writeText(to_string(p2.getMilitaryBonus()), sf::Vector2f(704, 90), 20);
 
-	drawSpriteWithScale("shield.png", sf::Vector2f(157, 60), sf::Vector2f(0.30, 0.30), 84, 84);
-	writeText(to_string(p0.getMilitaryMalus()), sf::Vector2f(164, 90), 20);
-	drawSpriteWithScale("shield.png", sf::Vector2f(420, 60), sf::Vector2f(0.30, 0.30), 84, 84);
-	writeText(to_string(p1.getMilitaryMalus()), sf::Vector2f(427, 90), 20);
-	drawSpriteWithScale("shield.png", sf::Vector2f(697, 60), sf::Vector2f(0.30, 0.30), 84, 84);
-	writeText(to_string(p2.getMilitaryMalus()), sf::Vector2f(704, 90), 20);
-
-	drawSpriteWithScale("pyr.png", sf::Vector2f(200, 56), sf::Vector2f(0.06, 0.06), 600, 600);
-	writeText(to_string(p0.getMarvel()->getMarvelLevel()), sf::Vector2f(212, 90), 20);
-	drawSpriteWithScale("pyr.png", sf::Vector2f(470, 56), sf::Vector2f(0.06, 0.06), 600, 600);
-	writeText(to_string(p1.getMarvel()->getMarvelLevel()), sf::Vector2f(482, 90), 20);
-	drawSpriteWithScale("pyr.png", sf::Vector2f(740, 56), sf::Vector2f(0.06, 0.06), 600, 600);
-	writeText(to_string(p2.getMarvel()->getMarvelLevel()), sf::Vector2f(752, 90), 20);
+	drawSpriteWithScale("shield.png", sf::Vector2f(205, 60), sf::Vector2f(0.30, 0.30), 84, 84);
+	writeText(to_string(p0.getMilitaryMalus()), sf::Vector2f(212, 90), 20);
+	drawSpriteWithScale("shield.png", sf::Vector2f(475, 60), sf::Vector2f(0.30, 0.30), 84, 84);
+	writeText(to_string(p1.getMilitaryMalus()), sf::Vector2f(482, 90), 20);
+	drawSpriteWithScale("shield.png", sf::Vector2f(745, 60), sf::Vector2f(0.30, 0.30), 84, 84);
+	writeText(to_string(p2.getMilitaryMalus()), sf::Vector2f(752, 90), 20);
 	
 	switch (age)
 	{
