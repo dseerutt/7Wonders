@@ -1,4 +1,5 @@
 #include "Display.h"
+#define TESTING
 #include <conio.h>
 #define DEMO
 #define CardHeight 114
@@ -24,22 +25,24 @@ void Display::setAge(int age0)
 	{
 	case 1:
 		//Age 1
-		drawSprite("I.png", sf::Vector2f(0, 0), 46, 61);
+		drawSprite("I.png", sf::Vector2f(130, 240), 600, 600);
+		//drawSprite("end.png", sf::Vector2f(50, 180), 700, 700);
 		break;
 	case 2:
 		//Age 2
-		drawSprite("II.png", sf::Vector2f(0, 0), 59, 61);
+		drawSprite("II.png", sf::Vector2f(120, 220), 600, 600);
 		break;
 	case 3:
 		//Age 3
-		drawSprite("III.png", sf::Vector2f(0, 0), 59, 61);
+		drawSprite("III.png", sf::Vector2f(60, 240), 700, 700);
 		break;
 	default:
 		break;
-		m_window.display();
-		sf::sleep(sf::milliseconds(1000));
-		draw();
 	}
+		m_window.display();
+		sf::sleep(sf::milliseconds(100));
+		draw();
+		m_window.display();
 }
 
 void Display::run() //FIXMEPLEASE
@@ -91,6 +94,15 @@ void Display::draw()
 
 void Display::drawScores(std::vector<std::vector<int> > m_scores)
 {
+	m_window.clear();
+	drawBackground();
+	drawSprite("end.png", sf::Vector2f(50, 180), 700, 700);
+	m_window.display();
+	sf::sleep(sf::milliseconds(100));
+	draw();
+	m_window.display();
+
+
 	drawBackground();
 	drawSpriteWithScale("pap.png", sf::Vector2f(0, 0), sf::Vector2f(1.25, 1.1), 640, 533);
 	int offset = 35;
