@@ -198,7 +198,7 @@ void Display::testMaximumCapacity(const Player& p0, const Player& p1, const Play
 	int tempWidth = 140;
 	for (int i = 0; i < 9; i++)
 	{
-		drawSprite("CHANTIER_MINI.png", sf::Vector2f(20, tempWidth), 108, 30);
+		drawSprite("Mini/CHANTIER_MINI.png", sf::Vector2f(20, tempWidth), 108, 30);
 		tempWidth += 30;
 	}
 
@@ -206,7 +206,7 @@ void Display::testMaximumCapacity(const Player& p0, const Player& p1, const Play
 	int tempWidth2 = 140;
 	for (int i = 0; i < 9; i++)
 	{
-		drawSprite("CHANTIER_MINI.png", sf::Vector2f(140, tempWidth2), 108, 30);
+		drawSprite("Mini/CHANTIER_MINI.png", sf::Vector2f(140, tempWidth2), 108, 30);
 		tempWidth2 += 30;
 	}
 
@@ -214,7 +214,7 @@ void Display::testMaximumCapacity(const Player& p0, const Player& p1, const Play
 	int tempWidth3 = 140;
 	for (int i = 0; i < 9; i++)
 	{
-		drawSprite("CHANTIER_MINI.png", sf::Vector2f(290, tempWidth3), 108, 30);
+		drawSprite("Mini/CHANTIER_MINI.png", sf::Vector2f(290, tempWidth3), 108, 30);
 		tempWidth3 += 30;
 	}
 
@@ -222,7 +222,7 @@ void Display::testMaximumCapacity(const Player& p0, const Player& p1, const Play
 	int tempWidth4 = 140;
 	for (int i = 0; i < 9; i++)
 	{
-		drawSprite("CHANTIER_MINI.png", sf::Vector2f(410, tempWidth4), 108, 30);
+		drawSprite("Mini/CHANTIER_MINI.png", sf::Vector2f(410, tempWidth4), 108, 30);
 		tempWidth4 += 30;
 	}
 
@@ -230,7 +230,7 @@ void Display::testMaximumCapacity(const Player& p0, const Player& p1, const Play
 	int tempWidth5 = 140;
 	for (int i = 0; i < 9; i++)
 	{
-		drawSprite("CHANTIER_MINI.png", sf::Vector2f(560, tempWidth5), 108, 30);
+		drawSprite("Mini/CHANTIER_MINI.png", sf::Vector2f(560, tempWidth5), 108, 30);
 		tempWidth5 += 30;
 	}
 
@@ -238,7 +238,7 @@ void Display::testMaximumCapacity(const Player& p0, const Player& p1, const Play
 	int tempWidth6 = 140;
 	for (int i = 0; i < 9; i++)
 	{
-		drawSprite("CHANTIER_MINI.png", sf::Vector2f(680, tempWidth6), 108, 30);
+		drawSprite("Mini/CHANTIER_MINI.png", sf::Vector2f(680, tempWidth6), 108, 30);
 		tempWidth6 += 30;
 	}
 
@@ -287,14 +287,15 @@ void Display::drawBoard1(const CardSet& board)
 		//Colonne 1
 		for (int i = 0; i < 9; i++)
 		{
-			drawSprite("CHANTIER_MINI.png", sf::Vector2f(20, tempWidth), 108, 30);
+			string s = "Mini/";
+			drawSprite(s.append(board.at(i)->m_name), sf::Vector2f(20, tempWidth), 108, 30);
 			tempWidth += 30;
 		}
 		//Colonne 2
 		int tempWidth2 = 140;
 		for (int i = 9; i < board.size(); i++)
 		{
-			drawSprite("CHANTIER_MINI.png", sf::Vector2f(140, tempWidth2), 108, 30);
+			drawSprite("Mini/CHANTIER_MINI.png", sf::Vector2f(140, tempWidth2), 108, 30);
 			tempWidth2 += 30;
 		}
 	}
@@ -303,7 +304,7 @@ void Display::drawBoard1(const CardSet& board)
 		//Colonne 1
 		for (int i = 0; i < board.size(); i++)
 		{
-			drawSprite("CHANTIER_MINI.png", sf::Vector2f(20, tempWidth), 108, 30);
+			drawSprite("Mini/CHANTIER_MINI.png", sf::Vector2f(20, tempWidth), 108, 30);
 			tempWidth += 30;
 		}
 	}
@@ -317,14 +318,14 @@ void Display::drawBoard2(const CardSet& board)
 		//Colonne 1
 		for (int i = 0; i < 9; i++)
 		{
-			drawSprite("CHANTIER_MINI.png", sf::Vector2f(290, tempWidth), 108, 30);
+			drawSprite("Mini/CHANTIER_MINI.png", sf::Vector2f(290, tempWidth), 108, 30);
 			tempWidth += 30;
 		}
 		//Colonne 2
 		int tempWidth2 = 140;
 		for (int i = 9; i < board.size(); i++)
 		{
-			drawSprite("CHANTIER_MINI.png", sf::Vector2f(410, tempWidth2), 108, 30);
+			drawSprite("Mini/CHANTIER_MINI.png", sf::Vector2f(410, tempWidth2), 108, 30);
 			tempWidth2 += 30;
 		}
 	}
@@ -333,7 +334,7 @@ void Display::drawBoard2(const CardSet& board)
 		//Colonne 1
 		for (int i = 0; i < board.size(); i++)
 		{
-			drawSprite("CHANTIER_MINI.png", sf::Vector2f(290, tempWidth), 108, 30);
+			drawSprite("Mini/CHANTIER_MINI.png", sf::Vector2f(290, tempWidth), 108, 30);
 			tempWidth += 30;
 		}
 	}
@@ -347,14 +348,14 @@ void Display::drawBoard3(const CardSet& board)
 		//Colonne 1
 		for (int i = 0; i < 9; i++)
 		{
-			drawSprite("CHANTIER_MINI.png", sf::Vector2f(560, tempWidth), 108, 30);
+			drawSprite("Mini/CHANTIER_MINI.png", sf::Vector2f(560, tempWidth), 108, 30);
 			tempWidth += 30;
 		}
 		//Colonne 2
 		int tempWidth2 = 140;
 		for (int i = 9; i < board.size(); i++)
 		{
-			drawSprite("CHANTIER_MINI.png", sf::Vector2f(680, tempWidth2), 108, 30);
+			drawSprite("Mini/CHANTIER_MINI.png", sf::Vector2f(680, tempWidth2), 108, 30);
 			tempWidth2 += 30;
 		}
 	}
@@ -363,7 +364,7 @@ void Display::drawBoard3(const CardSet& board)
 		//Colonne 1
 		for (int i = 0; i < board.size(); i++)
 		{
-			drawSprite("CHANTIER_MINI.png", sf::Vector2f(560, tempWidth), 108, 30);
+			drawSprite("Mini/CHANTIER_MINI.png", sf::Vector2f(560, tempWidth), 108, 30);
 			tempWidth += 30;
 		}
 	}
