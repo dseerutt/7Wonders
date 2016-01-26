@@ -15,7 +15,29 @@ Display::~Display()
 
 void Display::setAge(int age0)
 {
+	m_window.clear();
+	drawBackground();
 	age = age0;
+	switch (age)
+	{
+	case 1:
+		//Age 1
+		drawSprite("I.png", sf::Vector2f(0, 0), 46, 61);
+		break;
+	case 2:
+		//Age 2
+		drawSprite("II.png", sf::Vector2f(0, 0), 59, 61);
+		break;
+	case 3:
+		//Age 3
+		drawSprite("III.png", sf::Vector2f(0, 0), 59, 61);
+		break;
+	default:
+		break;
+		m_window.display();
+		sf::sleep(sf::milliseconds(1000));
+		draw();
+	}
 }
 
 void Display::run() //FIXMEPLEASE
