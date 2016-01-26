@@ -30,6 +30,18 @@ void Display::run() //FIXMEPLEASE
 	}
 }
 
+void Display::init()
+{
+	drawBackground();
+	drawSpriteWithScale("pap.png", sf::Vector2f(90, 100), sf::Vector2f(1, 0.75), 640, 533);
+	writeTextBlack("Welcome to 7 Wonders", sf::Vector2f(170, 140), 60);
+	writeTextBlack("The Game", sf::Vector2f(300, 230), 60);
+	drawSpriteWithScale("begin.png", sf::Vector2f(360, 350), sf::Vector2f(1, 1), 88, 50);
+	m_window.display();
+	system("pause");
+	
+}
+
 void Display::draw()
 {
 	m_window.clear();

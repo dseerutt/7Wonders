@@ -64,6 +64,7 @@ void World::run()
 {
 #ifndef TESTING
 	Display display(m_players);
+	display.init();
 #endif // !TESTING
 
 	while (!m_gameOver)

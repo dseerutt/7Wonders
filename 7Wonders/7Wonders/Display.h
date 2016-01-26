@@ -24,6 +24,7 @@ public:
 	void draw();
 	void drawHands();
 	void drawScores(std::vector<std::vector<int> > m_scores);
+	void init();
 
 
 protected:
