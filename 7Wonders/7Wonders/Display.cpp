@@ -53,17 +53,30 @@ void Display::draw()
 void Display::drawScores(std::vector<std::vector<int> > m_scores)
 {
 	drawBackground();
-	drawSprite("Player1.png", sf::Vector2f(270, 100), 500, 500);
-	drawSprite("Player2.png", sf::Vector2f(420, 100), 133, 55);
-	drawSprite("Player3.png", sf::Vector2f(570, 100), 133, 55);
-	writeText("WAR", sf::Vector2f(42, 170), 20);
-	writeText("GOLD", sf::Vector2f(42, 210), 20);
-	writeText("WONDER_LEVEL", sf::Vector2f(42, 250), 20);
-	writeText("BLUE_CARDS", sf::Vector2f(42, 290), 20);
-	writeText("YELLOW_CARDS", sf::Vector2f(42, 340), 20);
-	writeText("GUILDS", sf::Vector2f(42, 390), 20);
-	writeText("SCIENCE", sf::Vector2f(42, 440), 20);
-	writeText("TOTAL_SCORE", sf::Vector2f(42, 490), 20);
+	drawSpriteWithScale("pap.png", sf::Vector2f(0, 0), sf::Vector2f(1.25, 1.1), 640, 533);
+	int offset = 35;
+	drawSprite("Player1.png", sf::Vector2f(offset + 240, 100), 500, 500);
+	drawSprite("Player2.png", sf::Vector2f(offset + 390, 100), 133, 55);
+	drawSprite("Player3.png", sf::Vector2f(offset + 540, 100), 133, 55);
+	writeTextBlack("WAR", sf::Vector2f(offset + 42, 170), 20);
+	writeTextBlack("GOLD", sf::Vector2f(offset + 42, 210), 20);
+	writeTextBlack("WONDER LEVEL", sf::Vector2f(offset + 42, 250), 20);
+	writeTextBlack("BLUE CARDS", sf::Vector2f(offset + 42, 290), 20);
+	writeTextBlack("YELLOW CARDS", sf::Vector2f(offset + 42, 330), 20);
+	writeTextBlack("GUILDS", sf::Vector2f(offset + 42, 370), 20);
+	writeTextBlack("SCIENCE", sf::Vector2f(offset + 42, 410), 20);
+	writeTextBlack("TOTAL SCORE", sf::Vector2f(offset + 42, 450), 20);
+	int posX = 300;
+	for (int i = 0; i < m_scores.size(); i++)
+	{
+		int posY = 167;
+		for (int j = 0; j < m_scores.at(i).size(); j++)
+		{
+			writeTextBlack(to_string(m_scores.at(i).at(j)), sf::Vector2f(offset + posX, posY), 20);
+			posY += 40;
+		}
+		posX += 150;
+	}
 
 
 	m_window.display();
@@ -429,6 +442,23 @@ void Display::writeText(string text, sf::Vector2f position, int size)
 	atext.setCharacterSize(size);
 	atext.setStyle(sf::Text::Bold);
 	atext.setColor(sf::Color::White);
+	atext.setPosition(position.x, position.y);
+	atext.setString(text);
+	m_window.draw(atext);
+}
+
+void Display::writeTextBlack(string text, sf::Vector2f position, int size)
+{
+	sf::Text atext;
+	sf::Font font;
+	if (!font.loadFromFile(RelativePath + "arial.ttf"))
+	{
+		// error
+	}
+	atext.setFont(font);
+	atext.setCharacterSize(size);
+	atext.setStyle(sf::Text::Bold);
+	atext.setColor(sf::Color::Black);
 	atext.setPosition(position.x, position.y);
 	atext.setString(text);
 	m_window.draw(atext);
