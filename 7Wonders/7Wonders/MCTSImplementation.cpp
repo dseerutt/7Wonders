@@ -56,6 +56,10 @@ namespace game
 		{
 			state.world->m_players.push_back(&c);
 		}
+		for (int i = 0; i < state.marvels.size(); i++)
+		{
+			state.world->m_players.at(i)->marvel = &state.marvels.at(i);
+		}
 	}
 
 	/*void MCTSImplementation::playout(std::mt19937& engine, int max_depth)
@@ -160,6 +164,14 @@ namespace game
 		}
 
 		uint8_t p = current_player();
+		Player& pl = *state.world->m_players[0];
+		std::cout << pl.m_hand.size() << " ; ";
+		if (pl.m_hand.size() > 100)
+		{
+			state.world->m_gameOver = true;
+			state.current_player = 1 - state.current_player;
+			return;
+		}
 		if (p == 0)
 		{
 			if (m > 500) m = 0;
@@ -205,11 +217,16 @@ namespace game
 
 	void MCTSImplementation::player2Move(uint16_t m)
 	{
-		for (unsigned int i = 1; i < state.world->m_players.size(); i++)
+		/*for (unsigned int i = 1; i < state.world->m_players.size(); i++)
 		{
 			uint16_t move = 0;
 			playerMove(i, move);
-		}
+		}*/
+		unsigned int nbMoves = numberOfMoves(1);
+		uint16_t move_p2 = m % nbMoves;
+		uint16_t move_p3 = m / nbMoves;
+		playerMove(1, move_p2);
+		playerMove(2, move_p3);
 	}
 
 	std::uint64_t MCTSImplementation::hash() const
@@ -234,6 +251,11 @@ namespace game
 		for (unsigned int i = 1; i < state.world->m_players.size(); i++)
 		{
 			state.cp.push_back(*((ComputerPlayer*)state.world->m_players.at(i)));
+		}
+		state.marvels.clear();
+		for (int i = 0; i < state.world->m_players.size(); i++)
+		{
+			state.marvels.push_back(*(DefaultMarvel*) state.world->m_players.at(i)->marvel);
 		}
 		return state;
 	}

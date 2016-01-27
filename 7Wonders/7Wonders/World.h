@@ -23,7 +23,7 @@ enum Scores
 class World
 {
 private:
-	CardDatabaseParser m_cardDatabaseParser;
+	static CardDatabaseParser m_cardDatabaseParser;
 
 public:
 	//Game state

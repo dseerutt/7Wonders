@@ -10,6 +10,7 @@
 #include "CardSet.h"
 #include "ComputerPlayer.h"
 #include "HumanPlayer.h"
+#include "DefaultMarvel.h"
 
 namespace game
 {
@@ -17,8 +18,11 @@ namespace game
 	{
 		uint8_t current_player = 0;
 		World* world;
+
 		std::vector<HumanPlayer> hp;
 		std::vector<ComputerPlayer> cp;
+
+		std::vector<DefaultMarvel> marvels;
 	};
 
 	class MCTSImplementation : public game<GameState>

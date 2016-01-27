@@ -1,9 +1,44 @@
-﻿Build started 25/01/2016 19:19:00.
+﻿Build started 27/01/2016 02:54:28.
      1>Project "E:\cygwin\home\WIN SEVEN\projects\7Wonders\HighestNum\HighestNum\HighestNum.vcxproj" on node 2 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt monte_carlo.cpp test_monte_carlo.cpp
+         monte_carlo.cpp
+         Generating Code...
+         Compiling...
+         test_monte_carlo.cpp
+     1>e:\cygwin\home\win seven\projects\7wonders\highestnum\highestnum\monte_carlo.hpp(88): warning C4244: 'argument' : conversion from 'std::chrono::system_clock::rep' to 'unsigned int', possible loss of data
+                 e:\cygwin\home\win seven\projects\7wonders\highestnum\highestnum\monte_carlo.hpp(82) : while compiling class template member function 'monte_carlo::monte_carlo<game::HighestNumber>::monte_carlo(Game &,uint32_t,uint32_t)'
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+                 e:\cygwin\home\win seven\projects\7wonders\highestnum\highestnum\monte_carlo.hpp(77) : see reference to function template instantiation 'monte_carlo::monte_carlo<game::HighestNumber>::monte_carlo(Game &,uint32_t,uint32_t)' being compiled
+                 with
+                 [
+                     Game=game::HighestNumber
+                 ]
+                 e:\cygwin\home\win seven\projects\7wonders\highestnum\highestnum\monte_carlo.hpp(29) : while compiling class template member function 'uint16_t monte_carlo::monte_carlo<game::HighestNumber>::select_move(void)'
+                 e:\cygwin\home\win seven\projects\7wonders\highestnum\highestnum\test_monte_carlo.cpp(49) : see reference to function template instantiation 'uint16_t monte_carlo::monte_carlo<game::HighestNumber>::select_move(void)' being compiled
+                 e:\cygwin\home\win seven\projects\7wonders\highestnum\highestnum\test_monte_carlo.cpp(35) : see reference to class template instantiation 'monte_carlo::monte_carlo<game::HighestNumber>' being compiled
+         Generating Code...
+       Link:
+         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\cygwin\home\WIN SEVEN\projects\7Wonders\HighestNum\Debug\HighestNum.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\cygwin\home\WIN SEVEN\projects\7Wonders\HighestNum\Debug\HighestNum.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\cygwin\home\WIN SEVEN\projects\7Wonders\HighestNum\Debug\HighestNum.lib" /MACHINE:X86 Debug\allocator.obj
+         Debug\display_node.obj
+         Debug\fast_log.obj
+         Debug\HighestNumber.obj
+         Debug\mcts_two_players.obj
+         Debug\monte_carlo.obj
+         Debug\node.obj
+         Debug\omp_util.obj
+         Debug\openings.obj
+         Debug\statistics.obj
+         Debug\test_HN.obj
+         Debug\test_mcts_two_players.obj
+         Debug\test_monte_carlo.obj
+         Debug\test_two_players_game.obj
          HighestNum.vcxproj -> E:\cygwin\home\WIN SEVEN\projects\7Wonders\HighestNum\Debug\HighestNum.exe
      1>Done Building Project "E:\cygwin\home\WIN SEVEN\projects\7Wonders\HighestNum\HighestNum\HighestNum.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.04
+Time Elapsed 00:00:01.99

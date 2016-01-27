@@ -15,7 +15,7 @@ namespace mcts
     void copy(node* n1, node* n2, unsigned int prunning = 0);
 
   public:
-    allocator(unsigned int size = 1000000U);
+    allocator(unsigned int size = 10000000U);
     ~allocator();
     node* allocate(unsigned int size);
     void clear();

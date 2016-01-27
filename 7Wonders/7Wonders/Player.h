@@ -8,7 +8,7 @@ using namespace std;
 
 class Player
 {
-protected:
+public:
 	char scienceGuild = 'n';
 	Marvel* marvel;
 	CardSet m_hand;
